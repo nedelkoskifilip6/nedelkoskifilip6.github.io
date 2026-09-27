@@ -1,0 +1,177 @@
+/* Global styles for the model viewer, whose content is updated by JavaScript. */
+/* Keep the transparent details treatment during the closing transition too. */
+body.model-viewer-open .model-viewer__details {
+  background: transparent !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+/* Hide the detail column as soon as closing starts, so its old cream surface cannot flash. */
+.model-viewer.is-closing .model-viewer__details {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: none !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 0 auto;
+  width: min(266px, 31vw);
+  min-width: 0;
+  height: auto;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 16px;
+  background: transparent !important;
+  color: #fff;
+  scrollbar-color: rgba(255,255,255,.32) transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+  opacity: .9;
+  text-shadow: 0 1px 5px rgba(0,0,0,.9), 0 0 14px rgba(0,0,0,.5);
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-close {
+  margin: 0 0 5px auto;
+  padding-bottom: 3px;
+  color: rgba(255,255,255,.94);
+  border-bottom-color: rgba(255,255,255,.26);
+  font: 500 7.5px/1.15 "DM Mono", monospace;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-eyebrow,
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-colours > p {
+  color: rgba(255,255,255,.86);
+  font: 500 7.5px/1.25 "DM Mono", monospace;
+  letter-spacing: .1em;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details h2 {
+  margin: 2.5px 0 5px;
+  color: #fff;
+  font: 500 15px/1.2 "DM Mono", monospace;
+  letter-spacing: .025em;
+  text-transform: uppercase;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-description {
+  margin: 0 0 4px;
+  color: rgba(255,255,255,.88);
+  font: 400 8.75px/1.3 "DM Mono", monospace;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-specs {
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: 0;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-spec {
+  min-height: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  column-gap: 4px;
+  row-gap: 0;
+  border-top-color: rgba(255,255,255,.28);
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-spec strong {
+  order: 2;
+  color: #fff;
+  font: 500 10px/.9 "DM Mono", monospace;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-spec strong small {
+  color: rgba(255,255,255,.9);
+  font: 400 7.5px "DM Mono", monospace;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-spec > span {
+  order: 1;
+  margin-top: 0;
+  color: rgba(255,255,255,.9);
+  font: 500 7.5px/.9 "DM Mono", monospace;
+  letter-spacing: .045em;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-colours { margin-top: 6px; }
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-colours > p { margin-bottom: 4px; }
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-swatches { gap: 6px; margin-top: 0; }
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-swatch-item { width: auto; display: inline-flex; }
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-swatch { width: 19px; height: 19px; }
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-colour-names {
+  margin-top: 5px;
+  color: rgba(255,255,255,.88);
+  font: 400 6.25px/1.35 "DM Mono", monospace;
+}
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-source {
+  gap: 7.5px;
+  margin-top: 6px;
+  padding-bottom: 4px;
+  border-bottom-color: rgba(217,31,44,.8);
+  color: rgba(255,255,255,.94);
+  font: 500 6.25px/1.25 "DM Mono", monospace;
+}
+
+body.model-viewer-open .model-viewer.is-open .viewer-image-hint {
+  margin: 0 24px 25px auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: rgba(255,255,255,.88);
+  opacity: .88;
+  font: 500 8px/1.2 "DM Mono", monospace;
+  letter-spacing: .16em;
+  text-shadow: 0 1px 5px rgba(0,0,0,.8);
+  animation: tap-red-pulse 1.8s ease-in-out infinite alternate;
+}
+@keyframes tap-red-pulse {
+  from { color: rgba(255,255,255,.88); text-shadow: 0 1px 5px rgba(0,0,0,.8); }
+  to { color: #ff5a63; text-shadow: 0 0 7px rgba(217,31,44,.9), 0 0 15px rgba(217,31,44,.52); }
+}
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-note {
+  margin-top: 4px;
+  color: rgba(255,255,255,.72);
+  font: 400 6.25px/1.3 "DM Mono", monospace;
+}
+
+@media (max-width: 650px) {
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details {
+    inset: 8px 8px 8px auto;
+    width: min(250px, 72.5vw);
+    min-width: 0;
+    max-height: calc(100% - 16px);
+    padding: 12.5px;
+  }
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details h2 { font-size: 13.75px; }
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-description { font-size: 7.5px; }
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-spec { min-height: 8px; }
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-spec strong { font-size: 9px; line-height: .88; }
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-swatch { width: 16px; height: 16px; }
+  body.model-viewer-open .model-viewer.is-open .viewer-image-hint { margin: 0 15px 15px auto; font-size: 7.5px; }
+}
+
+.lineup-card-top > span:first-child {
+  animation: tap-red-pulse 1.8s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lineup-card-top > span:first-child,
+  body.model-viewer-open .model-viewer.is-open .viewer-image-hint { animation: none; }
+}
+
+#vision.lineup-section .lineup-card.is-returned-from-viewer,
+#vision.lineup-section .lineup-card.is-returned-from-viewer:hover,
+#vision.lineup-section .lineup-card.is-returned-from-viewer:focus,
+#vision.lineup-section .lineup-card.is-returned-from-viewer:focus-visible {
+  outline: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}

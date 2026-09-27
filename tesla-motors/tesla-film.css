@@ -1,0 +1,80 @@
+.tesla-film {
+  position: relative;
+  width: 100%;
+  height: min(56.25vw, 90svh);
+  min-height: 220px;
+  overflow: hidden;
+  background: #050607;
+  isolation: isolate;
+}
+
+.tesla-film::before,
+.tesla-film::after {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+  opacity: 0;
+}
+
+.tesla-film::before {
+  inset: 26px;
+  border: 1px solid rgba(230, 40, 55, 0.7);
+  box-shadow: 0 0 22px rgba(230, 40, 55, 0.32), inset 0 0 16px rgba(230, 40, 55, 0.14);
+}
+
+.tesla-film::after {
+  inset: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.2) 50%, transparent 75%);
+  transform: translateX(-100%);
+}
+
+.tesla-film.is-playing::before { animation: film-frame-arrive 2.4s cubic-bezier(.16,1,.3,1) both; }
+.tesla-film.is-playing::after { animation: film-light-sweep 2.1s cubic-bezier(.16,1,.3,1) both; }
+
+.tesla-film video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+  transform: scale(1.045);
+  opacity: .84;
+  transition: transform 2.2s cubic-bezier(.16,1,.3,1), filter 2s ease, opacity 1.8s ease;
+  filter: brightness(.78);
+  will-change: transform, opacity, filter;
+  pointer-events: none;
+}
+
+.tesla-film.is-playing video { transform: scale(1); opacity: 1; filter: brightness(1); }
+
+.tesla-film video::-webkit-media-controls,
+.tesla-film video::-webkit-media-controls-enclosure,
+.tesla-film video::-webkit-media-controls-panel,
+.tesla-film video::-webkit-media-controls-overlay-play-button,
+.tesla-film video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+@media (max-width: 650px) {
+  .tesla-film { height: 56.25vw; min-height: 205px; }
+}
+
+@keyframes film-frame-arrive {
+  0% { opacity: 0; inset: 46px; }
+  35% { opacity: .82; }
+  100% { opacity: .48; inset: 26px; }
+}
+
+@keyframes film-light-sweep {
+  0% { opacity: 0; transform: translateX(-100%); }
+  18% { opacity: .95; }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tesla-film video { transform: none; filter: none; transition: none; }
+  .tesla-film.is-playing::before,
+  .tesla-film.is-playing::after { animation: none; }
+}
