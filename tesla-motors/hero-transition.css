@@ -1,0 +1,107 @@
+/* Cinematic, scroll-linked handoff from the hero to the Tesla motion strip. */
+.hero-stage > img {
+  transform: scale(var(--handoff-zoom, 1));
+  transform-origin: 58% 54%;
+  will-change: transform;
+}
+
+.hero-copy,
+.hero-bottom,
+.hero-index,
+.hero-stage-code {
+  transform: translate3d(0, var(--handoff-copy-y, 0px), 0);
+  opacity: var(--handoff-copy-opacity, 1);
+  filter: blur(var(--handoff-copy-blur, 0px));
+  will-change: transform, opacity, filter;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: auto 0 0;
+  height: 2px;
+  pointer-events: none;
+  opacity: var(--handoff-progress, 0);
+  transform: scaleX(var(--handoff-progress, 0));
+  transform-origin: left center;
+  background: linear-gradient(90deg, transparent, #d91f2c 20%, #fff 55%, #d91f2c 82%, transparent);
+  box-shadow: 0 0 18px rgba(217, 31, 44, .78), 0 0 38px rgba(217, 31, 44, .38);
+}
+
+.drive-track {
+  isolation: isolate;
+  --handoff-progress: 0;
+}
+
+.drive-track::before,
+.drive-track::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.drive-track::before {
+  left: 0;
+  width: 100%;
+  opacity: var(--handoff-glow-opacity, 0);
+  transform: scaleX(var(--handoff-progress));
+  transform-origin: left center;
+  background: linear-gradient(100deg, rgba(217, 31, 44, .2), rgba(217, 31, 44, .06) 42%, transparent 78%);
+}
+
+.drive-track::after {
+  left: var(--handoff-beam-x, 0px);
+  width: min(24vw, 300px);
+  opacity: var(--handoff-beam-opacity, 0);
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(217, 31, 44, .11), rgba(255, 255, 255, .62), rgba(217, 31, 44, .14), transparent);
+  filter: blur(5px);
+}
+
+.drive-label,
+.drive-road,
+.drive-caption {
+  position: relative;
+  z-index: 1;
+  transform: translate3d(0, var(--handoff-content-y, 0px), 0);
+  opacity: var(--handoff-content-opacity, 1);
+  will-change: transform, opacity;
+}
+
+.road-line {
+  transform: scaleX(var(--handoff-progress, 0));
+  transform-origin: left center;
+  border-image: linear-gradient(90deg, rgba(217, 31, 44, .72), rgba(75, 49, 32, .18)) 1;
+}
+
+.moving-tesla-logo {
+  filter: drop-shadow(0 0 var(--handoff-logo-glow, 0px) rgba(217, 31, 44, .64));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stage > img,
+  .hero-copy,
+  .hero-bottom,
+  .hero-index,
+  .hero-stage-code,
+  .drive-label,
+  .drive-road,
+  .drive-caption,
+  .road-line,
+  .moving-tesla-logo {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    will-change: auto;
+  }
+
+  .hero::after,
+  .drive-track::before,
+  .drive-track::after {
+    display: none;
+  }
+}
