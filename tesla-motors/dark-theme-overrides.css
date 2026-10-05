@@ -1,0 +1,212 @@
+/* Cybertruck night palette for the Tesla experience (video sections stay untouched). */
+:root {
+  color-scheme: dark;
+  --ink: #f3f5f7;
+  --muted: #a1a8b0;
+  --accent: #e82127;
+  --line: rgba(210, 220, 230, .16);
+  --paper: #090c10;
+  --paper-ink: #f3f5f7;
+}
+
+body {
+  background: #090c10 !important;
+  color: #f3f5f7 !important;
+}
+
+.hero-stage > img {
+  object-position: center 57% !important;
+}
+
+.vision.lineup-section,
+.case-study,
+.feature-section,
+.principles,
+.discover,
+.about-author,
+footer {
+  color: #f3f5f7 !important;
+  --line: rgba(210, 220, 230, .16) !important;
+  --ink: #f3f5f7 !important;
+  --paper-ink: #f3f5f7 !important;
+}
+
+.discover,
+footer {
+  background: #090c10 !important;
+}
+
+.vision.lineup-section,
+.feature-section,
+.about-author {
+  background: #0d1116 !important;
+}
+
+.case-study,
+.principles {
+  background: #11161c !important;
+}
+
+.vision.lineup-section,
+.case-study,
+.feature-section,
+.principles,
+.about-author,
+footer {
+  border-color: rgba(210, 220, 230, .14) !important;
+}
+
+.vision-note,
+.case-study-intro,
+.project-facts dt,
+.project-facts dd,
+.feature-copy p,
+.feature-metric span,
+.principle-card p,
+.principles .eyebrow,
+.night-drive .eyebrow,
+.concept-note,
+.about-copy .eyebrow,
+.about-copy > p:last-child,
+.about-index,
+footer,
+.creator-credit,
+.creator-credit strong {
+  color: #a5adb6 !important;
+}
+
+.lineup-card {
+  border-color: rgba(210, 220, 230, .2) !important;
+  background: #0a0d11 !important;
+}
+
+.lineup-card-title,
+.feature-copy h3,
+.feature-metric strong,
+.principle-card h3,
+.project-facts dd,
+.case-study h2,
+.vision h2,
+.section-intro h2,
+.principles h2,
+.about-copy h2,
+.discover h2 {
+  color: #f3f5f7 !important;
+}
+
+.project-facts div,
+.feature-card,
+.principle-card {
+  border-color: rgba(210, 220, 230, .18) !important;
+}
+
+.night-drive {
+  color: #f3f5f7 !important;
+  background: #090c10 !important;
+}
+
+.night-overlay {
+  background:
+    linear-gradient(90deg, rgba(5, 8, 12, .92), rgba(5, 8, 12, .66) 48%, rgba(5, 8, 12, .22)),
+    linear-gradient(0deg, rgba(5, 8, 12, .68), transparent 55%),
+    url("/tesla-motors/images/model-3-performance-journey.jpg") 55% center / cover no-repeat !important;
+}
+
+.button-outline {
+  border-color: rgba(243, 245, 247, .52) !important;
+}
+
+footer {
+  border-top-color: rgba(210, 220, 230, .16) !important;
+}
+
+@media (max-width: 760px) {
+  .hero-stage > img {
+    object-position: 68% center !important;
+  }
+
+  .night-overlay {
+    background:
+      linear-gradient(0deg, rgba(5, 8, 12, .94), rgba(5, 8, 12, .56) 48%, rgba(5, 8, 12, .2)),
+      url("/tesla-motors/images/model-3-performance-journey.jpg") 62% center / cover no-repeat !important;
+  }
+}
+
+/* Keep supporting copy and translucent information cards legible on dark surfaces. */
+.feature-card,
+.principle-card {
+  background: rgba(255, 255, 255, .045) !important;
+  border-color: rgba(210, 220, 230, .18) !important;
+}
+
+.vision .eyebrow,
+.case-study .eyebrow,
+.feature-section .eyebrow,
+.principles .eyebrow,
+.night-drive .eyebrow,
+.discover .eyebrow,
+.about-author .eyebrow {
+  color: #bbc3cc !important;
+}
+
+.case-study-intro,
+.vision-note,
+.feature-copy p,
+.feature-metric span,
+.principle-card p,
+.about-copy > p:last-child,
+.concept-note {
+  color: #b6bec7 !important;
+}
+
+/* Rounded floating navigation keeps the dark Tesla page light and uncluttered. */
+.site-header {
+  inset: 14px 5vw auto !important;
+  height: 66px !important;
+  padding: 0 28px !important;
+  border: 1px solid rgba(220, 230, 242, .15) !important;
+  border-radius: 999px !important;
+  background: rgba(10, 15, 22, .38) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .22) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(125%) !important;
+  backdrop-filter: blur(18px) saturate(125%) !important;
+}
+
+/* Keep Technology in Motion focused on its copy, without card photography. */
+.feature-list {
+  gap: 12px !important;
+}
+
+.feature-card {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  min-height: 154px !important;
+  padding: 18px 20px !important;
+  border: 1px solid rgba(176, 197, 220, .2) !important;
+  border-radius: 15px !important;
+  background: rgba(16, 23, 34, .82) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.035), 0 15px 38px rgba(0,0,0,.2) !important;
+}
+
+.feature-card::before {
+  content: none !important;
+}
+
+.feature-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    inset: 10px 4vw auto !important;
+    height: 58px !important;
+    padding: 0 18px !important;
+  }
+
+  .feature-card {
+    min-height: 132px !important;
+    padding: 16px 13px !important;
+  }
+}

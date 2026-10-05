@@ -1,32 +1,45 @@
 (() => {
   const hero = document.querySelector('.hero');
-  const handoff = document.querySelector('.drive-track');
-  if (!hero || !handoff || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const transition = document.querySelector('.scroll-transition');
+  if (!hero || !transition) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduceMotion.matches) return;
 
   let frame = 0;
   const clamp = (value) => Math.min(1, Math.max(0, value));
+  const smoothstep = (value) => value * value * (3 - 2 * value);
 
   const render = () => {
     frame = 0;
     const viewport = window.innerHeight || 1;
-    const start = hero.offsetTop + hero.offsetHeight - viewport * 0.68;
-    const end = handoff.offsetTop + Math.min(handoff.offsetHeight * 0.78, viewport * 0.48);
-    const raw = clamp((window.scrollY - start) / Math.max(1, end - start));
-    const progress = raw * raw * (3 - 2 * raw);
+    const raw = clamp(window.scrollY / (viewport * 0.92));
+    const progress = smoothstep(raw);
+    const pulse = Math.pow(Math.max(0, Math.sin(Math.PI * progress)), 0.72);
+    const width = window.innerWidth || 1;
 
     hero.style.setProperty('--handoff-progress', progress.toFixed(3));
-    hero.style.setProperty('--handoff-zoom', (1 + progress * 0.14).toFixed(3));
-    hero.style.setProperty('--handoff-copy-y', `${(-58 * progress).toFixed(1)}px`);
-    hero.style.setProperty('--handoff-copy-opacity', (1 - progress * 0.72).toFixed(3));
-    hero.style.setProperty('--handoff-copy-blur', `${(progress * 3).toFixed(1)}px`);
+    hero.style.setProperty('--handoff-zoom', (1 + progress * 0.16).toFixed(3));
+    hero.style.setProperty('--handoff-copy-y', `${(-72 * progress).toFixed(1)}px`);
+    hero.style.setProperty('--handoff-copy-opacity', (1 - progress * 0.82).toFixed(3));
+    hero.style.setProperty('--handoff-copy-blur', `${(progress * 4).toFixed(1)}px`);
 
-    handoff.style.setProperty('--handoff-progress', progress.toFixed(3));
-    handoff.style.setProperty('--handoff-beam-x', `${(handoff.clientWidth * progress).toFixed(1)}px`);
-    handoff.style.setProperty('--handoff-glow-opacity', (progress * 0.72).toFixed(3));
-    handoff.style.setProperty('--handoff-beam-opacity', Math.min(1, 4 * progress * (1 - progress)).toFixed(3));
-    handoff.style.setProperty('--handoff-content-y', `${(20 * (1 - progress)).toFixed(1)}px`);
-    handoff.style.setProperty('--handoff-content-opacity', (0.32 + progress * 0.68).toFixed(3));
-    handoff.style.setProperty('--handoff-logo-glow', `${(2 + progress * 12).toFixed(1)}px`);
+    transition.style.setProperty('--transition-progress', progress.toFixed(3));
+    transition.style.setProperty('--transition-opacity', (pulse * 0.94).toFixed(3));
+    transition.style.setProperty('--transition-blur', `${(pulse * 5).toFixed(1)}px`);
+    transition.style.setProperty('--transition-drift', `${(-progress * width * 0.13).toFixed(1)}px`);
+    transition.style.setProperty('--transition-glow-drift', `${((0.5 - progress) * width * 0.34).toFixed(1)}px`);
+    transition.style.setProperty('--transition-trails', (pulse * 0.92).toFixed(3));
+    transition.style.setProperty('--transition-glow', (pulse * 0.9).toFixed(3));
+    transition.style.setProperty('--transition-cloud-opacity', '0.82');
+    transition.style.setProperty('--transition-lightning-opacity', '0.3');
+    transition.style.setProperty('--storm-bolt-progress', clamp(progress * 1.45).toFixed(3));
+    transition.style.setProperty('--storm-branch-a', clamp((progress - 0.16) * 6.2).toFixed(3));
+    transition.style.setProperty('--storm-branch-b', clamp((progress - 0.32) * 5.2).toFixed(3));
+    transition.style.setProperty('--storm-branch-c', clamp((progress - 0.49) * 4.8).toFixed(3));
+    transition.style.setProperty('--transition-logo-opacity', pulse.toFixed(3));
+    transition.style.setProperty('--transition-logo-scale', (0.82 + progress * 0.22).toFixed(3));
+    transition.style.setProperty('--transition-logo-y', `${(-18 * progress).toFixed(1)}px`);
   };
 
   const requestRender = () => {
