@@ -39,13 +39,13 @@
     transition.style.setProperty('--transition-trails', (pulse * 0.92).toFixed(3));
     transition.style.setProperty('--transition-cloud-opacity', '0.82');
     transition.style.setProperty('--transition-logo-opacity', pulse.toFixed(3));
-    transition.style.setProperty('--transition-logo-scale', (0.574 + pulse * 0.07).toFixed(3));
+    transition.style.setProperty('--transition-logo-scale', ((0.574 + pulse * 0.07) * 0.595).toFixed(3));
     transition.style.setProperty('--transition-logo-y', '0px');
     transition.style.setProperty('--transition-battery-opacity', (pulse * 0.9).toFixed(3));
-    transition.style.setProperty('--transition-battery-scale', (0.658 + pulse * 0.028).toFixed(3));
+    transition.style.setProperty('--transition-battery-scale', ((0.658 + pulse * 0.028) * 0.68).toFixed(3));
     transition.style.setProperty('--battery-charge', (0.035 + progress * 0.965).toFixed(3));
     transition.style.setProperty('--battery-color', chargeColor(progress));
-    transition.style.setProperty('--transition-edge-opacity', (pulse * 0.736).toFixed(3));
+    transition.style.setProperty('--transition-edge-opacity', (pulse * 0.6256).toFixed(3));
   };
 
   const requestRender = () => {

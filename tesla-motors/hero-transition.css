@@ -88,7 +88,7 @@
   width: min(82vw, 650px);
   opacity: var(--transition-battery-opacity, 0);
   transform: translate3d(-50%, calc(-50% + var(--transition-logo-y, 0px)), 0) scale(var(--transition-battery-scale, .94));
-  filter: drop-shadow(0 0 22px color-mix(in srgb, var(--battery-color, #ff313d) 48%, transparent));
+  filter: drop-shadow(0 0 16px color-mix(in srgb, var(--battery-color, #ff313d) 34%, transparent));
   will-change: transform, opacity, filter;
 }
 
@@ -101,6 +101,7 @@
 
 .battery-fill {
   fill: var(--battery-color, #ff313d);
+  opacity: .94;
   transform-box: fill-box;
   transform-origin: left center;
   transform: scaleX(var(--battery-charge, .04));
@@ -109,15 +110,13 @@
 
 .battery-shell,
 .battery-cap {
-  fill: rgba(10, 14, 20, .62);
-  stroke: rgba(242, 247, 255, .76);
-  stroke-width: 3;
+  fill: rgba(10, 14, 20, .18);
+  stroke: rgba(242, 247, 255, .68);
+  stroke-width: 2.5;
 }
 
-.battery-grid {
-  fill: none;
-  stroke: rgba(245, 248, 255, .2);
-  stroke-width: 2;
+.battery-track {
+  fill: rgba(233, 240, 250, .10);
 }
 
 .transition-brand {
