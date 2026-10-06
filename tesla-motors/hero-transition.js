@@ -45,7 +45,7 @@
     transition.style.setProperty('--transition-battery-scale', ((0.658 + pulse * 0.028) * 0.68).toFixed(3));
     transition.style.setProperty('--battery-charge', (0.035 + progress * 0.965).toFixed(3));
     transition.style.setProperty('--battery-color', chargeColor(progress));
-    transition.style.setProperty('--transition-edge-opacity', (pulse * 0.6256).toFixed(3));
+    transition.style.setProperty('--transition-edge-opacity', (pulse * 0.56304).toFixed(3));
   };
 
   const requestRender = () => {
