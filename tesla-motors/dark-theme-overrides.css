@@ -303,7 +303,8 @@ footer {
   .principles { background-position: 54% center !important; }
 }
 
-/* Carry the hero handoff's red-accent divider through every story section. */
+/* Repeat the hero's red-to-white divider at every page boundary. */
+main > .hero,
 main > .lineup-section,
 main > .case-study,
 main > .tesla-film,
@@ -312,9 +313,10 @@ main > .principles,
 main > .night-drive,
 main > .discover {
   position: relative;
-  border-top: 2px solid rgba(232, 33, 39, .52) !important;
+  border-top: 0 !important;
 }
 
+main > .hero::after,
 main > .lineup-section::before,
 main > .case-study::before,
 main > .tesla-film::before,
@@ -324,14 +326,47 @@ main > .night-drive::before,
 main > .discover::before {
   content: "";
   position: absolute;
-  z-index: 2;
-  top: -2px;
+  z-index: 5;
+  right: 0;
+  left: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 2%,
+    rgba(217, 31, 44, .38) 12%,
+    rgba(217, 31, 44, .62) 30%,
+    rgba(255, 255, 255, .92) 50%,
+    rgba(217, 31, 44, .62) 70%,
+    rgba(217, 31, 44, .38) 88%,
+    transparent 98%);
+  box-shadow: 0 0 9px rgba(217, 31, 44, .22), 0 0 12px rgba(255, 255, 255, .16);
+  pointer-events: none;
+  border: 0 !important;
+}
+
+main > .hero::after {
+  top: auto;
+  bottom: 0;
+}
+
+main > .hero::before,
+main > .lineup-section::after,
+main > .case-study::after,
+main > .tesla-film::after,
+main > .feature-section::after,
+main > .principles::after,
+main > .night-drive::after,
+main > .discover::after {
+  content: "";
+  position: absolute;
+  z-index: 6;
+  top: -1px;
   left: 50%;
-  width: clamp(56px, 8vw, 112px);
+  width: clamp(72px, 15vw, 190px);
   height: 3px;
   transform: translateX(-50%);
-  background: #e82127;
-  box-shadow: 0 0 14px rgba(232, 33, 39, .7);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .42) 22%, #fff 50%, rgba(255, 255, 255, .42) 78%, transparent);
+  box-shadow: 0 0 8px rgba(255, 255, 255, .58), 0 0 16px rgba(217, 31, 44, .22);
   pointer-events: none;
 }
 
@@ -383,12 +418,14 @@ body.model-viewer-open {
   min-height: 0 !important;
   grid-template-columns: 1fr !important;
   overflow: hidden !important;
+  transition: clip-path .9s cubic-bezier(.22, 1, .36, 1), opacity .42s ease, visibility 0s linear .92s !important;
 }
 
 .model-viewer.is-open {
   clip-path: inset(0 round 0) !important;
   opacity: 1 !important;
   visibility: visible !important;
+  transition: clip-path .9s cubic-bezier(.22, 1, .36, 1), opacity .42s ease, visibility 0s !important;
 }
 
 .model-viewer__image-wrap {

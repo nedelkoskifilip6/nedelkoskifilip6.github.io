@@ -33,6 +33,7 @@ const viewer = document.querySelector('#model-viewer');
 const image = document.querySelector('#viewer-image');
 let opener = null;
 let closeTimer;
+const clipPercent = (value) => `${Math.min(100, Math.max(0, value)).toFixed(2)}%`;
 const swatchMarkup = (items) => items.map(([name, colour]) => `<span class="viewer-swatch-item" aria-label="${name}"><i class="viewer-swatch" style="--swatch:${colour}" aria-hidden="true"></i></span>`).join('');
 
 function openModel(card) {
@@ -44,10 +45,10 @@ function openModel(card) {
   const rect = card.getBoundingClientRect();
   const vw = window.innerWidth;
   const vh = window.innerHeight;
-  viewer.style.setProperty('--clip-top', `${Math.max(0, rect.top / vh * 100)}%`);
-  viewer.style.setProperty('--clip-right', `${Math.max(0, (vw - rect.right) / vw * 100)}%`);
-  viewer.style.setProperty('--clip-bottom', `${Math.max(0, (vh - rect.bottom) / vh * 100)}%`);
-  viewer.style.setProperty('--clip-left', `${Math.max(0, rect.left / vw * 100)}%`);
+  viewer.style.setProperty('--clip-top', clipPercent(rect.top / vh * 100));
+  viewer.style.setProperty('--clip-right', clipPercent((vw - rect.right) / vw * 100));
+  viewer.style.setProperty('--clip-bottom', clipPercent((vh - rect.bottom) / vh * 100));
+  viewer.style.setProperty('--clip-left', clipPercent(rect.left / vw * 100));
   document.querySelector('#viewer-title').textContent = model.name;
   document.querySelector('#viewer-category').textContent = model.category;
   document.querySelector('#viewer-description').textContent = model.description;

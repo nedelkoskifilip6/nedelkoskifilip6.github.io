@@ -23,7 +23,10 @@
   const render = () => {
     frame = 0;
     const viewport = window.innerHeight || 1;
-    const raw = clamp(window.scrollY / (viewport * 0.92));
+    // Base the handoff on the hero's real height so short and tall phones play
+    // the same full charge sequence before the lineup comes into view.
+    const heroHeight = Math.max(hero.offsetHeight || viewport, viewport);
+    const raw = clamp(window.scrollY / (heroHeight * 0.92));
     const progress = smoothstep(raw);
     const pulse = Math.pow(Math.max(0, Math.sin(Math.PI * progress)), 0.72);
     const width = window.innerWidth || 1;
