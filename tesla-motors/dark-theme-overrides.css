@@ -410,11 +410,11 @@ body.model-viewer-open {
 
 .model-viewer {
   position: fixed !important;
-  z-index: 20 !important;
+  z-index: 9999 !important;
   inset: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  height: 100svh !important;
+  height: 100dvh !important;
   min-height: 0 !important;
   grid-template-columns: 1fr !important;
   overflow: hidden !important;
@@ -535,9 +535,9 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-clos
 
 @media (max-width: 650px) {
   body.model-viewer-open .model-viewer.is-open .model-viewer__details {
-    inset: auto 12px 12px !important;
+    inset: auto 12px max(12px, env(safe-area-inset-bottom)) 12px !important;
     width: auto !important;
-    max-height: min(52svh, 420px) !important;
+    max-height: min(64dvh, 560px) !important;
     height: auto !important;
     min-height: 0 !important;
     box-sizing: border-box !important;
