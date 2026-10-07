@@ -31,6 +31,7 @@ const vehicleInfo = {
 
 const viewer = document.querySelector('#model-viewer');
 const image = document.querySelector('#viewer-image');
+if (viewer && viewer.parentElement !== document.body) document.body.append(viewer);
 let opener = null;
 let closeTimer;
 const clipPercent = (value) => `${Math.min(100, Math.max(0, value)).toFixed(2)}%`;
