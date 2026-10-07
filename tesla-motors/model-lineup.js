@@ -82,4 +82,9 @@ const clearReturnedCardFocus = () => document.querySelectorAll('.lineup-card.is-
 document.addEventListener('pointerdown', clearReturnedCardFocus, true);
 document.addEventListener('keydown', clearReturnedCardFocus, true);
 document.querySelectorAll('.lineup-card').forEach((card) => card.addEventListener('click', () => openModel(card)));
-viewer?.addEventListener('click', () => closeModel());
+viewer?.addEventListener('click', (event) => {
+  if (event.target.closest('[data-viewer-close], .viewer-image-hint, .viewer-close')) closeModel();
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeModel();
+});

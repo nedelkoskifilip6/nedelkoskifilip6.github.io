@@ -302,3 +302,232 @@ footer {
   .feature-section { background-position: 57% center !important; }
   .principles { background-position: 54% center !important; }
 }
+
+/* Carry the hero handoff's red-accent divider through every story section. */
+main > .lineup-section,
+main > .case-study,
+main > .tesla-film,
+main > .feature-section,
+main > .principles,
+main > .night-drive,
+main > .discover {
+  position: relative;
+  border-top: 2px solid rgba(232, 33, 39, .52) !important;
+}
+
+main > .lineup-section::before,
+main > .case-study::before,
+main > .tesla-film::before,
+main > .feature-section::before,
+main > .principles::before,
+main > .night-drive::before,
+main > .discover::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -2px;
+  left: 50%;
+  width: clamp(56px, 8vw, 112px);
+  height: 3px;
+  transform: translateX(-50%);
+  background: #e82127;
+  box-shadow: 0 0 14px rgba(232, 33, 39, .7);
+  pointer-events: none;
+}
+
+/* Reveal the supporting information cards in a short sequence when each page arrives. */
+.sequence-cards-ready .project-facts > div,
+.sequence-cards-ready .feature-card,
+.sequence-cards-ready .principle-card {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  filter: blur(3px);
+  transition: opacity .7s cubic-bezier(.22, 1, .36, 1),
+    transform .8s cubic-bezier(.22, 1, .36, 1),
+    filter .8s cubic-bezier(.22, 1, .36, 1);
+  transition-delay: var(--sequence-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+.sequence-cards-ready .project-facts > div.is-sequence-visible,
+.sequence-cards-ready .feature-card.is-sequence-visible,
+.sequence-cards-ready .principle-card.is-sequence-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sequence-cards-ready .project-facts > div,
+  .sequence-cards-ready .feature-card,
+  .sequence-cards-ready .principle-card {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
+/* Model cards open as a full-screen photograph with a readable floating spec panel. */
+body.model-viewer-open {
+  overflow: hidden !important;
+}
+
+.model-viewer {
+  position: fixed !important;
+  z-index: 20 !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100svh !important;
+  min-height: 0 !important;
+  grid-template-columns: 1fr !important;
+  overflow: hidden !important;
+}
+
+.model-viewer.is-open {
+  clip-path: inset(0 round 0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.model-viewer__image-wrap {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+}
+
+.model-viewer__image-wrap img {
+  object-fit: cover !important;
+  object-position: center !important;
+  transform: none !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details {
+  position: absolute !important;
+  z-index: 3 !important;
+  inset: 22px 22px auto auto !important;
+  width: min(390px, calc(100vw - 44px)) !important;
+  min-width: 0 !important;
+  max-height: calc(100svh - 44px) !important;
+  overflow-y: auto !important;
+  padding: 22px !important;
+  border: 1px solid rgba(230, 237, 246, .2) !important;
+  border-radius: 14px !important;
+  background: rgba(7, 10, 14, .66) !important;
+  color: #f5f7fa !important;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, .72) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(125%) !important;
+  backdrop-filter: blur(18px) saturate(125%) !important;
+  box-shadow: 0 18px 56px rgba(0, 0, 0, .35) !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details h2 {
+  margin: 7px 0 10px !important;
+  font: 600 clamp(23px, 3vw, 34px)/1.08 Manrope, sans-serif !important;
+  letter-spacing: -.04em !important;
+  text-transform: none !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-eyebrow,
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-colours > p {
+  font: 500 10px/1.4 "DM Mono", monospace !important;
+  letter-spacing: .12em !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-description {
+  margin-bottom: 14px !important;
+  font: 400 13px/1.55 Manrope, sans-serif !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-specs {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0 14px !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-spec {
+  min-height: 54px !important;
+  align-items: center !important;
+  border-top-color: rgba(230, 237, 246, .22) !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-spec strong {
+  font: 600 17px/1 Manrope, sans-serif !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-spec strong small,
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-spec > span {
+  font: 400 10px/1.3 Manrope, sans-serif !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-colours {
+  margin-top: 18px !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-swatch {
+  width: 23px !important;
+  height: 23px !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-colour-names,
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-note {
+  font: 400 10px/1.5 Manrope, sans-serif !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-source {
+  margin-top: 16px !important;
+  font: 500 10px/1.4 "DM Mono", monospace !important;
+}
+
+body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-close {
+  display: block !important;
+  margin: 0 0 12px auto !important;
+  padding: 0 0 6px !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(230, 237, 246, .36) !important;
+  background: transparent !important;
+  color: rgba(245, 247, 250, .9) !important;
+  font: 500 10px/1.4 "DM Mono", monospace !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+}
+
+@media (max-width: 650px) {
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details {
+    inset: auto 12px 12px !important;
+    width: auto !important;
+    max-height: min(52svh, 420px) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    padding: 17px !important;
+    border-radius: 12px !important;
+  }
+
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details h2 {
+    font-size: 24px !important;
+  }
+
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-spec {
+    min-height: 40px !important;
+  }
+}
+
+/* Use the selected Model Y cabin image on the final Discover page. */
+.discover {
+  background:
+    linear-gradient(90deg, rgba(5, 8, 12, .82), rgba(5, 8, 12, .58) 56%, rgba(5, 8, 12, .38)),
+    url("/tesla-motors/images/model-y-standard-card-91.jpg") 56% center / cover no-repeat !important;
+}
+
+@media (max-width: 760px) {
+  .discover {
+    background:
+      linear-gradient(0deg, rgba(5, 8, 12, .88), rgba(5, 8, 12, .58) 62%, rgba(5, 8, 12, .32)),
+      url("/tesla-motors/images/model-y-standard-card-91.jpg") 54% center / cover no-repeat !important;
+  }
+}
