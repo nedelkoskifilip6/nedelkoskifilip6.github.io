@@ -132,6 +132,28 @@ footer {
   }
 }
 
+/* Match the Project 01 glass cards in both supporting information sections. */
+.feature-card,
+.principle-card {
+  border: 1px solid rgba(210, 220, 230, .18) !important;
+  border-radius: 8px !important;
+  background: rgba(240, 243, 246, .24) !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* Match the glass surface used by the Project 01 facts cards. */
+.feature-card,
+.principle-card {
+  border: 1px solid rgba(255, 255, 255, .55) !important;
+  border-radius: 8px !important;
+  background: #f0f3f63d !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
 /* Keep supporting copy and translucent information cards legible on dark surfaces. */
 .feature-card,
 .principle-card {
@@ -209,4 +231,74 @@ footer {
     min-height: 132px !important;
     padding: 16px 13px !important;
   }
+}
+
+/* Match the Project 01 glass cards in both supporting information sections. */
+.feature-card,
+.principle-card {
+  border: 1px solid rgba(210, 220, 230, .18) !important;
+  border-radius: 8px !important;
+  background: rgba(240, 243, 246, .24) !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* Keep the information cards compact and evenly separated, like Project 01. */
+.feature-list,
+.principle-grid {
+  gap: 10px !important;
+}
+
+.feature-card {
+  min-height: 120px !important;
+  padding: 14px 18px !important;
+}
+
+.principle-card {
+  min-height: 140px !important;
+  margin-bottom: 10px !important;
+  padding: 17px 18px !important;
+}
+
+@media (max-width: 760px) {
+  .feature-card {
+    min-height: 112px !important;
+    padding: 13px 14px !important;
+  }
+
+  .principle-card {
+    min-height: 132px !important;
+    padding: 15px 16px !important;
+  }
+
+  .principle-card h3 {
+    margin-top: 12px !important;
+  }
+}
+
+/* Separate the stacked Technology cards on narrow screens. */
+@media (max-width: 760px) {
+  .feature-card:not(:last-child) {
+    margin-bottom: 10px !important;
+  }
+}
+
+/* Night photography backgrounds for the three editorial sections. */
+.case-study {
+  background: linear-gradient(90deg, rgba(5, 8, 12, .68), rgba(5, 8, 12, .52)), url("/tesla-motors/images/cybertruck-sunset-profile.jpg") center 52% / cover no-repeat !important;
+}
+
+.feature-section {
+  background: linear-gradient(90deg, rgba(5, 8, 12, .70), rgba(5, 8, 12, .56)), url("/tesla-motors/images/cybercab-city-night.jpg") center 56% / cover no-repeat !important;
+}
+
+.principles {
+  background: linear-gradient(90deg, rgba(5, 8, 12, .62), rgba(5, 8, 12, .48)), url("/tesla-motors/images/cybertruck-night-interior.jpg") center 54% / cover no-repeat !important;
+}
+
+@media (max-width: 760px) {
+  .case-study { background-position: 55% center !important; }
+  .feature-section { background-position: 57% center !important; }
+  .principles { background-position: 54% center !important; }
 }
