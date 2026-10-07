@@ -286,7 +286,7 @@ footer {
 
 /* Night photography backgrounds for the three editorial sections. */
 .case-study {
-  background: linear-gradient(90deg, rgba(5, 8, 12, .68), rgba(5, 8, 12, .52)), url("/tesla-motors/images/cybertruck-sunset-profile.jpg") center 52% / cover no-repeat !important;
+  background: linear-gradient(90deg, rgba(5, 8, 12, .68), rgba(5, 8, 12, .52)), url("/tesla-motors/images/independent-cybertruck-canyon.jpg") center 52% / cover no-repeat !important;
 }
 
 .feature-section {
