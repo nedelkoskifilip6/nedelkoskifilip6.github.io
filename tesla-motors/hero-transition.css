@@ -180,3 +180,13 @@
     opacity: calc(var(--transition-opacity, 0) * .94) !important;
   }
 }
+/* Keep the surrounding colors subtle during the battery handoff. */
+.scroll-transition::after {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--battery-color, #ff313d) 34%, #040609) 0%, transparent 31%, transparent 69%, color-mix(in srgb, var(--battery-color, #ff313d) 34%, #040609) 100%),
+    linear-gradient(0deg, color-mix(in srgb, var(--battery-color, #ff313d) 26%, #040609) 0%, transparent 25%, transparent 75%, color-mix(in srgb, var(--battery-color, #ff313d) 26%, #040609) 100%);
+  filter: blur(12px);
+}
+.transition-battery {
+  filter: drop-shadow(0 0 12px color-mix(in srgb, var(--battery-color, #ff313d) 20%, transparent));
+}
