@@ -28,7 +28,7 @@
     const raw = clamp(window.scrollY / heroHeight);
     const progress = smoothstep(raw);
     const fadeIn = smoothstep(clamp(raw / 0.045));
-    const fadeOut = 1 - smoothstep(clamp((raw - 0.88) / 0.12));
+    const fadeOut = 1 - smoothstep(clamp((raw - 0.78) / 0.12));
     const pulse = Math.min(fadeIn, fadeOut);
     const width = window.innerWidth || 1;
 
@@ -46,7 +46,7 @@
     transition.style.setProperty('--transition-logo-scale', (0.574 + pulse * 0.07).toFixed(3));
     transition.style.setProperty('--transition-logo-y', '0px');
     transition.style.setProperty('--transition-battery-opacity', (pulse * 0.9).toFixed(3));
-    transition.style.setProperty('--transition-battery-scale', (0.50 + pulse * 0.03).toFixed(3));
+    transition.style.setProperty('--transition-battery-scale', (0.42 + pulse * 0.02).toFixed(3));
     transition.style.setProperty('--battery-charge', (0.035 + progress * 0.965).toFixed(3));
     transition.style.setProperty('--battery-color', chargeColor(progress));
     transition.style.setProperty('--transition-edge-opacity', (pulse * 0.56304).toFixed(3));
