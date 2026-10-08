@@ -190,31 +190,3 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-note
     border-top-color: rgba(255, 255, 255, .2);
   }
 }
-/* Match the card's TAP TO OPEN cue with a red close cue in the glass panel. */
-body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-close {
-  display: block;
-  width: fit-content;
-  margin: 0 0 7px auto;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: #ff4855;
-  font: 500 8px/1.2 "DM Mono", monospace;
-  letter-spacing: .16em;
-  text-shadow: 0 1px 4px rgba(0,0,0,.75);
-  animation: tap-to-close-pulse 1.25s ease-in-out infinite alternate;
-  cursor: pointer;
-}
-.model-viewer.is-open .viewer-image-hint { display: none !important; }
-@keyframes tap-to-close-pulse {
-  from { color: rgba(217,31,44,.62); opacity: .62; text-shadow: none; }
-  to { color: #ff3445; opacity: 1; text-shadow: 0 0 4px rgba(217,31,44,.26); }
-}
-@media (prefers-reduced-motion: reduce) {
-  body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-close { animation: none; }
-}
-
-/* Red close cue must override the later theme stylesheet. */
-body.model-viewer-open #model-viewer.model-viewer.is-open .model-viewer__details button.viewer-close{color:#ff4855!important;font:500 8px/1.2 "DM Mono",monospace!important;letter-spacing:.16em!important;text-shadow:0 1px 4px rgba(0,0,0,.75)!important;animation:tap-to-close-pulse 1.25s ease-in-out infinite alternate!important}
-@keyframes tap-to-close-pulse{from{color:rgba(217,31,44,.62);opacity:.62;text-shadow:none}to{color:#ff3445;opacity:1;text-shadow:0 0 4px rgba(217,31,44,.26)}}
-@media(prefers-reduced-motion:reduce){body.model-viewer-open #model-viewer.model-viewer.is-open .model-viewer__details button.viewer-close{animation:none!important}}
