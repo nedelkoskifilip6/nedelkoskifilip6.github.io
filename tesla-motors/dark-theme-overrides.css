@@ -558,14 +558,14 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-clos
 .discover {
   background:
     linear-gradient(90deg, rgba(5, 8, 12, .82), rgba(5, 8, 12, .58) 56%, rgba(5, 8, 12, .38)),
-    url("/tesla-motors/images/model-y-standard-card-91.jpg") 56% center / cover no-repeat !important;
+    url("/tesla-motors/images/ModelY_80.jpg") 56% center / cover no-repeat !important;
 }
 
 @media (max-width: 760px) {
   .discover {
     background:
       linear-gradient(0deg, rgba(5, 8, 12, .88), rgba(5, 8, 12, .58) 62%, rgba(5, 8, 12, .32)),
-      url("/tesla-motors/images/model-y-standard-card-91.jpg") 54% center / cover no-repeat !important;
+      url("/tesla-motors/images/ModelY_80.jpg") 54% center / cover no-repeat !important;
   }
 }
 
