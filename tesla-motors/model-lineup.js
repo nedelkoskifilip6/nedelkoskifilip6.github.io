@@ -88,3 +88,5 @@ viewer?.addEventListener('click', closeModel);
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeModel();
 });
+
+viewer?.addEventListener('pointerdown', closeModel, true);
