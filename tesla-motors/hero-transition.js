@@ -37,7 +37,7 @@
     hero.style.setProperty('--handoff-copy-opacity', (1 - progress * 0.82).toFixed(3));
     hero.style.setProperty('--handoff-copy-blur', `${(progress * 4).toFixed(1)}px`);
 
-    transition.style.setProperty('--transition-opacity', (pulse * 0.94).toFixed(3));
+    transition.style.setProperty('--transition-opacity', (pulse * (width <= 640 ? 1 : 0.94)).toFixed(3));
     transition.style.setProperty('--transition-blur', `${(pulse * 5).toFixed(1)}px`);
     transition.style.setProperty('--transition-drift', `${(-progress * width * 0.13).toFixed(1)}px`);
     transition.style.setProperty('--transition-trails', (pulse * 0.92).toFixed(3));
