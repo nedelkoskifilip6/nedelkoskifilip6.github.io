@@ -12,10 +12,18 @@
 
 
 
+
+
+
+
 body {
   background: #090c10 !important;
   color: #f3f5f7 !important;
 }
+
+
+
+
 
 
 
@@ -27,6 +35,10 @@ body {
 
 
 
+
+
+
+
 .vision.lineup-section,
 .case-study,
 .feature-section,
@@ -34,33 +46,3 @@ body {
 .discover,
 .about-author,
 footer {
-  color: #f3f5f7 !important;
-  --line: rgba(210, 220, 230, .16) !important;
-  --ink: #f3f5f7 !important;
-  --paper-ink: #f3f5f7 !important;
-}
-
-
-
-
-.discover,
-footer {
-  background: #090c10 !important;
-}
-
-/* Use the supplied Model Y cabin image on the final Discover page. */
-.discover {
-  background:
-    linear-gradient(90deg, rgba(5, 8, 12, .82), rgba(5, 8, 12, .58) 56%, rgba(5, 8, 12, .38)),
-    url("/tesla-motors/images/ModelY_80.jpg") 56% center / cover no-repeat !important;
-}
-
-
-@media (max-width: 760px) {
-  .discover {
-    background:
-      linear-gradient(0deg, rgba(5, 8, 12, .88), rgba(5, 8, 12, .58) 62%, rgba(5, 8, 12, .32)),
-      url("/tesla-motors/images/ModelY_80.jpg") 54% center / cover no-repeat !important;
-  }
-}
-
