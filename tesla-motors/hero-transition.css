@@ -163,3 +163,11 @@
   }
 
 }
+
+
+/* Keep the handoff as a full-viewport scene on narrow screens. */
+@media (max-width: 640px) {
+  .scroll-transition {
+    background: linear-gradient(180deg, rgba(5, 8, 13, .92), rgba(5, 8, 13, .97)) !important;
+  }
+}
