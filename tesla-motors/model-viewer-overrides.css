@@ -214,3 +214,18 @@ body.model-viewer-open .model-viewer.is-open .viewer-image-hint {
     right: 18px !important;
   }
 }
+
+
+/* Desktop closes sit at the screen corner; phones keep the cue at the top. */
+body.model-viewer-open .model-viewer.is-open .viewer-image-hint {
+  top: auto !important;
+  right: 24px !important;
+  bottom: 24px !important;
+}
+@media (max-width: 650px) {
+  body.model-viewer-open .model-viewer.is-open .viewer-image-hint {
+    top: 16px !important;
+    right: 18px !important;
+    bottom: auto !important;
+  }
+}
