@@ -126,9 +126,12 @@ body.model-viewer-open .model-viewer.is-open .viewer-image-hint {
   border: 0;
   border-radius: 0;
   background: transparent;
-  color: rgba(255,255,255,.88);
-  opacity: .88;
-  font: 500 8px/1.2 "DM Mono", monospace;
+  color: rgba(255,255,255,.92);
+  opacity: .92;
+  font-family: inherit;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.2;
   letter-spacing: .16em;
   text-shadow: 0 1px 5px rgba(0,0,0,.8);
   animation: tap-red-pulse 1.8s ease-in-out infinite alternate;
