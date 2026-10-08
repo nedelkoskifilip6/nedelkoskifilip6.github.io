@@ -171,3 +171,12 @@
     background: linear-gradient(180deg, #05080d, #05080d) !important;
   }
 }
+
+
+/* Restore the translucent battery handoff on mobile. */
+@media (max-width: 640px) {
+  .scroll-transition {
+    background: linear-gradient(115deg, rgba(8, 13, 21, .18), rgba(7, 11, 17, .78)) !important;
+    opacity: calc(var(--transition-opacity, 0) * .94) !important;
+  }
+}
