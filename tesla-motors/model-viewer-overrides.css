@@ -175,3 +175,18 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-note
   border-color: transparent !important;
   box-shadow: none !important;
 }
+/* Match the desktop glass specification panel on phones. */
+@media (max-width: 650px) {
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details {
+    background: rgba(18, 22, 28, .62) !important;
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 16px;
+    -webkit-backdrop-filter: blur(18px) saturate(125%) !important;
+    backdrop-filter: blur(18px) saturate(125%) !important;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .12);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, .55);
+  }
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-spec {
+    border-top-color: rgba(255, 255, 255, .2);
+  }
+}
