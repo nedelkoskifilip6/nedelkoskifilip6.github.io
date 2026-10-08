@@ -193,3 +193,24 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-note
     border-top-color: rgba(255, 255, 255, .2);
   }
 }
+
+
+/* Place the tap-to-close cue at the top-right of the glass details panel. */
+
+body.model-viewer-open .model-viewer.is-open .viewer-image-hint {
+  position: absolute !important;
+  top: 28px !important;
+  right: 24px !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  padding: 8px 0 8px 8px !important;
+  z-index: 4 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+@media (max-width: 650px) {
+  body.model-viewer-open .model-viewer.is-open .viewer-image-hint {
+    top: 16px !important;
+    right: 18px !important;
+  }
+}
