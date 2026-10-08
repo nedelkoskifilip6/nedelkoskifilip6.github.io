@@ -23,8 +23,8 @@
     // Finish the battery handoff as the model lineup reaches the top of the viewport.
     const heroHeight = Math.max(hero.offsetHeight || viewport, viewport);
     const scrollProgress = window.scrollY / heroHeight;
-    const animationStart = 0.035;
-    const animationSpan = 0.93;
+    const animationStart = 0.06;
+    const animationSpan = 0.84;
     const raw = clamp((scrollProgress - animationStart) / animationSpan);
     const progress = smoothstep(raw);
     const fadeIn = smoothstep(clamp(raw / 0.22));
