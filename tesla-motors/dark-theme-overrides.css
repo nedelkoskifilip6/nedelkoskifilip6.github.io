@@ -535,11 +535,11 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-clos
 
 @media (max-width: 650px) {
   body.model-viewer-open .model-viewer.is-open .model-viewer__details {
-    inset: auto 12px max(12px, env(safe-area-inset-bottom)) 12px !important;
+    inset: 0 !important;
     width: auto !important;
     max-height: min(64dvh, 560px) !important;
     height: auto !important;
-    min-height: 0 !important;
+    min-height: 100dvh !important;
     box-sizing: border-box !important;
     padding: 17px !important;
     border-radius: 12px !important;
@@ -566,5 +566,44 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-clos
     background:
       linear-gradient(0deg, rgba(5, 8, 12, .88), rgba(5, 8, 12, .58) 62%, rgba(5, 8, 12, .32)),
       url("/tesla-motors/images/model-y-standard-card-91.jpg") 54% center / cover no-repeat !important;
+  }
+}
+
+
+/* Mobile model viewer uses the whole screen for the photo and specifications. */
+@media (max-width: 650px) {
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details {
+    inset: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    min-height: 100dvh !important;
+    box-sizing: border-box !important;
+    padding: max(70px, calc(env(safe-area-inset-top) + 58px)) 20px max(20px, env(safe-area-inset-bottom)) !important;
+    overflow-y: auto !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: linear-gradient(180deg, rgba(5, 7, 10, .02) 0%, rgba(5, 7, 10, .12) 34%, rgba(5, 7, 10, .78) 58%, rgba(5, 7, 10, .96) 100%) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    scrollbar-width: none !important;
+  }
+
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-close {
+    position: absolute !important;
+    top: max(18px, env(safe-area-inset-top)) !important;
+    right: 20px !important;
+    margin: 0 !important;
+    padding: 8px 0 !important;
   }
 }
