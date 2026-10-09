@@ -624,3 +624,16 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-clos
     border-top-color: rgba(230, 237, 246, .18) !important;
   }
 }
+
+/* Keep the journey panel's height stable while LinkedIn's mobile browser chrome changes. */
+@media (max-width: 760px) {
+  .night-drive {
+    height: 78vh !important;
+  }
+
+  @supports (height: 1svh) {
+    .night-drive {
+      height: 78svh !important;
+    }
+  }
+}
