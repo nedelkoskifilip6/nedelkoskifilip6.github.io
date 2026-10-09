@@ -22,7 +22,7 @@
     frame = 0;
     const viewport = window.innerHeight || 1;
     // Finish the battery handoff as the model lineup reaches the top of the viewport.
-    const heroHeight = Math.max(hero.offsetHeight || viewport, viewport);
+    const heroHeight = hero.offsetHeight || viewport;
     const scrollProgress = window.scrollY / heroHeight;
     const animationStart = 0.06;
     const animationSpan = 0.84;
