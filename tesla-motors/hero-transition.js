@@ -5,6 +5,7 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (reduceMotion.matches) return;
   let frame = 0;
+  let lastWidth = window.innerWidth;
   const clamp = (value) => Math.min(1, Math.max(0, value));
   const smoothstep = (value) => value * value * (3 - 2 * value);
   const chargeColor = (progress) => {
@@ -53,7 +54,14 @@
     if (!frame) frame = requestAnimationFrame(render);
   };
   window.addEventListener('scroll', requestRender, { passive: true });
-  window.addEventListener('resize', requestRender, { passive: true });
+  window.addEventListener('resize', () => {
+    // LinkedIn's mobile browser expands its top bar on upward scroll. Ignore
+    // height-only viewport changes so the battery handoff does not jump.
+    const width = window.innerWidth;
+    if (width === lastWidth) return;
+    lastWidth = width;
+    requestRender();
+  }, { passive: true });
   window.addEventListener('pageshow', requestRender);
   requestRender();
 })();
