@@ -59,12 +59,20 @@
   videos.forEach((video) => playbackObserver.observe(video));
 
   // Begin buffering shortly before the video appears without starting playback early.
-  const preloadObserver = new IntersectionObserver((entries) => {
+  const preloadNearby = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) prepareVideo(entry.target);
     }
   }, { threshold: 0, rootMargin: '120px 0px' });
-  videos.forEach((video) => preloadObserver.observe(video));
+  const preloadCybertruck = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) prepareVideo(entry.target);
+    }
+  }, { threshold: 0, rootMargin: '1800px 0px' });
+  videos.forEach((video) => {
+    if (video.closest('.tesla-film')?.getAttribute('aria-label') === 'Cybertruck video') preloadCybertruck.observe(video);
+    else preloadNearby.observe(video);
+  });
 
   const retryVisibleVideos = () => eligibleVideos.forEach(attemptPlayback);
   document.addEventListener('pointerdown', retryVisibleVideos, { passive: true });

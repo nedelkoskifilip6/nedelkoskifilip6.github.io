@@ -2,28 +2,28 @@ const vehicleInfo = {
   'model-3': {
     name: 'Model 3 Standard', category: 'Electric sedan · Rear-Wheel Drive',
     description: 'A refined electric sedan balancing long range, quick response and everyday comfort.',
-    image: '/tesla-motors/images/model-3-standard-card-97.jpg', source: 'https://www.tesla.com/model3',
+    image: '/tesla-motors/images/model-3-standard-card-97.jpg', preview: '/tesla-motors/images/model-3-standard-card-97-optimized.jpg', source: 'https://www.tesla.com/model3',
     specs: [['346', 'mi', 'EPA-est. range'], ['4.2', 'sec', '0–60 mph'], ['Dual Motor', 'AWD', 'Drive'], ['24', 'cu ft', 'Cargo volume'], ['5', 'seats', 'Seating'], ['250', 'kW', 'Peak Supercharging']],
     colors: [['Stealth Grey', '#56595b'], ['Pearl White', '#e8e6df'], ['Diamond Black', '#17191a'], ['Deep Blue', '#19395f'], ['Ultra Red', '#9b1721']]
   },
   'model-3-premium': {
     name: 'Model 3 Premium', category: 'Electric sedan · Premium AWD',
     description: 'A refined all-wheel-drive electric sedan with long range, quick acceleration and a quiet, comfortable cabin.',
-    image: '/tesla-motors/images/model-3-premium-card-73.jpg', source: 'https://www.tesla.com/model3',
+    image: '/tesla-motors/images/model-3-premium-card-73.jpg', preview: '/tesla-motors/images/model-3-premium-card-73-optimized.jpg', source: 'https://www.tesla.com/model3',
     specs: [['346', 'mi', 'EPA-est. range'], ['4.2', 'sec', '0–60 mph'], ['Dual Motor', 'AWD', 'Drive'], ['24', 'cu ft', 'Cargo volume'], ['5', 'seats', 'Seating'], ['250', 'kW', 'Peak Supercharging']],
     colors: [['Stealth Grey', '#56595b'], ['Pearl White', '#e8e6df'], ['Diamond Black', '#17191a'], ['Deep Blue', '#19395f'], ['Ultra Red', '#9b1721']]
   },
   'model-y': {
     name: 'Model Y Standard', category: 'Electric SUV · Rear-Wheel Drive',
     description: 'A versatile electric SUV with generous cargo room, a calm cabin and range for longer journeys.',
-    image: '/tesla-motors/images/model-y-standard-card-68.jpg', source: 'https://www.tesla.com/modely',
+    image: '/tesla-motors/images/model-y-standard-card-68.jpg', preview: '/tesla-motors/images/model-y-standard-card-68-optimized.jpg', source: 'https://www.tesla.com/modely',
     specs: [['321', 'mi', 'EPA-est. range'], ['6.8', 'sec', '0–60 mph'], ['125', 'mph', 'Top speed'], ['74', 'cu ft', 'Cargo volume'], ['5', 'seats', 'Seating'], ['160', 'mi', 'Added in 15 min']],
     colors: [['Stealth Grey', '#56595b'], ['Pearl White', '#e8e6df'], ['Diamond Black', '#17191a']]
   },
   cybertruck: {
     name: 'Model Cybertruck', category: 'Electric pickup · Dual Motor AWD',
     description: 'An angular stainless-steel electric pickup with all-wheel drive, substantial towing capacity and flexible cargo space.',
-    image: '/tesla-motors/images/cybertruck-card-35.jpg', source: 'https://www.tesla.com/cybertruck',
+    image: '/tesla-motors/images/cybertruck-card-35.jpg', preview: '/tesla-motors/images/cybertruck-card-35-optimized.jpg', source: 'https://www.tesla.com/cybertruck',
     specs: [['325', 'mi', 'EPA-est. range'], ['4.1', 'sec', '0–60 mph'], ['112', 'mph', 'Top speed'], ['7,500', 'lb', 'Towing capacity'], ['117.3', 'cu ft', 'Cargo volume'], ['5', 'seats', 'Seating']],
     colors: [['Stainless steel', '#b7b9b8']]
   }
@@ -35,6 +35,20 @@ if (viewer && viewer.parentElement !== document.body) document.body.append(viewe
 let opener = null;
 let closeTimer;
 const clipPercent = (value) => `${Math.min(100, Math.max(0, value)).toFixed(2)}%`;
+const fullImageLoads = new Map();
+
+function preloadFullImage(model) {
+  if (!fullImageLoads.has(model.image)) {
+    fullImageLoads.set(model.image, new Promise((resolve, reject) => {
+      const preload = new Image();
+      preload.decoding = 'async';
+      preload.onload = () => resolve(model.image);
+      preload.onerror = reject;
+      preload.src = model.image;
+    }));
+  }
+  return fullImageLoads.get(model.image);
+}
 const swatchMarkup = (items) => items.map(([name, colour]) => `<span class="viewer-swatch-item" aria-label="${name}"><i class="viewer-swatch" style="--swatch:${colour}" aria-hidden="true"></i></span>`).join('');
 
 function openModel(card) {
@@ -58,8 +72,14 @@ function openModel(card) {
   document.querySelector('#viewer-specs').innerHTML = model.specs.map(([value, unit, label]) => `<div class="viewer-spec"><strong>${value}<small>${unit}</small></strong><span>${label}</span></div>`).join('');
   document.querySelector('#viewer-swatches').innerHTML = swatchMarkup(model.colors);
   document.querySelector('#viewer-colour-names').textContent = model.colors.map(([name]) => name).join(' · ');
-  image.src = model.image;
+  viewer.dataset.modelId = card.dataset.modelId;
+  image.loading = 'eager';
+  image.decoding = 'async';
+  image.src = model.preview;
   image.alt = `${model.name} — courtesy of Tesla, Inc.`;
+  preloadFullImage(model).then((src) => {
+    if (!viewer.hidden && viewer.dataset.modelId === card.dataset.modelId) image.src = src;
+  }).catch(() => {});
   viewer.hidden = false;
   document.body.classList.add('model-viewer-open');
   requestAnimationFrame(() => requestAnimationFrame(() => viewer.classList.add('is-open')));
@@ -83,7 +103,15 @@ function closeModel() {
 const clearReturnedCardFocus = () => document.querySelectorAll('.lineup-card.is-returned-from-viewer').forEach((card) => card.classList.remove('is-returned-from-viewer'));
 document.addEventListener('pointerdown', clearReturnedCardFocus, true);
 document.addEventListener('keydown', clearReturnedCardFocus, true);
-document.querySelectorAll('.lineup-card').forEach((card) => card.addEventListener('click', () => openModel(card)));
+document.querySelectorAll('.lineup-card').forEach((card) => {
+  const warmFullImage = () => {
+    const model = vehicleInfo[card.dataset.modelId];
+    if (model) preloadFullImage(model).catch(() => {});
+  };
+  card.addEventListener('pointerenter', warmFullImage, { once: true });
+  card.addEventListener('focus', warmFullImage, { once: true });
+  card.addEventListener('click', () => openModel(card));
+});
 viewer?.addEventListener('click', closeModel);
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeModel();
