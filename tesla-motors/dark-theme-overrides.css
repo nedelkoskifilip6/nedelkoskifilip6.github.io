@@ -649,7 +649,8 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-clos
   }
 
   .scroll-transition {
-    height: 100svh !important;
+    height: 100vh !important;
+    height: 100dvh !important;
     bottom: auto !important;
   }
 
