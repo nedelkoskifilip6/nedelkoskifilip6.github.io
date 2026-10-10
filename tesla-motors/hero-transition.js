@@ -6,6 +6,7 @@
   if (reduceMotion.matches) return;
   let frame = 0;
   let lastWidth = window.innerWidth;
+  let heroHeight = 0;
   const clamp = (value) => Math.min(1, Math.max(0, value));
   const smoothstep = (value) => value * value * (3 - 2 * value);
   const chargeColor = (progress) => {
@@ -22,7 +23,7 @@
     frame = 0;
     const viewport = window.innerHeight || 1;
     // Finish the battery handoff as the model lineup reaches the top of the viewport.
-    const heroHeight = hero.offsetHeight || viewport;
+    if (!heroHeight) heroHeight = hero.offsetHeight || viewport;
     const scrollProgress = window.scrollY / heroHeight;
     const animationStart = 0.06;
     const animationSpan = 0.84;
@@ -60,6 +61,7 @@
     const width = window.innerWidth;
     if (width === lastWidth) return;
     lastWidth = width;
+    heroHeight = hero.offsetHeight || window.innerHeight || 1;
     requestRender();
   }, { passive: true });
   window.addEventListener('pageshow', requestRender);
