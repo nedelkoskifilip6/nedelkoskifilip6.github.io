@@ -42,7 +42,8 @@
     }
   };
 
-  // Use the browser's intersecting signal directly so even a tiny visible sliver starts playback.
+  // Start muted playback before the section reaches the viewport so mobile webviews
+  // have time to load and begin the clip without a tap.
   const playbackObserver = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       const video = entry.target;
@@ -55,10 +56,10 @@
         video.pause();
       }
     }
-  }, { threshold: 0.001 });
+  }, { threshold: 0, rootMargin: '900px 0px' });
   videos.forEach((video) => playbackObserver.observe(video));
 
-  // Begin buffering shortly before the video appears without starting playback early.
+  // Buffer clips well ahead; playback starts inside the separate 900px lead-in.
   const preloadNearby = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) prepareVideo(entry.target);
