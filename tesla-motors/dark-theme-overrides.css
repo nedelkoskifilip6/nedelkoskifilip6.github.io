@@ -642,7 +642,7 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-clos
 /* Keep the mobile navigation and hero transition anchored while LinkedIn changes its browser chrome height. */
 @media (max-width: 760px) {
   .site-header {
-    position: sticky !important;
+    position: fixed !important;
     top: 10px !important;
     inset: 10px 4vw auto !important;
     margin-bottom: -58px !important;
