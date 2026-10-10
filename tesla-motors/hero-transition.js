@@ -7,6 +7,8 @@
   let frame = 0;
   let lastWidth = window.innerWidth;
   let heroHeight = 0;
+  let easedRaw = null;
+  let lastFrameTime = 0;
   const clamp = (value) => Math.min(1, Math.max(0, value));
   const smoothstep = (value) => value * value * (3 - 2 * value);
   const chargeColor = (progress) => {
@@ -27,10 +29,21 @@
     const scrollProgress = window.scrollY / heroHeight;
     const animationStart = 0.06;
     const animationSpan = 0.84;
-    const raw = clamp((scrollProgress - animationStart) / animationSpan);
-    const progress = smoothstep(raw);
-    const fadeIn = smoothstep(clamp(raw / 0.22));
-    const fadeOut = 1 - smoothstep(clamp((raw - 0.65) / 0.35));
+    const targetRaw = clamp((scrollProgress - animationStart) / animationSpan);
+    const now = performance.now();
+    if (easedRaw === null) {
+      easedRaw = targetRaw;
+      lastFrameTime = now;
+    } else {
+      const frameDelta = Math.min(50, Math.max(1, now - lastFrameTime));
+      const easing = 1 - Math.exp(-frameDelta / 42);
+      easedRaw += (targetRaw - easedRaw) * easing;
+      if (Math.abs(targetRaw - easedRaw) < 0.0008) easedRaw = targetRaw;
+      lastFrameTime = now;
+    }
+    const progress = smoothstep(easedRaw);
+    const fadeIn = smoothstep(clamp(easedRaw / 0.22));
+    const fadeOut = 1 - smoothstep(clamp((easedRaw - 0.65) / 0.35));
     const pulse = Math.min(fadeIn, fadeOut);
     const width = window.innerWidth || 1;
     hero.style.setProperty('--handoff-zoom', (1 + progress * 0.16).toFixed(3));
@@ -50,6 +63,7 @@
     transition.style.setProperty('--battery-charge', (0.035 + progress * 0.965).toFixed(3));
     transition.style.setProperty('--battery-color', chargeColor(progress));
     transition.style.setProperty('--transition-edge-opacity', (pulse * 0.4).toFixed(3));
+    if (Math.abs(easedRaw - targetRaw) > 0.0008) frame = requestAnimationFrame(render);
   };
   const requestRender = () => {
     if (!frame) frame = requestAnimationFrame(render);
