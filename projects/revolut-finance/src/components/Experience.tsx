@@ -8,8 +8,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import {
-  ArrowUpRight,
-  ArrowLeftRight,
+  Wallet,
   Plus,
   Snowflake,
   ShieldCheck,
@@ -17,7 +16,6 @@ import {
   Bell,
   Lock,
   Check,
-  ChevronDown,
   Menu,
   X,
   Globe,
@@ -62,7 +60,6 @@ export function Navigation() {
     <header className="nav">
       <a className="brand" href="#" aria-label="Portfolio concept home">
         <BrandLogo />
-        <small className="brand-concept">Independent concept</small>
       </a>
       <nav
         aria-label="Main navigation"
@@ -76,7 +73,7 @@ export function Navigation() {
               onClick={() => setDrop(drop === x ? "" : x)}
             >
               {x}
-              <ChevronDown size={12} />
+              
             </button>
             {drop === x && (
               <div className="dropdown">
@@ -101,7 +98,7 @@ export function Navigation() {
                     }}
                   >
                     {t}
-                    <ArrowUpRight size={15} />
+                    
                   </a>
                 ))}
               </div>
@@ -131,7 +128,7 @@ export function Navigation() {
           Demo account
         </button>
         <a className="button small" href="#banking">
-          Get started <ArrowUpRight size={15} />
+          Get started 
         </a>
         <button
           className="menu"
@@ -151,7 +148,7 @@ const transactions = [
     detail: "Salary · Today, 09:41",
     value: 3200,
     type: "Income",
-    icon: "↙",
+    icon: "S",
     color: "violet",
   },
   {
@@ -175,7 +172,7 @@ const transactions = [
     detail: "Travel · 06 October",
     value: -285,
     type: "Travel",
-    icon: "↗",
+    icon: "◎",
     color: "pink",
   },
 ];
@@ -300,14 +297,14 @@ export function Phone() {
           </span>
           <strong>{tab === "Savings" ? "€6,240.00" : "€24,680.50"}</strong>
           <small>
-            Euro account <ChevronDown size={12} />
+            Euro account 
           </small>
         </div>
         <div className="phone-buttons">
           {[
             [Plus, "Add money"],
-            [ArrowUpRight, "Send"],
-            [ArrowLeftRight, "Exchange"],
+            [Wallet, "Send"],
+            [Globe, "Exchange"],
           ].map(([Icon, label]) => {
             const I = Icon as typeof Plus;
             return (
@@ -347,7 +344,7 @@ export function Phone() {
                 name: "Travel fund",
                 type: "60% of goal",
                 value: 2400,
-                icon: "↗",
+                icon: "◎",
                 color: "violet",
               },
               {
@@ -406,7 +403,7 @@ export function Phone() {
                   ? "▣"
                   : t === "Savings"
                     ? "◎"
-                    : "↗"}
+                    : "◈"}
               <small>{t}</small>
             </button>
           ))}
@@ -430,12 +427,12 @@ export function Banking() {
         <div>
           <span>Total balance</span>
           <strong>€24,680.50</strong>
-          <small className="positive">↗ €3,200 income this month</small>
+          <small className="positive"> €3,200 income this month</small>
         </div>
         <div className="balance-mini">
           <span>Monthly spending</span>
           <strong>€1,140.80</strong>
-          <small>↓ 18% from last month</small>
+          <small> 18% from last month</small>
         </div>
       </div>
       <div className="banking-grid">
@@ -506,7 +503,7 @@ export function Banking() {
         <div className="progress">
           <i style={{ width: "60%" }} />
         </div>
-        <ArrowUpRight size={18} />
+        
       </a>
     </div>
   );
@@ -574,7 +571,7 @@ export function Exchange() {
           setDone(false);
         }}
       >
-        <ArrowLeftRight size={20} />
+        <span>Swap</span>
       </button>
       <div className="exchange-field">
         <label htmlFor="to">You receive</label>
@@ -610,7 +607,7 @@ export function Exchange() {
           </>
         ) : (
           <>
-            Preview exchange <ArrowUpRight size={18} />
+            Preview exchange 
           </>
         )}
       </button>
@@ -673,7 +670,7 @@ export function Cards() {
         </div>
         <button className="text-button" onClick={() => setVirtual(!virtual)}>
           {virtual ? "View physical card" : "Explore virtual card"}{" "}
-          <ArrowUpRight size={16} />
+          
         </button>
       </div>
       <p className="fine">
@@ -691,7 +688,7 @@ export function Savings() {
       desc: "Travel fund",
       saved: 2400,
       target: 4000,
-      icon: "↗",
+      icon: "◎",
     },
     {
       name: "Space to create",
@@ -876,7 +873,7 @@ export function Investments() {
       </div>
       <strong className="portfolio-value">{money(value)}</strong>
       <span className="positive">
-        ↗ {range === "1Y" ? "18.42" : range === "1W" ? "2.13" : "8.24"}%{" "}
+         {range === "1Y" ? "18.42" : range === "1W" ? "2.13" : "8.24"}%{" "}
         <span className="muted">over selected period</span>
       </span>
       <Chart investment range={range} />
@@ -1006,7 +1003,7 @@ export function Plans() {
             </small>
             <button className="button wide" onClick={() => setChosen(p.name)}>
               Explore {p.name}
-              <ArrowUpRight size={16} />
+              
             </button>
             <ul>
               {p.features.map((f) => (
@@ -1047,7 +1044,7 @@ export function Plans() {
               purchasing anything.
             </p>
             <a className="button" href="#banking" onClick={() => setChosen("")}>
-              Explore the demo <ArrowUpRight size={17} />
+              Explore the demo 
             </a>
           </div>
         </div>
@@ -1086,7 +1083,7 @@ export function DemoDialog() {
           fictional. No authentication or personal information is needed.
         </p>
         <a className="button" href="#banking" onClick={() => setTitle("")}>
-          Enter the experience <ArrowUpRight size={18} />
+          Enter the experience 
         </a>
       </div>
     </div>
