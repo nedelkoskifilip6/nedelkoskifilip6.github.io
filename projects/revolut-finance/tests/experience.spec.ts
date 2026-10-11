@@ -40,7 +40,9 @@ test("all fintech demonstrations respond to real input without errors", async ({
   await page.getByRole("button", { name: "Explore virtual card" }).click();
   await expect(page.locator(".payment-card")).toHaveClass(/virtual/);
   await page.locator("#savings").scrollIntoViewIfNeeded();
-  await page.locator("#contribution").fill("500");
+  await page.locator("#contribution").press("Home");
+  for (let step = 0; step < 19; step++)
+    await page.locator("#contribution").press("ArrowRight");
   await expect(page.locator(".projected strong")).toHaveText("€4,000.00");
   await page
     .getByRole("button", { name: /New studio Space to create/ })
