@@ -4,12 +4,12 @@
 }
 :root {
   font-family: Arial, "Helvetica Neue", sans-serif;
-  color: #191b1d;
+  color: #1b1b1b;
   background: #ffffff;
   font-synthesis: none;
-  --ink: #161719;
+  --ink: #181818;
   --muted: #717178;
-  --purple: #0666eb;
+  --purple: #848484;
 }
 * {
   box-sizing: border-box;
@@ -50,7 +50,7 @@ button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 select:focus-visible {
-  outline: 3px solid #6796d5;
+  outline: 3px solid #a4a4a4;
   outline-offset: 5px;
 }
 button:disabled {
@@ -192,7 +192,7 @@ p {
     box-shadow 0.25s;
 }
 .button:hover {
-  background: #36393e;
+  background: #3a3a3a;
   transform: translateY(-3px);
   box-shadow: 0 8px 20px #0001;
 }
@@ -216,7 +216,7 @@ p {
   padding: 12px 0;
 }
 .text-button:hover {
-  color: #6080ab;
+  color: #898989;
 }
 .menu {
   display: none;
@@ -254,7 +254,7 @@ p {
 .status-dot {
   width: 6px;
   height: 6px;
-  background: #627fa5;
+  background: #878787;
   border-radius: 50%;
 }
 h1 {
@@ -262,7 +262,7 @@ h1 {
   margin-bottom: 28px;
 }
 h1 > span {
-  color: #0666eb;
+  color: #848484;
 }
 .hero-text > p {
   font-size: 15px;
@@ -286,11 +286,11 @@ h1 > span {
 }
 .hero-note b {
   font-weight: 400;
-  color: #313439;
+  color: #353535;
 }
 .orbit-symbol {
   font-size: 38px;
-  color: #8f9fb4;
+  color: #a3a3a3;
 }
 .hero-visual {
   position: relative;
@@ -307,11 +307,11 @@ h1 > span {
 .phone {
   width: 292px;
   height: 592px;
-  background: #1b1e22;
+  background: #1f1f1f;
   border-radius: 48px;
   padding: 7px;
   box-shadow:
-    14px 25px 35px #343a4333,
+    14px 25px 35px #3c3c3c33,
     inset 0 0 0 2px #969299;
   position: relative;
   color: #fff;
@@ -328,7 +328,7 @@ h1 > span {
 }
 .phone-top {
   height: 40px;
-  background: #15181c;
+  background: #191919;
   border-radius: 42px 42px 0 0;
   display: flex;
   align-items: center;
@@ -340,10 +340,10 @@ h1 > span {
   width: 85px;
   height: 22px;
   border-radius: 20px;
-  background: #030406;
+  background: #050505;
 }
 .phone-app {
-  background: radial-gradient(ellipse at top, #232930, #13161b 70%);
+  background: radial-gradient(ellipse at top, #2a2a2a, #171717 70%);
   border-radius: 0 0 41px 41px;
   padding: 14px 18px 12px;
   height: 538px;
@@ -359,7 +359,7 @@ h1 > span {
 .avatar {
   display: grid;
   place-items: center;
-  background: #353b42;
+  background: #3c3c3c;
   border-radius: 50%;
   width: 27px;
   height: 27px;
@@ -371,7 +371,7 @@ h1 > span {
 }
 .phone-balance > span {
   font-size: 10px;
-  color: #a6adb7;
+  color: #afafaf;
 }
 .phone-balance strong {
   font-size: 32px;
@@ -385,7 +385,7 @@ h1 > span {
   gap: 4px;
   justify-content: center;
   align-items: center;
-  color: #b6bfcb;
+  color: #c2c2c2;
 }
 .phone-buttons {
   display: flex;
@@ -406,20 +406,20 @@ h1 > span {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: #30363d;
+  background: #373737;
   transition: background 0.2s;
 }
 .phone-buttons a:hover span {
-  background: #506177;
+  background: #656565;
 }
 .mini-card {
   height: 105px;
-  background: linear-gradient(125deg, #c4d1e2, #818993 47%, #d4dae3);
+  background: linear-gradient(125deg, #d4d4d4, #8b8b8b 47%, #d4dae3);
   border-radius: 12px;
   padding: 14px 17px;
   display: grid;
   grid-template-columns: 1fr auto;
-  color: #272d36;
+  color: #2f2f2f;
   box-shadow: 0 10px 15px #0002;
 }
 .mini-card > span {
@@ -443,7 +443,7 @@ h1 > span {
   margin: 24px 0 10px;
 }
 .phone-transactions > span {
-  color: #a3bcdd;
+  color: #c3c3c3;
   font-size: 8px;
 }
 .phone-row {
@@ -460,7 +460,7 @@ h1 > span {
   height: 27px;
   border-radius: 50%;
   font-style: normal;
-  color: #18181b;
+  color: #1a1a1a;
 }
 .phone-row > div {
   flex: 1;
@@ -470,25 +470,25 @@ h1 > span {
 }
 .phone-row small {
   display: block;
-  color: #87838f;
+  color: #8a8a8a;
   font-size: 7px;
   margin-top: 3px;
 }
 .phone-bottom {
   display: flex;
   justify-content: space-around;
-  border-top: 1px solid #30343a;
+  border-top: 1px solid #363636;
   padding-top: 11px;
   margin-top: 18px;
 }
 .phone-bottom button {
   background: none;
-  color: #838a93;
+  color: #8c8c8c;
   font-size: 14px;
   padding: 0 7px;
 }
 .phone-bottom button.active {
-  color: #bfd4ef;
+  color: #d9d9d9;
 }
 .phone-bottom small {
   display: block;
@@ -497,7 +497,7 @@ h1 > span {
 }
 .orbital-ring {
   position: absolute;
-  border: 1px solid #c0c9d459;
+  border: 1px solid #cbcbcb59;
   border-radius: 50%;
   width: 540px;
   height: 540px;
@@ -518,7 +518,7 @@ h1 > span {
   backdrop-filter: blur(18px);
   border: 1px solid #fff;
   border-radius: 16px;
-  box-shadow: 0 15px 40px #1222380c;
+  box-shadow: 0 15px 40px #2727270c;
   z-index: 3;
   display: flex;
   gap: 12px;
@@ -528,7 +528,7 @@ h1 > span {
 }
 .floating-tag > span {
   background: #e9eff7;
-  color: #69809f;
+  color: #878787;
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -538,7 +538,7 @@ h1 > span {
 }
 .floating-tag small {
   font-size: 9px;
-  color: #72707b;
+  color: #767676;
   display: block;
   margin-bottom: 5px;
 }
@@ -567,7 +567,7 @@ h1 > span {
   bottom: -13px;
   font-size: 8px;
   letter-spacing: 0.2em;
-  color: #92989f;
+  color: #999999;
   left: 41%;
 }
 .scroll-cue,
@@ -576,7 +576,7 @@ h1 > span {
   bottom: 30px;
   font-size: 8px;
   letter-spacing: 0.16em;
-  color: #7c7883;
+  color: #7e7e7e;
 }
 .scroll-cue {
   left: 8%;
@@ -594,7 +594,7 @@ h1 > span {
   padding: 24px 8%;
   display: flex;
   justify-content: space-between;
-  background: #eaf3ff;
+  background: #f6f6f6;
   border-top: 1px solid #e1dedf;
   font-size: 10px;
   color: #69666d;
@@ -629,7 +629,7 @@ h1 > span {
 .section-heading .eyebrow,
 .section-copy .eyebrow,
 .center-heading .eyebrow {
-  color: #7b8a9f;
+  color: #8f8f8f;
 }
 .dashboard {
   padding: 35px 38px;
@@ -647,7 +647,7 @@ h1 > span {
 .label {
   font-size: 9px;
   letter-spacing: 0.16em;
-  color: #85808e;
+  color: #888888;
 }
 .dashboard-header h3 {
   font-size: 20px;
@@ -659,7 +659,7 @@ h1 > span {
   padding: 7px 10px;
   border-radius: 30px;
   background: #edf0f5;
-  color: #6d798a;
+  color: #7d7d7d;
   font-size: 9px;
   white-space: nowrap;
 }
@@ -711,7 +711,7 @@ h1 > span {
   font-weight: 550;
 }
 .muted {
-  color: #90969d;
+  color: #979797;
   font-size: 10px;
 }
 .chart {
@@ -724,7 +724,7 @@ h1 > span {
   display: flex;
   gap: 18px;
   font-size: 8px;
-  color: #848a92;
+  color: #8c8c8c;
 }
 .categories span {
   display: flex;
@@ -732,20 +732,20 @@ h1 > span {
   gap: 5px;
 }
 .categories b {
-  color: #393d43;
+  color: #3f3f3f;
   font-weight: 500;
 }
 .categories i {
   height: 5px;
   width: 5px;
   border-radius: 50%;
-  background: #0666eb;
+  background: #848484;
 }
 .categories span:nth-child(2) i {
-  background: #80b9ff;
+  background: #c6c6c6;
 }
 .categories span:nth-child(3) i {
-  background: #bcd9ff;
+  background: #e1e1e1;
 }
 .filter {
   display: flex;
@@ -756,13 +756,13 @@ h1 > span {
 .filter button {
   font-size: 9px;
   background: transparent;
-  color: #888e96;
+  color: #909090;
   border-radius: 20px;
   padding: 6px 9px;
 }
 .filter button.selected {
   background: #ebeff4;
-  color: #475d7b;
+  color: #646464;
 }
 .transaction {
   display: flex;
@@ -789,7 +789,7 @@ h1 > span {
 .transaction small {
   display: block;
   font-size: 8px;
-  color: #91979f;
+  color: #999999;
   margin-top: 4px;
 }
 .transaction strong {
@@ -820,12 +820,12 @@ h1 > span {
 }
 .dashboard-goal > span {
   font-size: 25px;
-  color: #7d94b3;
+  color: #9b9b9b;
 }
 .dashboard-goal small {
   display: block;
   font-size: 9px;
-  color: #8b949f;
+  color: #969696;
   margin-top: 5px;
 }
 .dashboard-goal .progress {
@@ -842,7 +842,7 @@ h1 > span {
   display: block;
   height: 100%;
   border-radius: 20px;
-  background: #0666eb;
+  background: #848484;
   transition: width 0.5s ease;
 }
 .feature-row {
@@ -862,7 +862,7 @@ h1 > span {
 }
 .feature-row span {
   display: block;
-  color: #879ebc;
+  color: #a4a4a4;
   font-size: 23px;
   margin-bottom: 12px;
 }
@@ -872,11 +872,11 @@ h1 > span {
 }
 .feature-row p {
   font-size: 10px;
-  color: #838992;
+  color: #8b8b8b;
   margin-top: 7px;
 }
 .payments {
-  background: #eaf3ff;
+  background: #f6f6f6;
 }
 .split {
   display: grid;
@@ -906,19 +906,19 @@ h1 > span {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  color: #6e7d91;
+  color: #818181;
   font-size: 16px;
 }
 .fine {
   font-size: 9px;
-  color: #818b98;
+  color: #8e8e8e;
   line-height: 1.65;
 }
 .exchange-panel {
   background: #fff;
   border-radius: 25px;
   padding: 30px;
-  box-shadow: 0 25px 65px #2432450a;
+  box-shadow: 0 25px 65px #3636360a;
   max-width: 440px;
   margin-left: auto;
 }
@@ -932,7 +932,7 @@ h1 > span {
 }
 .exchange-field > label {
   font-size: 10px;
-  color: #89929f;
+  color: #959595;
 }
 .exchange-field > div {
   display: flex;
@@ -961,7 +961,7 @@ h1 > span {
 }
 .exchange-field small {
   font-size: 8px;
-  color: #949ba5;
+  color: #9d9d9d;
 }
 .swap {
   width: 38px;
@@ -972,20 +972,20 @@ h1 > span {
   position: relative;
   display: grid;
   place-items: center;
-  background: #d6dfea;
-  color: #61748d;
+  background: #e1e1e1;
+  color: #797979;
   z-index: 1;
 }
 .rate {
   font-size: 10px;
   margin: 18px 0 24px;
-  color: #657180;
+  color: #747474;
   display: flex;
   justify-content: space-between;
   gap: 10px;
 }
 .rate span {
-  color: #9099a6;
+  color: #9c9c9c;
   font-size: 8px;
 }
 .exchange-panel > .fine {
@@ -993,7 +993,7 @@ h1 > span {
   margin-top: 13px;
 }
 .cards-section {
-  background: #003db8;
+  background: #656565;
   color: #fff;
   padding-bottom: 60px;
   overflow: hidden;
@@ -1013,7 +1013,7 @@ h1 > span {
   color: #91909b;
 }
 .cards-section .eyebrow {
-  color: #94a6be;
+  color: #ababab;
 }
 .cards-experience {
   max-width: 720px;
@@ -1032,7 +1032,7 @@ h1 > span {
   border-radius: 19px;
   position: relative;
   padding: 28px 32px;
-  color: #30353b;
+  color: #363636;
   box-shadow:
     0 0 0 1px #ffffff33,
     inset 0 0 30px #ffffff22;
@@ -1065,14 +1065,14 @@ h1 > span {
   );
 }
 .graphite {
-  background: linear-gradient(125deg, #5e6068, #25292e 50%, #62606a);
+  background: linear-gradient(125deg, #646464, #2a2a2a 50%, #666666);
   color: #ddd;
 }
 .cobalt {
-  background: linear-gradient(125deg, #cddbee, #849ab8 50%, #d2deee);
+  background: linear-gradient(125deg, #dfdfdf, #a1a1a1 50%, #e1e1e1);
 }
 .payment-card.virtual {
-  background: linear-gradient(120deg, #717d8c, #283341);
+  background: linear-gradient(120deg, #808080, #363636);
   color: white;
 }
 .card-brand {
@@ -1144,7 +1144,7 @@ h1 > span {
 }
 .finish-options button.selected {
   color: #fff;
-  border-color: #a5b2c4;
+  border-color: #b6b6b6;
 }
 .finish-options i {
   height: 12px;
@@ -1158,7 +1158,7 @@ h1 > span {
 .cards-experience > .fine {
   text-align: center;
   margin-top: 20px;
-  color: #85818d;
+  color: #888888;
 }
 .card-footnote {
   display: flex;
@@ -1168,7 +1168,7 @@ h1 > span {
   padding-top: 25px;
   font-size: 8px;
   letter-spacing: 0.15em;
-  color: #76717d;
+  color: #787878;
 }
 .goal-grid {
   display: grid;
@@ -1189,18 +1189,18 @@ h1 > span {
   transform: translateY(-5px);
 }
 .goal-card.selected {
-  border-color: #97a9c1;
+  border-color: #aeaeae;
   background: #f0f4f9;
 }
 .goal-icon {
   font-size: 26px;
   display: block;
   margin-bottom: 32px;
-  color: #869cb9;
+  color: #a2a2a2;
 }
 .goal-card > small {
   font-size: 9px;
-  color: #89929f;
+  color: #959595;
 }
 .goal-card h3 {
   font-size: 23px;
@@ -1212,7 +1212,7 @@ h1 > span {
 }
 .goal-card .row-between > span {
   font-size: 9px;
-  color: #929aa5;
+  color: #9c9c9c;
 }
 .goal-card .progress {
   margin-top: 15px;
@@ -1233,11 +1233,11 @@ h1 > span {
 }
 .savings-calculator p {
   font-size: 11px;
-  color: #808b99;
+  color: #8e8e8e;
 }
 .calculator-controls input[type="range"] {
   width: 100%;
-  accent-color: #7b98be;
+  accent-color: #a0a0a0;
   margin: 25px 0;
   cursor: pointer;
 }
@@ -1257,7 +1257,7 @@ h1 > span {
 .projected > span {
   display: block;
   font-size: 10px;
-  color: #7b899b;
+  color: #8d8d8d;
 }
 .projected strong {
   display: block;
@@ -1268,7 +1268,7 @@ h1 > span {
 }
 .projected small {
   font-size: 9px;
-  color: #7a8799;
+  color: #8b8b8b;
   display: block;
   margin-top: 12px;
 }
@@ -1276,7 +1276,7 @@ h1 > span {
   background: #e9edf0;
 }
 .security .eyebrow {
-  color: #7d8e9e;
+  color: #8f8f8f;
 }
 .security-note {
   display: flex;
@@ -1285,7 +1285,7 @@ h1 > span {
 }
 .security-note > span {
   font-size: 28px;
-  color: #6c8197;
+  color: #848484;
 }
 .security-note b {
   font-size: 11px;
@@ -1294,7 +1294,7 @@ h1 > span {
 .security-note small {
   display: block;
   font-size: 9px;
-  color: #84919d;
+  color: #929292;
   line-height: 1.8;
   margin-top: 7px;
 }
@@ -1302,7 +1302,7 @@ h1 > span {
   background: white;
   padding: 25px;
   border-radius: 25px;
-  box-shadow: 0 20px 60px #27323c08;
+  box-shadow: 0 20px 60px #33333308;
 }
 .security-card {
   background: radial-gradient(ellipse at top, #eff2f5, #e1e7ef);
@@ -1321,7 +1321,7 @@ h1 > span {
 .security-card > svg {
   display: block;
   margin: 18px auto;
-  color: #627c94;
+  color: #7e7e7e;
 }
 .security-card > b {
   display: block;
@@ -1332,7 +1332,7 @@ h1 > span {
 .security-card > small {
   display: block;
   font-size: 9px;
-  color: #8390a0;
+  color: #939393;
   margin: 10px 0 20px;
 }
 .security-card > .button {
@@ -1341,7 +1341,7 @@ h1 > span {
 }
 .security-card > p {
   font-size: 8px;
-  color: #7c8a9a;
+  color: #8c8c8c;
   margin-top: 12px;
 }
 .security-card.frozen {
@@ -1356,7 +1356,7 @@ h1 > span {
 }
 .security-controls > div > svg {
   width: 20px;
-  color: #86929f;
+  color: #949494;
 }
 .security-controls > div > span {
   flex: 1;
@@ -1390,14 +1390,14 @@ h1 > span {
   transition: transform 0.2s;
 }
 .switch.on {
-  background: #788ba4;
+  background: #909090;
 }
 .switch.on:before {
   transform: translateX(12px);
 }
 .security-controls > .privacy-preview {
   font-size: 8px;
-  color: #818b99;
+  color: #8e8e8e;
   gap: 10px;
   justify-content: space-between;
   border: 0;
@@ -1414,21 +1414,21 @@ h1 > span {
   white-space: nowrap;
 }
 .investments {
-  background: #101114;
+  background: #121212;
   color: #eaf0f7;
 }
 .investments .section-heading > p {
-  color: #929aa5;
+  color: #9c9c9c;
 }
 .investment-panel {
   padding: 35px 40px;
-  background: #202328;
-  border: 1px solid #32383f;
+  background: #242424;
+  border: 1px solid #393939;
   border-radius: 24px;
 }
 .investment-panel .badge {
-  background: #303740;
-  color: #a2aebf;
+  background: #393939;
+  color: #b2b2b2;
 }
 .portfolio-value {
   display: block;
@@ -1453,13 +1453,13 @@ h1 > span {
 .range-filter button {
   font-size: 10px;
   background: none;
-  color: #828c9a;
+  color: #8f8f8f;
   padding: 8px 18px;
   border-radius: 20px;
 }
 .range-filter button.selected {
-  background: #343e4b;
-  color: #b4cdee;
+  background: #414141;
+  color: #d4d4d4;
 }
 .asset-grid {
   display: grid;
@@ -1477,7 +1477,7 @@ h1 > span {
 .asset-grid span {
   grid-row: span 2;
   font-size: 22px;
-  color: #a3bbda;
+  color: #c1c1c1;
 }
 .asset-grid b {
   font-weight: 500;
@@ -1485,7 +1485,7 @@ h1 > span {
 .asset-grid small {
   grid-column: 2;
   font-size: 8px;
-  color: #828c9a;
+  color: #8f8f8f;
 }
 .asset-grid strong {
   grid-column: 3;
@@ -1517,16 +1517,16 @@ h1 > span {
   border-radius: 25px;
   background: none;
   font-size: 11px;
-  color: #7e8a99;
+  color: #8d8d8d;
 }
 .pricing-switch button.selected {
   background: white;
-  color: #1c2128;
+  color: #232323;
   box-shadow: 0 2px 10px #0001;
 }
 .pricing-switch span {
   font-size: 8px;
-  color: #7089ab;
+  color: #909090;
   margin-left: 6px;
 }
 .plan-grid {
@@ -1550,7 +1550,7 @@ h1 > span {
 }
 .plan p {
   font-size: 10px;
-  color: #7f8a98;
+  color: #8d8d8d;
   margin: 12px 0 30px;
 }
 .plan-price {
@@ -1561,12 +1561,12 @@ h1 > span {
 .plan-price span {
   font-size: 9px;
   letter-spacing: 0;
-  color: #8b949f;
+  color: #969696;
   margin-left: 5px;
 }
 .plan > small {
   font-size: 8px;
-  color: #89929d;
+  color: #949494;
   display: block;
   margin: 8px 0 25px;
 }
@@ -1585,15 +1585,15 @@ h1 > span {
   gap: 8px;
   align-items: center;
   font-size: 9px;
-  color: #828d9c;
+  color: #909090;
   margin: 16px 0;
 }
 .plan li svg {
-  color: #859bb7;
+  color: #a0a0a0;
 }
 .plan.featured {
   background: #e8eef5;
-  border-color: #0666eb;
+  border-color: #848484;
 }
 .plan .badge {
   font-size: 7px;
@@ -1602,11 +1602,11 @@ h1 > span {
 .plan-disclaimer {
   font-size: 9px;
   text-align: center;
-  color: #828c99;
+  color: #8f8f8f;
   margin-top: 25px;
 }
 .final-cta {
-  background: #eaf3ff;
+  background: #f6f6f6;
   overflow: hidden;
   position: relative;
   padding: 110px 5% 70px;
@@ -1621,14 +1621,14 @@ h1 > span {
 }
 .final-cta p {
   font-size: 12px;
-  color: #6f7b8b;
+  color: #7e7e7e;
   margin: 25px 0 30px;
 }
 .cta-orbit {
   position: absolute;
   width: 1200px;
   height: 480px;
-  border: 1px solid #8d9caf55;
+  border: 1px solid #a0a0a055;
   border-radius: 50%;
   left: calc(50% - 600px);
   top: 80px;
@@ -1638,7 +1638,7 @@ h1 > span {
   content: "";
   position: absolute;
   inset: 40px -80px;
-  border: 1px solid #8d9caf33;
+  border: 1px solid #a0a0a033;
   border-radius: 50%;
 }
 .cta-bottom {
@@ -1647,7 +1647,7 @@ h1 > span {
   margin-top: 70px;
   font-size: 8px;
   letter-spacing: 0.2em;
-  color: #7c8a9d;
+  color: #8e8e8e;
 }
 footer {
   background: #f6f9ff;
@@ -1672,11 +1672,11 @@ footer {
 .footer-top > div > a:not(.brand) {
   display: block;
   font-size: 10px;
-  color: #828b96;
+  color: #8d8d8d;
   margin-top: 13px;
 }
 .footer-top > div > a:hover {
-  color: #39424e;
+  color: #454545;
 }
 .legal {
   padding: 35px 0;
@@ -1686,7 +1686,7 @@ footer {
 .legal p {
   font-size: 9px;
   line-height: 1.9;
-  color: #818892;
+  color: #8a8a8a;
   max-width: 900px;
 }
 .legal p:first-child {
@@ -1700,7 +1700,7 @@ footer {
   display: flex;
   justify-content: space-between;
   padding-top: 23px;
-  color: #848e9b;
+  color: #919191;
   font-size: 8px;
   gap: 20px;
 }
@@ -1711,7 +1711,7 @@ footer {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: #10131899;
+  background: #14141499;
   backdrop-filter: blur(12px);
   z-index: 100;
   display: grid;
@@ -1733,7 +1733,7 @@ footer {
 }
 .demo-modal p {
   font-size: 13px;
-  color: #778290;
+  color: #858585;
   margin-bottom: 25px;
 }
 .close-modal {
@@ -1742,7 +1742,7 @@ footer {
   right: 16px;
   background: none;
   padding: 7px;
-  color: #727e8d;
+  color: #818181;
 }
 @media (min-width: 1600px) {
   .section {
@@ -2466,7 +2466,7 @@ footer {
 .legal p,
 .footer-top > div > a:not(.brand),
 .footer-bottom {
-  color: #6b737e;
+  color: #757575;
 }
 .exchange-field > label,
 .exchange-field small,
@@ -2476,26 +2476,26 @@ footer {
 .security-controls small,
 .security-card > small,
 .security-card > p {
-  color: #6a737e;
+  color: #757575;
 }
 .phone-row small {
-  color: #a5adb7;
+  color: #afafaf;
 }
 .cards-section .fine,
 .card-footnote {
-  color: #a2aab5;
+  color: #acacac;
 }
 .investments .label,
 .investments .muted,
 .investments .fine,
 .asset-grid small {
-  color: #a4b0c0;
+  color: #b3b3b3;
 }
 .range-filter button {
-  color: #a7b5c8;
+  color: #b9b9b9;
 }
 .phone-transactions > a {
-  color: #b7cbe6;
+  color: #d1d1d1;
   font-size: 8px;
 }
 .phone-transactions > a:hover {
@@ -2518,503 +2518,3 @@ footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-/* Premium blue identity — extends the existing layout and interaction system. */
-:root {
-  --primary-blue: #0666eb;
-  --electric-blue: #0075ff;
-  --deep-blue: #003db8;
-  --light-blue: #eaf3ff;
-  --ink: #101114;
-  --purple: var(--primary-blue);
-  color: #101114;
-  background: #fff;
-}
-.nav {
-  background: #ffffffed;
-}
-.brand {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  letter-spacing: 0;
-}
-.revolut-logo {
-  display: block;
-  width: 110px;
-  height: auto;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-.brand-concept {
-  font-size: 7px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #49617e;
-  font-weight: 500;
-  white-space: nowrap;
-}
-.button {
-  background: var(--primary-blue);
-  color: white;
-}
-.button:hover {
-  background: var(--deep-blue);
-  box-shadow: 0 10px 24px #0666eb24;
-}
-.text-button:hover,
-.nav-links a:hover,
-.nav-item > button:hover {
-  color: var(--primary-blue);
-  opacity: 1;
-}
-.nav-links a:focus-visible,
-.nav-links a:active {
-  color: var(--primary-blue);
-}
-.dropdown a:hover {
-  background: var(--light-blue);
-}
-.hero {
-  background:
-    radial-gradient(ellipse at 82% 45%, #dcecff 0, transparent 55%), #fff;
-}
-.hero h1 > span,
-.status-dot,
-.progress i {
-  color: var(--primary-blue);
-}
-.status-dot,
-.progress i {
-  background: var(--primary-blue);
-}
-.eyebrow,
-.section-heading .eyebrow,
-.section-copy .eyebrow,
-.center-heading .eyebrow {
-  color: #0755b3;
-}
-.orbital-ring {
-  border-color: #0666eb18;
-}
-.floating-tag > span {
-  background: var(--light-blue);
-  color: var(--primary-blue);
-}
-.hero-product-photo {
-  position: absolute;
-  z-index: 1;
-  width: 340px;
-  height: auto;
-  left: -65px;
-  bottom: 13%;
-  border-radius: 22px;
-  box-shadow: 0 24px 65px #003db820;
-  transform: rotate(-12deg);
-  border: 1px solid #ffffffb3;
-}
-.phone-wrap {
-  z-index: 2;
-  margin-left: 95px;
-}
-.tag-one {
-  top: 18%;
-  left: 5%;
-}
-.tag-two {
-  bottom: 9%;
-  right: -25px;
-}
-.phone {
-  box-shadow:
-    14px 25px 45px #003db824,
-    inset 0 0 0 2px #8a98ad;
-}
-.phone-app {
-  background: radial-gradient(ellipse at top, #172d50, #101722 75%);
-}
-.phone-top {
-  background: #101722;
-}
-.phone-buttons a span {
-  background: #173960;
-}
-.phone-buttons a:hover span {
-  background: #0666eb;
-}
-.phone-bottom button.active,
-.phone-transactions > a {
-  color: #80baff;
-}
-.mini-card {
-  background: linear-gradient(125deg, #e9eff8, #acbbd2 50%, #f2f6ff);
-  color: #1b304d;
-}
-.mini-card .product-logo {
-  width: 65px;
-  align-self: start;
-}
-.phone-balance small {
-  color: #b6cce8;
-}
-.phone-row small {
-  color: #a5bad1;
-}
-.badge,
-.filter button.selected,
-.pricing-switch,
-.projected,
-.calculator-controls select {
-  background: var(--light-blue);
-  color: #0754b3;
-}
-.feature-row span,
-.goal-icon,
-.orbit-symbol,
-.currency-pills span,
-.security-note > span,
-.security-card > svg {
-  color: var(--primary-blue);
-}
-.currency-pills span {
-  border-color: #bdd8ff;
-}
-.dashboard-goal {
-  background: #f2f7ff;
-}
-.dashboard-goal > span,
-.goal-card > small {
-  color: #0754b3;
-}
-.goal-card.selected {
-  background: #f2f7ff;
-  border-color: var(--primary-blue);
-}
-.goal-card:hover {
-  border-color: #83b8ff;
-}
-.calculator-controls input[type="range"] {
-  accent-color: var(--primary-blue);
-}
-.exchange-field {
-  background: #f2f7ff;
-}
-.swap {
-  background: #d2e5ff;
-  color: #0754b3;
-}
-.exchange-panel {
-  box-shadow: 0 25px 65px #003db80e;
-}
-.dashboard {
-  border-color: #dce6f3;
-}
-.balance-mini {
-  border-color: #dce6f3;
-}
-.chart {
-  color: #6e9acb;
-}
-.categories span:first-child i {
-  background: #0666eb;
-}
-.categories span:nth-child(2) i {
-  background: #80b9ff;
-}
-.categories span:nth-child(3) i {
-  background: #bcd9ff;
-}
-.cards-section {
-  background: #003db8;
-}
-.cards-section .eyebrow,
-.cards-section .center-heading > p,
-.cards-section .fine,
-.card-footnote {
-  color: #d0e2ff;
-}
-.cards-section .serif {
-  color: #b7d7ff;
-}
-.card-editorial {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 65px;
-}
-.card-editorial figure {
-  margin: 0;
-  min-width: 0;
-}
-.card-editorial figure img {
-  width: 100%;
-  height: auto;
-  border-radius: 24px;
-  object-fit: cover;
-  border: 1px solid #ffffff26;
-}
-.card-editorial figcaption {
-  color: #c2dcff;
-  font-size: 7px;
-  letter-spacing: 0.14em;
-  line-height: 1.8;
-  margin-top: 16px;
-  text-align: center;
-}
-.card-editorial .payment-card {
-  width: 350px;
-  height: 220px;
-  padding: 25px;
-}
-.card-editorial .chip {
-  margin-top: 20px;
-}
-.card-editorial .card-detail {
-  margin-top: 20px;
-}
-.card-controls {
-  flex-direction: column;
-  gap: 12px;
-}
-.finish-options button {
-  color: #c7dcff;
-}
-.finish-options button.selected {
-  color: white;
-  border-color: white;
-}
-.cobalt {
-  background: linear-gradient(125deg, #3d9bff, #0666eb 50%, #003db8);
-  color: white;
-}
-
-.card-brand .revolut-logo {
-  width: 100px;
-}
-.payment-card.virtual {
-  background: linear-gradient(120deg, #0075ff, #002767);
-  color: white;
-}
-.security {
-  background: #f2f7ff;
-}
-.security-card {
-  background: linear-gradient(150deg, #f2f7ff, #e3eeff);
-}
-.security-card.frozen {
-  background: #dbeaff;
-}
-.security-card > .product-logo {
-  width: 70px;
-}
-.switch.on {
-  background: var(--primary-blue);
-}
-.investments {
-  background: #101114;
-}
-.investment-panel {
-  background: #141f32;
-  border-color: #263c5c;
-}
-.investment-panel .badge,
-.range-filter button.selected {
-  background: #173960;
-  color: #b9dcff;
-}
-.asset-grid span {
-  color: #5fa5ff;
-}
-.investments .eyebrow {
-  color: #86baff;
-}
-.investments .label,
-.investments .muted,
-.investments .fine,
-.asset-grid small,
-.range-filter button {
-  color: #b3cae8;
-}
-.plan.featured {
-  background: #eaf3ff;
-  border-color: #0666eb;
-  box-shadow: 0 10px 35px #0666eb0b;
-}
-.plan li svg,
-.pricing-switch span {
-  color: #0666eb;
-}
-.plan-price {
-  color: #003db8;
-}
-.pricing-switch button.selected {
-  color: #003db8;
-}
-.final-cta {
-  background: #003db8;
-  color: white;
-}
-.final-cta .eyebrow,
-.final-cta p,
-.cta-bottom {
-  color: #d0e3ff;
-}
-.final-cta .button {
-  background: white;
-  color: #003db8;
-}
-.final-cta .button:hover {
-  background: #eaf3ff;
-}
-.cta-orbit,
-.cta-orbit:after {
-  border-color: #ffffff20;
-}
-.footer-top > div > a:hover,
-.footer-bottom > a:hover {
-  color: #0666eb;
-}
-.footer-bottom {
-  border-color: #d2e1f5;
-}
-.legal {
-  border-color: #d2e1f5;
-}
-.concept-strip {
-  background: #eaf3ff;
-  color: #335477;
-}
-.concept-strip > span {
-  color: #0666eb;
-}
-.demo-modal .label {
-  color: #0754b3;
-}
-@media (min-width: 1600px) {
-  .hero-product-photo {
-    left: -30px;
-  }
-}
-@media (max-width: 1100px) {
-  .hero-product-photo {
-    width: 280px;
-    left: -30px;
-    bottom: 15%;
-  }
-  .phone-wrap {
-    margin-left: 50px;
-  }
-  .card-editorial {
-    gap: 30px;
-  }
-  .card-editorial .payment-card {
-    width: 300px;
-    height: 190px;
-    padding: 20px;
-  }
-  .card-editorial .chip {
-    margin-top: 15px;
-    line-height: 25px;
-  }
-  .card-editorial .card-detail {
-    margin-top: 15px;
-  }
-}
-@media (max-width: 800px) {
-  .hero-product-photo {
-    width: 220px;
-    left: -35px;
-    bottom: 16%;
-  }
-  .phone-wrap {
-    margin-left: 10px;
-  }
-  .card-editorial {
-    grid-template-columns: 1fr;
-    gap: 35px;
-    max-width: 550px;
-    margin: auto;
-  }
-  .card-editorial figure img {
-    max-height: 330px;
-    object-fit: cover;
-  }
-  .card-controls {
-    flex-direction: row;
-    gap: 25px;
-  }
-  .card-editorial .payment-card {
-    width: 350px;
-    height: 220px;
-    padding: 25px;
-  }
-  .card-editorial .chip {
-    margin-top: 20px;
-  }
-  .card-editorial .card-detail {
-    margin-top: 20px;
-  }
-}
-@media (max-width: 600px) {
-  .nav .revolut-logo {
-    width: 90px;
-  }
-  .brand-concept {
-    font-size: 6px;
-  }
-  .hero .eyebrow {
-    font-size: 7px;
-    letter-spacing: 0.13em;
-  }
-  .hero-product-photo {
-    width: 190px;
-    left: -20px;
-    bottom: 10%;
-    border-radius: 15px;
-    z-index: 3;
-  }
-  .phone-wrap {
-    margin-left: 25px;
-  }
-  .tag-one {
-    left: -15px;
-    top: 12%;
-  }
-  .tag-two {
-    bottom: 5%;
-    right: -28px;
-    z-index: 4;
-  }
-  .card-editorial {
-    gap: 30px;
-  }
-  .card-editorial .payment-card {
-    width: 290px;
-    height: 185px;
-    padding: 20px;
-  }
-  .card-editorial .card-detail {
-    margin-top: 17px;
-  }
-  .card-editorial .chip {
-    margin-top: 15px;
-    line-height: 24px;
-  }
-  .card-controls {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .card-editorial figcaption {
-    font-size: 6px;
-  }
-  .card-brand .revolut-logo {
-    width: 80px;
-  }
-}
-
-.nav-links button[aria-expanded="true"], .nav-links button[data-active="true"], .nav-links a[aria-current="location"] {color:var(--primary-blue);}
-.nav-links a[aria-current="location"] {text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:2px;}
-
-/* Simplified visual presentation: logo, device and card preview. */
-.hero .phone-wrap { margin-left:0; }
-select { appearance:none; -webkit-appearance:none; }
-.swap { width:58px; height:38px; border-radius:20px; font-size:11px; font-weight:600; }

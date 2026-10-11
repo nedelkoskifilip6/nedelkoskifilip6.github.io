@@ -1,0 +1,347 @@
+/* Editorial art direction. Layout and interactive components remain in global.css. */
+:root { --ink:#191919; --muted:#676767; --purple:#262626; --surface:#f5f4f2; --radius:24px; color:#191919; background:#fff; }
+body { font-family:Arial,'Helvetica Neue',sans-serif; -webkit-font-smoothing:antialiased; }
+h1,h2 { font-weight:700; letter-spacing:-.055em; line-height:1.015; }
+h2 { font-size:clamp(44px,5.4vw,82px); }
+h3 { font-weight:600; letter-spacing:-.045em; }
+.serif { font-family:inherit; font-style:normal; font-weight:inherit; }
+.eyebrow { font-size:10px; font-weight:600; color:#666; letter-spacing:.14em; }
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible { outline:3px solid #778877; outline-offset:5px; }
+.button { background:#191919; color:#fff; font-size:15px; font-weight:600; padding:17px 26px; min-height:48px; box-shadow:none; gap:12px; }
+.button:hover { background:#383838; transform:translateY(-2px); box-shadow:none; }
+.text-button:hover { color:#777; }
+.nav { height:80px; padding:0 max(6%,calc((100vw - 1280px)/2)); background:#fffffff2; border-bottom:1px solid #efefed; }
+.brand { display:flex; flex-direction:column; gap:7px; letter-spacing:0; }
+.revolut-logo { display:block; width:110px; height:auto; object-fit:contain; }
+.brand-concept { font-size:9px; letter-spacing:.04em; font-weight:400; color:#777; }
+.nav-links { font-size:14px; gap:30px; }
+.nav-actions { gap:24px; }
+.nav-actions .button { padding:12px 20px; min-height:44px; font-size:13px; }
+.nav-item>button { min-height:44px; }
+.login { min-height:44px; font-size:13px; }
+.nav-links button[aria-expanded=true],.nav-links button[data-active=true],.nav-links a[aria-current=location] { color:#191919; text-decoration:underline; text-underline-offset:7px; }
+.dropdown { top:48px; border:1px solid #eee; border-radius:18px; box-shadow:0 20px 50px #00000010; }
+.dropdown a { min-height:48px; }
+.dropdown a:hover { background:#f5f4f2; }
+.hero { display:block; min-height:660px; height:calc(100svh - 80px); max-height:1000px; padding:70px max(6%,calc((100vw - 1280px)/2)) 60px; background:#242826; isolation:isolate; color:#fff; overflow:hidden; }
+.hero-photograph { position:absolute; inset:0; z-index:-2; display:block; }
+.hero-photo { width:100%; height:100%; object-fit:cover; object-position:50% 45%; display:block; }
+.hero::before { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,#0008 0%,#0003 32%,transparent 62%),linear-gradient(0deg,#0005,transparent 65%); }
+.hero-text { position:relative; height:100%; display:flex; flex-direction:column; align-items:flex-start; text-align:left; }
+.hero .eyebrow { color:#fff; font-size:10px; margin-bottom:20px; display:block; letter-spacing:.15em; }
+.hero h1 { font-size:clamp(78px,8.4vw,130px); line-height:.97; margin:0; letter-spacing:-.06em; max-width:none; color:#fff; }
+.hero-break { display:none; }
+.hero-description { margin-top:48px; max-width:390px; }
+.hero-description p { font-size:20px; line-height:1.45; color:#fff; margin-bottom:28px; }
+.hero-description .button { background:#fff; color:#191919; padding:18px 29px; min-height:56px; }
+.hero-description .button:hover { background:#ecece8; }
+.external-note { display:block; font-size:11px; margin-top:12px; color:#f1f1ed; }
+.hero-caption { position:absolute; bottom:35px; right:6%; font-size:9px; letter-spacing:.16em; color:#fff; }
+.concept-strip { padding:24px 6%; background:#fff; color:#666; border-bottom:1px solid #eee; font-size:11px; }
+.concept-strip p { max-width:none; }
+.concept-strip span { font-size:9px; color:#777; }
+.section { padding:110px max(6%,calc((100vw - 1280px)/2)); background:#fff; scroll-margin-top:20px; }
+.section-heading { align-items:center; gap:50px; margin-bottom:64px; }
+.section-heading>p,.section-copy>p,.center-heading>p { font-size:17px; line-height:1.55; color:#666; max-width:390px; }
+.section-heading .eyebrow,.section-copy .eyebrow,.center-heading .eyebrow { color:#777; margin-bottom:24px; display:block; }
+.center-heading>p { margin:24px auto 0; max-width:610px; }
+.center-heading { margin-bottom:60px; }
+.banking-presentation { display:grid; grid-template-columns:1fr 1fr; background:#f4f3f0; border-radius:var(--radius); overflow:hidden; margin-bottom:48px; min-height:650px; }
+.banking-story { padding:90px 55px; align-self:center; }
+.banking-story h3,.travel-tools h3 { font-size:clamp(34px,3.8vw,58px); line-height:1.05; margin:24px 0; }
+.banking-story p { color:#656565; font-size:16px; max-width:320px; }
+.story-detail { border-top:1px solid #d9d7d3; padding-top:28px; margin-top:48px; max-width:320px; }
+.story-detail b { display:block; font-size:15px; margin-bottom:8px; }
+.story-detail span { font-size:13px; color:#777; line-height:1.5; display:block; }
+.device-stage { position:relative; display:flex; align-items:center; justify-content:center; padding:45px 35px 65px; background:#e9e7e2; }
+.device-stage .phone-wrap { position:relative; margin:0; scale:1; transform:none; z-index:1; }
+.device-stage .phone { box-shadow:20px 32px 38px #0003,inset 0 0 0 2px #969696; }
+.phone-top { background:#191919; }
+.phone-app { background:linear-gradient(155deg,#2c2c2c,#171717 70%); }
+.phone-buttons a span { background:#333; }
+.phone-buttons a:hover span { background:#505050; }
+.phone-bottom button.active,.phone-transactions>a { color:#fff; }
+.phone-balance small,.phone-row small { color:#c6c6c6; }
+.mini-card { background:linear-gradient(125deg,#e4e4df,#aaa8a2 50%,#ebebe6); color:#303030; }
+.mini-card .product-logo { width:65px; }
+.device-caption { position:absolute; bottom:23px; font-size:8px; letter-spacing:.13em; color:#696863; }
+.dashboard { border:0; background:#f6f6f4; border-radius:var(--radius); padding:40px; box-shadow:none; }
+.dashboard-header h3 { font-size:24px; font-weight:600; }
+.label { font-size:10px; color:#707070; }
+.badge { background:#e9e9e6; color:#555; font-size:10px; }
+.balance-grid strong { font-size:48px; font-weight:600; }
+.balance-mini strong { font-size:32px; }
+.balance-grid small,.balance-grid>div>span { color:#666; font-size:12px; }
+.balance-mini { border-color:#ddd; }
+.row-between { font-size:14px; }
+.muted { color:#777; font-size:12px; }
+.filter button { font-size:11px; padding:9px 11px; color:#656565; }
+.filter button.selected { background:#191919; color:#fff; }
+.transaction { font-size:13px; padding:15px 0; border-color:#e7e7e3; }
+.transaction small { font-size:10px; color:#666; }
+.transaction strong { font-size:12px; }
+.transaction-icon { width:38px; height:38px; }
+.violet,.blue { background:#e2e6e1; }
+.categories { font-size:10px; flex-wrap:wrap; color:#666; }
+.categories i { background:#657c68; }
+.categories span:nth-child(2) i { background:#a2afa1; }
+.categories span:nth-child(3) i { background:#d0d7cb; }
+.dashboard-goal { background:#eaeae6; padding:20px; }
+.dashboard-goal>span,.goal-icon { color:#686f60; }
+.dashboard-goal small { color:#666; }
+.progress { background:#deded8; height:6px; }
+.progress i { background:#6a7d67; }
+.feature-row { margin-top:34px; }
+.feature-row>div { padding:24px 18px; border:0; }
+.feature-row span { display:none; }
+.feature-row b { font-size:15px; }
+.feature-row p { color:#777; font-size:12px; }
+.payments { padding-top:70px; }
+.travel-composition { display:grid; grid-template-columns:1.12fr 1fr; min-height:720px; background:#f5f4f1; border-radius:var(--radius); overflow:hidden; }
+.travel-photograph { position:relative; overflow:hidden; margin:0; min-height:700px; }
+.travel-photograph::after { content:''; position:absolute; inset:50% 0 0; background:linear-gradient(transparent,#0008); }
+.travel-photograph img { position:absolute; inset:-5% 0; width:100%; height:110%; object-fit:cover; object-position:50% 67%; }
+.travel-photograph figcaption { position:absolute; bottom:35px; left:35px; right:25px; color:#fff; font-size:30px; font-weight:600; letter-spacing:-.04em; z-index:1; }
+.travel-photograph figcaption span { display:block; font-size:11px; letter-spacing:0; font-weight:400; margin-top:10px; }
+.travel-tools { padding:55px 40px; min-width:0; }
+.travel-tools h3 { margin:18px 0 32px; font-size:42px; }
+.exchange-panel { padding:26px; background:#fff; border:0; border-radius:20px; box-shadow:none; }
+.exchange-field { background:#f5f5f2; border:0; }
+.exchange-field input,.exchange-field output { font-size:32px; color:#191919; }
+.exchange-field label,.exchange-field small { color:#666; }
+.exchange-field select { font-size:14px; }
+select { appearance:none; -webkit-appearance:none; cursor:pointer; }
+.swap { width:58px; height:38px; border-radius:30px; background:#eaeae6; color:#333; font-size:11px; }
+.swap:hover { background:#dcdcd7; }
+.rate { font-size:12px; color:#555; }
+.rate span { color:#777; }
+.fine { color:#727272; line-height:1.5; }
+.cards-section { background:#efeeea; color:#191919; padding-bottom:50px; }
+.cards-section .center-heading>p { color:#666; }
+.cards-section .eyebrow { color:#777; }
+.card-stage { padding-top:50px; padding-bottom:20px; }
+.payment-card { width:480px; height:298px; padding:35px; border-radius:22px; box-shadow:0 22px 45px #0002,inset 0 0 0 1px #ffffff60; transform:rotate(-8deg) rotateY(-10deg); }
+.card-brand .revolut-logo { width:110px; }
+.silver { background:linear-gradient(120deg,#e7e8e4,#adada8 35%,#dedfdc 65%,#9d9e9b); }
+.graphite { background:linear-gradient(120deg,#656660,#252623 45%,#5d5e58); color:#fff; }
+.champagne { background:linear-gradient(120deg,#e6d9bf,#baa88c 40%,#eaddc6 70%,#b6a184); color:#39342d; }
+.payment-card.virtual { background:linear-gradient(135deg,#575953,#262822); color:#fff; }
+.chip { margin-top:44px; color:#7c705b; }
+.card-detail { margin-top:35px; }
+.card-detail>span { font-size:11px; }
+.card-detail small { font-size:10px; }
+.card-shadow { opacity:.22; }
+.finish-options button { color:#666; font-size:13px; min-height:44px; padding:10px 0; }
+.finish-options button.selected { color:#191919; border-color:#191919; }
+.card-controls { gap:32px; }
+.card-controls .text-button { font-size:13px; }
+.cards-experience>.fine { color:#666; font-size:11px; margin-top:24px; }
+.card-footnote { color:#666; border-color:#d7d6d1; font-size:9px; }
+.savings { padding:0; background:#fff; }
+.savings-editorial { min-height:730px; position:relative; isolation:isolate; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.savings-editorial>img { position:absolute; inset:-5% 0; width:100%; height:110%; object-fit:cover; object-position:50% 57%; z-index:-2; }
+.savings-editorial::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#0009,transparent 85%); z-index:-1; }
+.savings-story { width:100%; padding:80px max(6%,calc((100vw - 1280px)/2)); color:#fff; }
+.savings-story .eyebrow { color:#fff; display:block; margin-bottom:27px; }
+.savings-story h2 { font-size:clamp(54px,6.4vw,94px); }
+.savings-story p { font-size:19px; line-height:1.5; margin-top:30px; }
+.photo-label { display:block; font-size:9px; letter-spacing:.14em; margin-top:80px; }
+.savings-tools { padding:80px max(6%,calc((100vw - 1280px)/2)) 110px; }
+.tools-heading { margin-bottom:35px; }
+.tools-heading h3 { font-size:32px; margin-bottom:12px; }
+.tools-heading p { font-size:15px; color:#666; }
+.goal-card { background:#f5f5f2; border:1px solid transparent; border-radius:20px; padding:28px; }
+.goal-card.selected { background:#e9ece5; border-color:#738367; }
+.goal-card:hover { border-color:#9caa91; transform:translateY(-3px); }
+.goal-card h3 { font-weight:600; }
+.goal-card>small,.goal-card .row-between>span { color:#626262; font-size:11px; }
+.goal-card .row-between { font-size:12px; }
+.savings-calculator { gap:60px; border-color:#e4e4df; }
+.savings-calculator p { color:#666; font-size:13px; }
+.calculator-controls input[type=range] { accent-color:#6a7d67; }
+.calculator-controls select,.projected { background:#eceee8; color:#454e40; }
+.projected { padding:18px; }
+.security { background:#f4f4f1; }
+.security .split { gap:80px; }
+.security .eyebrow { color:#777; }
+.security-note>span,.security-card>svg { color:#697163; }
+.security-note small { font-size:11px; color:#666; }
+.security-ui { border:0; background:#e8e8e3; border-radius:var(--radius); padding:24px; }
+.security-card { background:#fdfdfa; border:0; }
+.security-card.frozen { background:#dbdfd9; }
+.security-card>.product-logo { width:85px; margin:0 auto 24px; }
+.security-card>small,.security-card>p { color:#626262; }
+.security-controls { margin-top:18px; }
+.security-controls>div { background:#f6f6f3; border:0; padding:18px 16px; }
+.security-controls b { font-size:12px; }
+.security-controls small { color:#666; font-size:10px; }
+.toggle.on { background:#5d7155; }
+.investments { background:#191b18; color:#fff; }
+.investments .eyebrow { color:#b3b6ae; }
+.investments .section-heading>p { color:#b5b9b1; }
+.investment-panel { background:#242722; border:1px solid #3b3f36; padding:40px; }
+.investment-panel .badge,.range-filter button.selected { background:#41463b; color:#ecefe8; }
+.investments .label,.investments .fine,.investments .muted,.asset-grid small { color:#b8bdb3; }
+.range-filter button { color:#b8bdb3; min-height:40px; font-size:12px; }
+.asset-grid span { color:#ced3c6; }
+.asset-grid b { font-size:12px; }
+.asset-grid small { font-size:10px; }
+.asset-grid strong { font-size:12px; }
+.investment-panel>.fine { font-size:10px; }
+.plans .center-heading h2 { font-size:clamp(44px,5.1vw,76px); }
+.pricing-switch { background:#efefec; border:0; }
+.pricing-switch button { color:#555; font-size:13px; min-height:44px; }
+.pricing-switch span { color:#5d7155; font-size:10px; }
+.plan-grid { gap:18px; }
+.plan { background:#f5f5f2; border:1px solid transparent; border-radius:20px; padding:28px 24px; }
+.plan.featured { background:#eaece6; border-color:#89947b; }
+.plan h3 { font-weight:600; }
+.plan p { color:#666; font-size:12px; min-height:40px; }
+.plan-price { font-size:44px; font-weight:600; }
+.plan-price span,.plan>small { color:#666; font-size:10px; }
+.plan .button { font-size:12px; min-height:44px; }
+.plan li { color:#626262; font-size:12px; align-items:flex-start; }
+.plan li svg { color:#657c58; flex-shrink:0; }
+.plan-disclaimer { color:#666; font-size:11px; }
+.final-cta { background:#181a17; color:#fff; padding:120px 6% 50px; }
+.final-cta .eyebrow { color:#c5c8be; }
+.final-cta h2 { font-weight:700; font-size:clamp(46px,6.3vw,96px); }
+.final-cta p { color:#c5c8be; font-size:17px; }
+.final-cta .button { background:#fff; color:#191919; }
+.final-cta .button:hover { background:#e8eae2; }
+.cta-light { position:absolute; width:1100px; height:700px; left:-200px; top:-100px; pointer-events:none; background:radial-gradient(ellipse,#7b847020,transparent 65%); }
+.cta-bottom { color:#979e90; margin-top:90px; font-size:9px; }
+footer { background:#f5f5f2; padding:65px max(6%,calc((100vw - 1280px)/2)) 25px; }
+.footer-top { gap:50px; }
+.footer-top p { color:#666; font-size:13px; }
+.footer-top b { font-size:14px; }
+.footer-top a:not(.brand) { color:#666; font-size:13px; line-height:1.6; }
+.footer-top a:hover { color:#191919; }
+.legal { border-color:#ddd; padding:32px 0; }
+.legal p { color:#686868; font-size:11px; line-height:1.7; max-width:none; }
+.legal p b { color:#494949; }
+.footer-bottom { color:#777; border-color:#ddd; font-size:10px; }
+@media(min-width:1700px) { .hero-photo { object-position:50% 52%; } }
+@media(max-width:1100px) {
+ .nav { padding:0 4%; }.nav-links { gap:20px; }.nav-actions { gap:18px; }
+ .section { padding:85px 5%; }.section-heading { gap:35px; }.section-heading>p { max-width:300px; }
+ .hero { padding:55px 6%; min-height:620px; }.hero h1 { font-size:90px; }.hero-description { max-width:330px; }
+ .hero-description p { font-size:18px; }.banking-story { padding:50px 35px; }
+ .travel-tools { padding:38px 25px; }.travel-tools h3 { font-size:36px; }.travel-composition { min-height:660px; }
+ .travel-photograph { min-height:660px; }.security .split { gap:45px; }.plan-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .plan p { min-height:0; }.savings-tools { padding:65px 5% 85px; }
+}
+@media(max-width:800px) {
+ .nav { height:72px; }.nav-links { display:none; }.nav-links.open { display:flex; flex-direction:column; align-items:stretch; background:#fff; top:72px; gap:8px; border-bottom:1px solid #ddd; padding:20px 6%; max-height:calc(100svh - 72px); overflow:auto; }
+ .nav-links.open>.nav-item>button { width:100%; text-align:left; font-size:17px; }.nav-links.open>a { padding:12px 0; font-size:17px; }
+ .dropdown { position:static; width:100%; padding:0 10px; border:0; box-shadow:none; background:#f5f5f2; margin-bottom:12px; }
+ .menu { display:grid; place-items:center; width:44px; height:44px; color:#191919; }
+ .nav-actions .button { display:none; }.login { font-size:12px; }.nav-actions { gap:10px; }
+ .hero { height:700px; min-height:0; padding:45px 6%; }.hero h1 { font-size:76px; }.hero-break { display:block; }
+ .hero-description { margin-top:35px; }.hero-description p { font-size:18px; }.hero-photo { object-position:60% 50%; }
+ .section-heading { flex-direction:column; align-items:flex-start; gap:25px; margin-bottom:40px; }.section-heading>p { max-width:500px; }
+ .section-heading>p,.section-copy>p,.center-heading>p { font-size:16px; }
+ .banking-presentation { grid-template-columns:1fr 1fr; min-height:620px; }.banking-story { padding:35px 25px; }.banking-story h3 { font-size:35px; }
+ .device-stage { padding:25px 10px 45px; }.device-stage .phone-wrap { scale:.86; }.device-caption { font-size:6px; }
+ .banking-grid { grid-template-columns:1fr; gap:30px; }.dashboard { padding:28px; }.dashboard-goal { font-size:12px; }
+ .feature-row { gap:20px; }.feature-row>div { padding:15px 0; }
+ .travel-composition { grid-template-columns:1fr; }.travel-photograph { min-height:480px; }.travel-photograph img { object-position:50% 67%; }
+ .travel-tools { padding:40px; }.travel-tools h3 { font-size:42px; }.exchange-panel { max-width:550px; padding:28px; }
+ .savings-editorial { min-height:620px; }.savings-story { padding:65px 6%; }.savings-story h2 { font-size:70px; }.savings-story p { font-size:17px; }
+ .goal-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }.goal-card { padding:20px 15px; }.goal-card h3 { font-size:20px; }
+ .savings-calculator { gap:40px; }.savings-calculator h3 { font-size:30px; }.security .split { grid-template-columns:1fr; }
+ .security .section-copy>p { max-width:550px; }.security-ui { max-width:600px; width:100%; justify-self:center; }
+ .asset-grid { grid-template-columns:1fr; gap:24px; }.asset-grid>div { grid-template-columns:35px 1fr auto; font-size:13px; }
+ .investment-panel { padding:28px; }.footer-top { grid-template-columns:repeat(3,1fr); gap:30px; }.footer-top>div:first-child { grid-column:1/-1; }
+}
+@media(max-width:600px) {
+ .nav { padding:0 20px; height:68px; }.nav .revolut-logo { width:94px; }.nav-links.open { top:68px; }
+ .hero { height:780px; max-height:none; min-height:0; padding:38px 24px 38px; }.hero-text { align-items:flex-start; text-align:left; }
+ .hero .eyebrow { font-size:8px; letter-spacing:.12em; margin-bottom:20px; }.hero h1 { font-size:64px; line-height:.97; letter-spacing:-.06em; margin:0; }
+ .hero-photo { object-position:50% 50%; }.hero::before { background:linear-gradient(180deg,#0007,transparent 43%,#000b 100%); }
+ .hero-description { margin-top:auto; max-width:100%; padding-bottom:15px; }.hero-description p { font-size:17px; line-height:1.5; margin-bottom:21px; }
+ .hero-description .button { font-size:15px; min-height:52px; padding:16px 26px; }.external-note { font-size:10px; margin-top:12px; }
+ .hero-caption { display:none; }.concept-strip { padding:20px 24px; font-size:10px; line-height:1.6; }
+ .concept-strip span { display:none; }.section { padding:70px 24px; }h2 { font-size:43px; line-height:1.03; letter-spacing:-.05em; }
+ .section-heading .eyebrow,.center-heading .eyebrow,.section-copy .eyebrow { font-size:9px; margin-bottom:20px; }
+ .section-heading>p,.section-copy>p,.center-heading>p { font-size:15px; }.center-heading { margin-bottom:36px; }
+ .banking-presentation { grid-template-columns:1fr; border-radius:20px; margin-bottom:30px; }.banking-story { padding:38px 28px; }.banking-story h3 { font-size:38px; }
+ .banking-story p { font-size:15px; }.story-detail { margin-top:28px; padding-top:22px; }
+ .device-stage { height:595px; padding:25px 12px 55px; }.device-stage .phone-wrap { scale:.87; }.device-caption { font-size:7px; bottom:25px; }
+ .dashboard { padding:24px 18px; border-radius:20px; }.dashboard-header h3 { font-size:20px; }.dashboard-header { gap:8px; }.dashboard-header .badge { font-size:8px; }
+ .balance-grid { grid-template-columns:1fr; gap:25px; margin:28px 0; }.balance-grid strong { font-size:40px; }.balance-mini { padding:0; border:0; }.balance-mini strong { font-size:28px; }
+ .banking-grid { gap:32px; }.row-between { font-size:12px; }.muted { font-size:10px; }.categories { gap:10px; font-size:9px; }
+ .filter button { font-size:10px; padding:8px 9px; min-height:36px; }.transaction { font-size:12px; }.transaction small { font-size:9px; }.transaction strong { font-size:11px; }
+ .dashboard-goal { padding:16px 14px; flex-wrap:wrap; gap:12px; }.dashboard-goal .progress { width:100%; margin:0; }
+ .feature-row { grid-template-columns:1fr; gap:0; margin-top:20px; }.feature-row>div { border-bottom:1px solid #eee; padding:18px 0; }.feature-row p { font-size:13px; }
+ .payments { padding-top:40px; }.travel-composition { border-radius:20px; }.travel-photograph { min-height:440px; }.travel-photograph figcaption { font-size:28px; bottom:25px; left:25px; }
+ .travel-tools { padding:32px 20px; }.travel-tools h3 { font-size:36px; margin:18px 0 25px; }.travel-tools .eyebrow { font-size:8px; }
+ .exchange-panel { padding:20px 16px; }.exchange-field { padding:15px; }.exchange-field input,.exchange-field output { font-size:27px; }.rate { align-items:center; font-size:11px; }
+ .exchange-panel .fine { font-size:10px; }.exchange-panel .button { font-size:12px; padding:15px 12px; }
+ .cards-section { padding-bottom:35px; }.payment-card { width:292px; height:186px; padding:23px; border-radius:17px; }.card-brand .revolut-logo { width:85px; }
+ .chip { margin-top:20px; font-size:26px; line-height:24px; }.card-detail { margin-top:18px; }.card-detail>span { font-size:8px; }.card-detail small { font-size:7px; margin-top:7px; }.card-detail>b { font-size:22px; }
+ .card-controls { flex-direction:column; gap:8px; margin-top:12px; }.finish-options { gap:18px; }.finish-options button { font-size:11px; }.card-stage { padding-top:25px; padding-bottom:0; }
+ .card-shadow { width:250px; margin:28px auto 14px; }.card-footnote { margin-top:38px; gap:15px; flex-wrap:wrap; font-size:7px; }
+ .virtual-label { top:75px; right:22px; font-size:7px; }
+ .savings { padding:0; }.savings-editorial { min-height:660px; }.savings-story { padding:55px 24px; align-self:flex-start; }
+ .savings-story h2 { font-size:54px; }.savings-story .eyebrow { font-size:8px; }.savings-story p { font-size:16px; }.savings-editorial>img { object-position:58% 65%; }
+ .savings-editorial::after { background:linear-gradient(180deg,#0009,transparent 100%); }.photo-label { font-size:8px; max-width:240px; line-height:1.6; margin-top:45px; }
+ .savings-tools { padding:55px 24px 70px; }.tools-heading h3 { font-size:30px; }.tools-heading p { font-size:14px; }
+ .goal-grid { grid-template-columns:1fr; gap:12px; }.goal-card { padding:23px; }.goal-icon { margin-bottom:15px; font-size:24px; }.goal-card h3 { margin-bottom:22px; font-size:24px; }
+ .goal-card .row-between { font-size:13px; }.savings-calculator { grid-template-columns:1fr; gap:28px; margin-top:35px; padding-top:30px; }.savings-calculator h3 { font-size:32px; }
+ .security .split { gap:35px; }.security-ui { padding:16px; }.security-controls>div { padding:15px 12px; gap:10px; }.security-controls b { font-size:11px; }.security-controls small { font-size:9px; }
+ .security-card { padding:26px 18px; }.security-card .button { font-size:13px; }.security-note small { font-size:10px; }
+ .investment-panel { padding:24px 18px; border-radius:20px; }.portfolio-value { font-size:42px; }.investment-panel .chart { height:210px; }
+ .investment-panel>.row-between { flex-wrap:wrap; gap:12px; }.asset-grid { margin-top:30px; }.asset-grid b { font-size:12px; }
+ .plans .center-heading h2 { font-size:43px; }.plan-grid { grid-template-columns:1fr; gap:16px; }.plan { padding:28px; }.plan h3 { font-size:25px; }
+ .plan li { font-size:13px; margin:18px 0; }.plan-price { font-size:48px; }.plan p { font-size:13px; }.plan .button { font-size:13px; }.plan-disclaimer { font-size:10px; }
+ .final-cta { padding:80px 24px 35px; }.final-cta h2 { font-size:44px; }.final-cta .eyebrow { font-size:8px; }.final-cta p { font-size:15px; }.final-cta .button { font-size:13px; }
+ .cta-bottom { margin-top:60px; font-size:7px; }footer { padding:50px 24px 25px; }.footer-top { grid-template-columns:1fr 1fr; gap:35px 25px; }
+ .footer-top>div:first-child { grid-column:1/-1; }.footer-top>div:last-child { grid-column:1/-1; }.footer-top a:not(.brand) { font-size:12px; }
+ .legal p { font-size:10px; }.footer-bottom { font-size:9px; gap:20px; }.footer-bottom>span:nth-child(2) { display:none; }
+}
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; } html { scroll-behavior:auto; } }
+@media(max-width:600px) {
+ .hero { background:#fff; height:825px; }
+ .hero-photograph { top:218px; }
+ .hero::before { top:218px; background:linear-gradient(180deg,transparent 30%,#000b); }
+ .hero h1 { color:#191919; }
+ .hero .eyebrow { color:#6b6b65; }
+ .hero-description { position:relative; }
+}
+/* Match the component selectors for shared states and prevent decorative layout shifts. */
+.final-cta>div.cta-light { position:absolute; z-index:0; }
+.hero-photograph { overflow:hidden; }
+.hero-photo { position:absolute; top:-8%; height:116%; }
+.switch { width:44px; height:26px; padding:4px; flex-shrink:0; }
+.switch::before { width:18px; height:18px; }
+.switch.on { background:#627458; }
+.switch.on::before { transform:translateX(18px); }
+.switch::after { content:''; position:absolute; inset:-9px 0; }
+.footer-top>div>b { font-size:14px; }
+.footer-top>div>a:not(.brand) { color:#666; font-size:13px; }
+.security-card>.button { font-size:13px; min-height:44px; }
+@media(max-width:600px) { .footer-top>div>a:not(.brand) { font-size:12px; } }
+
+.savings-photograph { position:absolute; inset:0; z-index:-2; overflow:hidden; }
+.savings-photograph>img { position:absolute; inset:-5% 0; width:100%; height:110%; object-fit:cover; object-position:50% 57%; }
+@media(max-width:600px) { .savings-photograph>img { object-position:58% 65%; } }
+/* Keep the app's tab controls inside the device on every preview state. */
+.phone { height:624px; }
+.phone-app { height:570px; }
+.phone-balance { margin-top:22px; }
+.phone-balance strong { line-height:1.15; }
+.phone-buttons { margin:14px 0 16px; }
+.phone-buttons a span { width:34px; height:34px; }
+.phone-app .mini-card { height:90px; padding:12px 16px; }
+.phone-transactions { margin:14px 0 8px; }
+.phone-row { margin:8px 0; }
+.phone-bottom { margin-top:10px; padding-top:8px; }
+.phone-bottom button { min-height:32px; }
+
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
+input[type=number] { appearance:textfield; -moz-appearance:textfield; }
+
+.travel-photograph figcaption { line-height:1.12; }
+.travel-photograph figcaption span { line-height:1.5; }
+@media(min-width:601px) and (max-width:800px) { .hero-photo { object-position:0% 50%; } }
