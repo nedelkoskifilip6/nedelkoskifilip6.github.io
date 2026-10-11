@@ -5,7 +5,11 @@ test("all fintech demonstrations respond to real input without errors", async ({
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("");
-  await expect(page.locator("h1")).toContainText("Ordinary.");
+  await expect(page.locator("h1")).toContainText("Banking & Beyond");
+  await expect(page.locator('.hero a')).toHaveCount(1);
+  await expect(page.locator('.hero a')).toHaveText('Download the app');
+  await expect(page.locator('.hero a')).toHaveAttribute('href', 'https://revolut.com/app');
+  await expect(page.locator('.hero a')).toHaveAttribute('target', '_blank');
   await page.getByRole("button", { name: "Personal", exact: true }).click();
   await expect(
     page.getByRole("link", { name: "Everyday banking", exact: true }),
@@ -77,6 +81,8 @@ test("all fintech demonstrations respond to real input without errors", async ({
         .filter((h) => h && h !== "#" && !document.getElementById(h.slice(1))),
     );
   expect(broken).toEqual([]);
+  const brokenImages = await page.locator('img').evaluateAll(images => images.filter(img => !(img as HTMLImageElement).complete || (img as HTMLImageElement).naturalWidth === 0).map(img => (img as HTMLImageElement).src));
+  expect(brokenImages).toEqual([]);
   expect(errors).toEqual([]);
 });
 for (const width of [375, 768, 1024, 1440])
@@ -111,7 +117,7 @@ for (const width of [375, 768, 1024, 1440])
     }
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({
-      path: `../outputs/orbit-${width}.png`,
+      path: `../outputs/editorial-${width}.png`,
       fullPage: width === 1440,
     });
   });
