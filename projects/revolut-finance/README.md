@@ -10,7 +10,7 @@ A responsive interactive website by Filip Nedelkoski. This is an independent, un
 - Tailwind CSS v4 through the Vite plugin plus a custom responsive design system.
 - GSAP / ScrollTrigger for hero choreography, parallax and one-time section reveals.
 - Recharts for interactive spending and simulated investment charts.
-- Lucide React icons; interactive device/card mockups use CSS; original studio imagery uses responsive, optimized WebP assets.
+- Lucide React icons; interactive device/card mockups use CSS; device and card previews are rendered with CSS.
 - Interactive islands hydrate on load so direct section links and the first interaction work reliably. Static marketing content stays server-rendered.
 
 ## Interactive features
@@ -50,8 +50,8 @@ Semantic landmark sections, accessible labels, focus indicators, responsive layo
 
 ## Design inspiration
 
-https://www.revolut.com/ — visual inspiration only. Original interface composition, fictional banking data and original card imagery. Unmodified official Revolut wordmarks are used solely to identify the design inspiration, paired with visible independent-concept labels. See ASSETS.md for sources and image provenance. No credentials, testimonials or claims of affiliation.
+https://www.revolut.com/ — visual inspiration only. Original interface composition, fictional banking data and interactive card previews. Unmodified official Revolut wordmarks are used solely to identify the design inspiration, paired with visible independent-concept labels. See ASSETS.md for sources and image provenance. No credentials, testimonials or claims of affiliation.
 
 ## Blue visual identity
 
-Primary #0666EB, electric #0075FF, deep #003DB8, light #EAF3FF, white and #101114. Shared styles cover navigation, buttons, charts, card finishes, savings, pricing and footer. High-impact sections use deep blue; spacious sections remain white. Responsive image variants limit download size.
+Primary #0666EB, electric #0075FF, deep #003DB8, light #EAF3FF, white and #101114. Shared styles cover navigation, buttons, charts, card finishes, savings, pricing and footer. High-impact sections use deep blue; spacious sections remain white. Product imagery with the Orbit wordmark is no longer displayed. Arrow decorations are removed throughout; controls keep their text labels.
