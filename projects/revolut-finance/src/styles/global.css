@@ -3011,5 +3011,5 @@ footer {
   }
 }
 
-.nav-links button[aria-expanded="true"], .nav-links button[data-active="true"], .nav-links a[aria-current="location"] {color:var(--blue);}
+.nav-links button[aria-expanded="true"], .nav-links button[data-active="true"], .nav-links a[aria-current="location"] {color:var(--primary-blue);}
 .nav-links a[aria-current="location"] {text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:2px;}
