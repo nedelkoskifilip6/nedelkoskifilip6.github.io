@@ -1,4 +1,4 @@
-# Asset provenance — blue portfolio upgrade
+# Asset provenance — editorial portfolio redesign
 
 This is an independent, unofficial portfolio concept. No financial services are provided.
 
@@ -11,11 +11,24 @@ The black and white Revolut wordmarks are unmodified official SVG assets from:
 
 Revolut's public News & Media page https://www.revolut.com/news/ directs users to its Press Kit for branded assets. Wordmarks identify the design inspiration and appear beside independent-concept labels. No ownership, endorsement, or blanket commercial reuse licence is claimed. Trademark rights remain with Revolut; review applicable permissions before adapting this concept into a commercial service.
 
-## Original product imagery
+## Licensed editorial photography
 
-Mode: built-in image generation, new image (no reference assets).
+Photos selected from free Unsplash photo pages, each explicitly labeled “Free to use under the Unsplash License”. License: https://unsplash.com/license. Photographer credits are provided below. Images are illustrative; depicted people do not endorse this project or Revolut.
 
-Prompt: Use case: product-mockup. Asset type: premium fintech website product photography, landscape 1536x1024. Create an original photorealistic studio product image of two fictional metal payment cards: one brushed titanium silver card and one deep electric-blue card (#0666EB), hovering with realistic rounded edges and subtle metallic chip, on an immaculate pale icy-blue backdrop. Cards arranged diagonally with restrained shadows, large clean negative space, soft consistent side lighting, premium Apple-style product photography, razor-sharp materials. Tiny tasteful word 'orbit' on the cards, small 'DEMO' marking. No real credentials, no card number, no Revolut logo, no watermarks. This is original fictional concept imagery, not a real banking product.
+| Asset | Photographer | Source |
+| --- | --- | --- |
+| City lifestyle / hero | Vitaly Gariev | https://unsplash.com/photos/woman-with-coffee-and-phone-on-city-street-Xl8LYNjr3bc |
+| Positano coastline | Rafael Peier | https://unsplash.com/photos/positano-coastal-town-with-boats-beach-and-blue-sea-pC_iHok3vac |
+| Mountain adventure | lucas Favre | https://unsplash.com/photos/hiker-with-backpack-on-rocky-peak-7EtzgOxT9B4 |
 
-Generated source: fintech-cards-original.png (1536 × 1024).
-Deployment files: public/images/fintech-cards-480.webp, fintech-cards-800.webp and fintech-cards-1200.webp. Sharp generated responsive sizes at WebP quality 86. This artwork is retained in the asset archive but no longer displayed on the website: the Orbit cards were removed at the owner’s request. Interactive smartphone and selectable cards remain HTML/CSS/React so their functionality is preserved.
+Original CDN identifiers: `photo-1758272420960-0e615980f864`, `photo-1782053491914-a5b04adeb7b4`, `photo-1586022045497-31fcf76fa6cc`.
+
+Local derivatives: `public/images/editorial/`. Sharp creates WebP alternatives at the widths used in the page. Hero mobile cropping centers the subject without stretching. Coast cropping favors the architecture and water. Photography is not copied from Revolut.com.
+
+## Original product mockups
+
+Smartphone, physical cards and virtual card previews are original HTML/CSS/React renders. They remain interactive, show fictional data and use no real card credentials. Silver, Graphite and Champagne finishes use neutral metallic shading.
+
+## Retired artwork
+
+The previous AI-generated images with the Orbit wordmark remain only in the asset archive (`public/images/fintech-cards-*.webp`). They are not referenced or displayed by this redesign.

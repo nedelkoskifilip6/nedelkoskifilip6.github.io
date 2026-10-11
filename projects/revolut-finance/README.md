@@ -46,12 +46,20 @@ For a standalone repository named `revolut-finance`, the included workflow build
 
 ## Quality and data
 
-Semantic landmark sections, accessible labels, focus indicators, responsive layouts at 375/768/1024/1440 pixels, local interaction state, clear demo-data disclaimers and no credential collection. Currency rates and plan pricing are intentionally fictional; savings projection excludes interest. Performance charts show simulated values. No external APIs or analytics are used.
+Semantic landmark sections, accessible labels, focus indicators, responsive layouts at 375/768/1024/1440 pixels, local interaction state, clear demo-data disclaimers and no credential collection. Currency rates and plan pricing are intentionally fictional; savings projection excludes interest. Performance charts show simulated values. No financial APIs or analytics are used.
 
 ## Design inspiration
 
 https://www.revolut.com/ — visual inspiration only. Original interface composition, fictional banking data and interactive card previews. Unmodified official Revolut wordmarks are used solely to identify the design inspiration, paired with visible independent-concept labels. See ASSETS.md for sources and image provenance. No credentials, testimonials or claims of affiliation.
 
-## Blue visual identity
+## Editorial visual direction
 
-Primary #0666EB, electric #0075FF, deep #003DB8, light #EAF3FF, white and #101114. Shared styles cover navigation, buttons, charts, card finishes, savings, pricing and footer. High-impact sections use deep blue; spacious sections remain white. Product imagery with the Orbit wordmark is no longer displayed. Arrow decorations are removed throughout; controls keep their text labels.
+The existing Astro architecture and React stateful components are preserved. `global.css` contains the structural component and responsive styles; `editorial.css` supplies the neutral art direction. White, warm gray and charcoal surfaces replace the former forced blue skin. Natural licensed photography, generous whitespace, expressive sans-serif headings and original CSS device/card renders form the visual system. A restrained sage accent is used for financial data and progress only.
+
+The hero contains exactly one CTA: **Download the app**, linked to https://revolut.com/app and explicitly labeled as an external official destination. No download, registration or authentication is simulated by that link. The app preview lives in the banking section. All finance interfaces continue to use local fictional data.
+
+Photography uses responsive, locally optimized WebP sources with dedicated mobile hero and savings crops. All photography is served locally. Below-the-fold images are lazy loaded, dimensions are specified, and the hero is prioritized. See `ASSETS.md` for image credits and licensing sources.
+
+## Regression checks
+
+`tests/experience.spec.ts` checks transaction filters, converter inputs, exchange preview, card finishes and virtual mode, savings projections, card freezing, privacy, portfolio ranges, fictional pricing and dialog behavior. It also covers navigation and horizontal overflow at 375, 768, 1024 and 1440 pixels, the single external hero CTA, and broken image assets. Run with `npx playwright test` after providing a compatible browser runtime.
