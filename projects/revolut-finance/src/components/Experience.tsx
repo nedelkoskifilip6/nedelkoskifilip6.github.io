@@ -22,6 +22,25 @@ import {
   X,
   Globe,
 } from "lucide-react";
+const assetBase = import.meta.env.BASE_URL.replace(/\/$/, "");
+function BrandLogo({
+  white = false,
+  className = "",
+}: {
+  white?: boolean;
+  className?: string;
+}) {
+  return (
+    <img
+      className={"revolut-logo " + className}
+      src={`${assetBase}/brand/revolut-${white ? "white" : "black"}.svg`}
+      alt="Revolut"
+      width="110"
+      height="28"
+    />
+  );
+}
+
 const money = (n: number) =>
   new Intl.NumberFormat("en-IE", {
     style: "currency",
@@ -31,10 +50,19 @@ const money = (n: number) =>
 export function Navigation() {
   const [menu, setMenu] = useState(false);
   const [drop, setDrop] = useState("");
+  const [activeSection, setActiveSection] = useState("");
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) setActiveSection(entry.target.id); });
+    }, { rootMargin: "-20% 0px -65% 0px" });
+    document.querySelectorAll("main section[id]").forEach(section => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
   return (
     <header className="nav">
-      <a className="brand" href="#" aria-label="Orbit home">
-        orbit<span>®</span>
+      <a className="brand" href="#" aria-label="Portfolio concept home">
+        <BrandLogo />
+        <small className="brand-concept">Independent concept</small>
       </a>
       <nav
         aria-label="Main navigation"
@@ -44,6 +72,7 @@ export function Navigation() {
           <div className="nav-item" key={x}>
             <button
               aria-expanded={drop === x}
+              data-active={x === "Personal" && ["banking", "payments", "cards", "savings", "invest"].includes(activeSection)}
               onClick={() => setDrop(drop === x ? "" : x)}
             >
               {x}
@@ -83,7 +112,7 @@ export function Navigation() {
           ["Plans", "plans"],
           ["Security", "security"],
         ].map(([t, id]) => (
-          <a key={id} href={"#" + id} onClick={() => setMenu(false)}>
+          <a key={id} href={"#" + id} aria-current={activeSection === id ? "location" : undefined} onClick={() => setMenu(false)}>
             {t}
           </a>
         ))}
@@ -99,7 +128,7 @@ export function Navigation() {
             )
           }
         >
-          Log in
+          Demo account
         </button>
         <a className="button small" href="#banking">
           Get started <ArrowUpRight size={15} />
@@ -205,8 +234,8 @@ function Chart({
         >
           <defs>
             <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#b3a3fa" stopOpacity={0.35} />
-              <stop offset="100%" stopColor="#b3a3fa" stopOpacity={0} />
+              <stop offset="0%" stopColor="#0075FF" stopOpacity={0.35} />
+              <stop offset="100%" stopColor="#0075FF" stopOpacity={0} />
             </linearGradient>
           </defs>
           <CartesianGrid
@@ -234,7 +263,7 @@ function Chart({
           <Area
             type="monotone"
             dataKey="value"
-            stroke="#b6a5ff"
+            stroke="#0075FF"
             strokeWidth={2.5}
             fill={"url(#" + id + ")"}
             isAnimationActive={animate}
@@ -295,7 +324,7 @@ export function Phone() {
           })}
         </div>
         <div className="mini-card">
-          <span>orbit</span>
+          <BrandLogo className="product-logo" />
           <Globe size={17} />
           <small>•••• 2048</small>
           <b>VISA</b>
@@ -612,7 +641,9 @@ export function Cards() {
           onPointerLeave={(e) => (e.currentTarget.style.transform = "")}
         >
           <div className="row-between">
-            <span className="card-brand">orbit</span>
+            <span className="card-brand">
+              <BrandLogo white={finish !== "Silver" || virtual} />
+            </span>
             <Globe />
           </div>
           <div className="chip">▥</div>
@@ -628,7 +659,7 @@ export function Cards() {
       </div>
       <div className="card-controls">
         <div className="finish-options" aria-label="Choose card finish">
-          {["Silver", "Graphite", "Lilac"].map((f) => (
+          {["Silver", "Graphite", "Cobalt"].map((f) => (
             <button
               key={f}
               className={f === finish ? "selected" : ""}
@@ -769,7 +800,7 @@ export function Security() {
   return (
     <div className="security-ui">
       <div className={"security-card " + (frozen ? "frozen" : "")}>
-        <span>orbit</span>
+        <BrandLogo className="product-logo" />
         {frozen ? <Snowflake size={48} /> : <ShieldCheck size={48} />}
         <b>{frozen ? "Card frozen" : "You’re in control"}</b>
         <small>Virtual card •••• 2048</small>
