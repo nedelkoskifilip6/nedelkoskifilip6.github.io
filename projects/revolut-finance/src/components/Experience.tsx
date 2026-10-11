@@ -128,7 +128,7 @@ export function Navigation() {
           Demo account
         </button>
         <a className="button small" href="#banking">
-          Get started 
+          Explore demo 
         </a>
         <button
           className="menu"
@@ -231,8 +231,8 @@ function Chart({
         >
           <defs>
             <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#0075FF" stopOpacity={0.35} />
-              <stop offset="100%" stopColor="#0075FF" stopOpacity={0} />
+              <stop offset="0%" stopColor="#71917e" stopOpacity={0.35} />
+              <stop offset="100%" stopColor="#71917e" stopOpacity={0} />
             </linearGradient>
           </defs>
           <CartesianGrid
@@ -260,7 +260,7 @@ function Chart({
           <Area
             type="monotone"
             dataKey="value"
-            stroke="#0075FF"
+            stroke="#71917e"
             strokeWidth={2.5}
             fill={"url(#" + id + ")"}
             isAnimationActive={animate}
@@ -639,7 +639,7 @@ export function Cards() {
         >
           <div className="row-between">
             <span className="card-brand">
-              <BrandLogo white={finish !== "Silver" || virtual} />
+              <BrandLogo white={finish === "Graphite" || virtual} />
             </span>
             <Globe />
           </div>
@@ -656,7 +656,7 @@ export function Cards() {
       </div>
       <div className="card-controls">
         <div className="finish-options" aria-label="Choose card finish">
-          {["Silver", "Graphite", "Cobalt"].map((f) => (
+          {["Silver", "Graphite", "Champagne"].map((f) => (
             <button
               key={f}
               className={f === finish ? "selected" : ""}
