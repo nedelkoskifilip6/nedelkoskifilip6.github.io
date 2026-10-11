@@ -1,8 +1,8 @@
-# Orbit — Revolut-inspired fintech portfolio concept
+# Revolut-inspired fintech portfolio concept
 
 Independent Fintech Website Concept — Created for Portfolio Demonstration.
 
-A responsive interactive website by Filip Nedelkoski. Orbit is a fictional identity, unaffiliated with Revolut. It provides no real banking, authentication, exchange, payment or investment services.
+A responsive interactive website by Filip Nedelkoski. This is an independent, unofficial concept, unaffiliated with Revolut. It provides no real banking, authentication, exchange, payment or investment services.
 
 ## Architecture
 
@@ -10,7 +10,7 @@ A responsive interactive website by Filip Nedelkoski. Orbit is a fictional ident
 - Tailwind CSS v4 through the Vite plugin plus a custom responsive design system.
 - GSAP / ScrollTrigger for hero choreography, parallax and one-time section reveals.
 - Recharts for interactive spending and simulated investment charts.
-- Lucide React icons; all device/card mockups are CSS, with no heavy image or font requests.
+- Lucide React icons; interactive device/card mockups use CSS; original studio imagery uses responsive, optimized WebP assets.
 - Interactive islands hydrate on load so direct section links and the first interaction work reliably. Static marketing content stays server-rendered.
 
 ## Interactive features
@@ -50,4 +50,8 @@ Semantic landmark sections, accessible labels, focus indicators, responsive layo
 
 ## Design inspiration
 
-https://www.revolut.com/ — visual inspiration only. Original fictional brand, interface composition and implementation. No official Revolut logo, banking credentials, testimonials or claims of affiliation.
+https://www.revolut.com/ — visual inspiration only. Original interface composition, fictional banking data and original card imagery. Unmodified official Revolut wordmarks are used solely to identify the design inspiration, paired with visible independent-concept labels. See ASSETS.md for sources and image provenance. No credentials, testimonials or claims of affiliation.
+
+## Blue visual identity
+
+Primary #0666EB, electric #0075FF, deep #003DB8, light #EAF3FF, white and #101114. Shared styles cover navigation, buttons, charts, card finishes, savings, pricing and footer. High-impact sections use deep blue; spacious sections remain white. Responsive image variants limit download size.
