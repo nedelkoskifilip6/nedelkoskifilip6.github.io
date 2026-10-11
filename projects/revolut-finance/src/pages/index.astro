@@ -1,6 +1,9 @@
 ---
 import '../styles/global.css';
+import '../styles/editorial.css';
 import {Navigation,Phone,Banking,Exchange,Cards,Savings,Security,Investments,Plans,DemoDialog} from '../components/Experience';
+const assetBase = import.meta.env.BASE_URL.replace(/\/$/, '');
+const photo = (name: string, width: number) => `${assetBase}/images/editorial/${name}-${width}.webp`;
 ---
 <!doctype html>
 <html lang="en">
@@ -11,63 +14,33 @@ import {Navigation,Phone,Banking,Exchange,Cards,Savings,Security,Investments,Pla
 <meta name="description" content="An independent Revolut-inspired fintech portfolio concept by Filip Nedelkoski. Explore interactive banking, cards, savings and investment demonstrations."/>
 <link rel="canonical" href="https://nedelkoskifilip6.github.io/revolut-finance/"/>
 <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`}/>
-<meta property="og:title" content="Revolut-inspired Concept — Banking, Beyond Ordinary."/>
+<meta property="og:title" content="Revolut-inspired Concept — Banking & Beyond"/>
 <meta property="og:description" content="An independent fintech website concept by Filip Nedelkoski."/>
-<title>Revolut-inspired Concept — Banking, Beyond Ordinary.</title>
+<title>Revolut-inspired Concept — Banking & Beyond</title>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
 <Navigation client:load/>
 <main id="main">
 <section class="hero" aria-labelledby="hero-title">
+<picture class="hero-photograph">
+<source media="(max-width: 600px)" srcset={photo('city-mobile',640)}/>
+<img class="hero-photo" src={photo('city',1600)} srcset={`${photo('city',960)} 960w, ${photo('city',1600)} 1600w, ${photo('city',2400)} 2400w`} sizes="100vw" alt="A woman enjoying a city walk with her phone and a takeaway coffee" width="2400" height="1350" fetchpriority="high" decoding="async"/>
+</picture>
 <div class="hero-text">
-<div class="eyebrow">
-<span class="status-dot">
-</span> INDEPENDENT REVOLUT-INSPIRED CONCEPT</div>
-<h1 id="hero-title">Banking,<br/>Beyond<br/>
-<span>Ordinary.</span>
-</h1>
-<p>Your money. Your world. Your future.<br/>Experience financial freedom without boundaries.</p>
-<div class="hero-actions">
-<a class="button" href="#banking">Explore features </a>
-<a class="text-button" href="#experience">Discover the experience </a>
-</div>
-<div class="hero-note">
-<span class="orbit-symbol">◎</span>
-<span>Built around your possibilities.<br/>
-<b>An independent fintech concept.</b>
-</span>
+<span class="eyebrow">AN UNOFFICIAL PORTFOLIO EXPERIENCE</span>
+<h1 id="hero-title">Banking &amp;<br class="hero-break"/> Beyond</h1>
+<div class="hero-description">
+<p>Experience a smarter, simpler way<br class="desktop-break"/> to manage your money.</p>
+<a class="button" href="https://revolut.com/app" target="_blank" rel="noopener noreferrer" aria-label="Download the app — official Revolut website (opens in a new tab)">Download the app</a>
+<small class="external-note">Official Revolut website · external link</small>
 </div>
 </div>
-<div class="hero-visual">
-<div class="orbital-ring ring-one">
-</div>
-<div class="orbital-ring ring-two">
-</div>
-<div class="phone-wrap">
-<Phone client:load/>
-</div>
-<div class="floating-tag tag-one">
-<div>
-<small>Money received</small>
-<b>+ €3,200.00</b>
-</div>
-<i>✓</i>
-</div>
-<div class="floating-tag tag-two">
-<div>
-<small>Your money, growing</small>
-<b>A future worth saving for.</b>
-</div>
-</div>
-<span class="visual-caption">DESIGNED FOR LIFE IN MOTION</span>
-</div>
-<a href="#experience" class="scroll-cue">SCROLL TO EXPLORE </a>
-<span class="hero-index">01 / A WORLD OF POSSIBILITY</span>
+<span class="hero-caption">YOUR EVERYDAY. REIMAGINED.</span>
 </section>
 <div class="concept-strip" id="experience">
 <p>Independent Fintech Website Concept — Created for Portfolio Demonstration.</p>
-<span>DESIGN WITHOUT BOUNDARIES </span>
+<span>BY FILIP NEDELKOSKI</span>
 </div>
 <section id="banking" class="section banking">
 <div class="section-heading reveal">
@@ -76,6 +49,10 @@ import {Navigation,Phone,Banking,Exchange,Cards,Savings,Security,Investments,Pla
 <h2>Your Money,<br/>Beautifully Organized.</h2>
 </div>
 <p>Less mental maths. More living.<br/>Bring every balance, every purchase and every possibility into focus.</p>
+</div>
+<div class="banking-presentation">
+<div class="banking-story reveal"><span class="eyebrow">MADE FOR YOUR EVERYDAY</span><h3>A little less admin.<br/>A lot more life.</h3><p>Your balances, your spending, your goals. A considered demonstration of how it all comes together.</p><div class="story-detail"><b>All in one place.</b><span>Explore the app preview, then try the dashboard below.</span></div></div>
+<div class="device-stage reveal"><div class="phone-wrap"><Phone client:load/></div><span class="device-caption">FICTIONAL ACCOUNT · INTERACTIVE APP PREVIEW</span></div>
 </div>
 <div class="reveal">
 <Banking client:load/>
@@ -98,25 +75,10 @@ import {Navigation,Phone,Banking,Exchange,Cards,Savings,Security,Investments,Pla
 </div>
 </section>
 <section id="payments" class="section payments">
-<div class="split">
-<div class="section-copy reveal">
-<span class="eyebrow">02 — GO A LITTLE FURTHER</span>
-<h2>Money<br/>Without<br/>
-<span class="serif">Borders.</span>
-</h2>
-<p>Different currencies. The same possibilities.<br/>Explore an exchange experience made to feel effortless, wherever life takes you.</p>
-<div class="currency-pills">
-<span>€</span>
-<span>$</span>
-<span>£</span>
-<span>¥</span>
-<span>ден</span>
-</div>
-<small class="fine">Interactive concept · fixed demonstration rates</small>
-</div>
-<div class="reveal">
-<Exchange client:load/>
-</div>
+<div class="center-heading reveal"><span class="eyebrow">02 — GO A LITTLE FURTHER</span><h2>Money Without Borders.</h2><p>Different currencies. The same possibilities.<br/>A demonstration of an exchange experience made to feel effortless.</p></div>
+<div class="travel-composition">
+<figure class="travel-photograph"><img class="editorial-photo" src={photo('coast',1200)} srcset={`${photo('coast',640)} 640w, ${photo('coast',1200)} 1200w`} sizes="(max-width: 800px) 100vw, 55vw" alt="Sunlit architecture, boats and the Mediterranean coastline in Positano" width="1200" height="1600" loading="lazy" decoding="async"/><figcaption>Go where life takes you.<span>Positano, Italy</span></figcaption></figure>
+<div class="travel-tools reveal"><span class="eyebrow">A WORLD OF POSSIBILITY</span><h3>New places.<br/>Familiar freedom.</h3><Exchange client:load/></div>
 </div>
 </section>
 <section id="cards" class="section cards-section">
@@ -137,15 +99,14 @@ import {Navigation,Phone,Banking,Exchange,Cards,Savings,Security,Investments,Pla
 </div>
 </section>
 <section id="savings" class="section savings">
-<div class="section-heading reveal">
-<div>
-<span class="eyebrow">04 — LITTLE STEPS. BIG PLANS.</span>
-<h2>Make Every<br/>Goal Possible.</h2>
+<div class="savings-editorial">
+<picture class="savings-photograph"><source media="(max-width: 600px)" srcset={photo('adventure-mobile',640)}/><img class="editorial-photo" src={photo('adventure',1600)} srcset={`${photo('adventure',960)} 960w, ${photo('adventure',1600)} 1600w, ${photo('adventure',2400)} 2400w`} sizes="100vw" alt="A hiker looking over mountain peaks in the warm light of sunrise" width="2400" height="1600" loading="lazy" decoding="async"/></picture>
+<div class="savings-story reveal"><span class="eyebrow">04 — LITTLE STEPS. BIG PLANS.</span><h2>Make Every<br/>Goal Possible.</h2><p>That trip. That space. That fresh start.<br/>Make room for the life you imagine.</p><span class="photo-label">A NEW ADVENTURE STARTS WITH A SMALL STEP.</span></div>
 </div>
-<p>That trip. That space. That fresh start.<br/>Give your ambitions a home and watch the little things add up.</p>
-</div>
+<div class="savings-tools"><div class="tools-heading"><h3>Your next chapter, in numbers.</h3><p>Select a demo goal. Set your monthly contribution. See what’s possible.</p></div>
 <div class="reveal">
 <Savings client:load/>
+</div>
 </div>
 </section>
 <section id="security" class="section security">
@@ -190,12 +151,11 @@ import {Navigation,Phone,Banking,Exchange,Cards,Savings,Security,Investments,Pla
 <p class="plan-disclaimer">All plan names, prices and benefits are fictional. These are not official Revolut offerings.</p>
 </section>
 <section class="final-cta">
-<div class="cta-orbit">
-</div>
+<div class="cta-light" aria-hidden="true"></div>
 <div class="reveal">
 <span class="eyebrow">READY FOR A DIFFERENT PERSPECTIVE?</span>
 <h2>The Future of Finance<br/>Is Already Here.</h2>
-<p>Discover what banking beyond ordinary could feel like.</p>
+<p>An independent perspective on what comes next.</p>
 <a class="button" href="#banking">Step into the experience </a>
 </div>
 <span class="cta-bottom">YOUR MONEY. YOUR WORLD. YOUR FUTURE.</span>
@@ -249,12 +209,13 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 const mm=gsap.matchMedia();
 mm.add('(prefers-reduced-motion: no-preference)',()=>{
- gsap.from('.hero-text > *',{y:35,opacity:0,duration:1,stagger:.12,ease:'power3.out'});
- gsap.from('.phone-wrap',{y:100,rotation:10,opacity:0,duration:1.5,ease:'power3.out',delay:.15});
- gsap.from('.floating-tag',{y:25,opacity:0,duration:1,delay:1,stagger:.2});
- gsap.to('.phone-wrap',{y:-55,rotation:-3,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
- gsap.utils.toArray<HTMLElement>('.reveal').forEach(el=>gsap.from(el,{y:45,opacity:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 91%',once:true}}));
- gsap.to('.cta-orbit',{rotation:90,ease:'none',scrollTrigger:{trigger:'.final-cta',start:'top bottom',end:'bottom top',scrub:1}});
+ gsap.from('.hero-text > *',{y:24,opacity:0,duration:1,stagger:.12,ease:'power3.out'});
+ gsap.from('.hero-photo',{scale:1.045,duration:1.8,ease:'power2.out'});
+ gsap.to('.hero-photo',{yPercent:7,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
+ gsap.utils.toArray<HTMLElement>('.reveal').forEach(el=>gsap.from(el,{y:28,opacity:0,duration:.85,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 94%',once:true}}));
+ gsap.utils.toArray<HTMLElement>('.editorial-photo').forEach(el=>gsap.fromTo(el,{yPercent:-3},{yPercent:3,ease:'none',scrollTrigger:{trigger:el.parentElement,start:'top bottom',end:'bottom top',scrub:1}}));
+ gsap.from('.phone-wrap',{y:40,rotation:3,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.device-stage',start:'top 85%',once:true}});
+ gsap.to('.cta-light',{xPercent:12,ease:'none',scrollTrigger:{trigger:'.final-cta',start:'top bottom',end:'bottom top',scrub:1}});
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelector<HTMLButtonElement>('.close-modal')?.click();}});
 document.addEventListener('keydown',e=>{const dialog=document.querySelector<HTMLElement>('[role="dialog"]');if(!dialog||e.key!=='Tab')return;const nodes=Array.from(dialog.querySelectorAll<HTMLElement>('button,a[href],input,select'));const first=nodes[0],last=nodes[nodes.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}});
