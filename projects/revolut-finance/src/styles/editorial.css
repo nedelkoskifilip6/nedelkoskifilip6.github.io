@@ -345,3 +345,6 @@ input[type=number] { appearance:textfield; -moz-appearance:textfield; }
 .travel-photograph figcaption { line-height:1.12; }
 .travel-photograph figcaption span { line-height:1.5; }
 @media(min-width:601px) and (max-width:800px) { .hero-photo { object-position:0% 50%; } }
+
+/* Contain chart tooltips when changing between desktop and mobile widths. */
+.chart { overflow:hidden; }
