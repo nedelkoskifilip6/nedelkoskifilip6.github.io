@@ -1,7 +1,10 @@
 ---
 import '../styles/global.css';
 import '../styles/editorial.css';
-import {Navigation,Phone,Banking,Exchange,Cards,Savings,Security,Investments,Plans,DemoDialog} from '../components/Experience';
+import '../styles/cinematic.css';
+import {Navigation} from '../components/Navigation';
+import {DemoDialog} from '../components/DemoDialog';
+import {Phone,Banking,Exchange,Cards,Savings,Security,Investments,Plans} from '../components/Experience';
 const assetBase = import.meta.env.BASE_URL.replace(/\/$/, '');
 const photo = (name: string, width: number) => `${assetBase}/images/editorial/${name}-${width}.webp`;
 ---
@@ -13,23 +16,26 @@ const photo = (name: string, width: number) => `${assetBase}/images/editorial/${
 <meta name="theme-color" content="#111114"/>
 <meta name="description" content="An independent Revolut-inspired fintech portfolio concept by Filip Nedelkoski. Explore interactive banking, cards, savings and investment demonstrations."/>
 <link rel="canonical" href="https://nedelkoskifilip6.github.io/revolut-finance/"/>
-<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`}/>
+<link rel="icon" type="image/svg+xml" href={`${assetBase}/favicon.svg`}/>
 <meta property="og:title" content="Revolut-inspired Concept — Banking & Beyond"/>
 <meta property="og:description" content="An independent fintech website concept by Filip Nedelkoski."/>
+<meta property="og:image" content="https://nedelkoskifilip6.github.io/revolut-finance/images/editorial/surf-1600.webp"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <title>Revolut-inspired Concept — Banking & Beyond</title>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
 <Navigation client:load/>
 <main id="main">
+<div class="cinematic-journey">
 <section class="hero" aria-labelledby="hero-title">
 <picture class="hero-photograph">
-<source media="(max-width: 600px)" srcset={photo('city-mobile',640)}/>
-<img class="hero-photo" src={photo('city',1600)} srcset={`${photo('city',960)} 960w, ${photo('city',1600)} 1600w, ${photo('city',2400)} 2400w`} sizes="100vw" alt="A woman enjoying a city walk with her phone and a takeaway coffee" width="2400" height="1350" fetchpriority="high" decoding="async"/>
+<source media="(max-width: 600px)" srcset={`${photo('surf-mobile',640)} 640w, ${photo('surf-mobile',960)} 960w`}/>
+<img class="hero-photo" src={photo('surf',1600)} srcset={`${photo('surf',960)} 960w, ${photo('surf',1600)} 1600w, ${photo('surf',3200)} 3200w`} sizes="100vw" alt="A surfer paddling over coral in clear turquoise ocean water" width="3200" height="2132" fetchpriority="high" decoding="async"/>
 </picture>
 <div class="hero-text">
 <span class="eyebrow">AN UNOFFICIAL PORTFOLIO EXPERIENCE</span>
-<h1 id="hero-title">Banking &amp;<br class="hero-break"/> Beyond</h1>
+<h1 id="hero-title"><span class="hero-title-line"><span>Banking &amp;</span></span><span class="hero-title-line"><span>Beyond</span></span></h1>
 <div class="hero-description">
 <p>Experience a smarter, simpler way<br class="desktop-break"/> to manage your money.</p>
 <a class="button" href="https://revolut.com/app" target="_blank" rel="noopener noreferrer" aria-label="Download the app — official Revolut website (opens in a new tab)">Download the app</a>
@@ -38,24 +44,25 @@ const photo = (name: string, width: number) => `${assetBase}/images/editorial/${
 </div>
 <span class="hero-caption">YOUR EVERYDAY. REIMAGINED.</span>
 </section>
+<div class="cinematic-runway" aria-hidden="true"></div>
 <div class="concept-strip" id="experience">
 <p>Independent Fintech Website Concept — Created for Portfolio Demonstration.</p>
 <span>BY FILIP NEDELKOSKI</span>
 </div>
 <section id="banking" class="section banking">
-<div class="section-heading reveal">
+<div class="section-heading">
 <div>
 <span class="eyebrow">01 — EVERYDAY, ELEVATED</span>
-<h2>Your Money,<br/>Beautifully Organized.</h2>
+<h2><span class="banking-title-line"><span>Your Money,</span></span><span class="banking-title-line"><span>Beautifully Organized.</span></span></h2>
 </div>
 <p>Less mental maths. More living.<br/>Bring every balance, every purchase and every possibility into focus.</p>
 </div>
 <div class="banking-presentation">
 <div class="banking-story reveal"><span class="eyebrow">MADE FOR YOUR EVERYDAY</span><h3>A little less admin.<br/>A lot more life.</h3><p>Your balances, your spending, your goals. A considered demonstration of how it all comes together.</p><div class="story-detail"><b>All in one place.</b><span>Explore the app preview, then try the dashboard below.</span></div></div>
-<div class="device-stage reveal"><div class="phone-wrap"><Phone client:load/></div><span class="device-caption">FICTIONAL ACCOUNT · INTERACTIVE APP PREVIEW</span></div>
+<div class="device-stage reveal"><div class="phone-wrap"><Phone client:visible={{ rootMargin: '250px' }}/></div><span class="device-caption">FICTIONAL ACCOUNT · INTERACTIVE APP PREVIEW</span></div>
 </div>
 <div class="reveal">
-<Banking client:load/>
+<Banking client:idle={{ timeout: 1200 }}/>
 </div>
 <div class="feature-row">
 <div>
@@ -74,24 +81,21 @@ const photo = (name: string, width: number) => `${assetBase}/images/editorial/${
 </div>
 </div>
 </section>
+</div>
 <section id="payments" class="section payments">
-<div class="center-heading reveal"><span class="eyebrow">02 — GO A LITTLE FURTHER</span><h2>Money Without Borders.</h2><p>Different currencies. The same possibilities.<br/>A demonstration of an exchange experience made to feel effortless.</p></div>
+<div class="section-heading motion-heading"><div><span class="eyebrow">02 — GO A LITTLE FURTHER</span><h2><span class="heading-line"><span>Money Without</span></span><span class="heading-line"><span>Borders.</span></span></h2></div><p>Different currencies. The same possibilities.<br/>A demonstration of an exchange experience made to feel effortless.</p></div>
 <div class="travel-composition">
-<figure class="travel-photograph"><img class="editorial-photo" src={photo('coast',1200)} srcset={`${photo('coast',640)} 640w, ${photo('coast',1200)} 1200w`} sizes="(max-width: 800px) 100vw, 55vw" alt="Sunlit architecture, boats and the Mediterranean coastline in Positano" width="1200" height="1600" loading="lazy" decoding="async"/><figcaption>Go where life takes you.<span>Positano, Italy</span></figcaption></figure>
-<div class="travel-tools reveal"><span class="eyebrow">A WORLD OF POSSIBILITY</span><h3>New places.<br/>Familiar freedom.</h3><Exchange client:load/></div>
+<figure class="travel-photograph"><img class="editorial-photo" src={photo('voyage',1600)} srcset={`${photo('voyage',800)} 800w, ${photo('voyage',1600)} 1600w`} sizes="(max-width: 800px) 100vw, 55vw" alt="A white boat crossing sunlit turquoise water with a flowing wake" width="1600" height="2001" loading="lazy" decoding="async"/><figcaption>Go where life takes you.<span>A different perspective on travel</span></figcaption></figure>
+<div class="travel-tools reveal"><span class="eyebrow">A WORLD OF POSSIBILITY</span><h3>New places.<br/>Familiar freedom.</h3><div class="currency-orbit" aria-hidden="true"><span>EUR</span><span>USD</span><span>GBP</span><span>JPY</span></div><Exchange client:idle={{ timeout: 1200 }}/></div>
 </div>
 </section>
 <section id="cards" class="section cards-section">
-<div class="center-heading reveal">
+<div class="cards-heading motion-heading">
 <span class="eyebrow">03 — AN EXTENSION OF YOU</span>
-<h2>Designed to<br/>
-<span class="serif">Stand Out.</span>
-</h2>
+<h2><span class="heading-line"><span>Designed to</span></span><span class="heading-line"><span>Stand Out.</span></span></h2>
 <p>Considered in every detail. Confident in every finish.<br/>Meet a card that feels as good as it looks.</p>
 </div>
-<div class="reveal">
-<Cards client:load/>
-</div>
+<Cards client:idle={{ timeout: 1200 }}/>
 <div class="card-footnote">
 <span>PHYSICAL & VIRTUAL</span>
 <span>FORM MEETS FUNCTION</span>
@@ -100,20 +104,20 @@ const photo = (name: string, width: number) => `${assetBase}/images/editorial/${
 </section>
 <section id="savings" class="section savings">
 <div class="savings-editorial">
-<picture class="savings-photograph"><source media="(max-width: 600px)" srcset={photo('adventure-mobile',640)}/><img class="editorial-photo" src={photo('adventure',1600)} srcset={`${photo('adventure',960)} 960w, ${photo('adventure',1600)} 1600w, ${photo('adventure',2400)} 2400w`} sizes="100vw" alt="A hiker looking over mountain peaks in the warm light of sunrise" width="2400" height="1600" loading="lazy" decoding="async"/></picture>
-<div class="savings-story reveal"><span class="eyebrow">04 — LITTLE STEPS. BIG PLANS.</span><h2>Make Every<br/>Goal Possible.</h2><p>That trip. That space. That fresh start.<br/>Make room for the life you imagine.</p><span class="photo-label">A NEW ADVENTURE STARTS WITH A SMALL STEP.</span></div>
+<picture class="savings-photograph"><source media="(max-width: 600px)" srcset={`${photo('escape-mobile',640)} 640w, ${photo('escape-mobile',960)} 960w`}/><img class="editorial-photo" src={photo('escape',1600)} srcset={`${photo('escape',960)} 960w, ${photo('escape',1600)} 1600w, ${photo('escape',3200)} 3200w`} sizes="100vw" alt="Lush coastal mountains, a quiet beach and ocean in soft natural light" width="3200" height="2132" loading="lazy" decoding="async"/></picture>
+<div class="savings-story motion-heading"><span class="eyebrow">04 — LITTLE STEPS. BIG PLANS.</span><h2><span class="heading-line"><span>Make Every</span></span><span class="heading-line"><span>Goal Possible.</span></span></h2><p>That trip. That space. That fresh start.<br/>Make room for the life you imagine.</p><span class="photo-label">A NEW ADVENTURE STARTS WITH A SMALL STEP.</span></div>
 </div>
 <div class="savings-tools"><div class="tools-heading"><h3>Your next chapter, in numbers.</h3><p>Select a demo goal. Set your monthly contribution. See what’s possible.</p></div>
 <div class="reveal">
-<Savings client:load/>
+<Savings client:idle={{ timeout: 1200 }}/>
 </div>
 </div>
 </section>
 <section id="security" class="section security">
 <div class="split">
-<div class="section-copy reveal">
+<div class="section-copy motion-heading">
 <span class="eyebrow">05 — PEACE OF MIND, BY DESIGN</span>
-<h2>Confidence<br/>in Every<br/>Transaction.</h2>
+<h2><span class="heading-line"><span>Confidence</span></span><span class="heading-line"><span>in Every</span></span><span class="heading-line"><span>Transaction.</span></span></h2>
 <p>Control that’s always close. Explore instant card freezing, thoughtful privacy controls and a simpler way to stay informed.</p>
 <div class="security-note">
 <span>✳</span>
@@ -124,37 +128,36 @@ const photo = (name: string, width: number) => `${assetBase}/images/editorial/${
 </div>
 </div>
 <div class="reveal">
-<Security client:load/>
+<Security client:idle={{ timeout: 1200 }}/>
 </div>
 </div>
 </section>
 <section id="invest" class="section investments">
-<div class="section-heading reveal">
+<div class="section-heading motion-heading">
 <div>
 <span class="eyebrow">06 — THINK LONGER TERM</span>
-<h2>Your Future<br/>Starts Today.</h2>
+<h2><span class="heading-line"><span>Your Future</span></span><span class="heading-line"><span>Starts Today.</span></span></h2>
 </div>
 <p>A clearer view of what could come next.<br/>Explore a portfolio experience that puts your perspective first.</p>
 </div>
 <div class="reveal">
-<Investments client:load/>
+<Investments client:idle={{ timeout: 1200 }}/>
 </div>
 </section>
 <section id="plans" class="section plans">
-<div class="center-heading reveal">
+<div class="center-heading motion-heading">
 <span class="eyebrow">07 — YOUR LIFE. YOUR LEVEL.</span>
-<h2>Find your kind<br/>of <span class="serif">extraordinary.</span>
-</h2>
+<h2><span class="heading-line"><span>Find your kind</span></span><span class="heading-line"><span>of extraordinary.</span></span></h2>
 <p>Four fictional plans. A world of possibility.<br/>Choose a demonstration experience that feels like you.</p>
 </div>
-<Plans client:load/>
+<Plans client:idle={{ timeout: 1200 }}/>
 <p class="plan-disclaimer">All plan names, prices and benefits are fictional. These are not official Revolut offerings.</p>
 </section>
 <section class="final-cta">
 <div class="cta-light" aria-hidden="true"></div>
-<div class="reveal">
+<div class="motion-heading">
 <span class="eyebrow">READY FOR A DIFFERENT PERSPECTIVE?</span>
-<h2>The Future of Finance<br/>Is Already Here.</h2>
+<h2><span class="heading-line"><span>The Future of</span></span><span class="heading-line"><span>Finance Is Here.</span></span></h2>
 <p>An independent perspective on what comes next.</p>
 <a class="button" href="#banking">Step into the experience </a>
 </div>
@@ -165,7 +168,7 @@ const photo = (name: string, width: number) => `${assetBase}/images/editorial/${
 <div class="footer-top">
 <div>
 <a class="brand" href="#" aria-label="Portfolio concept home">
-<img class="revolut-logo" src={`${import.meta.env.BASE_URL}/brand/revolut-black.svg`} alt="Revolut" width="110" height="28"/>
+<img class="revolut-logo" src={`${assetBase}/brand/revolut-black.svg`} alt="Revolut" width="110" height="28"/>
 <small class="brand-concept">Independent concept</small>
 </a>
 <p>A new perspective on money.<br/>An independent perspective on design.</p>
@@ -204,19 +207,8 @@ const photo = (name: string, width: number) => `${assetBase}/images/editorial/${
 </footer>
 <DemoDialog client:load/>
 <script>
-import gsap from 'gsap';
-import {ScrollTrigger} from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
-const mm=gsap.matchMedia();
-mm.add('(prefers-reduced-motion: no-preference)',()=>{
- gsap.from('.hero-text > *',{y:24,opacity:0,duration:1,stagger:.12,ease:'power3.out'});
- gsap.from('.hero-photo',{scale:1.045,duration:1.8,ease:'power2.out'});
- gsap.to('.hero-photo',{yPercent:7,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
- gsap.utils.toArray<HTMLElement>('.reveal').forEach(el=>gsap.from(el,{y:28,opacity:0,duration:.85,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 94%',once:true}}));
- gsap.utils.toArray<HTMLElement>('.editorial-photo').forEach(el=>gsap.fromTo(el,{yPercent:-3},{yPercent:3,ease:'none',scrollTrigger:{trigger:el.parentElement,start:'top bottom',end:'bottom top',scrub:1}}));
- gsap.from('.phone-wrap',{y:40,rotation:3,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:'.device-stage',start:'top 85%',once:true}});
- gsap.to('.cta-light',{xPercent:12,ease:'none',scrollTrigger:{trigger:'.final-cta',start:'top bottom',end:'bottom top',scrub:1}});
-});
+import { initializeMotion } from '../scripts/motion';
+initializeMotion();
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelector<HTMLButtonElement>('.close-modal')?.click();}});
 document.addEventListener('keydown',e=>{const dialog=document.querySelector<HTMLElement>('[role="dialog"]');if(!dialog||e.key!=='Tab')return;const nodes=Array.from(dialog.querySelectorAll<HTMLElement>('button,a[href],input,select'));const first=nodes[0],last=nodes[nodes.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}});
 </script>
