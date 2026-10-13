@@ -11,6 +11,14 @@ The black and white Revolut wordmarks are unmodified official SVG assets from:
 
 Revolut's public News & Media page https://www.revolut.com/news/ directs users to its Press Kit for branded assets. Wordmarks identify the design inspiration and appear beside independent-concept labels. No ownership, endorsement, or blanket commercial reuse licence is claimed. Trademark rights remain with Revolut; review applicable permissions before adapting this concept into a commercial service.
 
+The unmodified black R on white favicon and Apple touch icon are the official assets declared by https://www.revolut.com/ on 13 October 2026:
+
+- https://assets.revolut.com/assets/favicons/favicon-32x32.png (32×32)
+- https://assets.revolut.com/assets/favicons/favicon-16x16.png (16×16)
+- https://assets.revolut.com/assets/favicons/apple-touch-icon.png (180×180)
+
+These identify the design inspiration under the same independent-concept and trademark notice above. No logo is redrawn or recolored.
+
 ## Licensed campaign photography
 
 The current ocean campaign uses real photography by **Jess Loiterton**, selected against the attached surfing photograph as a visual quality reference. The attachment remains available as a conversational quality reference but is not redistributed because its reuse rights were not supplied. Its original temporary filesystem path is no longer present; production uses the licensed photographs below.
