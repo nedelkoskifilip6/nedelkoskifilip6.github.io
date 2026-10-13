@@ -1,4 +1,4 @@
-# Revolut-inspired fintech portfolio concept
+# Revolut Finance - Banking & Beyond
 
 Independent Fintech Website Concept — Created for Portfolio Demonstration.
 
@@ -8,7 +8,7 @@ A responsive interactive website by Filip Nedelkoski. This is an independent, un
 
 - Astro static architecture with TypeScript and React islands.
 - Tailwind CSS v4 through the Vite plugin plus a custom responsive design system.
-- GSAP / ScrollTrigger for hero choreography, parallax and one-time section reveals.
+- GSAP / ScrollTrigger for hero choreography, parallax and one-time section reveals; ScrollToPlugin for deliberate anchor navigation.
 - Recharts for interactive spending and simulated investment charts.
 - Lucide React icons; interactive device/card mockups use CSS; device and card previews are rendered with CSS.
 - Navigation and the global demonstration dialog hydrate on load in lean, separate modules. Financial controls hydrate after the initial paint with an idle timeout of 1200ms; they become interactive when hydration completes. The device preview hydrates within 250px of the viewport. The Recharts bundle is deferred from the first critical navigation render. Static marketing content stays server-rendered.
@@ -40,7 +40,7 @@ npm run preview
 
 Configured `site: https://nedelkoskifilip6.github.io`, `base: /revolut-finance`, `output: static`. Every built asset uses the project base, so the deployment does not rely on a root URL.
 
-For the existing `nedelkoskifilip6.github.io` repository: copy the contents of `dist/` into the repository's `revolut-finance/` directory and push the configured Pages branch. Keep the editable source under `projects/revolut-finance/`. The root portfolio links to `/revolut-finance/` immediately after Tesla Motors.
+For the existing `nedelkoskifilip6.github.io` repository: copy the contents of `dist/` into the repository's `revolut-finance/` directory and push the configured Pages branch. Keep the editable source under `projects/revolut-finance/`. The root portfolio links to `/revolut-finance/`; Tesla Motors is no longer listed.
 
 For a standalone repository named `revolut-finance`, the included workflow builds and publishes through GitHub Actions. Set Settings → Pages → Source to GitHub Actions. The same URL is used; do not enable both deployment approaches simultaneously.
 
@@ -59,6 +59,8 @@ The existing Astro page and React islands are retained. The consolidated `src/st
 The hero contains one CTA, **Download the app**, opening the official Revolut website with an explicit external-destination label. Mobile imagery begins edge-to-edge at the first frame and uses `100svh` plus safe-area spacing. The white banking chapter rises over the sticky photograph as the headline fades and the image zooms. Returning through the scene restores its state. Navigation contrast follows the moving curtain rather than the hidden sticky photograph.
 
 Motion includes clipped typography entrances, layered interface reveals, product-stage transitions and subtle pointer-only button/card interactions. Touch devices omit pointer-only movement. Reduced-motion and short viewports use the static presentation. Covered hero controls leave the focus sequence; keyboard focus transfers to banking only if it was inside the covered hero.
+
+Same-page menu, footer and logo links use `src/scripts/anchorNavigation.ts` for a distance-aware 3.2–4.8 second scroll. Mobile menus and dialogs release their scroll locks first; manual input cancels the transition. Reduced-motion navigation and the skip link move immediately. Hash history remains native, and destination focus changes only after completed navigation.
 
 All converter, savings, filter, chart, card, pricing and security interactions remain local demonstrations. Balance animations expose the final value to assistive technology. Existing licensed photography is reused with responsive WebP sources, dedicated mobile crops, reserved dimensions, a prioritized hero and lazy-loaded lower images. No Three.js runtime is needed for this CSS-based card presentation.
 
