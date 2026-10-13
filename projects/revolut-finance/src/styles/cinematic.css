@@ -1,0 +1,15 @@
+/* Native sticky scene: document-flow curtain, no scroll hijacking or pin spacer. */
+.cinematic-journey { position:relative; isolation:isolate; background:white; }
+.cinematic-runway { height:0; pointer-events:none; }
+.cinematic-journey[data-cinematic]>.hero { position:sticky; top:0; z-index:0; }
+.cinematic-journey[data-cinematic]>.cinematic-runway { height:65svh; }
+.cinematic-journey>.concept-strip,.cinematic-journey>.banking { position:relative; z-index:2; }
+.cinematic-journey>.concept-strip { border-radius:var(--curtain-radius,0px) var(--curtain-radius,0px) 0 0; }
+.hero a { position:relative; z-index:3; }
+@media(max-width:600px) { .cinematic-journey[data-cinematic]>.cinematic-runway { height:28svh; } }
+@media(prefers-reduced-motion:reduce) {
+ .cinematic-journey>.hero { position:relative!important; top:auto!important; }
+ .cinematic-runway { height:0!important; }
+ .hero-photo,.editorial-photo,.hero-title-line>span,.heading-line>span,.banking-title-line>span { transform:none!important; }
+ .hero-photograph { clip-path:none!important; }
+}
