@@ -1,9 +1,11 @@
-import { useState, useId, useEffect } from "react";
+import { useState, useId, useEffect, useRef } from "react";
+import { useDialogLifecycle } from "./DemoDialog";
 import {
   ResponsiveContainer,
   AreaChart,
   Area,
   XAxis,
+  YAxis,
   Tooltip,
   CartesianGrid,
 } from "recharts";
@@ -16,7 +18,6 @@ import {
   Bell,
   Lock,
   Check,
-  Menu,
   X,
   Globe,
 } from "lucide-react";
@@ -45,103 +46,61 @@ const money = (n: number) =>
     currency: "EUR",
     maximumFractionDigits: 2,
   }).format(n);
-export function Navigation() {
-  const [menu, setMenu] = useState(false);
-  const [drop, setDrop] = useState("");
-  const [activeSection, setActiveSection] = useState("");
+/** A short, local count animation; screen readers always receive the final value. */
+function AnimatedMoney({ value }: { value: number }) {
+  const [display, setDisplay] = useState(value);
+  const element = useRef<HTMLSpanElement>(null);
+  const previous = useRef(value);
+  const revealed = useRef(false);
   useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => { if (entry.isIntersecting) setActiveSection(entry.target.id); });
-    }, { rootMargin: "-20% 0px -65% 0px" });
-    document.querySelectorAll("main section[id]").forEach(section => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-  return (
-    <header className="nav">
-      <a className="brand" href="#" aria-label="Portfolio concept home">
-        <BrandLogo />
-      </a>
-      <nav
-        aria-label="Main navigation"
-        className={menu ? "nav-links open" : "nav-links"}
-      >
-        {["Personal", "Business", "Features"].map((x) => (
-          <div className="nav-item" key={x}>
-            <button
-              aria-expanded={drop === x}
-              data-active={x === "Personal" && ["banking", "payments", "cards", "savings", "invest"].includes(activeSection)}
-              onClick={() => setDrop(drop === x ? "" : x)}
-            >
-              {x}
-              
-            </button>
-            {drop === x && (
-              <div className="dropdown">
-                {(x === "Business"
-                  ? [
-                      ["Global business demo", "payments"],
-                      ["Team spending demo", "banking"],
-                    ]
-                  : [
-                      ["Everyday banking", "banking"],
-                      ["Global payments", "payments"],
-                      ["Cards & savings", "cards"],
-                      ["Investments", "invest"],
-                    ]
-                ).map(([t, id]) => (
-                  <a
-                    key={id}
-                    href={"#" + id}
-                    onClick={() => {
-                      setDrop("");
-                      setMenu(false);
-                    }}
-                  >
-                    {t}
-                    
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
-        {[
-          ["Plans", "plans"],
-          ["Security", "security"],
-        ].map(([t, id]) => (
-          <a key={id} href={"#" + id} aria-current={activeSection === id ? "location" : undefined} onClick={() => setMenu(false)}>
-            {t}
-          </a>
-        ))}
-      </nav>
-      <div className="nav-actions">
-        <button
-          className="login"
-          onClick={() =>
-            window.dispatchEvent(
-              new CustomEvent("orbit-demo", {
-                detail: "Welcome to your demo account",
-              }),
-            )
-          }
-        >
-          Demo account
-        </button>
-        <a className="button small" href="#banking">
-          Explore demo 
-        </a>
-        <button
-          className="menu"
-          aria-label={menu ? "Close navigation" : "Open navigation"}
-          aria-expanded={menu}
-          onClick={() => setMenu(!menu)}
-        >
-          {menu ? <X /> : <Menu />}
-        </button>
-      </div>
-    </header>
-  );
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let frame = 0;
+    let observer: IntersectionObserver | undefined;
+    const finish = () => {
+      cancelAnimationFrame(frame);
+      observer?.disconnect();
+      setDisplay(value);
+      previous.current = value;
+      revealed.current = true;
+    };
+    const animate = () => {
+      if (motion.matches) { finish(); return; }
+      const from = revealed.current ? previous.current : value * 0.92;
+      revealed.current = true;
+      const started = performance.now();
+      const tick = (now: number) => {
+        const progress = Math.min(1, (now - started) / 680);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        previous.current = from + (value - from) * eased;
+        setDisplay(previous.current);
+        if (progress < 1) frame = requestAnimationFrame(tick);
+        else previous.current = value;
+      };
+      frame = requestAnimationFrame(tick);
+    };
+    if (motion.matches) finish();
+    else if (revealed.current) animate();
+    else if (element.current) {
+      observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          observer?.disconnect();
+          animate();
+        }
+      }, { threshold: 0.6 });
+      observer.observe(element.current);
+    }
+    const onPreference = () => { if (motion.matches) finish(); };
+    motion.addEventListener("change", onPreference);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer?.disconnect();
+      motion.removeEventListener("change", onPreference);
+    };
+  }, [value]);
+  return <span ref={element} className="animated-money" role="img" aria-label={money(value)}><span aria-hidden="true">{money(display)}</span></span>;
 }
+
+
 const transactions = [
   {
     name: "Studio North",
@@ -192,13 +151,13 @@ function Chart({
   range?: string;
 }) {
   const [animate, setAnimate] = useState(false);
-  useEffect(
-    () =>
-      setAnimate(
-        !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-      ),
-    [],
-  );
+  useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setAnimate(!preference.matches);
+    update();
+    preference.addEventListener("change", update);
+    return () => preference.removeEventListener("change", update);
+  }, []);
   const id = useId().replace(/:/g, "");
   const data = investment
     ? Array.from({ length: 18 }, (_, i) => {
@@ -217,15 +176,16 @@ function Chart({
   return (
     <div
       className="chart"
-      role="img"
+      role="group"
       aria-label={
         investment
-          ? "Simulated portfolio performance chart"
-          : "Monthly demonstration spending chart"
+          ? `Simulated portfolio performance, ${range === "1W" ? "one week" : range === "1Y" ? "one year" : "one month"}, from ${money(data[0].value)} to ${money(data[data.length - 1].value)}.`
+          : `Monthly demonstration spending: ${spending.map(point => `${point.name} ${money(point.value)}`).join(", ")}.`
       }
     >
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
+          accessibilityLayer
           data={data}
           margin={{ top: 15, left: 5, right: 10, bottom: 0 }}
         >
@@ -244,9 +204,10 @@ function Chart({
             dataKey="name"
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#8c8c98", fontSize: 11 }}
+            tick={{ fill: "#737b72", fontSize: 11 }}
             interval={investment ? 4 : 0}
           />
+          {investment && <YAxis hide domain={["dataMin - 200", "dataMax + 200"]} />}
           <Tooltip
             formatter={(v) => money(Number(v))}
             contentStyle={{
@@ -270,6 +231,19 @@ function Chart({
     </div>
   );
 }
+/** Motion starts after React has committed, so GSAP never mutates SSR markup. */
+function useMotionReady() {
+  const root = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const element = root.current;
+    if (!element) return;
+    element.dataset.motionReady = "true";
+    element.dispatchEvent(new Event("fintech:motion-ready"));
+    return () => { delete element.dataset.motionReady; };
+  }, []);
+  return root;
+}
+
 export function Phone() {
   const [tab, setTab] = useState("Home");
   return (
@@ -413,9 +387,10 @@ export function Phone() {
   );
 }
 export function Banking() {
+  const motionRoot = useMotionReady();
   const [filter, setFilter] = useState("All");
   return (
-    <div className="dashboard light">
+    <div ref={motionRoot} className="dashboard light">
       <div className="dashboard-header">
         <div>
           <span className="label">YOUR OVERVIEW</span>
@@ -426,12 +401,12 @@ export function Banking() {
       <div className="balance-grid">
         <div>
           <span>Total balance</span>
-          <strong>€24,680.50</strong>
+          <strong><AnimatedMoney value={24680.5} /></strong>
           <small className="positive"> €3,200 income this month</small>
         </div>
         <div className="balance-mini">
           <span>Monthly spending</span>
-          <strong>€1,140.80</strong>
+          <strong><AnimatedMoney value={1140.8} /></strong>
           <small> 18% from last month</small>
         </div>
       </div>
@@ -467,6 +442,7 @@ export function Banking() {
               <button
                 className={f === filter ? "selected" : ""}
                 key={f}
+                aria-pressed={f === filter}
                 onClick={() => setFilter(f)}
               >
                 {f}
@@ -620,22 +596,55 @@ export function Exchange() {
   );
 }
 export function Cards() {
+  const motionRoot = useMotionReady();
   const [finish, setFinish] = useState("Silver");
   const [virtual, setVirtual] = useState(false);
+  const [canTilt, setCanTilt] = useState(false);
+  const paymentCard = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const hover = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      const enabled = hover.matches && !motion.matches;
+      setCanTilt(enabled);
+      if (!enabled) {
+        paymentCard.current?.style.removeProperty("--card-rotate-x");
+        paymentCard.current?.style.removeProperty("--card-rotate-y");
+      }
+    };
+    update();
+    hover.addEventListener("change", update);
+    motion.addEventListener("change", update);
+    return () => {
+      hover.removeEventListener("change", update);
+      motion.removeEventListener("change", update);
+    };
+  }, []);
   return (
-    <div className="cards-experience">
+    <div ref={motionRoot} className="cards-experience">
       <div className="card-stage">
         <div
+          ref={paymentCard}
           className={
             "payment-card " + finish.toLowerCase() + (virtual ? " virtual" : "")
           }
           onPointerMove={(e) => {
-            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-              return;
+            if (!canTilt || e.pointerType === "touch") return;
             const r = e.currentTarget.getBoundingClientRect();
-            e.currentTarget.style.transform = `rotateX(${-(e.clientY - r.top - r.height / 2) / 25}deg) rotateY(${(e.clientX - r.left - r.width / 2) / 25}deg)`;
+            const clamp = (value: number) => Math.max(-10, Math.min(10, value));
+            const x = clamp(-((e.clientY - r.top) / r.height - 0.5) * 20);
+            const y = clamp(((e.clientX - r.left) / r.width - 0.5) * 20);
+            e.currentTarget.style.setProperty("--card-rotate-x", x + "deg");
+            e.currentTarget.style.setProperty("--card-rotate-y", y + "deg");
           }}
-          onPointerLeave={(e) => (e.currentTarget.style.transform = "")}
+          onPointerLeave={(e) => {
+            e.currentTarget.style.removeProperty("--card-rotate-x");
+            e.currentTarget.style.removeProperty("--card-rotate-y");
+          }}
+          onPointerCancel={(e) => {
+            e.currentTarget.style.removeProperty("--card-rotate-x");
+            e.currentTarget.style.removeProperty("--card-rotate-y");
+          }}
         >
           <div className="row-between">
             <span className="card-brand">
@@ -668,7 +677,7 @@ export function Cards() {
             </button>
           ))}
         </div>
-        <button className="text-button" onClick={() => setVirtual(!virtual)}>
+        <button className="text-button" aria-pressed={virtual} onClick={() => setVirtual(!virtual)}>
           {virtual ? "View physical card" : "Explore virtual card"}{" "}
           
         </button>
@@ -676,7 +685,7 @@ export function Cards() {
       <p className="fine">
         {virtual
           ? "Instantly virtual. A fictional digital card concept."
-          : finish + " finish. Move your cursor to explore the details."}
+          : finish + " finish. " + (canTilt ? "Move your cursor to explore the details." : "Select a finish to explore the details.")}
       </p>
     </div>
   );
@@ -758,6 +767,7 @@ export function Savings() {
             max="1000"
             step="25"
             value={monthly}
+            aria-valuetext={money(monthly) + " per month"}
             onChange={(e) => setMonthly(Number(e.target.value))}
           />
           <div className="row-between">
@@ -777,7 +787,7 @@ export function Savings() {
           <div className="projected" aria-live="polite">
             <span>Projected savings · {g.desc}</span>
             <strong>{money(projected)}</strong>
-            <div className="progress">
+            <div className="progress" role="progressbar" aria-label={g.desc + " projected goal progress"} aria-valuemin={0} aria-valuemax={g.target} aria-valuenow={projected} aria-valuetext={money(projected) + " of " + money(g.target)}>
               <i style={{ width: (projected / g.target) * 100 + "%" }} />
             </div>
             <small>
@@ -797,7 +807,7 @@ export function Security() {
   return (
     <div className="security-ui">
       <div className={"security-card " + (frozen ? "frozen" : "")}>
-        <BrandLogo className="product-logo" />
+        <BrandLogo white className="product-logo" />
         {frozen ? <Snowflake size={48} /> : <ShieldCheck size={48} />}
         <b>{frozen ? "Card frozen" : "You’re in control"}</b>
         <small>Virtual card •••• 2048</small>
@@ -863,21 +873,22 @@ export function Security() {
   );
 }
 export function Investments() {
+  const motionRoot = useMotionReady();
   const [range, setRange] = useState("1M");
   const value = range === "1W" ? 21320 : range === "1Y" ? 28940 : 24680;
   return (
-    <div className="investment-panel">
+    <div ref={motionRoot} className="investment-panel">
       <div className="row-between">
         <span className="label">YOUR PORTFOLIO</span>
         <span className="badge">Simulated market data</span>
       </div>
-      <strong className="portfolio-value">{money(value)}</strong>
+      <strong className="portfolio-value"><AnimatedMoney value={value} /></strong>
       <span className="positive">
          {range === "1Y" ? "18.42" : range === "1W" ? "2.13" : "8.24"}%{" "}
         <span className="muted">over selected period</span>
       </span>
       <Chart investment range={range} />
-      <div className="range-filter">
+      <div className="range-filter" role="group" aria-label="Portfolio time range">
         {["1W", "1M", "1Y"].map((r) => (
           <button
             key={r}
@@ -918,6 +929,7 @@ export function Investments() {
 export function Plans() {
   const [yearly, setYearly] = useState(false);
   const [chosen, setChosen] = useState("");
+  const { dialog, captureOpener, focusSectionOnClose } = useDialogLifecycle(Boolean(chosen));
   const plans = [
     {
       name: "Essential",
@@ -962,7 +974,7 @@ export function Plans() {
   ];
   return (
     <>
-      <div className="pricing-switch">
+      <div className="pricing-switch" role="group" aria-label="Billing period">
         <button
           className={!yearly ? "selected" : ""}
           onClick={() => setYearly(false)}
@@ -1001,7 +1013,7 @@ export function Plans() {
                 ? `€${(p.price * 0.8 * 12).toFixed(2)} billed yearly (fictional)`
                 : "Fictional demo pricing"}
             </small>
-            <button className="button wide" onClick={() => setChosen(p.name)}>
+            <button className="button wide" onClick={event => { captureOpener(event.currentTarget); setChosen(p.name); }}>
               Explore {p.name}
               
             </button>
@@ -1019,6 +1031,7 @@ export function Plans() {
       {chosen && (
         <div className="modal-backdrop" onClick={() => setChosen("")}>
           <div
+            ref={dialog}
             className="demo-modal"
             role="dialog"
             aria-modal="true"
@@ -1043,7 +1056,7 @@ export function Plans() {
               savings and investment demonstrations without signing up or
               purchasing anything.
             </p>
-            <a className="button" href="#banking" onClick={() => setChosen("")}>
+            <a className="button" href="#banking" onClick={() => { focusSectionOnClose("banking"); setChosen(""); }}>
               Explore the demo 
             </a>
           </div>
@@ -1051,41 +1064,4 @@ export function Plans() {
       )}
     </>
   );
-}
-export function DemoDialog() {
-  const [title, setTitle] = useState("");
-  useEffect(() => {
-    const handler = (e: Event) => setTitle((e as CustomEvent<string>).detail);
-    window.addEventListener("orbit-demo", handler);
-    return () => window.removeEventListener("orbit-demo", handler);
-  }, []);
-  return title ? (
-    <div className="modal-backdrop" onClick={() => setTitle("")}>
-      <div
-        className="demo-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Demo account"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          autoFocus
-          className="close-modal"
-          aria-label="Close demo"
-          onClick={() => setTitle("")}
-        >
-          <X />
-        </button>
-        <span className="label">INDEPENDENT PORTFOLIO CONCEPT</span>
-        <h3>{title}</h3>
-        <p>
-          Your demo is ready. All balances, cards and transactions are
-          fictional. No authentication or personal information is needed.
-        </p>
-        <a className="button" href="#banking" onClick={() => setTitle("")}>
-          Enter the experience 
-        </a>
-      </div>
-    </div>
-  ) : null;
 }
