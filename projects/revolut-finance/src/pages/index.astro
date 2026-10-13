@@ -7,6 +7,8 @@ import {DemoDialog} from '../components/DemoDialog';
 import {Phone,Banking,Exchange,Cards,Savings,Security,Investments,Plans} from '../components/Experience';
 const assetBase = import.meta.env.BASE_URL.replace(/\/$/, '');
 const photo = (name: string, width: number) => `${assetBase}/images/editorial/${name}-${width}.webp`;
+const socialImage = 'https://nedelkoskifilip6.github.io/revolut-finance/social/hero-preview-20261014.jpg';
+const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concept, with the Revolut wordmark, Banking & Beyond headline and Download the app button over a surfing photograph.';
 ---
 <!doctype html>
 <html lang="en">
@@ -20,11 +22,22 @@ const photo = (name: string, width: number) => `${assetBase}/images/editorial/${
 <link rel="icon" type="image/png" sizes="32x32" href={`${assetBase}/favicon-32x32.png?v=revolut-r-2`}/>
 <link rel="icon" type="image/png" sizes="16x16" href={`${assetBase}/favicon-16x16.png?v=revolut-r-2`}/>
 <link rel="apple-touch-icon" sizes="180x180" href={`${assetBase}/apple-touch-icon.png`}/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://nedelkoskifilip6.github.io/revolut-finance/"/>
+<meta property="og:site_name" content="Revolut Finance"/>
 <meta property="og:title" content="Revolut Finance — Banking &amp; Beyond"/>
 <meta property="og:description" content="An independent fintech website concept by Filip Nedelkoski."/>
-<meta property="og:image" content="https://nedelkoskifilip6.github.io/revolut-finance/images/editorial/surf-1600.webp"/>
+<meta property="og:image" content={socialImage}/>
+<meta property="og:image:secure_url" content={socialImage}/>
+<meta property="og:image:type" content="image/jpeg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="675"/>
+<meta property="og:image:alt" content={socialImageAlt}/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Revolut Finance — Banking &amp; Beyond"/>
+<meta name="twitter:description" content="An independent fintech website concept by Filip Nedelkoski."/>
+<meta name="twitter:image" content={socialImage}/>
+<meta name="twitter:image:alt" content={socialImageAlt}/>
 <title>Revolut Finance — Banking &amp; Beyond</title>
 </head>
 <body>
