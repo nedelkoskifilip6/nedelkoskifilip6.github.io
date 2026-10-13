@@ -11,7 +11,7 @@ A responsive interactive website by Filip Nedelkoski. This is an independent, un
 - GSAP / ScrollTrigger for hero choreography, parallax and one-time section reveals.
 - Recharts for interactive spending and simulated investment charts.
 - Lucide React icons; interactive device/card mockups use CSS; device and card previews are rendered with CSS.
-- Interactive islands hydrate on load so direct section links and the first interaction work reliably. Static marketing content stays server-rendered.
+- Navigation and the global demonstration dialog hydrate on load in lean, separate modules. Financial controls hydrate after the initial paint with an idle timeout of 1200ms; they become interactive when hydration completes. The device preview hydrates within 250px of the viewport. The Recharts bundle is deferred from the first critical navigation render. Static marketing content stays server-rendered.
 
 ## Interactive features
 
@@ -52,14 +52,19 @@ Semantic landmark sections, accessible labels, focus indicators, responsive layo
 
 https://www.revolut.com/ — visual inspiration only. Original interface composition, fictional banking data and interactive card previews. Unmodified official Revolut wordmarks are used solely to identify the design inspiration, paired with visible independent-concept labels. See ASSETS.md for sources and image provenance. No credentials, testimonials or claims of affiliation.
 
-## Editorial visual direction
+## Next generation creative direction
 
-The existing Astro architecture and React stateful components are preserved. `global.css` contains the structural component and responsive styles; `editorial.css` supplies the neutral art direction. White, warm gray and charcoal surfaces replace the former forced blue skin. Natural licensed photography, generous whitespace, expressive sans-serif headings and original CSS device/card renders form the visual system. A restrained sage accent is used for financial data and progress only.
+The existing Astro page and React islands are retained. The consolidated `src/styles/editorial.css` now art-directs each chapter: a full-screen surf hero, open asymmetric phone presentation, editorial travel/converter composition, dark metallic card studio, immersive coastal savings, dark security controls, wide investment canvas and a restrained plan comparison. `cinematic.css` owns only the sticky-scene geometry; `motion.ts` owns GSAP timelines and ScrollTrigger lifecycle.
 
-The hero contains exactly one CTA: **Download the app**, linked to https://revolut.com/app and explicitly labeled as an external official destination. No download, registration or authentication is simulated by that link. The app preview lives in the banking section. All finance interfaces continue to use local fictional data.
+The hero contains one CTA, **Download the app**, opening the official Revolut website with an explicit external-destination label. Mobile imagery begins edge-to-edge at the first frame and uses `100svh` plus safe-area spacing. The white banking chapter rises over the sticky photograph as the headline fades and the image zooms. Returning through the scene restores its state. Navigation contrast follows the moving curtain rather than the hidden sticky photograph.
 
-Photography uses responsive, locally optimized WebP sources with dedicated mobile hero and savings crops. All photography is served locally. Below-the-fold images are lazy loaded, dimensions are specified, and the hero is prioritized. See `ASSETS.md` for image credits and licensing sources.
+Motion includes clipped typography entrances, layered interface reveals, product-stage transitions and subtle pointer-only button/card interactions. Touch devices omit pointer-only movement. Reduced-motion and short viewports use the static presentation. Covered hero controls leave the focus sequence; keyboard focus transfers to banking only if it was inside the covered hero.
+
+All converter, savings, filter, chart, card, pricing and security interactions remain local demonstrations. Balance animations expose the final value to assistive technology. Existing licensed photography is reused with responsive WebP sources, dedicated mobile crops, reserved dimensions, a prioritized hero and lazy-loaded lower images. No Three.js runtime is needed for this CSS-based card presentation.
+
+Browser regression scenarios are in `tests/experience.spec.ts` and `tests/cinematic.spec.ts`. Run them against a local preview or with `PLAYWRIGHT_BASE_URL` targeting a deployed build. Test discovery alone does not establish that browser scenarios passed.
 
 ## Regression checks
 
 `tests/experience.spec.ts` checks transaction filters, converter inputs, exchange preview, card finishes and virtual mode, savings projections, card freezing, privacy, portfolio ranges, fictional pricing and dialog behavior. It also covers navigation and horizontal overflow at 375, 768, 1024 and 1440 pixels, the single external hero CTA, and broken image assets. Run with `npx playwright test` after providing a compatible browser runtime.
+

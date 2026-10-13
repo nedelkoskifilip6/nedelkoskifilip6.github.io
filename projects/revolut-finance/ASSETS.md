@@ -1,4 +1,4 @@
-# Asset provenance — editorial portfolio redesign
+# Asset provenance — creative fintech portfolio
 
 This is an independent, unofficial portfolio concept. No financial services are provided.
 
@@ -11,19 +11,23 @@ The black and white Revolut wordmarks are unmodified official SVG assets from:
 
 Revolut's public News & Media page https://www.revolut.com/news/ directs users to its Press Kit for branded assets. Wordmarks identify the design inspiration and appear beside independent-concept labels. No ownership, endorsement, or blanket commercial reuse licence is claimed. Trademark rights remain with Revolut; review applicable permissions before adapting this concept into a commercial service.
 
-## Licensed editorial photography
+## Licensed campaign photography
 
-Photos selected from free Unsplash photo pages, each explicitly labeled “Free to use under the Unsplash License”. License: https://unsplash.com/license. Photographer credits are provided below. Images are illustrative; depicted people do not endorse this project or Revolut.
+The current ocean campaign uses real photography by **Jess Loiterton**, selected against the attached surfing photograph as a visual quality reference. The attachment remains available as a conversational quality reference but is not redistributed because its reuse rights were not supplied. Its original temporary filesystem path is no longer present; production uses the licensed photographs below.
 
-| Asset | Photographer | Source |
+Each Pexels source page explicitly marks the image Free / Free to use. The Pexels License at https://www.pexels.com/license/ permits website use and modification. The photographs are illustrative; the photographer and depicted people do not endorse this project or Revolut.
+
+| Current asset | Photographer | Source |
 | --- | --- | --- |
-| City lifestyle / hero | Vitaly Gariev | https://unsplash.com/photos/woman-with-coffee-and-phone-on-city-street-Xl8LYNjr3bc |
-| Positano coastline | Rafael Peier | https://unsplash.com/photos/positano-coastal-town-with-boats-beach-and-blue-sea-pC_iHok3vac |
-| Mountain adventure | lucas Favre | https://unsplash.com/photos/hiker-with-backpack-on-rocky-peak-7EtzgOxT9B4 |
+| Surfing hero | Jess Loiterton | https://www.pexels.com/photo/aerial-view-of-woman-on-a-surfboard-5231686/ |
+| Ocean travel / payments | Jess Loiterton | https://www.pexels.com/photo/white-boat-on-blue-sea-water-4784991/ |
+| Coastal escape / savings | Jess Loiterton | https://www.pexels.com/photo/landscape-with-green-mountains-and-blue-sea-5007728/ |
 
-Original CDN identifiers: `photo-1758272420960-0e615980f864`, `photo-1782053491914-a5b04adeb7b4`, `photo-1586022045497-31fcf76fa6cc`.
+CDN identifiers: `5231686`, `4784991`, `5007728` from `images.pexels.com/photos/`.
 
-Local derivatives: `public/images/editorial/`. Sharp creates WebP alternatives at the widths used in the page. Hero mobile cropping centers the subject without stretching. Coast cropping favors the architecture and water. Photography is not copied from Revolut.com.
+Source downloads were 4000×2665 (hero and savings) and 3200×4001 (travel). Locally optimized WebP derivatives in `public/images/editorial/` preserve the natural colors and texture without additional upscaling or artificial sharpening. Landscape sources have 960, 1600 and 3200px versions; the portrait travel image uses 800 and 1600px; dedicated 640 and 960px mobile crops retain the surfer and coastal composition. The source pages' listed dimensions should not be treated as a claim of native sensor resolution.
+
+The previous city/Positano/mountain photographs remain unused in the asset archive. Their original credits are Vitaly Gariev (https://unsplash.com/photos/woman-with-coffee-and-phone-on-city-street-Xl8LYNjr3bc), Rafael Peier (https://unsplash.com/photos/positano-coastal-town-with-boats-beach-and-blue-sea-pC_iHok3vac) and lucas Favre (https://unsplash.com/photos/hiker-with-backpack-on-rocky-peak-7EtzgOxT9B4), under https://unsplash.com/license.
 
 ## Original product mockups
 
@@ -32,3 +36,5 @@ Smartphone, physical cards and virtual card previews are original HTML/CSS/React
 ## Retired artwork
 
 The previous AI-generated images with the Orbit wordmark remain only in the asset archive (`public/images/fintech-cards-*.webp`). They are not referenced or displayed by this redesign.
+
+The next generation presentation reuses these existing licensed files. The coastal escape crop shows mountains, beach and water; its alternative text does not claim a visible rainbow. No additional colour grading, image upscaling or generated faces are applied.
