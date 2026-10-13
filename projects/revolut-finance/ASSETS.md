@@ -19,6 +19,8 @@ The unmodified black R on white favicon and Apple touch icon are the official as
 
 These identify the design inspiration under the same independent-concept and trademark notice above. No logo is redrawn or recolored.
 
+`public/favicon.ico` packages the original 16×16 and 32×32 PNG files without modifying their pixel data. Desktop icon links include a version query to refresh previously cached icons. The Apple touch icon remains unchanged; the retired generic `favicon.svg` is not referenced by the page.
+
 ## Licensed campaign photography
 
 The current ocean campaign uses real photography by **Jess Loiterton**, selected against the attached surfing photograph as a visual quality reference. The attachment remains available as a conversational quality reference but is not redistributed because its reuse rights were not supplied. Its original temporary filesystem path is no longer present; production uses the licensed photographs below.

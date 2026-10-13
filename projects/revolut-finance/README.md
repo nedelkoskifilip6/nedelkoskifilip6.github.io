@@ -1,4 +1,4 @@
-# Revolut Finance - Banking & Beyond
+# Revolut Finance — Banking & Beyond
 
 Independent Fintech Website Concept — Created for Portfolio Demonstration.
 
