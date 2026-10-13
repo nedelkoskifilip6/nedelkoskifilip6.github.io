@@ -48,6 +48,10 @@ For a standalone repository named `revolut-finance`, the included workflow build
 
 Semantic landmark sections, accessible labels, focus indicators, responsive layouts at 375/768/1024/1440 pixels, local interaction state, clear demo-data disclaimers and no credential collection. Currency rates and plan pricing are intentionally fictional; savings projection excludes interest. Performance charts show simulated values. No financial APIs or analytics are used.
 
+## Link sharing preview
+
+Open Graph and Twitter cards use `public/social/hero-preview-20261014.jpg`, a 1200×675 capture of the actual Hero with its wordmark, headline, supporting copy and single CTA. Metadata is rendered in the static HTML, so crawlers do not need to execute animations or JavaScript. When changing the Hero, recapture its settled first frame, save a new versioned image and update `socialImage` and its dimensions in `src/pages/index.astro`. Messaging platforms may retain previews of previously shared URLs; existing messages are not controlled by this website.
+
 ## Design inspiration
 
 https://www.revolut.com/ — visual inspiration only. Original interface composition, fictional banking data and interactive card previews. Unmodified official Revolut wordmarks are used solely to identify the design inspiration, paired with visible independent-concept labels. See ASSETS.md for sources and image provenance. No credentials, testimonials or claims of affiliation.

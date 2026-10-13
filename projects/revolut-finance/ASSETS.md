@@ -39,6 +39,10 @@ Source downloads were 4000×2665 (hero and savings) and 3200×4001 (travel). Loc
 
 The previous city/Positano/mountain photographs remain unused in the asset archive. Their original credits are Vitaly Gariev (https://unsplash.com/photos/woman-with-coffee-and-phone-on-city-street-Xl8LYNjr3bc), Rafael Peier (https://unsplash.com/photos/positano-coastal-town-with-boats-beach-and-blue-sea-pC_iHok3vac) and lucas Favre (https://unsplash.com/photos/hiker-with-backpack-on-rocky-peak-7EtzgOxT9B4), under https://unsplash.com/license.
 
+## Social sharing preview
+
+`public/social/hero-preview-20261014.jpg` is a 1200×675 browser capture of the actual rendered Hero, including its navigation, wordmark, headline, supporting copy, single CTA and unofficial portfolio label. It combines the existing licensed campaign photograph with the site's own layout. Open Graph and Twitter image metadata reference this versioned JPEG rather than the background photograph alone. Recapture it when the Hero design changes; the rights and notices above continue to apply.
+
 ## Original product mockups
 
 Smartphone, physical cards and virtual card previews are original HTML/CSS/React renders. They remain interactive, show fictional data and use no real card credentials. Silver, Graphite and Champagne finishes use neutral metallic shading.
