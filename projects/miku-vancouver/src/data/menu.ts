@@ -4,11 +4,14 @@ export interface Dish {
   description: string; dietary: string[]; source: string; photo: string;
 }
 export const categories = research.categories;
-const photos: Record<string, string> = {
-  'Signature Aburi': 'sushi', 'Sushi & Sashimi': 'sashimi', 'Appetizers': 'wagyu',
-  'Main Courses': 'wagyu', 'Kaiseki Experience': 'hero', 'Desserts': 'dessert', 'Beverages': 'tea',
+// Each menu dish has its own licensed editorial photograph. Imagery is illustrative.
+const dishPhotos: Record<string, string> = {
+  'salmon-oshi': 'sushi', 'ebi-oshi': 'prawn-nigiri', 'saba-oshi': 'hero', 'miku-roll': 'roll-tray',
+  'bluefin-trio': 'tuna-nigiri', 'sockeye-sashimi': 'sashimi-platter',
+  'tofu-salad': 'salad', 'lobster-ceviche': 'tuna-tartare', 'ebi-fritters': 'tempura', 'wagyu-carpaccio': 'carpaccio',
+  'sablefish': 'fish', 'wagyu-steak': 'steak', 'miku-kaiseki': 'kaiseki-spread', 'waterfront-kaiseki': 'dark-rolls',
+  'green-tea-opera': 'matcha-layer', 'miso-cheesecake': 'cheesecake', 'espresso': 'coffee-ceramic', 'green-tea': 'tea',
 };
-const individual: Record<string, string> = { 'salmon-oshi': 'sushi', 'ebi-oshi': 'hero', 'saba-oshi': 'sushi', 'miku-roll': 'hero', 'sablefish': 'fish', 'tofu-salad': 'salad', 'lobster-ceviche': 'shellfish', 'ebi-fritters': 'shellfish' };
-export const dishes: Dish[] = research.dishes.map(d => ({ ...d, photo: individual[d.id] ?? photos[d.category] }));
+export const dishes: Dish[] = research.dishes.map(d => ({ ...d, photo: dishPhotos[d.id] }));
 export const price = (dish: Dish) => dish.priceLabel ?? `$${Number.isInteger(dish.price) ? dish.price : dish.price.toFixed(2)}`;
 export const signature = ['salmon-oshi', 'ebi-oshi', 'miku-roll', 'sablefish', 'green-tea-opera'].map(id => dishes.find(d => d.id === id)!);
