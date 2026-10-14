@@ -10,13 +10,15 @@ const sourceLabels: Record<string, string> = { menu:'Official dinner menu', stor
     <p class="eyebrow">THE PEOPLE & SOURCES BEHIND THIS CONCEPT</p>
     <h1 style="margin-top:25px">Photography<br />& <i>provenance.</i></h1>
     <p>Independent Portfolio Concept. Not affiliated with Miku Vancouver. The visual identity, design and frontend implementation are an independent study by Filip Nedelkoski. No partnership, employment, endorsement or commission is implied.</p>
-    <p>All photography is licensed from Unsplash and hosted locally. Food images illustrate Japanese cuisine and do not depict the named Miku dishes. Restaurant imagery depicts Okabeya in Kyoto, Japan, rather than Miku Vancouver. The waterfront photograph is a Coal Harbour location study, rather than the view from the restaurant.</p>
-    <p><a class="text-link" href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">Read the Unsplash License <span>↗</span></a></p>
+    <p>All photography is licensed from Unsplash and hosted locally. Food images illustrate Japanese cuisine and do not depict the named Miku dishes. Dining and craft photographs are independent atmosphere studies photographed at other venues, rather than at Miku Vancouver. The waterfront photograph is a Coal Harbour location study, rather than the view from the restaurant.</p>
+    <p><a class="text-link" href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">Read the Unsplash License</a></p>
     <h2>The photographs</h2>
-    {photos.map(photo => <div class="credit-row"><img src={image(photo.filename.replace('.jpg',''))} alt={photo.subject} loading="lazy" width="140" height="95" /><div><strong>{photo.photographer}</strong><p>{photo.subject}</p><a href={photo.originalPhotoPage} target="_blank" rel="noopener noreferrer">Original photograph ↗</a></div><div><p>{photo.label}</p><p>{photo.license} · verified {photo.verifiedOn}</p></div></div>)}
+    {photos.map(photo => <div class="credit-row"><img src={image(photo.filename.replace('.jpg',''))} alt={photo.subject} loading="lazy" width="140" height="95" /><div><strong>{photo.photographer}</strong><p>{photo.subject}</p><a href={photo.originalPhotoPage} target="_blank" rel="noopener noreferrer">Original photograph</a></div><div><p>{photo.label}</p><p>{photo.license} · verified {photo.verifiedOn}</p></div></div>)}
     <h2>Restaurant information</h2>
     <p>Dish names, ingredient summaries, dinner prices, dietary labels, Kaiseki course names and contact information were verified on {verifiedDate}. Prices are Canadian dollars and may change. The restaurant’s official sources take precedence. Course photography and expressive captions are editorial illustrations of the experience.</p>
-    <ul class="credits-source-list">{Object.entries(research.sources).map(([name,url]) => <li><a href={url} target="_blank" rel="noopener noreferrer">{sourceLabels[name]} ↗</a></li>)}</ul>
+    <ul class="credits-source-list">{Object.entries(research.sources).map(([name,url]) => <li><a href={url} target="_blank" rel="noopener noreferrer">{sourceLabels[name]}</a></li>)}</ul>
+    <h2>The favicon</h2>
+    <p>The browser icon is Miku’s existing red seal, sourced from its <a href="https://mikurestaurant.com/wp-content/uploads/2025/04/cropped-favicons-192x192.png" target="_blank" rel="noopener noreferrer">official website favicon</a>. The Miku name and icon belong to their respective owner. This remains an independent portfolio concept.</p>
     <h2>Type & technology</h2>
     <p>Original typographic brand treatment. Cormorant Garamond and DM Sans are self-hosted through Fontsource under the SIL Open Font License. Built with Astro, TypeScript, React, Tailwind CSS, GSAP and ScrollTrigger. Booking continues with Miku’s official OpenTable provider.</p>
   </section>
