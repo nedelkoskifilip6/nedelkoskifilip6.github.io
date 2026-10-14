@@ -78,8 +78,8 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(5px); }
 .opening-pin { position: relative; height: 100svh; min-height: 620px; overflow: clip; color: var(--ivory); }
 .hero-image { position: absolute; inset: 0; z-index: 2; clip-path: inset(0%); }
 .hero-image picture,.hero-image img { width: 100%; height: 100%; }
-.hero-image img { object-position: 57% 52%; filter: brightness(1.12); }
-.hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 0 0 / .32) 0%,rgb(0 0 0 / .09) 42%,transparent 70%), linear-gradient(0deg, rgb(0 0 0 / .3), transparent 30%); }
+.hero-image img { object-position: 57% 52%; }
+.hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 0 0 / .62) 0%,rgb(0 0 0 / .26) 42%,rgb(0 0 0 / .06) 70%), linear-gradient(0deg, rgb(0 0 0 / .6), transparent 30%); }
 .hero-content { position: relative; z-index: 3; padding: 0 var(--gutter); top: 25%; width: 100%; }
 .hero-eyebrow { margin-bottom: 28px; }
 .hero-content h1 { font-size: clamp(70px,9.65vw,160px); line-height: .98; letter-spacing: -.055em; }
@@ -349,7 +349,7 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(5px); }
   :root { --gutter: 24px; }.section-pad { padding-top: 65px; padding-bottom: 65px; }.eyebrow { font-size: 8px; }.chapter-number { font-size: 10px; margin-right: 15px; }
   .dessert-editorial { padding: 65px var(--gutter) 35px; }.dessert-editorial-image { width: 100%; height: 430px; }.dessert-editorial-copy { position: static; width: 100%; margin-top: 30px; }.dessert-editorial-copy .eyebrow { color: var(--ink); mix-blend-mode: normal; }.dessert-editorial-copy h2 { font-size: 65px; margin: 22px 0; color: var(--wine); mix-blend-mode: normal; }.dessert-editorial-copy .text-link { margin-left: 0; font-size: 11px; gap: 40px; }.dessert-editorial-caption { width: 100%; font-size: 6px; flex-direction: column; gap: 8px; margin-top: 15px; }
   .site-header { height: 78px; padding-top: env(safe-area-inset-top); gap: 16px; }.wordmark { font-size: 23px; gap: 10px; }.wordmark small { font-size: 6px; }.brand-symbol { width: 21px; height: 21px; }.nav-reserve { font-size: 9px; gap: 10px; }.nav-reserve span { font-size: 17px; }
-  .opening-pin { min-height: 600px; height: 100svh; }.hero-image img { object-position: 61% 50%; }.hero-shade { background: linear-gradient(90deg,rgb(0 0 0 / .28),rgb(0 0 0 / .02)),linear-gradient(0deg,rgb(0 0 0 / .32),transparent 50%); }
+  .opening-pin { min-height: 600px; height: 100svh; }.hero-image img { object-position: 61% 50%; }.hero-shade { background: linear-gradient(90deg,rgb(0 0 0 / .55),rgb(0 0 0 / .08)),linear-gradient(0deg,rgb(0 0 0 / .65),transparent 50%); }
   .hero-content { top: 28%; }.hero-eyebrow { margin-bottom: 25px; font-size: 7px; letter-spacing: .13em; }.hero-eyebrow .tiny-line { width: 22px; margin-right: 9px; }.hero-content h1 { font-size: 16.2vw; line-height: 1.04; letter-spacing: -.055em; }.hero-content sup { font-size: 11px; margin-left: 8px; top: 12px; }
   .hero-description { flex-direction: column; gap: 27px; align-items: start; margin-top: 25px; }.hero-description p { font-size: 22px; }.hero-description .button { min-height: 54px; padding: 18px 22px; gap: 60px; font-size: 11px; }
   .hero-bottom { align-items: end; bottom: max(24px,env(safe-area-inset-bottom)); }.scroll-cue { gap: 13px; font-size: 6px; letter-spacing: .08em; }.hero-bottom p { font-size: 7px; max-width: 170px; }.scene-progress { right: 12px; }
