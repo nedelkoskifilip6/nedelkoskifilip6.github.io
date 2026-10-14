@@ -96,3 +96,9 @@ Tesla and Revolut files are outside the Miku publication scope.
 The production-ready responsive WebP files are included in `public/images/`. `PHOTO-CREDITS.md` and `src/data/photos.json` record every licensed source. To regenerate crops from separately downloaded original JPEG masters, use `node scripts/optimize-assets.mjs /absolute/path/to/originals`. Original masters are intentionally outside the source repository.
 
 See `docs/ANIMATION.md` for the scene architecture and `QA-REPORT.md` for the recorded validation results.
+
+## Visual refresh — October 14, 2026
+
+All headings use the Hero’s Cormorant Garamond Italic. The Hero CTA is charcoal, and visible arrow icons have been replaced with text controls while preserving keyboard navigation. Each of the 18 menu dishes has a distinct licensed photograph; Kaiseki chapters and gallery slides have distinct editorial compositions. The selected dish retains its photograph when expanded into its detail overlay.
+
+The original Hero photograph and mobile crop are byte-identical to the previous publication. The favicon uses the restaurant’s official red seal, with attribution on the sources page. Link previews use an actual settled Hero screenshot at `public/social/hero-preview-20261014-v2.jpg` (1200×675 JPEG), with absolute Open Graph and Twitter metadata. A messaging application may retain a previously cached preview; no live Viber send was performed.

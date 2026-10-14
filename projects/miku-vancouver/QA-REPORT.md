@@ -4,7 +4,7 @@ Validated the production preview at `http://127.0.0.1:4321/miku-vancouver/`.
 
 ## Production build
 
-`npm run build` passed Astro and TypeScript checking with zero errors, warnings or hints. Three static routes were generated: Home, Menu and Photography & sources. The build verifier resolved 184 local references under `/miku-vancouver/`, including images, styles, scripts, module dependencies and navigation anchors.
+`npm run build` passed Astro and TypeScript checking with zero errors, warnings or hints. Three static routes were generated: Home, Menu and Photography & sources. The build verifier resolved 215 local references under `/miku-vancouver/`, including images, styles, scripts, module dependencies and navigation anchors.
 
 ## Browser behavior
 
@@ -48,3 +48,9 @@ Restaurant/menu facts use the live official October 14 dinner-menu snapshot. Res
 Prepared for publication on October 14, 2026 in the owner's existing portfolio repository, `nedelkoskifilip6/nedelkoskifilip6.github.io`. Editable source is `projects/miku-vancouver/`; static output is `miku-vancouver/`; the portfolio root lists the new project. GitHub Pages deployment and public verification are recorded in the delivered publication manifest.
 
 The existing Tesla and Revolut projects were not modified. Revolut was inspected only for reusable framework, base-path and animation lifecycle patterns.
+
+## Requested visual refresh
+
+The updated production build passed with zero errors, warnings or hints. All 14 interaction scenarios passed again. A new sweep covered all three routes at nine viewport sizes (27 checks): no horizontal overflow, broken loaded images, visible arrow glyphs, mixed heading families or non-italic headings. Each menu dish has one of 18 distinct photo assets. All 38 photographic source URLs are unique. Hero desktop/mobile WebP SHA-256 values match the previous publication.
+
+Verified the official PNG favicons, absolute Open Graph/Twitter image URL, JPEG MIME/dimensions (1200×675), and clean production Hero screenshot without development UI. The local production browser recorded no console or page errors. Lighthouse scores above describe the earlier published build and were not remeasured for this visual refresh. Viber’s application cache and actual outgoing message rendering were not tested.
