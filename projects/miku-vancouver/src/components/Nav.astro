@@ -13,12 +13,12 @@ const links = [ ['Our story', `${home}#story`], ['Menu', path('menu/')], ['Exper
   <nav class="desktop-nav" aria-label="Main navigation">
     {links.map(([label, href]) => <a href={href} aria-current={menuPage && label === 'Menu' ? 'page' : undefined}>{label}</a>)}
   </nav>
-  <a class="nav-reserve" href={`${home}#reservations`}>Reserve a table <span aria-hidden="true">↗</span></a>
+  <a class="nav-reserve" href={`${home}#reservations`}>Reserve a table</a>
   <button class="nav-toggle" aria-label="Open navigation" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span></button>
 </header>
 <dialog id="mobile-nav" class="mobile-nav" aria-label="Main navigation">
   <div class="mobile-nav-top"><span class="eyebrow">MIKU · VANCOUVER</span><button class="mobile-nav-close" aria-label="Close navigation">✕</button></div>
-  <nav aria-label="Mobile navigation"><a href={home}>Home</a>{links.map(([label, href], i) => <a href={href}><small>0{i + 1}</small>{label}</a>)}<a href={`${home}#reservations`}>Reservations <span>↗</span></a></nav>
+  <nav aria-label="Mobile navigation"><a href={home}>Home</a>{links.map(([label, href], i) => <a href={href}><small>0{i + 1}</small>{label}</a>)}<a href={`${home}#reservations`}>Reservations</a></nav>
   <p>Independent Portfolio Concept.<br />Not affiliated with Miku Vancouver.</p>
 </dialog>
 <script>
