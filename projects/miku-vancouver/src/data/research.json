@@ -1,0 +1,82 @@
+{
+  "verifiedAt": "2026-10-14",
+  "currency": "CAD",
+  "menuBasis": "Dinner menu; prices can change. Check the official menu before visiting.",
+  "sources": {
+    "menu": "https://mikurestaurant.com/menu/",
+    "story": "https://mikurestaurant.com/about/",
+    "restaurant": "https://mikurestaurant.com/",
+    "contact": "https://mikurestaurant.com/contact/",
+    "privateDining": "https://mikurestaurant.com/private-events/",
+    "greenTeaOperaIngredients": "https://mikurestaurant.com/wp-content/uploads/2025/06/Lunch-Shokai-menu-2025.pdf"
+  },
+  "restaurant": {
+    "name": "Miku Vancouver",
+    "address": "70-200 Granville Street, Vancouver, BC, Canada V6C 1S4",
+    "arrival": "Main entrance on Howe Street, at Granville Square.",
+    "email": "info@mikurestaurant.com",
+    "phone": "+1 604 568 3900",
+    "bookingUrl": "https://www.opentable.ca/r/miku-restaurant-vancouver-reservations-vancouver?restref=24787&lang=en-CA&ot_source=Restaurant%20website&ot_campaign=homepagebutton",
+    "privateDiningUrl": "https://mikurestaurant.com/private-events/",
+    "privateDiningName": "Blue Sky Room",
+    "privateDiningCapacity": "7–20 guests; up to 16 at one table.",
+    "hours": "Monday–Friday 11:30–22:00; Saturday–Sunday 12:00–22:00",
+    "history": "Miku introduced its Aburi cuisine to Vancouver in 2008. The waterfront restaurant includes a patio, lounge, sushi bar and private dining room.",
+    "aburi": "Aburi means flame-seared. Controlled heat develops the seafood's texture and flavour, while Japanese techniques meet regional West Coast ingredients.",
+    "allergyNote": "Discuss dietary needs with the restaurant; an open kitchen cannot guarantee allergen-free preparation."
+  },
+  "categories": [
+    "Signature Aburi",
+    "Sushi & Sashimi",
+    "Appetizers",
+    "Main Courses",
+    "Kaiseki Experience",
+    "Desserts",
+    "Beverages"
+  ],
+  "dishes": [
+    { "id": "salmon-oshi", "name": "Salmon Oshi Sushi", "category": "Signature Aburi", "price": 23, "description": "Sockeye, jalapeño and signature sauce.", "dietary": [], "source": "menu" },
+    { "id": "ebi-oshi", "name": "Ebi Oshi Sushi", "category": "Signature Aburi", "price": 22, "description": "Prawn with ume and citrus zest.", "dietary": [], "source": "menu" },
+    { "id": "saba-oshi", "name": "Saba Oshi Sushi", "category": "Signature Aburi", "price": 20, "description": "Cured mackerel with miso.", "dietary": [], "source": "menu" },
+    { "id": "miku-roll", "name": "Miku Roll", "category": "Signature Aburi", "price": 25, "description": "Crab, salmon, cucumber and tobiko.", "dietary": [], "source": "menu" },
+    { "id": "bluefin-trio", "name": "Bluefin Trio", "category": "Sushi & Sashimi", "price": 32, "description": "Akami, chutoro and otoro nigiri.", "dietary": [], "source": "menu" },
+    { "id": "sockeye-sashimi", "name": "Sockeye Salmon Sashimi", "category": "Sushi & Sashimi", "price": 36, "description": "Six pieces.", "dietary": [], "source": "menu" },
+    { "id": "tofu-salad", "name": "Tofu Salad", "category": "Appetizers", "price": 21, "description": "Miso tofu, tempeh and greens.", "dietary": ["Vegetarian"], "source": "menu" },
+    { "id": "lobster-ceviche", "name": "Lobster Ceviche", "category": "Appetizers", "price": 29, "description": "Lobster, tobiko and salsa verde.", "dietary": [], "source": "menu" },
+    { "id": "ebi-fritters", "name": "Ebi Fritters", "category": "Appetizers", "price": 20, "description": "Prawns in beer batter; chili aioli.", "dietary": [], "source": "menu" },
+    { "id": "wagyu-carpaccio", "name": "Iwate Wagyu Carpaccio", "category": "Appetizers", "price": 38, "description": "A5 beef with black garlic.", "dietary": [], "source": "menu" },
+    { "id": "sablefish", "name": "Kyoto Saikyo Miso Sablefish", "category": "Main Courses", "price": 48, "description": "Miso emulsion, cannellini and vegetables.", "dietary": [], "source": "menu" },
+    { "id": "wagyu-steak", "name": "Wagyu Steak", "category": "Main Courses", "price": 160, "priceLabel": "$160 / $320", "description": "Iwate A5 beef; 5oz or 10oz.", "dietary": ["Gluten Free"], "source": "menu" },
+    { "id": "miku-kaiseki", "name": "Miku Kaiseki", "category": "Kaiseki Experience", "price": 180, "description": "Seven courses; optional $70 beverage pairing.", "dietary": [], "source": "menu" },
+    { "id": "waterfront-kaiseki", "name": "Waterfront Kaiseki", "category": "Kaiseki Experience", "price": 135, "description": "Six courses; optional $55 beverage pairing.", "dietary": [], "source": "menu" },
+    { "id": "green-tea-opera", "name": "Green Tea Opera", "category": "Desserts", "price": 17.5, "description": "Génoise and matcha buttercream, chocolate ganache, azuki cream, hazelnut wafer and matcha ice cream.", "dietary": [], "source": "greenTeaOperaIngredients", "priceSource": "menu" },
+    { "id": "miso-cheesecake", "name": "Saikyo Miso Rare Cheesecake", "category": "Desserts", "price": 17, "description": "Pear, pecans and miso caramel.", "dietary": [], "source": "menu" },
+    { "id": "espresso", "name": "Espresso / Americano", "category": "Beverages", "price": 4.5, "description": "After-dinner coffee.", "dietary": [], "source": "menu" },
+    { "id": "green-tea", "name": "Green Tea", "category": "Beverages", "price": 3, "description": "After-dinner tea.", "dietary": [], "source": "menu" }
+  ],
+  "kaiseki": {
+    "verified": true,
+    "source": "https://mikurestaurant.com/menu/",
+    "title": "Miku Kaiseki",
+    "price": 180,
+    "courseCount": 7,
+    "pairingPrice": 70,
+    "courses": ["Chawanmushi", "Sashimi", "Duck Confit", "Aburi Sawara", "Wagyu Steak", "Sushi", "Pumpkin Tart"],
+    "waterfront": {
+      "price": 135,
+      "courseCount": 6,
+      "pairingPrice": 55,
+      "courses": ["Scallop & Aburi Oyster", "Sashimi", "Lobster Ceviche", "Kyoto Saikyo Miso Sablefish", "Sushi", "Green Tea Opera"]
+    }
+  },
+  "implementationNotes": [
+    "Current live HTML differs from cached search results; use this live-page snapshot and date instead of search snippets.",
+    "Dinner Sablefish is 48; lunch is 42. Menu prices in this dataset use dinner.",
+    "Private-events pricing is separate and inconsistent with the main menu; avoid displaying private-dining prices and direct visitors to the official page.",
+    "Display a clear illustrative-photography label when licensed generic or generated images are used. Do not call such images actual Miku dishes or interiors.",
+    "Do not claim real-time availability. Date, preferred time and party-size controls can prepare an OpenTable search; confirm only at the official provider.",
+    "Dietary labels shown are limited to explicit official menu labels. Do not infer vegan, gluten-free or allergen-safe claims from ingredients.",
+    "Kaiseki imagery may illustrate a progression, but course order/names should come from the verified listing and be described as seasonal and subject to change.",
+    "This dataset deliberately keeps official menu paraphrases brief to respect source reuse limits."
+  ]
+}
