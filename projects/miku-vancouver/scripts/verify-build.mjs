@@ -114,6 +114,13 @@ async function verifyFile(file) {
   const jobs = [];
   const markup = extension === '.html' ? source.replace(/<!--[\s\S]*?-->/g, '').replace(/(<(?:script|style)\b[^>]*>)[\s\S]*?(<\/(?:script|style)\s*>)/gi, '$1$2') : '';
   if (extension === '.html') {
+    // Sharing previews are real release assets even though their URLs use content.
+    for (const match of markup.matchAll(/<meta\b[^>]*>/gi)) {
+      const attributes = Object.fromEntries([...match[0].matchAll(/(property|name|content)\s*=\s*(["'])(.*?)\2/gi)].map(attribute => [attribute[1].toLowerCase(), attribute[3]]));
+      if (['og:image', 'og:image:secure_url', 'twitter:image'].includes(attributes.property ?? attributes.name)) {
+        jobs.push(verifyReference(attributes.content ?? '', file, 'social image'));
+      }
+    }
     // Inline runtime strings may contain markup such as href="t". Read the
     // real tags' attributes, retaining script/link tags but excluding raw text.
     for (const match of markup.matchAll(/(?:\s|<)(src|href|poster|srcset|imagesrcset|component-url|renderer-url|before-hydration-url)\s*=\s*(["'])(.*?)\2/gi)) {
