@@ -1,0 +1,38 @@
+---
+import { path } from '../data/site';
+const home = path();
+const menuPage = Astro.url.pathname.includes('/menu');
+const solidHeader = Astro.url.pathname.replace(/\/$/, '') !== home.replace(/\/$/, '');
+const links = [ ['Our story', `${home}#story`], ['Menu', path('menu/')], ['Experience', `${home}#experience`], ['Gallery', `${home}#gallery`] ];
+---
+<header class:list={['site-header', { 'header-solid': solidHeader }]} id="site-header">
+  <a class="wordmark" href={home} aria-label="Miku Vancouver concept home">
+    <span class="brand-symbol" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+    <span>MIKU<small>VANCOUVER</small></span>
+  </a>
+  <nav class="desktop-nav" aria-label="Main navigation">
+    {links.map(([label, href]) => <a href={href} aria-current={menuPage && label === 'Menu' ? 'page' : undefined}>{label}</a>)}
+  </nav>
+  <a class="nav-reserve" href={`${home}#reservations`}>Reserve a table <span aria-hidden="true">↗</span></a>
+  <button class="nav-toggle" aria-label="Open navigation" aria-controls="mobile-nav" aria-expanded="false"><span></span><span></span></button>
+</header>
+<dialog id="mobile-nav" class="mobile-nav" aria-label="Main navigation">
+  <div class="mobile-nav-top"><span class="eyebrow">MIKU · VANCOUVER</span><button class="mobile-nav-close" aria-label="Close navigation">✕</button></div>
+  <nav aria-label="Mobile navigation"><a href={home}>Home</a>{links.map(([label, href], i) => <a href={href}><small>0{i + 1}</small>{label}</a>)}<a href={`${home}#reservations`}>Reservations <span>↗</span></a></nav>
+  <p>Independent Portfolio Concept.<br />Not affiliated with Miku Vancouver.</p>
+</dialog>
+<script>
+  import { trapDialogFocus } from '../scripts/dialog';
+  const header = document.getElementById('site-header')!;
+  const dialog = document.getElementById('mobile-nav') as HTMLDialogElement;
+  const toggle = document.querySelector('.nav-toggle') as HTMLButtonElement;
+  const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 55);
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  updateHeader();
+  toggle.addEventListener('click', () => { dialog.showModal(); toggle.setAttribute('aria-expanded', 'true'); document.body.classList.add('dialog-open'); });
+  const close = () => dialog.close();
+  dialog.querySelector('.mobile-nav-close')?.addEventListener('click', close);
+  dialog.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  dialog.addEventListener('close', () => { toggle.setAttribute('aria-expanded', 'false'); document.body.classList.remove('dialog-open'); });
+  dialog.addEventListener('keydown', trapDialogFocus);
+</script>

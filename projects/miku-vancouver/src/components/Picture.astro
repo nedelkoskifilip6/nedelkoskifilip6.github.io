@@ -1,0 +1,9 @@
+---
+import { image } from '../data/site';
+interface Props { name: string; alt: string; class?: string; eager?: boolean; }
+const { name, alt, class: className = '', eager = false } = Astro.props;
+---
+<picture class={className}>
+  <source media="(max-width: 700px)" srcset={image(name, true)} width="900" height="1200" />
+  <img src={image(name)} alt={alt} width="2200" height="1467" loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : 'auto'} />
+</picture>
