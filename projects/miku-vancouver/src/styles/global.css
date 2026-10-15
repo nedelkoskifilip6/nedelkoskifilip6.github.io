@@ -78,10 +78,11 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(5px); }
 .opening-pin { position: relative; height: 100svh; min-height: 620px; overflow: clip; color: var(--ivory); }
 .hero-image { position: absolute; inset: 0; z-index: 2; clip-path: inset(0%); }
 .hero-image picture,.hero-image img { width: 100%; height: 100%; }
-.hero-image img { object-position: 57% 52%; }
+.hero-image img { object-position: 57% 52%; filter: brightness(1.05); }
 .hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 0 0 / .62) 0%,rgb(0 0 0 / .26) 42%,rgb(0 0 0 / .06) 70%), linear-gradient(0deg, rgb(0 0 0 / .6), transparent 30%); }
 .hero-content { position: relative; z-index: 3; padding: 0 var(--gutter); top: 25%; width: 100%; }
 .hero-eyebrow { margin-bottom: 28px; }
+.hero-content h1 i { font-weight: 600; }
 .hero-content h1 { font-size: clamp(70px,9.65vw,160px); line-height: .98; letter-spacing: -.055em; }
 .title-line { display: block; overflow: hidden; padding: .07em .04em; margin: -.07em -.04em; }
 .title-line > span { display: block; }
