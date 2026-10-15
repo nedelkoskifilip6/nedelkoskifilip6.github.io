@@ -47,14 +47,13 @@ export function initializeMotion() {
     const previousTabIndex = banking.getAttribute('tabindex');
     banking.setAttribute('tabindex', '-1');
 
-    // The entrance owns the line spans and text parent. The scrub owns the
-    // headline container, keeping transforms independent in either direction.
+    // Keep the supporting copy and CTA painted while the image is loading.
+    // The entrance owns only the line spans; the scrub owns the headline
+    // container and description paragraph independently.
     const entrance = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    entrance.from('.hero-text', { opacity: 0, duration: .6 }, 0);
     entrance.from('.hero-title-line > span', {
       yPercent: 108, duration: 1.15, stagger: .12,
     }, .08);
-    entrance.from('.hero-description', { opacity: 0, duration: .85 }, .3);
 
     let wasCovered = false;
     let coverAt = Number.POSITIVE_INFINITY;
