@@ -62,6 +62,8 @@ The existing Astro page and React islands are retained. The consolidated `src/st
 
 The hero contains one CTA, **Download the app**, opening the official Revolut website with an explicit external-destination label. Mobile imagery begins edge-to-edge at the first frame and uses `100svh` plus safe-area spacing. The white banking chapter rises over the sticky photograph as the headline fades and the image zooms. Returning through the scene restores its state. Navigation contrast follows the moving curtain rather than the hidden sticky photograph.
 
+Matching mobile and desktop image preloads start the selected Hero photograph early. A neutral charcoal fallback replaces the previous green loading surface, and the entrance leaves supporting copy and the CTA visible while the photograph loads. The mobile favicon and Apple touch icon use a fresh 180×180 PNG URL; no service worker or app installation flow is introduced.
+
 Motion includes clipped typography entrances, layered interface reveals, product-stage transitions and subtle pointer-only button/card interactions. Touch devices omit pointer-only movement. Reduced-motion and short viewports use the static presentation. Covered hero controls leave the focus sequence; keyboard focus transfers to banking only if it was inside the covered hero.
 
 Same-page menu, footer and logo links use `src/scripts/anchorNavigation.ts` for a distance-aware 3.2–4.8 second scroll. Mobile menus and dialogs release their scroll locks first; manual input cancels the transition. Reduced-motion navigation and the skip link move immediately. Hash history remains native, and destination focus changes only after completed navigation.
