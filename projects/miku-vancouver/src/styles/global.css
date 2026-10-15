@@ -1,5 +1,14 @@
 @import 'tailwindcss';
 
+/* Use the real weight axis for the Hero while retaining the existing lighter faces. */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 600 700;
+  src: url('@fontsource-variable/cormorant-garamond/files/cormorant-garamond-latin-wght-italic.woff2') format('woff2');
+}
+
 @theme { --color-ink: #111111; --color-ivory: #F5F1E8; --color-stone: #D8D1C5; --color-wine: #772C32; --color-gold: #B7A17A; --font-serif: 'Cormorant Garamond', Georgia, serif; --font-sans: 'DM Sans', Arial, sans-serif; }
 :root { --ink: #111111; --ivory: #f5f1e8; --stone: #d8d1c5; --gold: #b7a17a; --wine: #772c32; --gutter: clamp(24px, 5vw, 88px); --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'DM Sans', Arial, sans-serif; }
 * { box-sizing: border-box; }
@@ -82,7 +91,7 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(5px); }
 .hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 0 0 / .62) 0%,rgb(0 0 0 / .26) 42%,rgb(0 0 0 / .06) 70%), linear-gradient(0deg, rgb(0 0 0 / .6), transparent 30%); }
 .hero-content { position: relative; z-index: 3; padding: 0 var(--gutter); top: 25%; width: 100%; }
 .hero-eyebrow { margin-bottom: 28px; }
-.hero-content h1 i { font-weight: 600; }
+.hero-content h1 i { font-weight: 660; }
 .hero-content h1 { font-size: clamp(70px,9.65vw,160px); line-height: .98; letter-spacing: -.055em; }
 .title-line { display: block; overflow: hidden; padding: .07em .04em; margin: -.07em -.04em; }
 .title-line > span { display: block; }
