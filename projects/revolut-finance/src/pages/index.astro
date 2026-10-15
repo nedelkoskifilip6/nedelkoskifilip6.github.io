@@ -16,15 +16,12 @@ const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concep
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="theme-color" content="#111114"/>
-<link rel="preload" as="image" type="image/webp" media="(max-width: 600px)" href={photo('surf-mobile',960)} imagesrcset={`${photo('surf-mobile',640)} 640w, ${photo('surf-mobile',960)} 960w`} imagesizes="100vw" fetchpriority="high"/>
-<link rel="preload" as="image" type="image/webp" media="(min-width: 601px)" href={photo('surf',1600)} imagesrcset={`${photo('surf',960)} 960w, ${photo('surf',1600)} 1600w, ${photo('surf',3200)} 3200w`} imagesizes="100vw" fetchpriority="high"/>
 <meta name="description" content="An independent Revolut-inspired fintech portfolio concept by Filip Nedelkoski. Explore interactive banking, cards, savings and investment demonstrations."/>
 <link rel="canonical" href="https://nedelkoskifilip6.github.io/revolut-finance/"/>
 <link rel="icon" type="image/x-icon" sizes="16x16 32x32" href={`${assetBase}/favicon.ico?v=revolut-r-2`}/>
 <link rel="icon" type="image/png" sizes="32x32" href={`${assetBase}/favicon-32x32.png?v=revolut-r-2`}/>
 <link rel="icon" type="image/png" sizes="16x16" href={`${assetBase}/favicon-16x16.png?v=revolut-r-2`}/>
-<link rel="icon" type="image/png" sizes="180x180" href={`${assetBase}/revolut-app-icon-180.png`}/>
-<link rel="apple-touch-icon" sizes="180x180" href={`${assetBase}/revolut-app-icon-180.png`}/>
+<link rel="apple-touch-icon" sizes="180x180" href={`${assetBase}/apple-touch-icon.png`}/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://nedelkoskifilip6.github.io/revolut-finance/"/>
 <meta property="og:site_name" content="Revolut Finance"/>
@@ -50,8 +47,8 @@ const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concep
 <div class="cinematic-journey">
 <section class="hero" aria-labelledby="hero-title">
 <picture class="hero-photograph">
-<source media="(max-width: 600px)" srcset={`${photo('surf-mobile',640)} 640w, ${photo('surf-mobile',960)} 960w`} sizes="100vw"/>
-<img class="hero-photo" src={photo('surf',1600)} srcset={`${photo('surf',960)} 960w, ${photo('surf',1600)} 1600w, ${photo('surf',3200)} 3200w`} sizes="100vw" alt="A surfer paddling over coral in clear turquoise ocean water" width="3200" height="2132" fetchpriority="high" decoding="sync"/>
+<source media="(max-width: 600px)" srcset={`${photo('surf-mobile',640)} 640w, ${photo('surf-mobile',960)} 960w`}/>
+<img class="hero-photo" src={photo('surf',1600)} srcset={`${photo('surf',960)} 960w, ${photo('surf',1600)} 1600w, ${photo('surf',3200)} 3200w`} sizes="100vw" alt="A surfer paddling over coral in clear turquoise ocean water" width="3200" height="2132" fetchpriority="high" decoding="async"/>
 </picture>
 <div class="hero-text">
 <span class="eyebrow">AN UNOFFICIAL PORTFOLIO EXPERIENCE</span>
