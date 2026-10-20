@@ -1,8 +1,8 @@
 # Photography provenance
 
-All selected images were verified as free under the [Unsplash License](https://unsplash.com/license) on 14 October 2026. Original full-resolution photographs are retained in `originals/`; files in this directory are sharp 3000-pixel working JPEGs. Generate desktop and mobile WebP/AVIF derivatives from the originals.
+The Unsplash collection documented below was verified as free under the [Unsplash License](https://unsplash.com/license) on 14 October 2026. Original full-resolution photographs are retained in `originals/`; files in this directory are sharp 3000-pixel working JPEGs. Generate desktop and mobile WebP/AVIF derivatives from the originals.
 
-None of these photographs were taken at Miku Vancouver. Use the supplied honest labels in visible captions, dish detail overlays, and the image-credits page. A global note should read: **Licensed editorial imagery is illustrative; food photographs do not depict Miku menu dishes, and restaurant photographs do not show Miku Vancouver.** The waterfront image depicts the actual Vancouver Coal Harbour location, but is not represented as the restaurant view.
+None of the Unsplash photographs documented below were taken at Miku Vancouver. Use the supplied honest labels in visible captions, dish detail overlays, and the image-credits page. A global note should read: **Licensed editorial imagery is illustrative; food photographs do not depict Miku menu dishes, and restaurant photographs do not show Miku Vancouver.** The waterfront image depicts the actual Vancouver Coal Harbour location, but is not represented as the restaurant view.
 
 ## hero.jpg
 
@@ -117,3 +117,15 @@ Visible label: Illustrative seared scallops. Not a Miku dish.
 ## Typography
 
 Cormorant Garamond and DM Sans are self-hosted through Fontsource under the SIL Open Font License. Full notices are distributed in `public/licenses/cormorant-garamond.txt` and `public/licenses/dm-sans.txt`.
+
+
+## Project-owner supplied photographs — October 21, 2026
+
+The current Hero and these four replacement photographs were supplied directly by the project owner, separate from the Unsplash collection above. No Unsplash attribution or verified license is claimed for these supplied assets. The original authorship and licensing have not been independently verified.
+
+- `gallery-terrace-20261021`: attachment Photo 1, harbour terrace.
+- `gallery-cuisine-20261021`: attachment Photo 2, Japanese food spread.
+- `gallery-room-20261021`: attachment Photo 3, bright dining room.
+- `private-dining-20261021`: attachment Photo 4, waterfront dining room at dusk.
+
+The four images were enhanced with the built-in image-generation tool to restore clarity, retaining the supplied framing and subject. AI-reconstructed fine details should not be treated as documentary evidence. Masters and exact prompts are retained in the workspace `outputs/images/` folder. Gallery photograph 3 (`shrimp-craft`) and its original credit remain unchanged. The current social preview is a screenshot of the actual desktop Hero, reduced to 1200 × 675.
