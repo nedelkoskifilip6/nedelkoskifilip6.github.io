@@ -3,10 +3,10 @@ import gsap from 'gsap';
 import { image } from '../data/site';
 import { trapDialogFocus } from '../scripts/dialog';
 const slides = [
-  { photo: 'waterfront', title: 'A Pacific perspective', caption: 'Vancouver waterfront · location study' },
-  { photo: 'table-setting', title: 'The intimacy of a table', caption: 'Restaurant atmosphere · illustrative, not Miku’s interior' },
+  { photo: 'gallery-terrace-20261021', title: 'A Pacific perspective', caption: 'Harbour terrace · user-supplied photograph, AI enhanced' },
+  { photo: 'gallery-cuisine-20261021', title: 'The intimacy of a table', caption: 'A shared table · user-supplied photograph, AI enhanced' },
   { photo: 'shrimp-craft', title: 'Behind every gesture', caption: 'Japanese culinary craft · illustrative photography' },
-  { photo: 'dining-night', title: 'After the light fades', caption: 'An evening atmosphere study · illustrative, not Miku’s interior' },
+  { photo: 'gallery-room-20261021', title: 'Inside the dining room', caption: 'The dining room · user-supplied photograph, AI enhanced' },
 ];
 export default function Gallery() {
   const [active, setActive] = useState(0);
