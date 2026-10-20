@@ -4,7 +4,7 @@ import Picture from '../components/Picture.astro';
 import Signature from '../components/Signature';
 import Gallery from '../components/Gallery';
 import Reservation from '../components/Reservation';
-import { path, official } from '../data/site';
+import { image, path, official } from '../data/site';
 import research from '../data/research.json';
 const courses = research.kaiseki.waterfront.courses;
 const coursePhotos = ['oysters', 'salmon-nigiri', 'shellfish', 'fish-fillet', 'rolls-slate', 'wagashi'];
@@ -13,7 +13,7 @@ const coursePhotos = ['oysters', 'salmon-nigiri', 'shellfish', 'fish-fillet', 'r
   <section class="opening-scene" aria-label="The art of Aburi">
     <div class="opening-pin">
       <div class="story-backdrop"></div>
-      <div class="hero-image"><Picture name="sashimi" eager alt="Cinematic salmon sashimi in a matte-black bowl; illustrative Japanese cuisine, not a Miku dish" /><div class="hero-shade"></div></div>
+      <div class="hero-image"><picture><source media="(max-width: 700px)" srcset={image('hero-salmon-20261021', true)} width="900" height="1266" /><img src={image('hero-salmon-20261021')} alt="Salmon nigiri lifted with chopsticks above a dark plate; illustrative Japanese cuisine" width="910" height="607" loading="eager" decoding="async" fetchpriority="high" /></picture><div class="hero-shade"></div></div>
       <div class="hero-content">
         <p class="eyebrow hero-eyebrow"><span class="tiny-line"></span> JAPANESE SOUL. PACIFIC SPIRIT.</p>
         <h1 aria-label="The Art of Aburi"><span class="title-line"><span>THE ART</span></span><span class="title-line"><span>OF <i>ABURI</i><sup>炙り</sup></span></span></h1>
