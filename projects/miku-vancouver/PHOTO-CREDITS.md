@@ -129,3 +129,8 @@ The current Hero and these four replacement photographs were supplied directly b
 - `private-dining-20261021`: attachment Photo 4, waterfront dining room at dusk.
 
 The four images were enhanced with the built-in image-generation tool to restore clarity, retaining the supplied framing and subject. AI-reconstructed fine details should not be treated as documentary evidence. Masters and exact prompts are retained in the workspace `outputs/images/` folder. Gallery photograph 3 (`shrimp-craft`) and its original credit remain unchanged. The current social preview is a screenshot of the actual desktop Hero, reduced to 1200 × 675.
+
+
+## Gallery clarity revision — October 21, 2026
+
+Gallery photographs 1 and 4 were restored again from the supplied originals with the built-in imagegen tool for more natural fine texture and clearer edges. New masters are `gallery-terrace-clean-v2-20261021.png` (1536 × 1024) and `gallery-room-clean-v2-20261021.png` (1807 × 870), retained in workspace `outputs/images/` with their exact prompts. These are the actual generated dimensions; no artificial enlargement or 4K claim. Lossless WebP derivatives preserve every generated pixel. The gallery now loads these full-size files on mobile too, avoiding the previous 900-pixel reduction before cover cropping. Photographs 2 and 3, private dining, Hero and link-preview image are unchanged.
