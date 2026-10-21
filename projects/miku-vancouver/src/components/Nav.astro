@@ -8,7 +8,6 @@ const links = [ ['Our story', `${home}#story`], ['Menu', path('menu/')], ['Exper
 <header class:list={['site-header', { 'header-solid': solidHeader }]} id="site-header">
   <a class="wordmark" href={home} aria-label="Miku Vancouver concept home">
     <span class="wordmark-art"><span class="brand-symbol" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span>MIKU<small>VANCOUVER</small></span></span>
-    <span class="wordmark-art wordmark-contrast" aria-hidden="true"><span class="brand-symbol"><span></span><span></span><span></span><span></span></span><span>MIKU<small>VANCOUVER</small></span></span>
   </a>
   <nav class="desktop-nav" aria-label="Main navigation">
     {links.map(([label, href]) => <a href={href} aria-current={menuPage && label === 'Menu' ? 'page' : undefined}>{label}</a>)}
