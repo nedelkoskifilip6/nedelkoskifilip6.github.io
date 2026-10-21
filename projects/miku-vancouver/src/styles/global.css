@@ -58,12 +58,10 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(5px); }
 .mobile-only { display: none; }
 
 /* Navigation: an original typographic identity. */
-.site-header { --header-progress: 0; --header-ink: 0; --header-open-height: 100px; --header-solid-height: 78px; position: fixed; top: 0; left: 0; width: 100%; height: calc(var(--header-open-height) - (var(--header-open-height) - var(--header-solid-height)) * var(--header-progress)); padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 30px; color: rgb(calc(245 - 228 * var(--header-ink)) calc(241 - 224 * var(--header-ink)) calc(232 - 215 * var(--header-ink))); background: rgb(245 241 232 / calc(.97 * var(--header-progress))); z-index: 30; border-bottom: 1px solid; border-color: color-mix(in srgb,rgb(245 241 232 / .2),rgb(17 17 17 / .12) calc(var(--header-progress) * 100%)); }
-.site-header.header-solid { --header-progress: 1; --header-ink: 1; }
+.site-header { --header-progress: 0; --header-surface: 0; --header-ink: 0; --header-open-height: 100px; --header-solid-height: 78px; position: fixed; top: 0; left: 0; width: 100%; height: calc(var(--header-open-height) - (var(--header-open-height) - var(--header-solid-height)) * var(--header-progress)); padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 30px; color: rgb(calc(245 - 228 * var(--header-ink)) calc(241 - 224 * var(--header-ink)) calc(232 - 215 * var(--header-ink))); background: rgb(245 241 232 / calc(.97 * var(--header-surface))); z-index: 30; border-bottom: 1px solid; border-color: color-mix(in srgb,rgb(245 241 232 / .2),rgb(17 17 17 / .12) calc(var(--header-progress) * 100%)); }
+.site-header.header-solid { --header-progress: 1; --header-surface: 1; --header-ink: 1; }
 .wordmark { position: relative; display: flex; align-items: center; gap: 12px; font-size: 29px; letter-spacing: .17em; line-height: 1; }
 .wordmark-art { display: flex; align-items: center; gap: inherit; }
-.wordmark-contrast { position: absolute; inset: 0; color: var(--ink); pointer-events: none; visibility: hidden; }
-.header-mask-crossing .wordmark-contrast { visibility: visible; }
 .wordmark small { display: block; font-size: 7px; letter-spacing: .33em; margin-top: 8px; }
 .brand-symbol { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; width: 26px; height: 26px; transform: rotate(-45deg); }
 .brand-symbol span { border: 1px solid currentColor; border-radius: 50% 0 0 0; }
