@@ -1,0 +1,63 @@
+{
+  "createdAt": "2026-10-21",
+  "purpose": "Media for the independent main portfolio. Concept placeholders are explicitly identified and do not represent completed websites.",
+  "assets": [
+    {
+      "file": "bang-concept.svg",
+      "status": "concept-placeholder",
+      "source": "Original SVG artwork created for this portfolio task.",
+      "depiction": "Abstract luxury audio product geometry in a warm ivory website composition.",
+      "visibleLabels": [
+        "CONCEPT PLACEHOLDER",
+        "COMING SOON"
+      ],
+      "completionClaim": "None. No completed project or actual website is depicted.",
+      "thirdPartyAssets": false
+    },
+    {
+      "file": "sothebys-concept.svg",
+      "status": "concept-placeholder",
+      "source": "Original SVG artwork created for this portfolio task.",
+      "depiction": "Original grayscale architectural illustration in a luxury real estate website composition.",
+      "visibleLabels": [
+        "CONCEPT PLACEHOLDER",
+        "COMING SOON"
+      ],
+      "completionClaim": "None. No completed project, actual property or actual website is depicted.",
+      "thirdPartyAssets": false
+    },
+    {
+      "file": "six-senses-source.jpg",
+      "status": "actual-local-screenshot-unpublished",
+      "source": "Existing local Six Senses Ibiza portfolio concept, outputs/desktop-hero.jpg (captured 21 October 2026).",
+      "depiction": "Existing local desktop hero screenshot of the independent Six Senses Ibiza portfolio concept.",
+      "copyMethod": "Byte-for-byte copy; original file not modified.",
+      "publicationStatus": "Unpublished local project screenshot, as identified in the task context; no live deployment claim is made.",
+      "affiliation": "Independent portfolio concept; not affiliated with Six Senses."
+    }
+  ],
+  "liveScreenshots": [
+    {
+      "project": "REVOLUT",
+      "url": "https://nedelkoskifilip6.github.io/revolut-finance/",
+      "captured": "2026-10-21",
+      "method": "Actual Safari viewport screenshot; browser toolbar removed",
+      "files": [
+        "revolut-800.webp",
+        "revolut-1600.webp",
+        "revolut-2400.webp"
+      ]
+    },
+    {
+      "project": "MIKU VANCOUVER",
+      "url": "https://nedelkoskifilip6.github.io/miku-vancouver/",
+      "captured": "2026-10-21",
+      "method": "Actual Safari viewport screenshot; browser toolbar removed",
+      "files": [
+        "miku-800.webp",
+        "miku-1600.webp",
+        "miku-2400.webp"
+      ]
+    }
+  ]
+}
