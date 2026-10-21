@@ -134,3 +134,8 @@ The four images were enhanced with the built-in image-generation tool to restore
 ## Gallery clarity revision — October 21, 2026
 
 Gallery photographs 1 and 4 were restored again from the supplied originals with the built-in imagegen tool for more natural fine texture and clearer edges. New masters are `gallery-terrace-clean-v2-20261021.png` (1536 × 1024) and `gallery-room-clean-v2-20261021.png` (1807 × 870), retained in workspace `outputs/images/` with their exact prompts. These are the actual generated dimensions; no artificial enlargement or 4K claim. Lossless WebP derivatives preserve every generated pixel. The gallery now loads these full-size files on mobile too, avoiding the previous 900-pixel reduction before cover cropping. Photographs 2 and 3, private dining, Hero and link-preview image are unchanged.
+
+
+## Private-dining clarity revision — October 21, 2026
+
+The private-dining image was enhanced again with the built-in imagegen tool, using the prior restored master as the edit target because the original temporary attachment was no longer available. Native output: `private-dining-clean-v2-20261021.png`, 1254 × 1254, with the same room, composition and dusk atmosphere. Fine textures and edges were reconstructed with AI. Its lossless WebP derivative preserves generated pixels and is served at full resolution on mobile too. The master, exact prompt and source note are retained in workspace `outputs/images/`.
