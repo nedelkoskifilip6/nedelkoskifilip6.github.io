@@ -58,9 +58,12 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(5px); }
 .mobile-only { display: none; }
 
 /* Navigation: an original typographic identity. */
-.site-header { position: fixed; top: 0; left: 0; width: 100%; height: 100px; padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 30px; color: var(--ivory); z-index: 30; border-bottom: 1px solid rgb(245 241 232 / .2); transition: height .3s, background .3s, color .3s; }
-.site-header.is-scrolled,.site-header.header-solid { height: 78px; background: rgb(245 241 232 / .97); color: var(--ink); border-color: rgb(17 17 17 / .12); }
-.wordmark { display: flex; align-items: center; gap: 12px; font-size: 29px; letter-spacing: .17em; line-height: 1; }
+.site-header { --header-progress: 0; --header-ink: 0; --header-open-height: 100px; --header-solid-height: 78px; position: fixed; top: 0; left: 0; width: 100%; height: calc(var(--header-open-height) - (var(--header-open-height) - var(--header-solid-height)) * var(--header-progress)); padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 30px; color: rgb(calc(245 - 228 * var(--header-ink)) calc(241 - 224 * var(--header-ink)) calc(232 - 215 * var(--header-ink))); background: rgb(245 241 232 / calc(.97 * var(--header-progress))); z-index: 30; border-bottom: 1px solid; border-color: color-mix(in srgb,rgb(245 241 232 / .2),rgb(17 17 17 / .12) calc(var(--header-progress) * 100%)); }
+.site-header.header-solid { --header-progress: 1; --header-ink: 1; }
+.wordmark { position: relative; display: flex; align-items: center; gap: 12px; font-size: 29px; letter-spacing: .17em; line-height: 1; }
+.wordmark-art { display: flex; align-items: center; gap: inherit; }
+.wordmark-contrast { position: absolute; inset: 0; color: var(--ink); pointer-events: none; visibility: hidden; }
+.header-mask-crossing .wordmark-contrast { visibility: visible; }
 .wordmark small { display: block; font-size: 7px; letter-spacing: .33em; margin-top: 8px; }
 .brand-symbol { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; width: 26px; height: 26px; transform: rotate(-45deg); }
 .brand-symbol span { border: 1px solid currentColor; border-radius: 50% 0 0 0; }
@@ -345,7 +348,7 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(5px); }
 @media (max-width: 900px) {
   .section-pad { padding: 80px var(--gutter); }
   .dessert-editorial-image { height: 500px; }.dessert-editorial-copy h2 { font-size: clamp(44px,6vw,70px); }.dessert-editorial-copy .text-link { font-size: 9px; gap: 14px; }
-  .site-header { height: 82px; }.site-header.is-scrolled,.site-header.header-solid { height: 70px; }.desktop-nav { display: none; }.nav-toggle { display: block; }.nav-reserve { margin-left: auto; }
+  .site-header { --header-open-height: 82px; --header-solid-height: 70px; }.desktop-nav { display: none; }.nav-toggle { display: block; }.nav-reserve { margin-left: auto; }
   .opening-pin { min-height: 620px; }.hero-content { top: 27%; }.hero-content h1 { font-size: 11.5vw; }.hero-bottom { font-size: 7px; }.hero-bottom > span { display: none; }.hero-content sup { font-size: 16px; top: 15px; margin-left: 14px; }
   .aburi-story { padding-top: 105px; }.aburi-story h2 { font-size: 6.7vw; width: 100%; }.story-copy { width: 95%; margin-top: 15px; gap: 12px; }.story-copy p { max-width: 430px; font-size: 11px; }.japanese-detail { font-size: 30px; }.aburi-story h2 { margin-top: 17px; }.aburi-story .image-footnote { bottom: 5%; }
   .story-heading { margin-bottom: 55px; }.story-heading h2 { width: 73%; font-size: 44px; }.story-editorial { gap: 6%; grid-template-columns: 52% 1fr; }.story-detail > p { font-size: 12px; }.craft-note { margin-top: 30px; }.vertical-word { display: none; }
@@ -358,7 +361,7 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(5px); }
 @media (max-width: 600px) {
   :root { --gutter: 24px; }.section-pad { padding-top: 65px; padding-bottom: 65px; }.eyebrow { font-size: 8px; }.chapter-number { font-size: 10px; margin-right: 15px; }
   .dessert-editorial { padding: 65px var(--gutter) 35px; }.dessert-editorial-image { width: 100%; height: 430px; }.dessert-editorial-copy { position: static; width: 100%; margin-top: 30px; }.dessert-editorial-copy .eyebrow { color: var(--ink); mix-blend-mode: normal; }.dessert-editorial-copy h2 { font-size: 65px; margin: 22px 0; color: var(--wine); mix-blend-mode: normal; }.dessert-editorial-copy .text-link { margin-left: 0; font-size: 11px; gap: 40px; }.dessert-editorial-caption { width: 100%; font-size: 6px; flex-direction: column; gap: 8px; margin-top: 15px; }
-  .site-header { height: 78px; padding-top: env(safe-area-inset-top); gap: 16px; }.wordmark { font-size: 23px; gap: 10px; }.wordmark small { font-size: 6px; }.brand-symbol { width: 21px; height: 21px; }.nav-reserve { font-size: 9px; gap: 10px; }.nav-reserve span { font-size: 17px; }
+  .site-header { --header-open-height: 78px; padding-top: env(safe-area-inset-top); gap: 16px; }.wordmark { font-size: 23px; gap: 10px; }.wordmark small { font-size: 6px; }.brand-symbol { width: 21px; height: 21px; }.nav-reserve { font-size: 9px; gap: 10px; }.nav-reserve span { font-size: 17px; }
   .opening-pin { min-height: 0; height: 100svh; }.hero-image img { object-position: 61% 50%; filter: brightness(1.34); }.hero-shade { background: linear-gradient(90deg,rgb(0 0 0 / .55),rgb(0 0 0 / .08)),linear-gradient(0deg,rgb(0 0 0 / .65),transparent 50%); }
   /* Keep the phone eyebrow below navigation and the title beside the invitation. */
   .hero-content { top: 0; height: 100%; display: flex; flex-direction: column; padding-top: 98px; padding-bottom: max(84px,calc(env(safe-area-inset-bottom) + 64px)); }
