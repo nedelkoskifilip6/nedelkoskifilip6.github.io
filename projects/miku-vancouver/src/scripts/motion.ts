@@ -4,27 +4,92 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function initMotion() {
   ScrollTrigger.config({ ignoreMobileResize: true, limitCallbacks: true });
+  const header = document.querySelector<HTMLElement>('.site-header:not(.header-solid)');
+  const wordmark = header?.querySelector<HTMLElement>('.wordmark');
+  const wordmarkContrast = header?.querySelector<HTMLElement>('.wordmark-contrast');
+  // This variable is owned by the rendered Hero scene, never by a fixed scroll offset.
+  const setHeaderProgress = (progress: number) => {
+    if (!header) return;
+    const value = gsap.utils.clamp(0, 1, progress);
+    header.style.setProperty('--header-progress', value.toFixed(4));
+    // Keep the lettering legible; interpolating light and dark ink over the fading surface
+    // would make both pass through the same middle gray. The surface itself stays continuous.
+    header.style.setProperty('--header-ink', value >= .5 ? '1' : '0');
+    header.classList.toggle('is-scrolled', value >= .5);
+    header.classList.toggle('header-mask-crossing', value > 0 && value < .5);
+  };
+  const resetHeader = () => {
+    header?.style.removeProperty('--header-progress');
+    header?.style.removeProperty('--header-ink');
+    header?.classList.remove('is-scrolled', 'header-mask-crossing');
+    wordmarkContrast?.style.removeProperty('clip-path');
+  };
+  const headerHeight = (state: 'open' | 'solid') => header
+    ? parseFloat(getComputedStyle(header).getPropertyValue(`--header-${state}-height`)) : 0;
+  const updateWordmarkContrast = (image: HTMLElement) => {
+    if (!wordmark || !wordmarkContrast || !header?.classList.contains('header-mask-crossing')) return;
+    const imageBounds = image.getBoundingClientRect();
+    const wordmarkBounds = wordmark.getBoundingClientRect();
+    const rawInsets = image.style.clipPath.match(/^inset\(([^)]+)\)/)?.[1].trim().split(/\s+/) ?? ['0'];
+    const inset = (index: number, dimension: number) => {
+      const raw = rawInsets[index] ?? rawInsets[index === 3 ? 1 : 0] ?? rawInsets[0];
+      return parseFloat(raw) * (raw.endsWith('%') ? dimension / 100 : 1);
+    };
+    const left = imageBounds.left + inset(3, imageBounds.width) - wordmarkBounds.left;
+    const right = imageBounds.right - inset(1, imageBounds.width) - wordmarkBounds.left;
+    const top = imageBounds.top + inset(0, imageBounds.height) - wordmarkBounds.top;
+    const bottom = imageBounds.bottom - inset(2, imageBounds.height) - wordmarkBounds.top;
+    // The dark visual copy is visible only outside the photograph's actual mask.
+    // An even-odd hole preserves per-letter contrast as either image edge crosses the mark.
+    wordmarkContrast.style.clipPath = `polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,${left}px ${top}px,${left}px ${bottom}px,${right}px ${bottom}px,${right}px ${top}px,${left}px ${top}px,0 0)`;
+  };
   const media = gsap.matchMedia();
-  media.add({ desktop: '(min-width: 901px)', landscape: '(min-width: 601px) and (min-aspect-ratio: 23/20)', mobile: '(max-width: 900px)', reduce: '(prefers-reduced-motion: reduce)' }, context => {
-    const { desktop, landscape, reduce } = context.conditions!;
+  media.add({ desktop: '(min-width: 901px)', landscape: '(min-width: 601px) and (min-aspect-ratio: 23/20)', mobile: '(max-width: 900px)', short: '(max-height: 479px)', reduce: '(prefers-reduced-motion: reduce)' }, context => {
+    const { desktop, landscape, short, reduce } = context.conditions!;
     const wide = desktop || landscape;
     const lowPower = (navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 8;
-    const lite = reduce || lowPower < 4 || window.innerHeight < 480;
+    const lite = reduce || lowPower < 4 || short;
     const story = document.querySelector<HTMLElement>('.aburi-story');
     const hero = document.querySelector<HTMLElement>('.hero-content');
     document.documentElement.classList.toggle('motion-lite', Boolean(lite));
     if (story) story.setAttribute('aria-hidden', lite ? 'false' : 'true');
-    if (lite) return () => document.documentElement.classList.remove('motion-lite');
+    const heroImage = document.querySelector<HTMLElement>('.hero-image');
+    if (lite) {
+      if (heroImage && header) ScrollTrigger.create({
+        trigger: heroImage, start: () => `bottom ${headerHeight('open')}px`, end: 'bottom top',
+        onUpdate: self => { setHeaderProgress(self.progress); updateWordmarkContrast(heroImage); },
+        onRefresh: self => { setHeaderProgress(self.progress); updateWordmarkContrast(heroImage); },
+      });
+      return () => { document.documentElement.classList.remove('motion-lite'); resetHeader(); };
+    }
 
-    if (hero) {
+    if (hero && heroImage) {
       // Entrance owns the inner line. The scroll timeline owns the outer block.
       gsap.from('.title-line > span', { yPercent: 115, duration: 1.3, stagger: .12, ease: 'power4.out', delay: .1 });
       gsap.from('.hero-eyebrow, .hero-description, .hero-bottom > *', { opacity: 0, y: 14, duration: .9, stagger: .1, ease: 'power2.out', delay: .45 });
       const pin = document.querySelector<HTMLElement>('.opening-pin')!;
-      const timeline = gsap.timeline({ scrollTrigger: {
+      let openingTrigger: ScrollTrigger | undefined;
+      let finalTopInset = wide ? 14 : 53;
+      let solidHeaderHeight = headerHeight('solid');
+      const updateRenderedHeader = () => {
+        if (!header) return;
+        if (openingTrigger?.progress === 1) { setHeaderProgress(1); return; }
+        // Read the inline mask written by this very timeline, including its scrub lag.
+        const inset = /^inset\(\s*(-?[\d.]+)(%|px)?/.exec(heroImage.style.clipPath);
+        const bounds = heroImage.getBoundingClientRect();
+        const clippedTop = Number(inset?.[1] ?? 0) * (inset?.[2] === '%' ? bounds.height / 100 : 1);
+        // On a short, wide viewport the final 14% mask can be a few pixels above the header edge.
+        const clearDistance = Math.min(solidHeaderHeight, bounds.height * finalTopInset / 100);
+        setHeaderProgress((bounds.top + clippedTop) / Math.max(1, clearDistance));
+        updateWordmarkContrast(heroImage);
+      };
+      const timeline = gsap.timeline({ onUpdate: updateRenderedHeader, scrollTrigger: {
         trigger: '.opening-scene', start: 'top top', end: () => `+=${window.innerHeight * (wide ? 1.7 : 1.25)}`, pin,
         scrub: .65, anticipatePin: 1, invalidateOnRefresh: true,
+        onRefresh: () => { solidHeaderHeight = headerHeight('solid'); updateRenderedHeader(); },
         onUpdate: self => {
+          // Once the pin has left the viewport, the navigation remains solid.
+          if (self.progress === 1) setHeaderProgress(1);
           const covered = self.progress > .38;
           hero.inert = covered;
           document.querySelector<HTMLElement>('.hero-bottom')!.inert = covered;
@@ -32,14 +97,16 @@ export function initMotion() {
           pin.querySelector<HTMLElement>('.hero-image')!.style.willChange = self.isActive ? 'clip-path' : 'auto';
         },
       } });
+      openingTrigger = timeline.scrollTrigger;
       timeline.to('.hero-content', { y: -65, opacity: 0, duration: .35, ease: 'power1.in' }, 0)
         .to('.hero-bottom', { opacity: 0, y: -15, duration: .25 }, .05)
         .to('.hero-image img', { scale: wide ? 1.10 : 1.04, xPercent: wide ? 19 : 0, yPercent: wide ? -2 : 0, duration: 1, ease: 'none' }, 0)
         .to('.hero-image', { clipPath: () => {
-          if (wide) return 'inset(14% 5% 14% 52%)';
+          if (wide) { finalTopInset = 14; return 'inset(14% 5% 14% 52%)'; }
           const copy = document.querySelector<HTMLElement>('.story-copy')!;
           const top = Math.max(53, (copy.offsetTop + copy.offsetHeight + 24) / pin.offsetHeight * 100);
-          return `inset(${Math.min(top, 73)}% 6% 9% 6%)`;
+          finalTopInset = Math.min(top, 73);
+          return `inset(${finalTopInset}% 6% 9% 6%)`;
         }, duration: .72, ease: 'power2.inOut' }, .18)
         .to('.hero-shade', { opacity: 0, duration: .55 }, .28)
         .to('.aburi-story', { opacity: 1, duration: .2 }, .48)
@@ -55,7 +122,7 @@ export function initMotion() {
       gsap.fromTo(el, { scale: 1.07, yPercent: -2 }, { scale: 1, yPercent: 2, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: .7 } });
     });
     if (document.querySelector('.dessert-editorial-copy')) gsap.from('.dessert-editorial-copy', { y: 60, opacity: 0, duration: 1, ease: 'power2.out', scrollTrigger: { trigger: '.dessert-editorial', start: 'top 75%', toggleActions: 'play none none reverse' } });
-    return () => { if (hero) hero.inert = false; document.querySelector<HTMLElement>('.hero-bottom')?.removeAttribute('inert'); };
+    return () => { if (hero) hero.inert = false; document.querySelector<HTMLElement>('.hero-bottom')?.removeAttribute('inert'); resetHeader(); };
   });
 
   // Actual flowing chapters remain usable with keyboard, reverse scroll, and reduced motion.
