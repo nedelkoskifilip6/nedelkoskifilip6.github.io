@@ -5,44 +5,25 @@ gsap.registerPlugin(ScrollTrigger);
 export function initMotion() {
   ScrollTrigger.config({ ignoreMobileResize: true, limitCallbacks: true });
   const header = document.querySelector<HTMLElement>('.site-header:not(.header-solid)');
-  const wordmark = header?.querySelector<HTMLElement>('.wordmark');
-  const wordmarkContrast = header?.querySelector<HTMLElement>('.wordmark-contrast');
   // This variable is owned by the rendered Hero scene, never by a fixed scroll offset.
   const setHeaderProgress = (progress: number) => {
     if (!header) return;
     const value = gsap.utils.clamp(0, 1, progress);
     header.style.setProperty('--header-progress', value.toFixed(4));
-    // Keep the lettering legible; interpolating light and dark ink over the fading surface
-    // would make both pass through the same middle gray. The surface itself stays continuous.
-    header.style.setProperty('--header-ink', value >= .5 ? '1' : '0');
-    header.classList.toggle('is-scrolled', value >= .5);
-    header.classList.toggle('header-mask-crossing', value > 0 && value < .5);
+    // Let the entire navigation build one readable surface as the mask starts moving.
+    const surface = 1 - Math.pow(1 - value, 4);
+    header.style.setProperty('--header-surface', surface.toFixed(4));
+    header.style.setProperty('--header-ink', surface >= .42 ? '1' : '0');
+    header.classList.toggle('is-scrolled', surface >= .42);
   };
   const resetHeader = () => {
     header?.style.removeProperty('--header-progress');
     header?.style.removeProperty('--header-ink');
-    header?.classList.remove('is-scrolled', 'header-mask-crossing');
-    wordmarkContrast?.style.removeProperty('clip-path');
+    header?.style.removeProperty('--header-surface');
+    header?.classList.remove('is-scrolled');
   };
   const headerHeight = (state: 'open' | 'solid') => header
     ? parseFloat(getComputedStyle(header).getPropertyValue(`--header-${state}-height`)) : 0;
-  const updateWordmarkContrast = (image: HTMLElement) => {
-    if (!wordmark || !wordmarkContrast || !header?.classList.contains('header-mask-crossing')) return;
-    const imageBounds = image.getBoundingClientRect();
-    const wordmarkBounds = wordmark.getBoundingClientRect();
-    const rawInsets = image.style.clipPath.match(/^inset\(([^)]+)\)/)?.[1].trim().split(/\s+/) ?? ['0'];
-    const inset = (index: number, dimension: number) => {
-      const raw = rawInsets[index] ?? rawInsets[index === 3 ? 1 : 0] ?? rawInsets[0];
-      return parseFloat(raw) * (raw.endsWith('%') ? dimension / 100 : 1);
-    };
-    const left = imageBounds.left + inset(3, imageBounds.width) - wordmarkBounds.left;
-    const right = imageBounds.right - inset(1, imageBounds.width) - wordmarkBounds.left;
-    const top = imageBounds.top + inset(0, imageBounds.height) - wordmarkBounds.top;
-    const bottom = imageBounds.bottom - inset(2, imageBounds.height) - wordmarkBounds.top;
-    // The dark visual copy is visible only outside the photograph's actual mask.
-    // An even-odd hole preserves per-letter contrast as either image edge crosses the mark.
-    wordmarkContrast.style.clipPath = `polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,${left}px ${top}px,${left}px ${bottom}px,${right}px ${bottom}px,${right}px ${top}px,${left}px ${top}px,0 0)`;
-  };
   const media = gsap.matchMedia();
   media.add({ desktop: '(min-width: 901px)', landscape: '(min-width: 601px) and (min-aspect-ratio: 23/20)', mobile: '(max-width: 900px)', short: '(max-height: 479px)', reduce: '(prefers-reduced-motion: reduce)' }, context => {
     const { desktop, landscape, short, reduce } = context.conditions!;
@@ -57,8 +38,8 @@ export function initMotion() {
     if (lite) {
       if (heroImage && header) ScrollTrigger.create({
         trigger: heroImage, start: () => `bottom ${headerHeight('open')}px`, end: 'bottom top',
-        onUpdate: self => { setHeaderProgress(self.progress); updateWordmarkContrast(heroImage); },
-        onRefresh: self => { setHeaderProgress(self.progress); updateWordmarkContrast(heroImage); },
+        onUpdate: self => { setHeaderProgress(self.progress); },
+        onRefresh: self => { setHeaderProgress(self.progress); },
       });
       return () => { document.documentElement.classList.remove('motion-lite'); resetHeader(); };
     }
@@ -81,7 +62,6 @@ export function initMotion() {
         // On a short, wide viewport the final 14% mask can be a few pixels above the header edge.
         const clearDistance = Math.min(solidHeaderHeight, bounds.height * finalTopInset / 100);
         setHeaderProgress((bounds.top + clippedTop) / Math.max(1, clearDistance));
-        updateWordmarkContrast(heroImage);
       };
       const timeline = gsap.timeline({ onUpdate: updateRenderedHeader, scrollTrigger: {
         trigger: '.opening-scene', start: 'top top', end: () => `+=${window.innerHeight * (wide ? 1.7 : 1.25)}`, pin,
