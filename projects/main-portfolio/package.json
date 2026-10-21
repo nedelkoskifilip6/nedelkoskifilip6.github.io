@@ -1,0 +1,26 @@
+{
+  "name": "filip-nedelkoski-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1 --port 4330",
+    "check": "astro check",
+    "build": "astro check && node scripts/create-social.mjs && astro build",
+    "preview": "astro preview --host 127.0.0.1 --port 4331",
+    "publish-build": "node scripts/publish-build.mjs",
+    "verify": "node scripts/verify-release.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.13.5",
+    "gsap": "^3.13.0",
+    "@fontsource/dm-sans": "^5.2.0",
+    "@fontsource/dm-mono": "^5.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "@astrojs/check": "^0.9.4",
+    "sharp": "^0.34.0",
+    "axe-core": "^4.11.0"
+  }
+}

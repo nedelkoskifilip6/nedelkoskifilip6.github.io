@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000" role="img" aria-labelledby="title description">
+  <title id="title">Bang &amp; Olufsen — original concept placeholder</title>
+  <desc id="description">An original warm ivory luxury technology website concept with abstract sculptural speaker geometry. Concept placeholder. Coming soon. No completed website is represented.</desc>
+  <defs>
+    <linearGradient id="shell" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#131412"/><stop offset=".2" stop-color="#383934"/><stop offset=".7" stop-color="#20211e"/><stop offset="1" stop-color="#090a09"/></linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#a99e8d"/><stop offset=".16" stop-color="#e3dac8"/><stop offset=".55" stop-color="#b9ae9a"/><stop offset="1" stop-color="#7f776b"/></linearGradient>
+    <linearGradient id="stone" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d9d2c5"/><stop offset="1" stop-color="#e8e2d7"/></linearGradient>
+    <pattern id="weave" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 2H9M0 6H9" stroke="#a29d90" stroke-opacity=".2" stroke-width=".6"/><path d="M2 0V9M6 0V9" stroke="#090a09" stroke-opacity=".7" stroke-width="1.4"/></pattern>
+    <clipPath id="face"><rect x="830" y="206" width="332" height="532" rx="165"/></clipPath>
+  </defs>
+  <rect width="1440" height="1000" fill="#f1eee6"/>
+  <path d="M0 840H1440V1000H0Z" fill="#e9e4da"/>
+  <path d="M0 840H1440" stroke="#d7d0c4"/>
+  <path d="M80 112H1360" stroke="#d4cec1"/>
+  <text x="80" y="69" font-family="Arial,Helvetica,sans-serif" font-size="19" letter-spacing="3.7" fill="#20221f">BANG &amp; OLUFSEN</text>
+  <g font-family="Arial,Helvetica,sans-serif" font-size="12" letter-spacing="1.8" fill="#3f413b">
+    <text x="798" y="67">SOUND</text><text x="914" y="67">DESIGN</text><text x="1036" y="67">HERITAGE</text>
+  </g>
+  <rect x="1184" y="43" width="176" height="42" rx="21" fill="none" stroke="#77796e"/>
+  <text x="1272" y="69" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" letter-spacing="1.3" fill="#35382f">COMING SOON</text>
+  <g fill="#35372f" font-family="Arial,Helvetica,sans-serif">
+    <text x="82" y="199" font-size="11" letter-spacing="3.3">CONCEPT PLACEHOLDER</text>
+    <text x="78" y="337" font-size="102" font-weight="400" letter-spacing="-6">Sound, in</text>
+    <text x="78" y="448" font-size="102" font-weight="400" letter-spacing="-6">its purest</text>
+    <text x="78" y="559" font-size="102" font-weight="400" letter-spacing="-6">form.</text>
+    <text x="83" y="633" font-size="16" fill="#73766a">A study in sound, material and quiet presence.</text>
+  </g>
+  <path d="M83 697H268" stroke="#3e4237"/>
+  <text x="83" y="683" font-family="Arial,Helvetica,sans-serif" font-size="11" letter-spacing="2" fill="#3e4237">DESIGN EXPLORATION</text>
+  <path d="M251 671L265 682L251 693" fill="none" stroke="#3e4237" stroke-width="1.5"/>
+  <ellipse cx="1034" cy="821" rx="256" ry="26" fill="#2b2d27" opacity=".07"/>
+  <path d="M1001 623L1018 798H1038L1039 623Z" fill="#9b9384"/>
+  <path d="M948 802H1108L1128 814H928Z" fill="#a69e8d"/>
+  <path d="M928 814H1128V822H928Z" fill="#877f70"/>
+  <g transform="rotate(14 1000 470)">
+    <rect x="805" y="181" width="379" height="578" rx="189" fill="url(#rim)"/>
+    <rect x="816" y="190" width="358" height="560" rx="178" fill="#0d0f0c"/>
+    <rect x="830" y="206" width="332" height="532" rx="165" fill="url(#shell)"/>
+    <g clip-path="url(#face)"><rect x="830" y="206" width="332" height="532" fill="url(#weave)"/><path d="M850 201L1080 765" stroke="#fff" opacity=".022" stroke-width="125"/></g>
+    <path d="M995 214V728" stroke="#b6aa95" stroke-opacity=".2"/>
+    <circle cx="998" cy="688" r="13" fill="none" stroke="#baa88b" stroke-width=".8"/>
+    <path d="M993 688H1003M998 683V693" stroke="#baa88b" stroke-width=".6"/>
+  </g>
+  <g font-family="Arial,Helvetica,sans-serif" fill="#76786c" font-size="10" letter-spacing="1.6">
+    <text x="1228" y="766">FORM / 01</text><path d="M1203 761H1182" stroke="#929486"/>
+    <text x="82" y="896">ORIGINAL VECTOR STUDY</text><text x="82" y="925" font-size="12" letter-spacing="0">Independent portfolio exploration. No completed project is represented.</text>
+  </g>
+  <text x="1360" y="917" text-anchor="end" fill="#36392f" font-family="Arial,Helvetica,sans-serif" font-size="31" letter-spacing="4">COMING SOON</text>
+  <path d="M80 954H1360" stroke="#cfc8bb"/>
+</svg>

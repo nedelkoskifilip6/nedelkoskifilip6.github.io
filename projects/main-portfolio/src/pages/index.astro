@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+import {projects,contacts} from '../data/projects';
+import sansFont from '@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2?url';
+import monoFont from '@fontsource/dm-mono/files/dm-mono-latin-400-normal.woff2?url';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="dark" />
+    <title>Filip Nedelkoski — Front-End Engineer</title>
+    <meta name="description" content="Selected digital experiences by Filip Nedelkoski. Premium frontend engineering, thoughtful design, and immersive interactions. Enter the work." />
+    <link rel="canonical" href="https://nedelkoskifilip6.github.io/" />
+    <link rel="icon" href="/favicon-portfolio.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/portfolio-media/apple-touch-icon.png" />
+    <link rel="preload" href={sansFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={monoFont} as="font" type="font/woff2" crossorigin />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Filip Nedelkoski — Front-End Engineer" />
+    <meta property="og:description" content="A digital exhibition of design, engineering and motion. Selected independent portfolio concepts." />
+    <meta property="og:url" content="https://nedelkoskifilip6.github.io/" />
+    <meta property="og:image" content="https://nedelkoskifilip6.github.io/social-portfolio.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>
+      document.documentElement.classList.add('has-js','is-loading');
+      setTimeout(() => document.documentElement.classList.remove('is-loading'), 2300);
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#project-index" data-switch-view="index">Skip to project index</a>
+    <header class="site-nav" aria-label="Portfolio navigation">
+      <nav class="nav-pill" aria-label="Main navigation">
+        <a href="#work" class="nav-symbol" aria-label="Filip Nedelkoski, selected work" data-work><svg aria-hidden="true" viewBox="0 0 28 28"><path d="M14 2v24M2 14h24M5.5 5.5l17 17M5.5 22.5l17-17"/></svg></a>
+        <a href="#work" class="nav-work is-current" data-work>Work</a>
+        <button type="button" data-panel="about-panel">About</button>
+        <button type="button" data-panel="contact-panel">Contact</button>
+      </nav>
+      <a class="nav-identity" href="#work" data-work>FILIP NEDELKOSKI<span>FRONT-END ENGINEER</span></a>
+      <div class="nav-right"><button class="contact-pill" type="button" data-panel="contact-panel">Let’s talk <span aria-hidden="true">↗</span></button><a class="globe-link" href={contacts.github} target="_blank" rel="noopener noreferrer" aria-label="Visit Filip’s verified GitHub profile"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><ellipse cx="12" cy="12" rx="3.7" ry="8.5"/><path d="M3.5 12h17M5 7.5h14M5 16.5h14"/></svg></a></div>
+    </header>
+    <main id="main">
+      <h1 class="sr-only">Filip Nedelkoski — Front-End Engineer. An exhibition of selected work.</h1>
+      <section class="exhibition" id="work" aria-label="Three-dimensional project exhibition">
+        <div class="gallery-stage"><div class="scene-camera" id="scene-camera">
+          {projects.map((project,i)=> <div class:list={['project-plane',`plane-${project.id}`]} data-project={project.id} data-status={project.status} data-index={i}>
+            {project.status==='live' ? <a class="project-surface" href={project.url} data-project-link={project.id} aria-label={`Enter ${project.shortName} — ${project.category}`}>
+              <div class="window-bar" aria-hidden="true"><span class="window-dots"><i></i><i></i><i></i></span><span>{new URL(project.url!).pathname}</span><span>↗</span></div>
+              <img class="project-image" src={project.image} srcset={project.srcset} sizes="(max-width:700px) 90vw, (min-width:1600px) 780px, 49vw" width="1600" height="1000" alt={project.alt} loading={i===0?'eager':'lazy'} decoding="async" fetchpriority={i===0?'high':'auto'} draggable="false" />
+              <div class="preview-overlay"><span class="preview-copy"><strong>{project.name}</strong><span>{project.category}</span><small>VIEW PROJECT ↗</small></span><span class="enter-arrow" aria-hidden="true">↗</span></div>
+            </a> : <button type="button" class="project-surface pending-surface" data-focus-project={i} aria-label={`${project.shortName}, coming soon. ${project.note}`}>
+              <div class="window-bar" aria-hidden="true"><span class="window-dots"><i></i><i></i><i></i></span><span>INDEPENDENT DESIGN STUDY</span><span>—</span></div>
+              <img class="project-image" src={project.image} srcset={project.srcset} sizes="(max-width:700px) 90vw, (min-width:1600px) 780px, 49vw" width="1600" height="1000" alt={project.alt} loading={i<3?'eager':'lazy'} decoding="async" draggable="false" />
+              <span class="coming-badge">COMING SOON <span aria-hidden="true">↗</span></span>
+            </button>}
+            <div class="plane-caption" aria-hidden="true"><span>{project.number} / {project.name}</span><span>{project.status==='live'?'WEB EXPERIENCE':'COMING SOON'}</span></div>
+          </div>)}
+        </div></div>
+        <div class="gallery-vignette" aria-hidden="true"></div>
+      </section>
+      <section class="index-layer" id="project-index" aria-labelledby="index-title" inert>
+        <div class="index-heading"><span class="overline">SELECTED WORK / 2026</span><h2 id="index-title">The index<span>(05)</span></h2><p>Thoughtful design.<br /> Considered engineering.</p></div>
+        <div class="index-labels" aria-hidden="true"><span>NO. / PROJECT</span><span>DISCIPLINE</span><span>YEAR</span><span>STATUS</span><span></span></div>
+        <div class="index-list" role="list">{projects.map(project=><div class:list={['index-row',project.status==='live'?'is-live':'is-pending']} role="listitem" data-index-project={project.id}>
+          {project.status==='live'?<a class="index-project-link" data-project-link={project.id} href={project.url}><span class="index-project-name"><span class="index-number">{project.number}</span><span class="index-thumb"><img src={project.image} alt="" width="120" height="80" loading="lazy" /></span><span>{project.name}</span></span><span class="index-category">{project.category}</span><span class="index-year">{project.year}</span><span class="index-status"><i></i>Live website</span><span class="index-arrow" aria-hidden="true">↗</span></a>:<div class="index-project-link"><span class="index-project-name"><span class="index-number">{project.number}</span><span class="index-thumb"><img src={project.image} alt="" width="120" height="80" loading="lazy" /></span><span>{project.name}</span></span><span class="index-category">{project.category}</span><span class="index-year">{project.year}</span><span class="index-status">Coming soon<span class="status-detail">{project.note}</span></span><span class="index-arrow" aria-hidden="true">—</span></div>}
+        </div>)}</div>
+        <p class="index-footnote">Independent portfolio concepts. No affiliation with the featured brands.</p>
+      </section>
+    </main>
+    <aside class="project-position" aria-label="Select a project in the exhibition">{projects.map((project,i)=><button type="button" data-jump-project={i} aria-label={`Focus ${project.shortName}`} aria-current={i===0?'true':undefined}><span>{project.number}</span><i></i></button>)}</aside>
+    <footer class="exhibition-hud">
+      <div class="hud-left"><span class="overline">INDEPENDENT BY DESIGN.</span><p>Front-end engineering<br /><span>with a different perspective.</span></p><span class="hud-year">© 2026 / FN</span></div>
+      <div class="current-project"><div><span class="current-number">01</span><span class="current-divider"></span><span class="current-title">REVOLUT</span><span class="current-status">LIVE WEBSITE</span></div><p class="current-category">Modern Fintech / Futuristic Minimalism</p><div class="progress-track" aria-hidden="true"><span></span></div></div>
+      <div class="hud-right"><div class="view-switch" role="group" aria-label="Project display mode"><button type="button" data-view="overview" aria-pressed="true"><svg aria-hidden="true" viewBox="0 0 16 16"><path d="m2 5 6-3 6 3-6 3-6-3Zm0 3 6 3 6-3M2 11l6 3 6-3"/></svg>Overview</button><span aria-hidden="true"></span><button type="button" data-view="index" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M2 4h12M2 8h12M2 12h12"/></svg>Index</button></div><span class="scroll-instruction">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></span></div>
+    </footer>
+    <dialog class="info-panel" id="about-panel" aria-labelledby="about-title"><div class="panel-top"><span class="overline">ABOUT / FILIP NEDELKOSKI</span><button class="panel-close" type="button" aria-label="Close About">Close <span aria-hidden="true">✕</span></button></div><div class="about-body"><span class="overline">DESIGN MEETS ENGINEERING.</span><h2 id="about-title">FRONT-END<br /><span>ENGINEER.</span></h2><div class="about-details"><h3>FILIP<br /> NEDELKOSKI</h3><div><p class="about-intro">I create premium digital experiences through modern frontend development, thoughtful design, and immersive interactions.</p><ul class="skill-list"><li>Premium Website Development</li><li>Creative Front-End Engineering</li><li>Interactive Web Experiences</li><li>Responsive Design</li><li>Motion & Animation</li></ul></div></div></div><div class="panel-footer"><span>THOUGHTFULLY DESIGNED. PRECISELY BUILT.</span><button type="button" data-panel="contact-panel">Let’s create something <span aria-hidden="true">↗</span></button></div></dialog>
+    <dialog class="info-panel contact-panel" id="contact-panel" aria-labelledby="contact-title"><div class="panel-top"><span class="overline">CONTACT / START A CONVERSATION</span><button class="panel-close" type="button" aria-label="Close Contact">Close <span aria-hidden="true">✕</span></button></div><div class="contact-body"><span class="overline">GOOD WORK STARTS WITH A CONVERSATION.</span><h2 id="contact-title">LET’S CREATE<br />SOMETHING<br /><span>EXCEPTIONAL.</span></h2><div class="contact-links">
+      {contacts.email?<a href={`mailto:${contacts.email}`}><span>Email</span><span>{contacts.email}</span><span aria-hidden="true">↗</span></a>:<div class="unavailable-contact"><span>Email</span><span>Details to follow</span><span aria-hidden="true">—</span></div>}
+      {contacts.linkedin?<a href={contacts.linkedin} target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><span>Connect professionally</span><span aria-hidden="true">↗</span></a>:<div class="unavailable-contact"><span>LinkedIn</span><span>Details to follow</span><span aria-hidden="true">—</span></div>}
+      <a href={contacts.github} target="_blank" rel="noopener noreferrer"><span>GitHub</span><span>@nedelkoskifilip6</span><span aria-hidden="true">↗</span></a>
+    </div></div><div class="panel-footer"><span>FILIP NEDELKOSKI / FRONT-END ENGINEER</span><span>© 2026</span></div></dialog>
+    <p class="sr-only" id="project-announcement" aria-live="polite" aria-atomic="true"></p>
+    <div class="opening-portal" id="opening-portal" aria-hidden="true"></div>
+    <noscript><div class="noscript-note">Filip Nedelkoski — Front-End Engineer. <a data-project-link="revolut" href="https://nedelkoskifilip6.github.io/revolut-finance/">View Revolut ↗</a> · <a data-project-link="miku" href="https://nedelkoskifilip6.github.io/miku-vancouver/">View Miku Vancouver ↗</a> · <a href={contacts.github}>Connect on GitHub ↗</a></div></noscript>
+    <script src="../scripts/gallery.ts"></script>
+  </body>
+</html>
