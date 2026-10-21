@@ -9,7 +9,7 @@ async function scrollFrames(page:Page, destination:number) {
   return page.evaluate(async target=>{
     const header=document.querySelector<HTMLElement>('.site-header')!;
     const image=document.querySelector<HTMLElement>('.hero-image')!;
-    const samples:{alpha:number;photoTop:number;photoBottom:number;headerBottom:number;scroll:number}[]=[];
+    const samples:{alpha:number;photoTop:number;photoBottom:number;headerBottom:number;scroll:number;logoColors:string[]}[]=[];
     const start=performance.now(), origin=scrollY, end=start+2400;
     // A controlled gesture samples the crossing independently of browser fling speed.
     await new Promise<void>(resolve=>{
@@ -20,7 +20,7 @@ async function scrollFrames(page:Page, destination:number) {
         const match=getComputedStyle(image).clipPath.match(/inset\(\s*([\d.]+)(%|px)?/);
         const inset=match?Number(match[1])*(match[2]==='%'?r.height/100:1):0;
         const channels=getComputedStyle(header).backgroundColor.match(/[\d.]+/g)!.map(Number);
-        samples.push({alpha:channels.length===4?channels[3]:1,photoTop:r.top+inset,photoBottom:r.bottom,headerBottom:header.getBoundingClientRect().bottom,scroll:scrollY});
+        samples.push({alpha:channels.length===4?channels[3]:1,photoTop:r.top+inset,photoBottom:r.bottom,headerBottom:header.getBoundingClientRect().bottom,scroll:scrollY,logoColors:[...new Set([...header.querySelectorAll<HTMLElement>('.wordmark-art, .wordmark-art *')].filter(e=>getComputedStyle(e).visibility!=='hidden').map(e=>getComputedStyle(e).color))]});
         if(performance.now()<end)requestAnimationFrame(frame);else resolve();
       };requestAnimationFrame(frame);
     });return samples;
@@ -35,6 +35,7 @@ for(const [width,height] of [[1440,900],[390,844],[800,600]]) {
     const forward=await scrollFrames(page,height*1.4);
     expect(forward.filter(s=>s.alpha>.05&&s.alpha<.9).length).toBeGreaterThan(3);
     for(const sample of forward) {
+      expect(sample.logoColors, 'All visible parts of the logo share one color').toHaveLength(1);
       if(sample.photoTop<.5&&sample.photoBottom>sample.headerBottom&&sample.scroll<height*.8)expect(sample.alpha).toBeLessThan(.03);
       if(sample.photoTop>=sample.headerBottom+2)expect(sample.alpha).toBeGreaterThan(.94);
     }
@@ -42,6 +43,7 @@ for(const [width,height] of [[1440,900],[390,844],[800,600]]) {
     const reverse=await scrollFrames(page,0);
     expect(reverse.filter(s=>s.alpha>.05&&s.alpha<.9).length).toBeGreaterThan(3);
     expect(reverse.at(-1)!.alpha).toBeLessThan(.02);
+    for(const sample of reverse)expect(sample.logoColors).toHaveLength(1);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBeLessThanOrEqual(1);
   });
 }
