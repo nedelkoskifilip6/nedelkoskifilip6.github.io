@@ -28,12 +28,17 @@
     },
     {
       "file": "six-senses-source.jpg",
-      "status": "actual-local-screenshot-unpublished",
-      "source": "Existing local Six Senses Ibiza portfolio concept, outputs/desktop-hero.jpg (captured 21 October 2026).",
-      "depiction": "Existing local desktop hero screenshot of the independent Six Senses Ibiza portfolio concept.",
-      "copyMethod": "Byte-for-byte copy; original file not modified.",
-      "publicationStatus": "Unpublished local project screenshot, as identified in the task context; no live deployment claim is made.",
-      "affiliation": "Independent portfolio concept; not affiliated with Six Senses."
+      "status": "actual-published-project-screenshot",
+      "source": "Six Senses Ibiza portfolio project, work/supplied-hero-desktop.png (verified initial desktop Hero viewport, captured 22 October 2026).",
+      "depiction": "Actual 1440×900 desktop Hero screenshot of the independent Six Senses Ibiza portfolio concept, featuring the owner-supplied Hero photograph.",
+      "copyMethod": "Verified PNG screenshot re-encoded as JPEG; 800px and 1440px WebP previews resized from the original PNG. No compositing or simulated website content.",
+      "publicationStatus": "Project URL verified to return HTTP 200 on 22 October 2026.",
+      "affiliation": "Independent portfolio concept; not affiliated with Six Senses.",
+      "url": "https://nedelkoskifilip6.github.io/six-senses-ibiza/",
+      "dimensions": {
+        "width": 1440,
+        "height": 900
+      }
     }
   ],
   "liveScreenshots": [
@@ -58,6 +63,18 @@
         "miku-1600.webp",
         "miku-2400.webp"
       ]
+    },
+    {
+      "project": "SIX SENSES IBIZA",
+      "url": "https://nedelkoskifilip6.github.io/six-senses-ibiza/",
+      "captured": "2026-10-22",
+      "method": "Actual verified initial Hero browser viewport screenshot; no browser toolbar or composite website content.",
+      "files": [
+        "six-senses-source.jpg",
+        "six-senses-800.webp",
+        "six-senses-1440.webp"
+      ]
     }
-  ]
+  ],
+  "updatedAt": "2026-10-22"
 }
