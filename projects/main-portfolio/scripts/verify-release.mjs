@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repositoryRoot = path.resolve(projectRoot, '../..');
-const baseline = 'e1cc5fb';
+const baseline = 'd2f9122c81e0ec761af848315dea1c972634e4a5';
 const siteOrigin = 'https://nedelkoskifilip6.github.io';
 const useDist = process.argv.includes('--dist');
 const artifactRoot = useDist ? path.join(projectRoot, 'dist') : repositoryRoot;
@@ -19,7 +19,7 @@ const protectedPaths = [
 const expectedProjects = new Map([
   ['revolut', { name: 'REVOLUT', status: 'live', href: `${siteOrigin}/revolut-finance/` }],
   ['miku', { name: 'MIKU VANCOUVER', status: 'live', href: `${siteOrigin}/miku-vancouver/` }],
-  ['six-senses', { name: 'SIX SENSES IBIZA', status: 'coming-soon' }],
+  ['six-senses', { name: 'SIX SENSES IBIZA', status: 'live', href: `${siteOrigin}/six-senses-ibiza/` }],
   ['bang-olufsen', { name: 'BANG & OLUFSEN', status: 'coming-soon' }],
   ['sothebys', { name: 'SOTHEBY’S INTERNATIONAL REALTY', status: 'coming-soon' }],
 ]);
@@ -254,7 +254,6 @@ function verifyProjects(tags) {
         }
       }
       if (
-        tag.attrs.href.includes('/six-senses-ibiza/') ||
         tag.attrs.href.includes('/bang-olufsen/') ||
         tag.attrs.href.includes('/sothebys/')
       )
@@ -335,7 +334,7 @@ async function verify() {
           );
       const isAsset =
         (assetLink || ['image', 'use'].includes(tag.name)) && !tag.attrs.href.startsWith('#');
-      // The two verified live project destinations remain outside the portfolio artifact.
+      // The three verified live project destinations remain outside the portfolio artifact.
       if (!tag.attrs['data-project-link'])
         await checkReference(tag.attrs.href, 'index.html', { htmlAsset: isAsset });
     }
@@ -349,7 +348,7 @@ async function verify() {
   }
   if (errors.length) throw new Error(`\n${errors.map((error) => `- ${error}`).join('\n')}`);
   console.log(
-    `Portfolio release verified (${useDist ? 'dist' : 'published root'}): 5 project statuses, 2 verified live destinations, ${referenceCount} local references, ${checkedFiles.size} stylesheets, ${changedCount} scoped changed files. Legacy tracked projects match ${baseline}.`,
+    `Portfolio release verified (${useDist ? 'dist' : 'published root'}): 5 project statuses, 3 verified live destinations, ${referenceCount} local references, ${checkedFiles.size} stylesheets, ${changedCount} scoped changed files. Legacy tracked projects match ${baseline}.`,
   );
 }
 
