@@ -28,17 +28,18 @@
     },
     {
       "file": "six-senses-source.jpg",
-      "status": "actual-published-project-screenshot",
-      "source": "Six Senses Ibiza portfolio project, work/supplied-hero-desktop.png (verified initial desktop Hero viewport, captured 22 October 2026).",
-      "depiction": "Actual 1440×900 desktop Hero screenshot of the independent Six Senses Ibiza portfolio concept, featuring the owner-supplied Hero photograph.",
-      "copyMethod": "Verified PNG screenshot re-encoded as JPEG; 800px and 1440px WebP previews resized from the original PNG. No compositing or simulated website content.",
-      "publicationStatus": "Project URL verified to return HTTP 200 on 22 October 2026.",
+      "status": "actual-project-screenshot",
+      "source": "Six Senses Ibiza portfolio project, work/hero-ai-bright-desktop-final.png (verified initial desktop Hero viewport, captured 22 October 2026).",
+      "depiction": "Actual 1440×900 desktop Hero screenshot of the independent Six Senses Ibiza portfolio concept, featuring a brighter AI-enhanced version of owner-supplied photography and two title lines aligned to the same left edge.",
+      "copyMethod": "Verified PNG browser screenshot re-encoded as JPEG; 800px and 1440px WebP previews resized from the original PNG. No compositing or simulated website content.",
+      "publicationStatus": "Live independent portfolio project. Screenshot captured from the verified production preview.",
       "affiliation": "Independent portfolio concept; not affiliated with Six Senses.",
       "url": "https://nedelkoskifilip6.github.io/six-senses-ibiza/",
       "dimensions": {
         "width": 1440,
         "height": 900
-      }
+      },
+      "imageTreatment": "The Hero background is AI-enhanced supplied photography, not unedited property photography."
     }
   ],
   "liveScreenshots": [
@@ -68,7 +69,7 @@
       "project": "SIX SENSES IBIZA",
       "url": "https://nedelkoskifilip6.github.io/six-senses-ibiza/",
       "captured": "2026-10-22",
-      "method": "Actual verified initial Hero browser viewport screenshot; no browser toolbar or composite website content.",
+      "method": "Actual verified 1440×900 initial Hero browser viewport screenshot of AI-enhanced supplied photography; both title lines share the same left edge. No browser toolbar or composite website content. Refreshed preview awaits public deployment verification.",
       "files": [
         "six-senses-source.jpg",
         "six-senses-800.webp",
