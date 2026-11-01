@@ -14,8 +14,18 @@ import monoFont from '@fontsource/dm-mono/files/dm-mono-latin-400-normal.woff2?u
     <title>Filip Nedelkoski — Front-End Engineer</title>
     <meta name="description" content="Selected digital experiences by Filip Nedelkoski. Premium frontend engineering, thoughtful design, and immersive interactions. Enter the work." />
     <link rel="canonical" href="https://nedelkoskifilip6.github.io/" />
-    <link rel="icon" href="/favicon-portfolio.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/portfolio-media/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon-tesla-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-tesla-64.png" type="image/png" sizes="64x64" />
+    <link rel="icon" href="/favicon-tesla-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/favicon-tesla-180.png" sizes="180x180" />
+    <link
+      rel="preload"
+      as="image"
+      href="/portfolio-media/revolut-1600.webp"
+      imagesrcset="/portfolio-media/revolut-800.webp 800w, /portfolio-media/revolut-1600.webp 1600w, /portfolio-media/revolut-2400.webp 2400w"
+      imagesizes="(max-width:700px) 90vw, (min-width:1600px) 780px, 49vw"
+      fetchpriority="high"
+    />
     <link rel="preload" href={sansFont} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={monoFont} as="font" type="font/woff2" crossorigin />
     <meta property="og:type" content="website" />
@@ -26,7 +36,7 @@ import monoFont from '@fontsource/dm-mono/files/dm-mono-latin-400-normal.woff2?u
     <meta name="twitter:card" content="summary_large_image" />
     <script is:inline>
       document.documentElement.classList.add('has-js','is-loading');
-      setTimeout(() => document.documentElement.classList.remove('is-loading'), 2300);
+      setTimeout(() => document.documentElement.classList.remove('is-loading'), 900);
     </script>
   </head>
   <body>

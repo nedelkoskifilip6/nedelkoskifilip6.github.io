@@ -11,6 +11,10 @@ const allowed = new Map([
   ['portfolio-assets', 'directory'],
   ['portfolio-media', 'directory'],
   ['favicon-portfolio.svg', 'file'],
+  ['favicon-tesla-32.png', 'file'],
+  ['favicon-tesla-64.png', 'file'],
+  ['favicon-tesla-180.png', 'file'],
+  ['favicon-tesla-192.png', 'file'],
   ['social-portfolio.jpg', 'file'],
 ]);
 

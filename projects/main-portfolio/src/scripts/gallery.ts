@@ -532,13 +532,13 @@ if (!reduced) {
     .fromTo(
       [nav, hud, rail],
       { opacity: 0 },
-      { opacity: 1, duration: 0.8, clearProps: 'opacity' },
+      { opacity: 1, duration: 0.55, clearProps: 'opacity' },
       0.1,
     )
     .fromTo(
       surfaces,
       { opacity: 0, scale: 0.86, y: 55 },
-      { opacity: 1, scale: 1, y: 0, duration: 1.2, stagger: 0.08, clearProps: 'transform,opacity' },
+      { opacity: 1, scale: 1, y: 0, duration: 0.72, stagger: 0.04, clearProps: 'transform,opacity' },
       0.12,
     );
 }
