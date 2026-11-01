@@ -20,9 +20,9 @@
     {
       "file": "tesla-motors-preview.jpg",
       "status": "project-launch-preview",
-      "source": "tesla-motors/images/social-preview-linkedin.jpg",
-      "depiction": "Tesla Model 3 Performance driving through a city street; used as the Tesla Motors project preview.",
-      "copyMethod": "Copied the existing 1200×630 JPEG project preview without altering its pixels.",
+      "source": "tesla-motors/Cybertruck_95.jpg",
+      "depiction": "The same Tesla Cybertruck twilight Hero image used by the Tesla Motors landing page; resized for the Tesla Motors project preview.",
+      "copyMethod": "Resized the 4000×2667 Hero JPEG to a 1600×1067 preview and recompressed as JPEG at quality 85.",
       "projectUrl": "https://nedelkoskifilip6.github.io/tesla-motors/",
       "affiliation": "Independent portfolio concept; not affiliated with Tesla, Inc."
     }

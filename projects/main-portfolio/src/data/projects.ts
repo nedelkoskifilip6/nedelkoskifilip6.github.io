@@ -73,7 +73,7 @@ export const projects: Project[] = [
     note: 'Live website',
     url: 'https://nedelkoskifilip6.github.io/tesla-motors/',
     image: `${media}tesla-motors-preview.jpg`,
-    alt: 'Red Tesla Model 3 Performance driving through a city street',
+    alt: 'Tesla Cybertruck in a misty blue twilight landscape',
     tone: 'red',
   },
 ];
