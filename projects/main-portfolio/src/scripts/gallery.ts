@@ -395,12 +395,16 @@ mm.add(
         trigger: exhibition,
         pin: true,
         start: 'top top',
-        end: () => `+=${innerHeight * (innerWidth <= 700 ? 4.2 : 4.5)}`,
+        end: () =>
+          `+=${innerHeight * (innerWidth <= 700 ? projects.length - 0.8 : projects.length - 0.5)}`,
         scrub: 0.55,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) =>
-          updateCurrent(Math.min(4, Math.round(self.progress * 4)), self.progress),
+          updateCurrent(
+            Math.min(projects.length - 1, Math.round(self.progress * (projects.length - 1))),
+            self.progress,
+          ),
       },
     });
     for (let step = 1; step < projects.length; step++) {

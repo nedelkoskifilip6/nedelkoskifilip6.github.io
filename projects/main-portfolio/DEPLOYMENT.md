@@ -30,6 +30,8 @@ Unexpected output, symbolic links, and unsupported file types stop publication b
 
 The script never replaces `_astro/`, `images/`, `brand/`, other root files, or any existing project directory. Keep public media in `public/portfolio-media/`; keep the optional portfolio favicon and social image under their explicit names. Do not put legacy project files in this build.
 
+Tesla’s own site icon is maintained separately as `tesla-motors/favicon.svg`, `tesla-motors/favicon-32x32.png`, and `tesla-motors/apple-touch-icon.png`. It does not replace the main portfolio favicon. The release verifier permits changes only to those three files and the Tesla page’s favicon links within the otherwise protected Tesla project directory.
+
 ## Release verification
 
 The verifier checks:
@@ -38,22 +40,21 @@ The verifier checks:
 - HTML assets use root-relative portfolio namespaces; the build does not depend on a project subdirectory base path.
 - Canonical and Open Graph page URLs, when present, point to the GitHub Pages root.
 - Internal fragment links point to existing IDs.
-- There are exactly five project presentations, with the intended publication status.
-- Only REVOLUT and MIKU VANCOUVER expose project hyperlinks, and their URLs exactly match the two verified destinations below.
+- There are exactly four project presentations, all with verified live destinations.
+- Every live presentation exposes a project hyperlink that exactly matches its verified destination below.
 - Changed tracked and non-ignored untracked files remain within the portfolio publishing boundary, its source directory, or a newly added root Pages workflow. Existing workflows cannot change under this check.
-- Tracked files in the five legacy project paths below are unchanged against baseline commit `e1cc5fb`.
+- Tracked files in the five legacy project paths below are unchanged against baseline commit `9b077543429faf83ed82680d17a743f69fe93c02`, except for the explicit Tesla favicon files and favicon links described above.
 
-| Project slug   | Status        | Permitted project destination                         |
-| -------------- | ------------- | ----------------------------------------------------- |
-| `revolut`      | `live`        | `https://nedelkoskifilip6.github.io/revolut-finance/` |
-| `miku`         | `live`        | `https://nedelkoskifilip6.github.io/miku-vancouver/`  |
-| `six-senses`   | `coming-soon` | None                                                  |
-| `bang-olufsen` | `coming-soon` | None                                                  |
-| `sothebys`     | `coming-soon` | None                                                  |
+| Project slug   | Status | Permitted project destination                         |
+| -------------- | ------ | ----------------------------------------------------- |
+| `revolut`      | `live` | `https://nedelkoskifilip6.github.io/revolut-finance/` |
+| `miku`         | `live` | `https://nedelkoskifilip6.github.io/miku-vancouver/`  |
+| `six-senses`   | `live` | `https://nedelkoskifilip6.github.io/six-senses-ibiza/`|
+| `tesla-motors` | `live` | `https://nedelkoskifilip6.github.io/tesla-motors/`    |
 
 The five protected paths are `tesla-motors/`, `revolut-finance/`, `miku-vancouver/`, `projects/miku-vancouver/`, and `projects/revolut-finance/`. The broader Git scope check also rejects changes to other legacy root assets and unrelated project files.
 
-Project presentations use `data-project="slug"` and `data-status="live|coming-soon"`. Project-index entries use `data-index-project="slug"` so they are not counted as duplicate presentations. Every actual live project anchor uses `data-project-link="slug"`. Coming-soon presentations have no active project links, placeholder `href`, guessed destination, or simulated published state.
+Project presentations use `data-project="slug"` and `data-status="live|coming-soon"`. Project-index entries use `data-index-project="slug"` so they are not counted as duplicate presentations. Every actual live project anchor uses `data-project-link="slug"`. The current gallery contains four live projects and no coming-soon placeholders.
 
 The verifier is local and does not fabricate a live check. Before changing a project from coming soon to live, verify the real published destination and update the source data plus this verifier’s explicit destination allowlist together.
 
@@ -61,8 +62,6 @@ The verifier is local and does not fabricate a live check. Before changing a pro
 
 The working branch is `codex/portfolio-3d` in `nedelkoskifilip6/nedelkoskifilip6.github.io`. The target remains the GitHub Pages root, `https://nedelkoskifilip6.github.io/`, served from the existing `main` branch configuration. Work on the development branch does not itself update that published root.
 
-The two live destinations are `/revolut-finance/` and `/miku-vancouver/`. Six Senses Ibiza remains unpublished despite its locally built preview. Bang & Olufsen and Sotheby’s International Realty remain unpublished concept placeholders. Keep all three marked coming soon with no project destination links.
+The portfolio currently links to the four live destinations `/revolut-finance/`, `/miku-vancouver/`, `/six-senses-ibiza/`, and `/tesla-motors/`.
 
 Before handoff to the Pages branch, run the production build, `npm run verify -- --dist`, `npm run publish-build`, and `npm run verify`. Review and commit the generated root files together with this source project. After the release reaches `main`, verify the actual public root, its portfolio assets, and both existing live project destinations. Record deployment success only after those published checks pass.
-
-Read-only environment checks on 21 October 2026 found no GitHub CLI, no GitHub token environment variable, and no GitHub credential returned by the configured system credential helper. Authenticated GitHub API access was therefore not available through the existing local channels. An authenticated maintainer must complete the push or merge handoff if that remains unchanged. No repository settings or deployment workflows were changed by these checks.

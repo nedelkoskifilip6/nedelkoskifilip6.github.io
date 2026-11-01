@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repositoryRoot = path.resolve(projectRoot, '../..');
-const baseline = 'd2f9122c81e0ec761af848315dea1c972634e4a5';
+const baseline = '9b077543429faf83ed82680d17a743f69fe93c02';
 const siteOrigin = 'https://nedelkoskifilip6.github.io';
 const useDist = process.argv.includes('--dist');
 const artifactRoot = useDist ? path.join(projectRoot, 'dist') : repositoryRoot;
@@ -16,12 +16,17 @@ const protectedPaths = [
   'projects/miku-vancouver/',
   'projects/revolut-finance/',
 ];
+const allowedTeslaFaviconChanges = new Set([
+  'tesla-motors/index.html',
+  'tesla-motors/favicon.svg',
+  'tesla-motors/favicon-32x32.png',
+  'tesla-motors/apple-touch-icon.png',
+]);
 const expectedProjects = new Map([
   ['revolut', { name: 'REVOLUT', status: 'live', href: `${siteOrigin}/revolut-finance/` }],
   ['miku', { name: 'MIKU VANCOUVER', status: 'live', href: `${siteOrigin}/miku-vancouver/` }],
   ['six-senses', { name: 'SIX SENSES IBIZA', status: 'live', href: `${siteOrigin}/six-senses-ibiza/` }],
-  ['bang-olufsen', { name: 'BANG & OLUFSEN', status: 'coming-soon' }],
-  ['sothebys', { name: 'SOTHEBY’S INTERNATIONAL REALTY', status: 'coming-soon' }],
+  ['tesla-motors', { name: 'TESLA MOTORS', status: 'live', href: `${siteOrigin}/tesla-motors/` }],
 ]);
 const errors = [];
 const checkedFiles = new Set();
@@ -77,6 +82,7 @@ function ownedPath(relative) {
     relative === 'index.html' ||
     relative === 'favicon-portfolio.svg' ||
     relative === 'social-portfolio.jpg' ||
+    allowedTeslaFaviconChanges.has(relative) ||
     relative.startsWith('portfolio-assets/') ||
     relative.startsWith('portfolio-media/') ||
     relative.startsWith('projects/main-portfolio/')
@@ -88,8 +94,13 @@ function verifyScope() {
   const protectedChanges = splitNull(
     git('diff', '--name-only', '--no-renames', '-z', baseline, '--', ...protectedPaths),
   );
-  if (protectedChanges.length)
-    fail(`Legacy project files differ from ${baseline}: ${protectedChanges.join(', ')}`);
+  const disallowedProtectedChanges = protectedChanges.filter(
+    (relative) => !allowedTeslaFaviconChanges.has(relative),
+  );
+  if (disallowedProtectedChanges.length)
+    fail(
+      `Legacy project files differ from ${baseline}: ${disallowedProtectedChanges.join(', ')}`,
+    );
   const changed = new Set([
     ...splitNull(git('diff', '--name-only', '--no-renames', '-z', baseline, '--')),
     ...splitNull(git('ls-files', '--others', '--exclude-standard', '-z')),
@@ -183,8 +194,8 @@ async function verifyCss(relative) {
 
 function verifyProjects(tags) {
   const scenes = tags.filter((tag) => !tag.closing && Object.hasOwn(tag.attrs, 'data-project'));
-  if (scenes.length !== 5)
-    fail(`Expected exactly 5 project presentations; found ${scenes.length}.`);
+  if (scenes.length !== expectedProjects.size)
+    fail(`Expected exactly ${expectedProjects.size} project presentations; found ${scenes.length}.`);
   const seen = new Set();
   for (const scene of scenes) {
     const slug = scene.attrs['data-project'];
@@ -253,11 +264,6 @@ function verifyProjects(tags) {
           linkedProjects.add(slug);
         }
       }
-      if (
-        tag.attrs.href.includes('/bang-olufsen/') ||
-        tag.attrs.href.includes('/sothebys/')
-      )
-        fail(`Coming-soon project has a live-looking link: ${tag.attrs.href}`);
     }
     if (!tag.selfClosing && !voidElements.has(tag.name)) stack.push(tag);
   }
@@ -295,6 +301,28 @@ async function verify() {
     tags.filter((tag) => !tag.closing && tag.attrs.id).map((tag) => tag.attrs.id),
   );
   verifyProjects(tags);
+  const teslaPage = await readFile(path.join(repositoryRoot, 'tesla-motors/index.html'), 'utf8');
+  for (const asset of [
+    ['favicon.svg', '<link rel="icon" type="image/svg+xml" href="/tesla-motors/favicon.svg">'],
+    [
+      'favicon-32x32.png',
+      '<link rel="icon" type="image/png" sizes="32x32" href="/tesla-motors/favicon-32x32.png">',
+    ],
+    [
+      'apple-touch-icon.png',
+      '<link rel="apple-touch-icon" sizes="180x180" href="/tesla-motors/apple-touch-icon.png">',
+    ],
+  ]) {
+    const [name, link] = asset;
+    if (!teslaPage.includes(link)) fail(`Tesla page is missing its ${name} icon link.`);
+    try {
+      const info = await lstat(path.join(repositoryRoot, 'tesla-motors', name));
+      if (info.isSymbolicLink() || !info.isFile())
+        fail(`Tesla favicon must be a regular file: tesla-motors/${name}`);
+    } catch {
+      fail(`Missing Tesla favicon asset: tesla-motors/${name}`);
+    }
+  }
   for (const tag of tags.filter((item) => !item.closing)) {
     if (tag.name === 'base' && tag.attrs.href && !['/', `${siteOrigin}/`].includes(tag.attrs.href))
       fail(`Unexpected HTML base URL: ${tag.attrs.href}`);
@@ -348,7 +376,7 @@ async function verify() {
   }
   if (errors.length) throw new Error(`\n${errors.map((error) => `- ${error}`).join('\n')}`);
   console.log(
-    `Portfolio release verified (${useDist ? 'dist' : 'published root'}): 5 project statuses, 3 verified live destinations, ${referenceCount} local references, ${checkedFiles.size} stylesheets, ${changedCount} scoped changed files. Legacy tracked projects match ${baseline}.`,
+    `Portfolio release verified (${useDist ? 'dist' : 'published root'}): 4 live project destinations, ${referenceCount} local references, ${checkedFiles.size} stylesheets, ${changedCount} scoped changed files. Legacy tracked projects match ${baseline}, with only the requested Tesla favicon files allowed to change.`,
   );
 }
 

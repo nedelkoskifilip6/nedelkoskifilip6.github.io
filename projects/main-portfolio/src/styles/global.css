@@ -393,12 +393,8 @@ svg {
   transform: translate(-50%, -50%) translate3d(-470px, -300px, -600px) rotateX(12deg)
     rotateY(-18deg) rotateZ(-12deg);
 }
-.plane-bang-olufsen {
+.plane-tesla-motors {
   transform: translate(-50%, -50%) translate3d(650px, -280px, -1000px) rotateX(12deg)
-    rotateY(-18deg) rotateZ(-12deg);
-}
-.plane-sothebys {
-  transform: translate(-50%, -50%) translate3d(-550px, 420px, -1300px) rotateX(12deg)
     rotateY(-18deg) rotateZ(-12deg);
 }
 .gallery-vignette {
@@ -1817,12 +1813,8 @@ html:not(.has-js) .contact-pill {
     transform: translate(-50%, -50%) translate3d(-100px, -250px, -520px) rotateX(10deg)
       rotateY(-12deg) rotateZ(-10deg);
   }
-  .plane-bang-olufsen {
+  .plane-tesla-motors {
     transform: translate(-50%, -50%) translate3d(185px, -325px, -900px) rotateX(10deg)
-      rotateY(-12deg) rotateZ(-10deg);
-  }
-  .plane-sothebys {
-    transform: translate(-50%, -50%) translate3d(-170px, 410px, -1150px) rotateX(10deg)
       rotateY(-12deg) rotateZ(-10deg);
   }
 }

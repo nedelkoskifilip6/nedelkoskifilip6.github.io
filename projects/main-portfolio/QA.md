@@ -1,11 +1,11 @@
 # Portfolio verification
 
-## Browser checks — 21 October 2026
+## Browser checks — 21 October 2026 (earlier five-project version)
 
 Reviewed the local application in native Safari at a 1324 × 688 CSS pixel viewport. Also reviewed the actual application in development-only iframe viewports at 390 × 844 and 320 × 740. These are browser viewport checks, not physical iPhone tests.
 
 - The five previews form a diagonal CSS 3D scene. Scroll position drives the GSAP timeline; scrolling backward returns earlier projects. Project position controls correctly focus later projects.
-- Overview and Index switch correctly; the hidden mode becomes inert. The index includes five accurate completion states.
+- Overview and Index switch correctly; the hidden mode becomes inert. The index includes five project completion states.
 - About and Contact open native modal dialogs. Escape closes them and returns focus to the opener. The About-to-Contact action works.
 - Both verified live projects open in the same tab after the expansion. The actual Revolut and Miku pages were reached and their interactive content was present.
 - A development-only hold at the end of the opening timeline measured the selected preview at left 0, top 0, width 1324, height 688, with X/Y/Z rotation all zero. Escape canceled the held transition and returned to the gallery.
@@ -16,7 +16,7 @@ Reviewed the local application in native Safari at a 1324 × 688 CSS pixel viewp
 
 ## Content and release boundary
 
-The two live project images are actual Safari screenshots. Six Senses uses a screenshot of its existing unpublished local concept. The two remaining images are original SVG concept placeholders with visible Coming Soon labels. Media provenance and font licenses accompany the assets.
+The Revolut and Miku previews are actual Safari screenshots. Six Senses uses a screenshot of its existing site. The current release has four live project links and no coming-soon cards. Tesla Motors uses the project’s existing launch preview image; this addition has not been browser-reviewed here. Media provenance and font licenses accompany the assets.
 
 Only the public GitHub profile could be verified. Email and LinkedIn remain unavailable until the owner supplies them. The contact panel labels this honestly and does not invent destinations.
 

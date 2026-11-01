@@ -61,7 +61,7 @@ import monoFont from '@fontsource/dm-mono/files/dm-mono-latin-400-normal.woff2?u
         <div class="gallery-vignette" aria-hidden="true"></div>
       </section>
       <section class="index-layer" id="project-index" aria-labelledby="index-title" inert>
-        <div class="index-heading"><span class="overline">SELECTED WORK / 2026</span><h2 id="index-title">The index<span>(05)</span></h2><p>Thoughtful design.<br /> Considered engineering.</p></div>
+        <div class="index-heading"><span class="overline">SELECTED WORK / 2026</span><h2 id="index-title">The index<span>({String(projects.length).padStart(2, '0')})</span></h2><p>Thoughtful design.<br /> Considered engineering.</p></div>
         <div class="index-labels" aria-hidden="true"><span>NO. / PROJECT</span><span>DISCIPLINE</span><span>YEAR</span><span>STATUS</span><span></span></div>
         <div class="index-list" role="list">{projects.map(project=><div class:list={['index-row',project.status==='live'?'is-live':'is-pending']} role="listitem" data-index-project={project.id}>
           {project.status==='live'?<a class="index-project-link" data-project-link={project.id} href={project.url}><span class="index-project-name"><span class="index-number">{project.number}</span><span class="index-thumb"><img src={project.image} alt="" width="120" height="80" loading="lazy" /></span><span>{project.name}</span></span><span class="index-category">{project.category}</span><span class="index-year">{project.year}</span><span class="index-status"><i></i>Live website</span><span class="index-arrow" aria-hidden="true">↗</span></a>:<div class="index-project-link"><span class="index-project-name"><span class="index-number">{project.number}</span><span class="index-thumb"><img src={project.image} alt="" width="120" height="80" loading="lazy" /></span><span>{project.name}</span></span><span class="index-category">{project.category}</span><span class="index-year">{project.year}</span><span class="index-status">Coming soon<span class="status-detail">{project.note}</span></span><span class="index-arrow" aria-hidden="true">—</span></div>}
@@ -83,7 +83,7 @@ import monoFont from '@fontsource/dm-mono/files/dm-mono-latin-400-normal.woff2?u
     </div></div><div class="panel-footer"><span>FILIP NEDELKOSKI / FRONT-END ENGINEER</span><span>© 2026</span></div></dialog>
     <p class="sr-only" id="project-announcement" aria-live="polite" aria-atomic="true"></p>
     <div class="opening-portal" id="opening-portal" aria-hidden="true"></div>
-    <noscript><div class="noscript-note">Filip Nedelkoski — Front-End Engineer. <a data-project-link="revolut" href="https://nedelkoskifilip6.github.io/revolut-finance/">View Revolut ↗</a> · <a data-project-link="miku" href="https://nedelkoskifilip6.github.io/miku-vancouver/">View Miku Vancouver ↗</a> · <a href={contacts.github}>Connect on GitHub ↗</a></div></noscript>
+    <noscript><div class="noscript-note">Filip Nedelkoski — Front-End Engineer. <a data-project-link="revolut" href="https://nedelkoskifilip6.github.io/revolut-finance/">View Revolut ↗</a> · <a data-project-link="miku" href="https://nedelkoskifilip6.github.io/miku-vancouver/">View Miku Vancouver ↗</a> · <a data-project-link="tesla-motors" href="https://nedelkoskifilip6.github.io/tesla-motors/">View Tesla Motors ↗</a> · <a href={contacts.github}>Connect on GitHub ↗</a></div></noscript>
     <script src="../scripts/gallery.ts"></script>
   </body>
 </html>

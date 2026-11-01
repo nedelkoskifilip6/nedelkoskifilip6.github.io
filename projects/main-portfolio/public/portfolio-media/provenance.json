@@ -1,31 +1,7 @@
 {
   "createdAt": "2026-10-21",
-  "purpose": "Media for the independent main portfolio. Concept placeholders are explicitly identified and do not represent completed websites.",
+  "purpose": "Verified project preview media for the independent main portfolio. Live project previews are clearly distinguished from their destinations.",
   "assets": [
-    {
-      "file": "bang-concept.svg",
-      "status": "concept-placeholder",
-      "source": "Original SVG artwork created for this portfolio task.",
-      "depiction": "Abstract luxury audio product geometry in a warm ivory website composition.",
-      "visibleLabels": [
-        "CONCEPT PLACEHOLDER",
-        "COMING SOON"
-      ],
-      "completionClaim": "None. No completed project or actual website is depicted.",
-      "thirdPartyAssets": false
-    },
-    {
-      "file": "sothebys-concept.svg",
-      "status": "concept-placeholder",
-      "source": "Original SVG artwork created for this portfolio task.",
-      "depiction": "Original grayscale architectural illustration in a luxury real estate website composition.",
-      "visibleLabels": [
-        "CONCEPT PLACEHOLDER",
-        "COMING SOON"
-      ],
-      "completionClaim": "None. No completed project, actual property or actual website is depicted.",
-      "thirdPartyAssets": false
-    },
     {
       "file": "six-senses-source.jpg",
       "status": "actual-project-screenshot",
@@ -40,6 +16,15 @@
         "height": 900
       },
       "imageTreatment": "The Hero background is AI-enhanced supplied photography, not unedited property photography."
+    },
+    {
+      "file": "tesla-motors-preview.jpg",
+      "status": "project-launch-preview",
+      "source": "tesla-motors/images/social-preview-linkedin.jpg",
+      "depiction": "Tesla Model 3 Performance driving through a city street; used as the Tesla Motors project preview.",
+      "copyMethod": "Copied the existing 1200×630 JPEG project preview without altering its pixels.",
+      "projectUrl": "https://nedelkoskifilip6.github.io/tesla-motors/",
+      "affiliation": "Independent portfolio concept; not affiliated with Tesla, Inc."
     }
   ],
   "liveScreenshots": [
@@ -77,5 +62,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-22"
+  "updatedAt": "2026-11-01"
 }

@@ -14,8 +14,7 @@ async function preview(file, transform, label, pending = false) {
 }
 const frames = await Promise.all([
   preview('six-senses-1440.webp', 'matrix(.32,-.075,.04,.31,100,90)', 'SIX SENSES IBIZA'),
-  preview('bang-concept.svg', 'matrix(.32,-.075,.04,.31,790,130)', 'BANG & OLUFSEN', true),
-  preview('sothebys-concept.svg', 'matrix(.29,-.068,.036,.28,170,425)', 'SOTHEBY’S', true),
+  preview('tesla-motors-preview.jpg', 'matrix(.34,-.08,.042,.33,790,130)', 'TESLA MOTORS'),
   preview('miku-1600.webp', 'matrix(.42,-.098,.052,.41,680,350)', 'MIKU VANCOUVER'),
   preview('revolut-1600.webp', 'matrix(.59,-.138,.073,.575,215,235)', 'REVOLUT'),
 ]);
