@@ -20,11 +20,16 @@
     {
       "file": "tesla-motors-preview.jpg",
       "status": "project-launch-preview",
-      "source": "tesla-motors/Cybertruck_95.jpg",
-      "depiction": "The same Tesla Cybertruck twilight Hero image used by the Tesla Motors landing page; resized for the Tesla Motors project preview.",
-      "copyMethod": "Resized the 4000×2667 Hero JPEG to a 1600×1067 preview and recompressed as JPEG at quality 85.",
+      "source": "tesla-motors/images/social-preview-hero.jpg",
+      "depiction": "Full Tesla Motors desktop Hero section, including Tesla wordmark and navigation, the “Drive what’s next.” headline, supporting copy, action buttons, and Cybertruck twilight background.",
+      "copyMethod": "Captured the live Hero viewport, resized to 1200×630 JPEG, and reused the same image for the share preview and portfolio project card.",
       "projectUrl": "https://nedelkoskifilip6.github.io/tesla-motors/",
-      "affiliation": "Independent portfolio concept; not affiliated with Tesla, Inc."
+      "affiliation": "Independent portfolio concept; not affiliated with Tesla, Inc.",
+      "dimensions": {
+        "width": 1200,
+        "height": 630
+      },
+      "imageTreatment": "Rendered screenshot of the full Tesla Motors Hero page view; not a standalone vehicle photograph."
     }
   ],
   "liveScreenshots": [

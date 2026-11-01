@@ -73,7 +73,7 @@ export const projects: Project[] = [
     note: 'Live website',
     url: 'https://nedelkoskifilip6.github.io/tesla-motors/',
     image: `${media}tesla-motors-preview.jpg`,
-    alt: 'Tesla Cybertruck in a misty blue twilight landscape',
+    alt: 'Tesla Motors Hero section with navigation, the Drive what’s next headline, action buttons, and a Cybertruck twilight background',
     tone: 'red',
   },
 ];
