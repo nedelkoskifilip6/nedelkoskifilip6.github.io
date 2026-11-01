@@ -9,11 +9,8 @@
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
-    video.autoplay = true;
-    video.setAttribute('autoplay', '');
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
-    video.setAttribute('webkit-playsinline', '');
     const playback = video.play();
     if (playback && typeof playback.catch === 'function') playback.catch(() => {});
   };
@@ -25,9 +22,6 @@
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
-    video.autoplay = true;
-    video.setAttribute('autoplay', '');
-    video.setAttribute('webkit-playsinline', '');
     video.addEventListener('loadeddata', () => attemptPlayback(video));
     video.addEventListener('canplay', () => attemptPlayback(video));
     video.addEventListener('playing', () => {
@@ -62,20 +56,20 @@
         video.pause();
       }
     }
-  }, { threshold: 0, rootMargin: '1400px 0px' });
+  }, { threshold: 0, rootMargin: '900px 0px' });
   videos.forEach((video) => playbackObserver.observe(video));
 
-  // Buffer clips well ahead; playback starts within the expanded 1400px lead-in.
+  // Buffer clips well ahead; playback starts inside the separate 900px lead-in.
   const preloadNearby = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) prepareVideo(entry.target);
     }
-  }, { threshold: 0, rootMargin: '1800px 0px' });
+  }, { threshold: 0, rootMargin: '120px 0px' });
   const preloadCybertruck = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) prepareVideo(entry.target);
     }
-  }, { threshold: 0, rootMargin: '2400px 0px' });
+  }, { threshold: 0, rootMargin: '1800px 0px' });
   videos.forEach((video) => {
     if (video.closest('.tesla-film')?.getAttribute('aria-label') === 'Cybertruck video') preloadCybertruck.observe(video);
     else preloadNearby.observe(video);
