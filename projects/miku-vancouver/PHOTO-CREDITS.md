@@ -139,3 +139,8 @@ Gallery photographs 1 and 4 were restored again from the supplied originals with
 ## Private-dining clarity revision — October 21, 2026
 
 The private-dining image was enhanced again with the built-in imagegen tool, using the prior restored master as the edit target because the original temporary attachment was no longer available. Native output: `private-dining-clean-v2-20261021.png`, 1254 × 1254, with the same room, composition and dusk atmosphere. Fine textures and edges were reconstructed with AI. Its lossless WebP derivative preserves generated pixels and is served at full resolution on mobile too. The master, exact prompt and source note are retained in workspace `outputs/images/`.
+
+
+## Kaiseki Sashimi photograph — November 10, 2026
+
+The project owner supplied `thumb-1920-738370.jpg` for the second Kaiseki course, Sashimi. Its original composition and colors were preserved in a light built-in imagegen clarity edit. This is supplied illustrative photography; no verified Miku dish attribution or Unsplash license is claimed. Native generated master: 1497 × 1051. Original JPEG, cleaned PNG and exact prompt are retained under workspace `outputs/images/kaiseki-sashimi-*-20261110.*`. Optimized desktop and mobile WebP derivatives use the key `kaiseki-sashimi-20261110`. The other course photos, Hero and social preview remain unchanged.
