@@ -17,4 +17,4 @@ Home navigation follows the rendered photograph mask, including scrub lag and re
 
 
 
-On phones, the Hero title owns a soft, feathered shadow backdrop. Its opacity enters on the same delay and duration as the headline; the existing outer Hero-content timeline fades and moves both together on scroll and reverse scroll. Radial gradients and a static blur keep the shadow edges soft, without extra image downloads or layout changes. Reduced-motion/static layouts show it immediately.
+On phones, the Hero title owns a soft, feathered shadow backdrop. Its opacity enters on the same delay and duration as the headline; the existing outer Hero-content timeline fades and moves both together on scroll and reverse scroll. A closest-side radial gradient, static blur and alpha mask fade every backdrop edge fully to transparent. Glyph-level shadows are omitted so the line-reveal clipping cannot produce a hard shadow edge. No extra image downloads or layout changes are required. Reduced-motion/static layouts show it immediately.
