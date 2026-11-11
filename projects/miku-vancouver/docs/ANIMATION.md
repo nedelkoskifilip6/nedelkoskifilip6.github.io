@@ -15,3 +15,6 @@ Fonts, Hero-image load and pageshow refresh measurements. Persisted pagehide kee
 
 Home navigation follows the rendered photograph mask, including scrub lag and reverse scrolling. Static and reduced-motion layouts use the Hero’s bottom edge. Other pages retain a solid navigation surface. The navigation wordmark is one visual layer with one inherited ink color. An eased global surface fade builds contrast before the whole header changes from ivory lettering to dark ink. Height continues to follow the raw image-mask progress. No duplicate wordmark, per-letter clipping or blend-mode color changes are used.
 
+
+
+On phones, the Hero title owns a soft, feathered shadow backdrop. Its opacity enters on the same delay and duration as the headline; the existing outer Hero-content timeline fades and moves both together on scroll and reverse scroll. Radial gradients and a static blur keep the shadow edges soft, without extra image downloads or layout changes. Reduced-motion/static layouts show it immediately.
