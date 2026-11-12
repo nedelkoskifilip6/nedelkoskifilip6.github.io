@@ -659,3 +659,19 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-clos
     overflow-anchor: none;
   }
 }
+
+/* Mobile hero controls clear the vehicle; center the model label. */
+@media (max-width: 760px) {
+  .hero-actions {
+    margin-top: 78px !important;
+  }
+
+  .hero-stage-code {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    padding-inline: 8vw;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+}
