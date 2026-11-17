@@ -101,7 +101,4 @@ See `docs/ANIMATION.md` for the scene architecture and `QA-REPORT.md` for the re
 
 All headings use the Hero’s Cormorant Garamond Italic. The Hero CTA is charcoal, and visible arrow icons have been replaced with text controls while preserving keyboard navigation. Each of the 18 menu dishes has a distinct licensed photograph; Kaiseki chapters and gallery slides have distinct editorial compositions. The selected dish retains its photograph when expanded into its detail overlay.
 
-The original Hero photograph and mobile crop are byte-identical to the previous publication. The favicon uses the restaurant’s official red seal, with attribution on the sources page. Link previews use an actual settled Hero screenshot at `public/social/hero-preview-20261117-logo-v9.jpg` (1200×675 JPEG), with absolute Open Graph and Twitter metadata. A messaging application may retain a previously cached preview; no live Viber send was performed.
-
-
-The owner-supplied Miku Vancouver logo (November 17, 2026) is shared by the header, mobile navigation and footer through `BrandLogo.astro`. The supplied JPEG is byte-identical to the original; no AI redraw or recoloring is used. The browser and Apple-touch icons remain unchanged.
+The original Hero photograph and mobile crop are byte-identical to the previous publication. The favicon uses the restaurant’s official red seal, with attribution on the sources page. Link previews use an actual settled Hero screenshot at `public/social/hero-preview-20261014-v2.jpg` (1200×675 JPEG), with absolute Open Graph and Twitter metadata. A messaging application may retain a previously cached preview; no live Viber send was performed.
