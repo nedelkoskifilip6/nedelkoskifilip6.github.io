@@ -1,0 +1,6 @@
+---
+import { path } from '../data/site';
+interface Props { loading?: 'eager' | 'lazy'; }
+const { loading = 'eager' } = Astro.props;
+---
+<img class="brand-logo" src={path('brand/miku-vancouver-logo-20261117.jpg')} alt="Miku Vancouver" width="640" height="380" loading={loading} decoding="async" />

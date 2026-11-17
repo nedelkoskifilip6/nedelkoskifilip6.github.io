@@ -13,7 +13,7 @@ React islands own signature selection, category switching, dish overlays and gal
 
 Fonts, Hero-image load and pageshow refresh measurements. Persisted pagehide keeps timelines intact for back-forward cache restoration; a real document teardown kills its contexts and triggers. No artificial wheel interception or smooth-scroll library is used.
 
-Home navigation follows the rendered photograph mask, including scrub lag and reverse scrolling. Static and reduced-motion layouts use the Hero’s bottom edge. Other pages retain a solid navigation surface. The navigation wordmark is one visual layer with one inherited ink color. An eased global surface fade builds contrast before the whole header changes from ivory lettering to dark ink. Height continues to follow the raw image-mask progress. No duplicate wordmark, per-letter clipping or blend-mode color changes are used.
+Home navigation follows the rendered photograph mask, including scrub lag and reverse scrolling. Static and reduced-motion layouts use the Hero’s bottom edge. Other pages retain a solid navigation surface. The supplied navigation logo is one raster layer with its original white ground and colors, independent of the navigation ink transition. An eased global surface fade builds contrast before the navigation links change from ivory lettering to dark ink. Height continues to follow the raw image-mask progress. The logo is never filtered, recolored, duplicated or clipped during the transition.
 
 
 
