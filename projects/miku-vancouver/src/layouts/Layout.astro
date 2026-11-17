@@ -9,7 +9,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { image, path } from '../data/site';
 interface Props { title?: string; description?: string; hero?: boolean; }
-const socialImage = new URL(path('social/hero-preview-20261117-supplied-v11.jpg'), Astro.site);
+const socialImage = new URL(path('social/hero-preview-20261117-supplied-v12.jpg'), Astro.site);
 const { title = 'Miku Vancouver — The Art of Aburi', description = 'An independent fine-dining portfolio concept exploring Japanese craftsmanship, Aburi cuisine, and Vancouver’s Pacific coast. Not affiliated with Miku Vancouver.', hero = false } = Astro.props;
 ---
 <!doctype html>
@@ -34,7 +34,7 @@ const { title = 'Miku Vancouver — The Art of Aburi', description = 'An indepen
     <meta property="og:image:secure_url" content={socialImage} />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="707" />
+    <meta property="og:image:height" content="701" />
     <meta property="og:image:alt" content="The Art of Aburi — the Hero of an independent Miku Vancouver portfolio concept" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
