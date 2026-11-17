@@ -14,11 +14,15 @@ export function initMotion() {
     const surface = 1 - Math.pow(1 - value, 4);
     header.style.setProperty('--header-surface', surface.toFixed(4));
     header.style.setProperty('--header-ink', surface >= .42 ? '1' : '0');
+    // Tint the whole lettering silhouette together as the ivory surface arrives.
+    const logoInk = gsap.utils.clamp(0, 1, (surface - .3) / .45);
+    header.style.setProperty('--logo-ink', logoInk.toFixed(4));
     header.classList.toggle('is-scrolled', surface >= .42);
   };
   const resetHeader = () => {
     header?.style.removeProperty('--header-progress');
     header?.style.removeProperty('--header-ink');
+    header?.style.removeProperty('--logo-ink');
     header?.style.removeProperty('--header-surface');
     header?.classList.remove('is-scrolled');
   };

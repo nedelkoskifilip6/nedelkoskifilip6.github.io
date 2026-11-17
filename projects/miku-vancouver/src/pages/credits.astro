@@ -19,9 +19,11 @@ const sourceLabels: Record<string, string> = { menu:'Official dinner menu', stor
     <h2>Restaurant information</h2>
     <p>Dish names, ingredient summaries, dinner prices, dietary labels, Kaiseki course names and contact information were verified on {verifiedDate}. Prices are Canadian dollars and may change. The restaurant’s official sources take precedence. Course photography and expressive captions are editorial illustrations of the experience.</p>
     <ul class="credits-source-list">{Object.entries(research.sources).map(([name,url]) => <li><a href={url} target="_blank" rel="noopener noreferrer">{sourceLabels[name]}</a></li>)}</ul>
+    <h2>The supplied logo</h2>
+    <p>The Miku Vancouver logo was supplied by the project owner on November 17, 2026. Its brush artwork was traced into transparent SVG silhouettes, with a fixed red seal and white calligraphy. The Miku and Vancouver lettering adapts to the navigation background. The name and mark belong to their respective owner; no affiliation, endorsement or commission is implied.</p>
     <h2>The favicon</h2>
     <p>The browser icon is Miku’s existing red seal, sourced from its <a href="https://mikurestaurant.com/wp-content/uploads/2025/04/cropped-favicons-192x192.png" target="_blank" rel="noopener noreferrer">official website favicon</a>. The Miku name and icon belong to their respective owner. This remains an independent portfolio concept.</p>
     <h2>Type & technology</h2>
-    <p>Original typographic brand treatment. Cormorant Garamond and DM Sans are self-hosted through Fontsource under the SIL Open Font License. Built with Astro, TypeScript, React, Tailwind CSS, GSAP and ScrollTrigger. Booking continues with Miku’s official OpenTable provider.</p>
+    <p>Cormorant Garamond and DM Sans are self-hosted through Fontsource under the SIL Open Font License. Built with Astro, TypeScript, React, Tailwind CSS, GSAP and ScrollTrigger. Booking continues with Miku’s official OpenTable provider.</p>
   </section>
 </Layout>
