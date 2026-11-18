@@ -675,3 +675,33 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-clos
     box-sizing: border-box;
   }
 }
+
+/* Desktop footer: keep the portfolio credit beside the concept note. */
+@media (min-width: 761px) {
+  footer {
+    justify-content: center !important;
+    gap: clamp(18px, 3vw, 42px) !important;
+    flex-wrap: nowrap !important;
+  }
+
+  footer > .brand {
+    order: 1;
+  }
+
+  footer > span {
+    order: 2;
+  }
+
+  footer > .creator-credit {
+    order: 3;
+    width: auto !important;
+    margin: 0 !important;
+    text-align: center !important;
+    font-size: 9px !important;
+    white-space: nowrap;
+  }
+
+  footer > a[href="#top"]:not(.brand) {
+    order: 4;
+  }
+}
