@@ -679,8 +679,8 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-clos
 /* Desktop footer: keep the portfolio credit beside the concept note. */
 @media (min-width: 761px) {
   footer {
-    justify-content: center !important;
-    gap: clamp(18px, 3vw, 42px) !important;
+    justify-content: space-between !important;
+    gap: 0 !important;
     flex-wrap: nowrap !important;
   }
 
