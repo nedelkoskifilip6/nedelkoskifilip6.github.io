@@ -47,7 +47,7 @@ The previous city/Positano/mountain photographs remain unused in the asset archi
 
 ## Social sharing preview
 
-`public/social/hero-preview-hillside-20261119.jpg` is a 1200×675 browser capture of the actual rendered Hero, including its navigation, wordmark, headline, supporting copy, single CTA and unofficial portfolio label. It combines the user-provided hillside photograph with the site's own layout. Open Graph and Twitter image metadata reference this versioned JPEG rather than the background photograph alone. The previous surfing preview, `hero-preview-20261014.jpg`, remains archived. Recapture the preview when the Hero changes; the provenance and notices above continue to apply.
+`public/social/hero-preview-hillside-natural-20261119.jpg` is a 1200×675 browser capture of the actual rendered Hero, including its navigation, wordmark, headline, supporting copy, single CTA and unofficial portfolio label. It combines the user-provided hillside photograph with the site's own layout, without a darkening overlay or photo filter. Open Graph and Twitter image metadata reference this versioned JPEG rather than the background photograph alone. The earlier hillside and surfing previews remain archived. Recapture the preview when the Hero changes; the provenance and notices above continue to apply.
 
 ## Original product mockups
 

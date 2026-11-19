@@ -31,7 +31,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible { 
 .hero { position:relative; display:block; height:100svh; min-height:660px; max-height:none; padding:clamp(125px,16svh,185px) var(--gutter) 46px; background:#ffffff; color:white; isolation:isolate; overflow:hidden; }
 .hero::before { display:none; }
 .hero-photograph { position:absolute; inset:0; z-index:-2; display:block; overflow:hidden; background:#ffffff; }
-.hero-photograph::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,#00171f70,transparent 70%),linear-gradient(90deg,#10111488,transparent 85%),linear-gradient(0deg,#001e2290,transparent 40%); pointer-events:none; }
+.hero-photograph::after { display:none; }
 .hero-photo { position:absolute; width:100%; height:106%; top:-3%; object-fit:cover; object-position:50% 65%; transform-origin:50% 58%; display:block; }
 .hero-text { position:relative; height:100%; display:flex; flex-direction:column; align-items:flex-start; text-align:left; }
 .hero .eyebrow { color:#fff; font-size:9px; margin-bottom:25px; letter-spacing:.16em; }
