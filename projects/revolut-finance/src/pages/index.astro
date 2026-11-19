@@ -7,8 +7,8 @@ import {DemoDialog} from '../components/DemoDialog';
 import {Phone,Banking,Exchange,Cards,Savings,Security,Investments,Plans} from '../components/Experience';
 const assetBase = import.meta.env.BASE_URL.replace(/\/$/, '');
 const photo = (name: string, width: number) => `${assetBase}/images/editorial/${name}-${width}.webp`;
-const socialImage = 'https://nedelkoskifilip6.github.io/revolut-finance/social/hero-preview-20261014.jpg';
-const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concept, with the Revolut wordmark, Banking & Beyond headline and Download the app button over a surfing photograph.';
+const socialImage = 'https://nedelkoskifilip6.github.io/revolut-finance/social/hero-preview-hillside-20261119.jpg';
+const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concept, with the Revolut wordmark, Banking & Beyond headline and Download the app button over a photograph of two people relaxing on a grassy hillside.';
 ---
 <!doctype html>
 <html lang="en">
@@ -44,8 +44,8 @@ const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concep
 <div class="cinematic-journey">
 <section class="hero" aria-labelledby="hero-title">
 <picture class="hero-photograph">
-<source media="(max-width: 600px)" srcset={`${photo('surf-mobile',640)} 640w, ${photo('surf-mobile',960)} 960w`}/>
-<img class="hero-photo" src={photo('surf',1600)} srcset={`${photo('surf',960)} 960w, ${photo('surf',1600)} 1600w, ${photo('surf',3200)} 3200w`} sizes="100vw" alt="A surfer paddling over coral in clear turquoise ocean water" width="3200" height="2132" fetchpriority="high" decoding="async"/>
+<source media="(max-width: 600px)" srcset={`${photo('hillside-mobile',360)} 360w, ${photo('hillside-mobile',450)} 450w`} sizes="100vw"/>
+<img class="hero-photo" src={photo('hillside',1200)} srcset={`${photo('hillside',640)} 640w, ${photo('hillside',960)} 960w, ${photo('hillside',1200)} 1200w`} sizes="100vw" alt="Two people relaxing on a grassy hillside beneath a blue sky" width="1200" height="800" fetchpriority="high" decoding="async"/>
 </picture>
 <div class="hero-text">
 <span class="eyebrow">AN UNOFFICIAL PORTFOLIO EXPERIENCE</span>

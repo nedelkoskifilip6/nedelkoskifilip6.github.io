@@ -21,15 +21,21 @@ These identify the design inspiration under the same independent-concept and tra
 
 `public/favicon.ico` packages the original 16×16 and 32×32 PNG files without modifying their pixel data. Desktop icon links include a version query to refresh previously cached icons. The Apple touch icon remains unchanged; the retired generic `favicon.svg` is not referenced by the page.
 
+## User-provided hero photograph
+
+The current hero photograph was supplied by the user for this project on 19 November 2026. It shows two people relaxing on a grassy hillside beneath a blue sky; its native size is 1200×800 pixels. No photographer attribution or separate licence information was supplied.
+
+`public/images/editorial/hillside-{640,960,1200}.webp` are optimized landscape derivatives. `hillside-mobile-{360,450}.webp` use a dedicated 450×800 portrait crop centered on the people (source rectangle: x=245, y=0, width=450, height=800). Derivatives preserve the original colors and do not upscale or artificially sharpen the photograph. The earlier surfing hero remains archived and is no longer displayed in the hero.
+
 ## Licensed campaign photography
 
-The current ocean campaign uses real photography by **Jess Loiterton**, selected against the attached surfing photograph as a visual quality reference. The attachment remains available as a conversational quality reference but is not redistributed because its reuse rights were not supplied. Its original temporary filesystem path is no longer present; production uses the licensed photographs below.
+The ocean travel and savings sections use real photography by **Jess Loiterton**, selected against the earlier attached surfing photograph as a visual quality reference. That earlier attachment is not redistributed; the licensed photographs below remain available, with the surfing hero now archived.
 
 Each Pexels source page explicitly marks the image Free / Free to use. The Pexels License at https://www.pexels.com/license/ permits website use and modification. The photographs are illustrative; the photographer and depicted people do not endorse this project or Revolut.
 
 | Current asset | Photographer | Source |
 | --- | --- | --- |
-| Surfing hero | Jess Loiterton | https://www.pexels.com/photo/aerial-view-of-woman-on-a-surfboard-5231686/ |
+| Previous surfing hero (archived) | Jess Loiterton | https://www.pexels.com/photo/aerial-view-of-woman-on-a-surfboard-5231686/ |
 | Ocean travel / payments | Jess Loiterton | https://www.pexels.com/photo/white-boat-on-blue-sea-water-4784991/ |
 | Coastal escape / savings | Jess Loiterton | https://www.pexels.com/photo/landscape-with-green-mountains-and-blue-sea-5007728/ |
 
@@ -41,7 +47,7 @@ The previous city/Positano/mountain photographs remain unused in the asset archi
 
 ## Social sharing preview
 
-`public/social/hero-preview-20261014.jpg` is a 1200×675 browser capture of the actual rendered Hero, including its navigation, wordmark, headline, supporting copy, single CTA and unofficial portfolio label. It combines the existing licensed campaign photograph with the site's own layout. Open Graph and Twitter image metadata reference this versioned JPEG rather than the background photograph alone. Recapture it when the Hero design changes; the rights and notices above continue to apply.
+`public/social/hero-preview-hillside-20261119.jpg` is a 1200×675 browser capture of the actual rendered Hero, including its navigation, wordmark, headline, supporting copy, single CTA and unofficial portfolio label. It combines the user-provided hillside photograph with the site's own layout. Open Graph and Twitter image metadata reference this versioned JPEG rather than the background photograph alone. The previous surfing preview, `hero-preview-20261014.jpg`, remains archived. Recapture the preview when the Hero changes; the provenance and notices above continue to apply.
 
 ## Original product mockups
 
