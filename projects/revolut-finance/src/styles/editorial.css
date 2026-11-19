@@ -167,6 +167,7 @@ select { appearance:none; -webkit-appearance:none; cursor:pointer; }
 .calculator-controls input[type=range] { accent-color:#647958; }.calculator-controls select,.projected { background:#eef2e8; color:#44543c; }.projected { padding:24px; }
 .security { background:#111416; color:white; position:relative; overflow:hidden; }
 .security .split { gap:7vw; }.security .section-copy h2 { font-size:clamp(60px,6.8vw,105px); }.security .eyebrow { color:#98a59c; }.security .section-copy>p { color:#adb8b0; margin-top:30px; }
+.security-title-wide { display:block; }.security-title-mobile { display:none; }
 .security-note { border-top:1px solid #38433b; padding-top:25px; }.security-note>span { color:#92a989; }.security-note small { color:#8e9e91; font-size:11px; }
 .security-ui { border:0; background:none; border-radius:0; padding:40px 0 0; position:relative; }
 .security-ui::before { content:''; position:absolute; inset:-70px -50px 45%; background:radial-gradient(ellipse,#93b09c20,transparent 70%); pointer-events:none; }
@@ -227,5 +228,16 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
  .final-cta { padding:85px 24px 35px; }.final-cta h2 { font-size:clamp(40px,11.3vw,66px); }.final-cta .eyebrow { font-size:8px; }.final-cta p { font-size:15px; }.cta-bottom { margin-top:65px; font-size:7px; }footer { padding:55px 24px 25px; }.footer-top { grid-template-columns:1fr 1fr; gap:35px 25px; }.footer-top>div:first-child { grid-column:1/-1; }.footer-top>div:last-child { grid-column:1/-1; }.footer-top>div>a:not(.brand) { font-size:12px; }.legal p { font-size:10px; }.footer-bottom { font-size:9px; gap:20px; }.footer-bottom>span:nth-child(2) { display:none; }
 }
 @media(max-width:600px) { .savings-story h2 .heading-line>span,.plans .center-heading h2 .heading-line>span,.final-cta h2 .heading-line>span { white-space:nowrap; } }
+@media(max-width:600px) {
+ .dashboard-header { display:block; position:relative; }
+ .dashboard-header h3.overview-title { max-width:none; }
+ .dashboard-header>.badge { position:absolute; top:0; right:0; }
+ .overview-title>span,.savings-tools-title>span { display:block; white-space:nowrap; }
+ .tools-heading h3.savings-tools-title { font-size:clamp(30px,9.5vw,38px); }
+ .security-title-wide { display:none; }
+ .security-title-mobile { display:block; font-size:clamp(42px,14.4vw,80px); }
+ .security-title-mobile>.heading-line { letter-spacing:-.065em; white-space:nowrap; }
+ .security-title-mobile>.heading-line:last-child { font-size:.7803em; }
+}
 @media(max-height:650px) { .hero { height:100svh; min-height:0; padding-top:100px; padding-bottom:25px; }.hero h1 { font-size:clamp(55px,10vh,75px); }.hero .eyebrow { margin-bottom:12px; }.hero-description p { font-size:14px; margin-bottom:12px; }.hero-description .button { min-height:44px; padding:12px 24px; }.external-note { margin-top:6px; font-size:8px; } }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; }html { scroll-behavior:auto; } }

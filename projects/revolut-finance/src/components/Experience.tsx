@@ -394,7 +394,7 @@ export function Banking() {
       <div className="dashboard-header">
         <div>
           <span className="label">YOUR OVERVIEW</span>
-          <h3>A little clarity. A lot of possibility.</h3>
+          <h3 className="overview-title"><span>A little clarity.</span>{" "}<span>A lot of possibility.</span></h3>
         </div>
         <span className="badge">Demo account</span>
       </div>
