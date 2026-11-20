@@ -37,10 +37,22 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible { 
 .hero .eyebrow { color:#fff; font-size:9px; margin-bottom:25px; letter-spacing:.16em; }
 .hero h1 { margin:0; max-width:1100px; font-size:clamp(100px,12vw,184px); line-height:.86; letter-spacing:-.075em; color:white; }
 .hero-title-line { color:inherit; }
-.hero-description { margin-top:auto; max-width:390px; padding-bottom:0; }
-.hero-description p { color:white; font-size:18px; line-height:1.45; margin:0 0 22px; max-width:330px; }
-.hero-description .button { background:white; color:var(--ink); padding:18px 29px; min-height:56px; }
-.hero-description .button:hover { background:#ecefea; }
+.hero-description { margin-top:auto; max-width:560px; width:100%; padding-bottom:0; }
+.hero-description > p { color:white; font-size:18px; line-height:1.45; margin:0 0 22px; max-width:330px; }
+.hero-acquisition { display:flex; align-items:flex-end; gap:26px; }
+.app-store-link { display:flex; align-items:center; min-height:44px; flex:none; border-radius:8px; }
+.app-store-link img { display:block; width:auto; height:54px; }
+.app-store-link:focus-visible { outline:3px solid white; outline-offset:6px; }
+.customer-proof { color:white; min-width:0; }
+.customer-portraits { display:flex; align-items:center; height:46px; padding-left:2px; }
+.customer-portrait { display:block; flex:none; width:41px; height:43px; border-radius:13px; overflow:hidden; background:#151717; transform:rotate(-8deg); }
+.customer-portrait + .customer-portrait { margin-left:-10px; }
+.customer-portrait:nth-child(2) { transform:rotate(8deg); }
+.customer-portrait:nth-child(3) { transform:rotate(-6deg); }
+.customer-portrait:nth-child(4) { transform:rotate(7deg); }
+.customer-portrait img { display:block; width:100%; height:100%; object-fit:cover; filter:grayscale(1); }
+.customer-proof p { margin:7px 0 0; color:inherit; font-size:12px; line-height:1.3; white-space:nowrap; }
+.customer-proof strong { font-weight:600; }
 .external-note { display:block; color:#f5f6f3; font-size:10px; margin-top:11px; }
 .hero-caption { position:absolute; bottom:46px; right:var(--gutter); font-size:9px; letter-spacing:.16em; color:white; }
 .concept-strip { padding:26px var(--gutter); background:white; color:#747777; font-size:10px; border:0; border-bottom:1px solid #e8e9e5; gap:24px; }
@@ -213,7 +225,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 }
 @media(max-width:600px) {
  :root { --gutter:24px; }html { scroll-padding-top:68px; }.nav { height:68px; padding:0 20px; }.nav .revolut-logo { width:94px; }.nav-links.open { top:68px; }
- .hero { height:100svh; min-height:0; max-height:none; padding:130px 24px max(30px,env(safe-area-inset-bottom)); }.hero-photo { height:106%; top:-3%; object-position:50% 50%; }.hero-photograph { inset:0; }.hero h1 { font-size:clamp(64px,19.7vw,112px); line-height:.9; letter-spacing:-.075em; }.hero .eyebrow { font-size:7px; letter-spacing:.11em; margin-bottom:23px; }.hero-description { max-width:310px; margin-top:auto; }.hero-description p { font-size:16px; margin-bottom:20px; max-width:285px; }.hero-description .button { min-height:52px; padding:16px 26px; }.external-note { font-size:9px; margin-top:10px; }
+ .hero { height:100svh; min-height:0; max-height:none; padding:130px 24px max(30px,env(safe-area-inset-bottom)); }.hero-photo { height:106%; top:-3%; object-position:50% 50%; }.hero-photograph { inset:0; }.hero h1 { font-size:clamp(64px,19.7vw,112px); line-height:.9; letter-spacing:-.075em; }.hero .eyebrow { font-size:7px; letter-spacing:.11em; margin-bottom:23px; }.hero-description { max-width:none; margin-top:auto; }.hero-description > p { font-size:16px; margin-bottom:20px; max-width:285px; }.hero-acquisition { gap:20px; }.app-store-link img { height:46px; }.customer-portraits { height:37px; }.customer-portrait { width:33px; height:35px; border-radius:11px; }.customer-portrait + .customer-portrait { margin-left:-8px; }.customer-proof p { margin-top:6px; font-size:11px; white-space:normal; }.customer-proof strong { display:block; }.external-note { font-size:9px; margin-top:10px; }
  .concept-strip { display:block; padding:12px 24px; font-size:9px; line-height:1.6; }.concept-strip span { display:block; font-size:7px; margin-top:7px; }
  .section { padding:80px 24px; }h2 { font-size:clamp(46px,12.5vw,70px); }.section-heading .eyebrow,.section-copy .eyebrow,.center-heading .eyebrow { margin-bottom:22px; font-size:8px; }.section-heading>p,.center-heading>p,.section-copy>p { font-size:15px; }.section-heading { margin-bottom:35px; }.banking .section-heading h2 { font-size:clamp(42px,10.8vw,63px); }
  .banking-presentation { grid-template-columns:1fr; gap:35px; margin:35px 0 60px; min-height:0; }.banking-story { padding:0; }.banking-story h3 { font-size:42px; }.banking-story p { font-size:15px; max-width:340px; }.story-detail { margin-top:30px; }.device-stage { min-height:690px; padding:28px 0 55px; border-radius:45% 45% 3px 3px; }.device-stage .phone-wrap { scale:1; }.device-caption { font-size:7px; }
@@ -239,5 +251,6 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
  .security-title-mobile>.heading-line { letter-spacing:-.065em; white-space:nowrap; }
  .security-title-mobile>.heading-line:last-child { font-size:.7803em; }
 }
-@media(max-height:650px) { .hero { height:100svh; min-height:0; padding-top:100px; padding-bottom:25px; }.hero h1 { font-size:clamp(55px,10vh,75px); }.hero .eyebrow { margin-bottom:12px; }.hero-description p { font-size:14px; margin-bottom:12px; }.hero-description .button { min-height:44px; padding:12px 24px; }.external-note { margin-top:6px; font-size:8px; } }
+@media(max-width:360px) { .hero-acquisition { gap:16px; }.app-store-link img { height:40px; }.customer-proof p { font-size:10px; } }
+@media(max-height:650px) { .hero { height:100svh; min-height:0; padding-top:100px;padding-bottom:25px; }.hero h1 { font-size:clamp(55px,10vh,75px); }.hero .eyebrow { margin-bottom:12px; }.hero-description > p { font-size:14px; margin-bottom:12px; }.app-store-link img { height:40px; }.customer-portraits { height:31px; }.customer-portrait { width:29px; height:30px; border-radius:9px; }.customer-proof p { margin-top:5px;font-size:10px; }.external-note { margin-top:10px; font-size:8px; } }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; }html { scroll-behavior:auto; } }

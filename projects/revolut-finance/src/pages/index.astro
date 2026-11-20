@@ -7,8 +7,8 @@ import {DemoDialog} from '../components/DemoDialog';
 import {Phone,Banking,Exchange,Cards,Savings,Security,Investments,Plans} from '../components/Experience';
 const assetBase = import.meta.env.BASE_URL.replace(/\/$/, '');
 const photo = (name: string, width: number) => `${assetBase}/images/editorial/${name}-${width}.webp`;
-const socialImage = 'https://nedelkoskifilip6.github.io/revolut-finance/social/hero-preview-20261014.jpg';
-const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concept, with the Revolut wordmark, Banking & Beyond headline and Download the app button over a surfing photograph.';
+const socialImage = 'https://nedelkoskifilip6.github.io/revolut-finance/social/hero-app-store-20261121.jpg';
+const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concept, with the Revolut wordmark, Banking & Beyond headline, App Store badge and illustrative customer portraits over a surfing photograph.';
 ---
 <!doctype html>
 <html lang="en">
@@ -52,8 +52,18 @@ const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concep
 <h1 id="hero-title"><span class="hero-title-line"><span>Banking &amp;</span></span><span class="hero-title-line"><span>Beyond</span></span></h1>
 <div class="hero-description">
 <p>Experience a smarter, simpler way<br class="desktop-break"/> to manage your money.</p>
-<a class="button" href="https://revolut.com/app" target="_blank" rel="noopener noreferrer" aria-label="Download the app — official Revolut website (opens in a new tab)">Download the app</a>
-<small class="external-note">Official Revolut website · external link</small>
+<div class="hero-acquisition">
+<a class="app-store-link" href="https://apps.apple.com/app/id932493382" target="_blank" rel="noopener noreferrer" aria-label="Download Revolut on the App Store (opens in a new tab)">
+<img src={`${assetBase}/brand/app-store-badge.svg`} alt="Download on the App Store" width="120" height="40"/>
+</a>
+<div class="customer-proof" aria-label="Revolut: 80+ million customers worldwide">
+<div class="customer-portraits" aria-hidden="true">
+{[1, 2, 3, 4].map(number => <span class="customer-portrait"><img src={`${assetBase}/images/community/portrait-${number}.webp`} alt="" width="76" height="100" decoding="async"/></span>)}
+</div>
+<p><strong>80+ million</strong> customers worldwide</p>
+</div>
+</div>
+<small class="external-note">Official Revolut app · App Store · external link</small>
 </div>
 </div>
 <span class="hero-caption">YOUR EVERYDAY. REIMAGINED.</span>

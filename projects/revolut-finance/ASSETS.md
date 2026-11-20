@@ -41,7 +41,15 @@ The previous city/Positano/mountain photographs remain unused in the asset archi
 
 ## Social sharing preview
 
-`public/social/hero-preview-20261014.jpg` is a 1200×675 browser capture of the actual rendered Hero, including its navigation, wordmark, headline, supporting copy, single CTA and unofficial portfolio label. It combines the existing licensed campaign photograph with the site's own layout. Open Graph and Twitter image metadata reference this versioned JPEG rather than the background photograph alone. Recapture it when the Hero design changes; the rights and notices above continue to apply.
+`public/social/hero-app-store-20261121.jpg` is a 1200×675 browser capture of the actual rendered Hero, including its navigation, wordmark, headline, supporting copy, single App Store CTA, illustrative portrait group and unofficial portfolio label. It combines the existing licensed campaign photograph with the site's own layout. Open Graph and Twitter image metadata reference this versioned JPEG rather than the background photograph alone. Recapture it when the Hero design changes; the rights and notices above continue to apply.
+
+## Hero App Store badge and community reference
+
+`public/brand/app-store-badge.svg` is Apple's unmodified English black download badge from https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg, linked to Revolut's official iOS app (App Store ID `932493382`). Its proportions, gray border and minimum 40px screen height are preserved; no magnetic hover or independent badge animation is applied. Badge guidance: https://developer.apple.com/app-store/marketing/guidelines/.
+
+The four small WebP files in `public/images/community/` are decorative portrait crops from the reference screenshot supplied by the project owner on 21 November 2026. The screenshot's patterned background and original caption are not displayed; the overlapping tiles and requested caption are native HTML/CSS. No identity, testimonial, endorsement or customer status is asserted for the people pictured. The supplied reference is not a general stock-photo licence.
+
+The requested “80+ million customers worldwide” copy refers to Revolut, not this independent portfolio. Revolut's official 4 November 2026 announcement reports over 80 million retail customers: https://www.revolut.com/en-US/news/revolut_completes_fundraising_process_establishing_115_billion_valuation/.
 
 ## Original product mockups
 
