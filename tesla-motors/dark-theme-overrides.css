@@ -705,3 +705,11 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-clos
     order: 4;
   }
 }
+
+/* Match the hero headline to the broader, bold reference treatment. */
+.hero-copy h1 {
+  font-family: Manrope, sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 0.91 !important;
+}
