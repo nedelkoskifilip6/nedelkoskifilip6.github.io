@@ -705,3 +705,15 @@ body.model-viewer-open .model-viewer.is-open .model-viewer__details .viewer-clos
     order: 4;
   }
 }
+
+/* Desktop hero label centered between the left and right footer texts. */
+@media (min-width: 761px) {
+  .hero-stage-code {
+    left: 50% !important;
+    right: auto !important;
+    bottom: 28px !important;
+    transform: translateX(-50%) !important;
+    text-align: center !important;
+    white-space: nowrap;
+  }
+}
