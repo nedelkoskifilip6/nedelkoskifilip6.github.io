@@ -63,7 +63,8 @@ export function initializeMotion() {
       // Cache document/viewport geometry at refresh, rather than reading two
       // layout boxes on every rendered scrub frame.
       const curtainTop = curtain.getBoundingClientRect().top + window.scrollY;
-      const downloadBottom = download.getBoundingClientRect().bottom - hero.getBoundingClientRect().top;
+      const downloadArea = download.closest<HTMLElement>('.hero-acquisition') ?? download;
+      const downloadBottom = downloadArea.getBoundingClientRect().bottom - hero.getBoundingClientRect().top;
       coverAt = curtainTop - downloadBottom - 8;
     };
     const syncCover = () => {

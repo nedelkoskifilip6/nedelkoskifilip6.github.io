@@ -7,7 +7,7 @@ import {DemoDialog} from '../components/DemoDialog';
 import {Phone,Banking,Exchange,Cards,Savings,Security,Investments,Plans} from '../components/Experience';
 const assetBase = import.meta.env.BASE_URL.replace(/\/$/, '');
 const photo = (name: string, width: number) => `${assetBase}/images/editorial/${name}-${width}.webp`;
-const socialImage = 'https://nedelkoskifilip6.github.io/revolut-finance/social/hero-app-store-20261121.jpg';
+const socialImage = 'https://nedelkoskifilip6.github.io/revolut-finance/social/hero-original-portraits-20261121.jpg';
 const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concept, with the Revolut wordmark, Banking & Beyond headline, App Store badge and illustrative customer portraits over a surfing photograph.';
 ---
 <!doctype html>
@@ -58,7 +58,7 @@ const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concep
 </a>
 <div class="customer-proof" aria-label="Revolut: 80+ million customers worldwide">
 <div class="customer-portraits" aria-hidden="true">
-{[1, 2, 3, 4].map(number => <span class="customer-portrait"><img src={`${assetBase}/images/community/portrait-${number}.webp`} alt="" width="76" height="100" decoding="async"/></span>)}
+<img src={`${assetBase}/images/community/portraits-clean-original-faces.png`} alt="" width="379" height="129" decoding="async"/>
 </div>
 <p><strong>80+ million</strong> customers worldwide</p>
 </div>
