@@ -42,7 +42,7 @@ export function Navigation() {
     const curtain = journey?.querySelector<HTMLElement>(".concept-strip");
     let frame = 0;
     let navHeight = header.current?.offsetHeight ?? 80;
-    // The sticky photograph remains behind the banking curtain. Track the visible
+    // The sticky photograph remains behind the content curtain. Track the visible
     // handoff edge rather than the photograph's intersection with the viewport.
     const updateHeroContrast = () => {
       frame = 0;
@@ -126,7 +126,7 @@ export function Navigation() {
         aria-label="Main navigation"
         className={menu ? "nav-links open" : "nav-links"}
       >
-        {["Personal", "Business", "Features"].map((x) => (
+        {["Personal", "Features"].map((x) => (
           <div className="nav-item" key={x} onBlur={event => {
             if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
               setDrop(current => current === x ? "" : current);
@@ -136,23 +136,23 @@ export function Navigation() {
               ref={element => { dropdownButtons.current[x] = element; }}
               aria-expanded={drop === x}
               aria-controls={navigationId + "-" + x.toLowerCase()}
-              data-active={x === "Personal" && ["banking", "payments", "cards", "savings", "invest"].includes(activeSection)}
+              data-active={x === "Personal" && ["savings", "invest"].includes(activeSection)}
               onClick={() => setDrop(drop === x ? "" : x)}
             >
               {x}
             </button>
             {drop === x && (
               <div className="dropdown" id={navigationId + "-" + x.toLowerCase()}>
-                {(x === "Business"
+                {(x === "Personal"
                   ? [
-                      ["Global business demo", "payments"],
-                      ["Team spending demo", "banking"],
+                      ["Savings goals", "savings"],
+                      ["Investments", "invest"],
                     ]
                   : [
-                      ["Everyday banking", "banking"],
-                      ["Global payments", "payments"],
-                      ["Cards & savings", "cards"],
-                      ["Investments", "invest"],
+                      ["Contribution calculator", "savings-calculator"],
+                      ["Security controls", "security"],
+                      ["Portfolio overview", "invest"],
+                      ["Compare plans", "plans"],
                     ]
                 ).map(([t, id]) => (
                   <a key={id} href={"#" + id} onClick={closeNavigation}>{t}</a>
@@ -178,7 +178,7 @@ export function Navigation() {
             window.dispatchEvent(new CustomEvent("orbit-demo", { detail: "Welcome to your demo account" }));
           }}
         >Demo account</button>
-        <a className="button small" href="#banking" onClick={closeNavigation}>Explore demo</a>
+        <a className="button small" href="#savings" onClick={closeNavigation}>Explore demo</a>
         <button
           ref={menuButton}
           className="menu"

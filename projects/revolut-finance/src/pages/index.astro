@@ -4,7 +4,7 @@ import '../styles/editorial.css';
 import '../styles/cinematic.css';
 import {Navigation} from '../components/Navigation';
 import {DemoDialog} from '../components/DemoDialog';
-import {Phone,Banking,Exchange,Cards,Savings,Security,Investments,Plans} from '../components/Experience';
+import {Savings,Security,Investments,Plans} from '../components/Experience';
 const assetBase = import.meta.env.BASE_URL.replace(/\/$/, '');
 const photo = (name: string, width: number) => `${assetBase}/images/editorial/${name}-${width}.webp`;
 const socialImage = 'https://nedelkoskifilip6.github.io/revolut-finance/social/hero-restored-portraits-20261122.jpg';
@@ -16,7 +16,7 @@ const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concep
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="theme-color" content="#111114"/>
-<meta name="description" content="An independent Revolut-inspired fintech portfolio concept by Filip Nedelkoski. Explore interactive banking, cards, savings and investment demonstrations."/>
+<meta name="description" content="An independent Revolut-inspired fintech portfolio concept by Filip Nedelkoski. Explore interactive savings, security and investment demonstrations."/>
 <link rel="canonical" href="https://nedelkoskifilip6.github.io/revolut-finance/"/>
 <link rel="icon" type="image/png" sizes="64x64" href={`${assetBase}/icon-check-rounded.png?test=safari-corners-01`}/>
 <meta property="og:type" content="website"/>
@@ -72,75 +72,23 @@ const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concep
 <div class="concept-strip" id="experience">
 <p>Independent Fintech Website Concept — Created for Portfolio Demonstration.</p>
 </div>
-<section id="banking" class="section banking">
-<div class="section-heading">
-<div>
-<span class="eyebrow">01 — EVERYDAY, ELEVATED</span>
-<h2><span class="banking-title-line"><span>Your Money,</span></span><span class="banking-title-line"><span>Beautifully Organized.</span></span></h2>
-</div>
-<p>Less mental maths. More living.<br/>Bring every balance, every purchase and every possibility into focus.</p>
-</div>
-<div class="banking-presentation">
-<div class="banking-story reveal"><span class="eyebrow">MADE FOR YOUR EVERYDAY</span><h3>A little less admin.<br/>A lot more life.</h3><p>Your balances, your spending, your goals. A considered demonstration of how it all comes together.</p><div class="story-detail"><b>All in one place.</b><span>Explore the app preview, then try the dashboard below.</span></div></div>
-<div class="device-stage reveal"><div class="phone-wrap"><Phone client:visible={{ rootMargin: '250px' }}/></div><span class="device-caption">FICTIONAL ACCOUNT · INTERACTIVE APP PREVIEW</span></div>
-</div>
-<div class="reveal">
-<Banking client:idle={{ timeout: 1200 }}/>
-</div>
-<div class="feature-row">
-<div>
-<b>The whole picture</b>
-<p>All your demo balances, together.</p>
-</div>
-<div>
-<span>◎</span>
-<b>Space for your goals</b>
-<p>Make room for what comes next.</p>
-</div>
-<div>
-<span>⌘</span>
-<b>Insights that make sense</b>
-<p>Understand the way you spend.</p>
-</div>
-</div>
-</section>
-</div>
-<section id="payments" class="section payments">
-<div class="section-heading motion-heading"><div><span class="eyebrow">02 — GO A LITTLE FURTHER</span><h2><span class="heading-line"><span>Money Without</span></span><span class="heading-line"><span>Borders.</span></span></h2></div><p>Different currencies. The same possibilities.<br/>A demonstration of an exchange experience made to feel effortless.</p></div>
-<div class="travel-composition">
-<figure class="travel-photograph"><img class="editorial-photo" src={photo('voyage',1600)} srcset={`${photo('voyage',800)} 800w, ${photo('voyage',1600)} 1600w`} sizes="(max-width: 800px) 100vw, 55vw" alt="A white boat crossing sunlit turquoise water with a flowing wake" width="1600" height="2001" loading="lazy" decoding="async"/><figcaption>Go where life takes you.<span>A different perspective on travel</span></figcaption></figure>
-<div class="travel-tools reveal"><span class="eyebrow">A WORLD OF POSSIBILITY</span><h3>New places.<br/>Familiar freedom.</h3><div class="currency-orbit" aria-hidden="true"><span>EUR</span><span>USD</span><span>GBP</span><span>JPY</span></div><Exchange client:idle={{ timeout: 1200 }}/></div>
-</div>
-</section>
-<section id="cards" class="section cards-section">
-<div class="cards-heading motion-heading">
-<span class="eyebrow">03 — AN EXTENSION OF YOU</span>
-<h2><span class="heading-line"><span>Designed to</span></span><span class="heading-line"><span>Stand Out.</span></span></h2>
-<p>Considered in every detail. Confident in every finish.<br/>Meet a card that feels as good as it looks.</p>
-</div>
-<Cards client:idle={{ timeout: 1200 }}/>
-<div class="card-footnote">
-<span>PHYSICAL & VIRTUAL</span>
-<span>FORM MEETS FUNCTION</span>
-<span>CRAFTED FOR THE EVERYDAY</span>
-</div>
-</section>
 <section id="savings" class="section savings">
 <div class="savings-editorial">
 <picture class="savings-photograph"><source media="(max-width: 600px)" srcset={`${photo('escape-mobile',640)} 640w, ${photo('escape-mobile',960)} 960w`}/><img class="editorial-photo" src={photo('escape',1600)} srcset={`${photo('escape',960)} 960w, ${photo('escape',1600)} 1600w, ${photo('escape',3200)} 3200w`} sizes="100vw" alt="Lush coastal mountains, a quiet beach and ocean in soft natural light" width="3200" height="2132" loading="lazy" decoding="async"/></picture>
 <div class="savings-story motion-heading"><span class="eyebrow">04 — LITTLE STEPS. BIG PLANS.</span><h2><span class="heading-line"><span>Make Every</span></span><span class="heading-line"><span>Goal Possible.</span></span></h2><p>That trip. That space. That fresh start.<br/>Make room for the life you imagine.</p><span class="photo-label">A NEW ADVENTURE STARTS WITH A SMALL STEP.</span></div>
 </div>
-<div class="savings-tools"><div class="tools-heading"><h3 class="savings-tools-title"><span>Your next chapter,</span> <span>in numbers.</span></h3><p>Select a demo goal. Set your monthly contribution. See what’s possible.</p></div>
+<div class="savings-tools">
 <div class="reveal">
 <Savings client:idle={{ timeout: 1200 }}/>
 </div>
 </div>
 </section>
+</div>
 <section id="security" class="section security">
 <div class="split">
 <div class="section-copy motion-heading">
 <span class="eyebrow">05 — PEACE OF MIND, BY DESIGN</span>
-<h2 class="security-title"><span class="security-title-wide"><span class="heading-line"><span>Confidence</span></span><span class="heading-line"><span>in Every</span></span><span class="heading-line"><span>Transaction.</span></span></span><span class="security-title-mobile"><span class="heading-line"><span>Confidence in</span></span><span class="heading-line"><span>every transaction.</span></span></span></h2>
+<h2 class="security-title"><span class="heading-line"><span>Confidence in</span></span><span class="heading-line"><span>every transaction</span></span></h2>
 <p>Control that’s always close. Explore instant card freezing, thoughtful privacy controls and a simpler way to stay informed.</p>
 <div class="security-note">
 <span>✳</span>
@@ -182,7 +130,7 @@ const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concep
 <span class="eyebrow">READY FOR A DIFFERENT PERSPECTIVE?</span>
 <h2><span class="heading-line"><span>The Future of</span></span><span class="heading-line"><span>Finance Is Here.</span></span></h2>
 <p>An independent perspective on what comes next.</p>
-<a class="button" href="#banking">Step into the experience </a>
+<a class="button" href="#savings">Step into the experience </a>
 </div>
 <span class="cta-bottom">YOUR MONEY. YOUR WORLD. YOUR FUTURE.</span>
 </section>
@@ -198,9 +146,9 @@ const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concep
 </div>
 <div>
 <b>Explore</b>
-<a href="#banking">Personal banking</a>
-<a href="#payments">Global payments</a>
-<a href="#cards">Premium cards</a>
+<a href="#savings">Savings experience</a>
+<a href="#savings-calculator">Contribution calculator</a>
+<a href="#security">Card security</a>
 </div>
 <div>
 <b>Your future</b>

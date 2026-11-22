@@ -6,13 +6,14 @@ export function initializeMotion() {
   ScrollTrigger.config({ ignoreMobileResize: true, limitCallbacks: true });
   const journey = document.querySelector<HTMLElement>('.cinematic-journey');
   const hero = document.querySelector<HTMLElement>('.hero');
-  const banking = document.querySelector<HTMLElement>('#banking');
+  const nextChapter = document.querySelector<HTMLElement>('#savings');
   const nav = document.querySelector<HTMLElement>('.nav');
   const description = document.querySelector<HTMLElement>('.hero-description');
   const acquisition = document.querySelector<HTMLElement>('.hero-acquisition');
   const download = document.querySelector<HTMLAnchorElement>('.hero a');
   const curtain = document.querySelector<HTMLElement>('.concept-strip');
-  if (!journey || !hero || !banking || !nav || !description || !download || !curtain) return;
+  if (!journey || !hero || !nextChapter || !nav || !description || !download || !curtain) return;
+  const chapterStory = nextChapter.querySelector<HTMLElement>('.savings-story');
 
   const media = gsap.matchMedia();
   let disposed = false;
@@ -45,15 +46,15 @@ export function initializeMotion() {
       });
     };
     journey.dataset.cinematic = '';
-    const previousTabIndex = banking.getAttribute('tabindex');
-    banking.setAttribute('tabindex', '-1');
+    const previousTabIndex = nextChapter.getAttribute('tabindex');
+    nextChapter.setAttribute('tabindex', '-1');
     const previousAcquisitionInert = acquisition?.getAttribute('inert');
     let acquisitionFaded = false;
     const syncAcquisition = (faded: boolean) => {
       if (!contextActive || !acquisition || faded === acquisitionFaded) return;
       acquisitionFaded = faded;
       if (faded && acquisition.contains(document.activeElement)) {
-        banking.focus({ preventScroll: true });
+        nextChapter.focus({ preventScroll: true });
       }
       acquisition.inert = faded || previousAcquisitionInert != null;
     };
@@ -85,7 +86,7 @@ export function initializeMotion() {
       if (covered && hero.contains(document.activeElement)) {
         // Continue keyboard navigation in the next chapter without jumping
         // the scroll position. Reversing the scene never steals focus back.
-        banking.focus({ preventScroll: true });
+        nextChapter.focus({ preventScroll: true });
       }
       hero.inert = covered;
       description.style.visibility = covered ? 'hidden' : 'visible';
@@ -98,7 +99,7 @@ export function initializeMotion() {
       scrollTrigger: {
         trigger: journey,
         start: 'top top',
-        endTrigger: banking,
+        endTrigger: nextChapter,
         end: () => `top ${nav.offsetHeight}px`,
         scrub: mobile ? .4 : .7,
         invalidateOnRefresh: true,
@@ -127,17 +128,19 @@ export function initializeMotion() {
     scene.to('.hero-caption', { opacity: 0, duration: .23 }, .2);
 
     // A real white section rises over the native sticky photograph. Rounded
-    // masking resolves to a straight edge as the banking chapter takes over.
+    // masking resolves to a straight edge as the savings chapter takes over.
     gsap.fromTo('.concept-strip', { '--curtain-radius': mobile ? '24px' : '54px' }, {
       '--curtain-radius': '0px', ease: 'none',
       scrollTrigger: { trigger: '.concept-strip', start: 'top bottom', end: () => `top ${nav.offsetHeight}px`, scrub: .5 },
     });
-    const chapter = gsap.timeline({
-      scrollTrigger: { trigger: '.banking .section-heading', start: 'top 94%', end: 'top 42%', scrub: mobile ? .3 : .55 },
-    });
-    chapter.from('.banking-title-line > span', { yPercent: 108, stagger: .12, duration: .8, ease: 'power2.out' }, 0);
-    chapter.from('.banking .section-heading .eyebrow', { opacity: 0, y: 15, duration: .5 }, .08);
-    chapter.from('.banking .section-heading > p', { opacity: 0, y: 28, duration: .7, ease: 'power2.out' }, .25);
+    if (chapterStory) {
+      const chapter = gsap.timeline({
+        scrollTrigger: { trigger: chapterStory, start: 'top 94%', end: 'top 42%', scrub: mobile ? .3 : .55 },
+      });
+      chapter.from(chapterStory.querySelectorAll('.heading-line > span'), { yPercent: 108, stagger: .12, duration: .8, ease: 'power2.out' }, 0);
+      chapter.from(chapterStory.querySelectorAll('.eyebrow'), { opacity: 0, y: 15, duration: .5 }, .08);
+      chapter.from(chapterStory.querySelectorAll(':scope > p'), { opacity: 0, y: 28, duration: .7, ease: 'power2.out' }, .25);
+    }
 
     gsap.utils.toArray<HTMLElement>('.reveal').forEach(element => {
       gsap.from(element, {
@@ -145,16 +148,18 @@ export function initializeMotion() {
         scrollTrigger: { trigger: element, start: 'top 94%', once: true },
       });
     });
-    const headings = new Set(gsap.utils.toArray<HTMLElement>('.heading-line').map(line => line.closest('h2') ?? line));
+    const headings = new Set(gsap.utils.toArray<HTMLElement>('.heading-line')
+      .filter(line => !chapterStory?.contains(line))
+      .map(line => line.closest('h2') ?? line));
     headings.forEach(heading => {
       gsap.from(heading.querySelectorAll('.heading-line > span'), {
         yPercent: 108, duration: 1, stagger: .08, ease: 'power3.out',
         scrollTrigger: { trigger: heading, start: 'top 90%', once: true },
       });
     });
-    gsap.utils.toArray<HTMLElement>('.dashboard, .investment-panel').forEach(panel => {
+    gsap.utils.toArray<HTMLElement>('.investment-panel').forEach(panel => {
       afterMotionReady(panel, () => {
-        const layers = panel.querySelectorAll(':scope > .dashboard-header, :scope > .balance-grid, :scope > .banking-grid, :scope > .dashboard-goal, :scope > .row-between, :scope > .portfolio-value, :scope > .range-filter, :scope > .asset-grid');
+        const layers = panel.querySelectorAll(':scope > .row-between, :scope > .portfolio-value, :scope > .range-filter, :scope > .asset-grid');
         gsap.from(layers, {
           y: mobile ? 14 : 24, opacity: 0, duration: .85, stagger: .1, ease: 'power3.out',
           scrollTrigger: { trigger: panel, start: 'top 88%', once: true },
@@ -166,21 +171,6 @@ export function initializeMotion() {
         yPercent: 3, scale: 1.025, ease: 'none',
         scrollTrigger: { trigger: image.parentElement, start: 'top bottom', end: 'bottom top', scrub: .7 },
       });
-    });
-    gsap.from('.phone-wrap', {
-      y: 40, rotation: 3, duration: 1.2, ease: 'power3.out',
-      scrollTrigger: { trigger: '.device-stage', start: 'top 85%', once: true },
-    });
-    // Animate only the stage. React keeps ownership of payment-card rotation
-    // and material selection, so pointer interaction never fights this tween.
-    gsap.utils.toArray<HTMLElement>('.card-stage').forEach(stage => {
-      const cardRoot = stage.closest<HTMLElement>('.cards-experience');
-      if (!cardRoot) return;
-      afterMotionReady(cardRoot, () => gsap.from(stage, {
-        y: mobile ? 28 : 56, rotationX: mobile ? 0 : 8, rotationY: mobile ? 0 : -12,
-        transformPerspective: 1200, duration: 1.3, ease: 'power3.out',
-        scrollTrigger: { trigger: stage.closest('.cards-experience') ?? stage, start: 'top 88%', once: true },
-      }));
     });
     gsap.to('.cta-light', {
       xPercent: 12, ease: 'none',
@@ -224,8 +214,8 @@ export function initializeMotion() {
         if (previousAcquisitionInert == null) acquisition.removeAttribute('inert');
         else acquisition.setAttribute('inert', previousAcquisitionInert);
       }
-      if (previousTabIndex === null) banking.removeAttribute('tabindex');
-      else banking.setAttribute('tabindex', previousTabIndex);
+      if (previousTabIndex === null) nextChapter.removeAttribute('tabindex');
+      else nextChapter.setAttribute('tabindex', previousTabIndex);
     };
   });
 

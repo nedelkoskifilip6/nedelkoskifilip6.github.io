@@ -93,7 +93,7 @@ export function DemoDialog() {
           Your demo is ready. All balances, cards and transactions are
           fictional. No authentication or personal information is needed.
         </p>
-        <a className="button" href="#banking" onClick={() => { focusSectionOnClose("banking"); setTitle(""); }}>
+        <a className="button" href="#savings" onClick={() => { focusSectionOnClose("savings"); setTitle(""); }}>
           Enter the experience 
         </a>
       </div>

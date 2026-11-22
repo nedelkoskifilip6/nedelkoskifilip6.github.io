@@ -65,8 +65,8 @@ test.describe('cinematic hero transition', () => {
       page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
       await page.goto(destination);
       await expect(page.locator('.hero a')).toHaveCount(1);
-      await expect(page.locator('.hero a')).toHaveText('Download the app');
-      await expect(page.locator('.hero a')).toHaveAttribute('href', 'https://revolut.com/app');
+      await expect(page.locator('.hero a img')).toHaveAttribute('alt', 'Download on the App Store');
+      await expect(page.locator('.hero a')).toHaveAttribute('href', 'https://apps.apple.com/app/id932493382');
       await expect.poll(() => page.locator('.hero-photo').evaluate(image =>
         (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0,
       )).toBe(true);
@@ -105,7 +105,7 @@ test.describe('cinematic hero transition', () => {
     });
   }
 
-  test('passes focus into banking when the curtain covers the hero CTA', async ({ page }) => {
+  test('passes focus into savings when the curtain covers the hero CTA', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(destination);
     await settleScene(page);
@@ -114,13 +114,13 @@ test.describe('cinematic hero transition', () => {
     await page.mouse.wheel(0, 1_800);
     await settleScene(page);
     await expect.poll(() => page.locator('.hero').evaluate(element => (element as HTMLElement).inert)).toBe(true);
-    await expect(page.locator('#banking')).toBeFocused();
+    await expect(page.locator('#savings')).toBeFocused();
     const afterCurtain = await page.evaluate(() => window.scrollY);
     expect(afterCurtain, 'focus handoff must not change the visitor scroll position').toBeCloseTo(1_800, 0);
     await page.mouse.wheel(0, -10_000);
     await settleScene(page);
     await expect(page.locator('.hero')).not.toHaveAttribute('inert');
-    await expect(page.locator('#banking')).toBeFocused();
+    await expect(page.locator('#savings')).toBeFocused();
     await assertVisibleLinkIsUsable(page);
   });
 
@@ -155,7 +155,7 @@ test.describe('cinematic hero transition', () => {
     await page.goto(destination, { waitUntil: 'domcontentloaded' });
     await settleScene(page);
     await expect(page.locator('.cinematic-journey')).toHaveAttribute('data-cinematic');
-    await expect(page.locator('.dashboard')).not.toHaveAttribute('data-motion-ready');
+    await expect(page.locator('.investment-panel')).not.toHaveAttribute('data-motion-ready');
     await page.mouse.wheel(0, 1_800);
     await settleScene(page);
     await expect.poll(() => page.locator('.hero').evaluate(element => (element as HTMLElement).inert)).toBe(true);
@@ -167,8 +167,8 @@ test.describe('cinematic hero transition', () => {
     // Idle hydration can complete after the preference changes. Its late
     // readiness event must not revive a reverted GSAP context or hidden layer.
     releaseHydration();
-    await expect(page.locator('.dashboard')).toHaveAttribute('data-motion-ready', 'true');
-    expect(await page.locator('.dashboard').evaluate(panel => Array.from(panel.children)
+    await expect(page.locator('.investment-panel')).toHaveAttribute('data-motion-ready', 'true');
+    expect(await page.locator('.investment-panel').evaluate(panel => Array.from(panel.children)
       .every(child => getComputedStyle(child).opacity === '1'))).toBe(true);
     await page.mouse.wheel(0, -10_000);
     await settleScene(page);
@@ -208,7 +208,7 @@ test.describe('cinematic hero transition', () => {
 test.describe('reduced-motion cinematic fallback', () => {
   test.use({ reducedMotion: 'reduce' });
 
-  test('keeps the hero static and banking usable with reduced motion', async ({ page }) => {
+  test('keeps the hero static and savings usable with reduced motion', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 900 });
     await page.goto(destination);
     await expect(page.locator('.hero a')).toHaveCount(1);
@@ -223,14 +223,14 @@ test.describe('reduced-motion cinematic fallback', () => {
     await settleScene(page);
     expect(await visualState(page)).toEqual(initial);
     expect(await page.locator('#hero-title').evaluate(element => getComputedStyle(element).opacity)).toBe('1');
-    await page.locator('#banking').scrollIntoViewIfNeeded();
-    await expect(page.locator('#banking h2')).toBeVisible();
-    // SSR buttons look ready before client:idle installs React handlers.
-    await expect(page.locator('.dashboard')).toHaveAttribute('data-motion-ready', 'true');
-    await page.getByRole('button', { name: 'Income', exact: true }).click();
-    await expect(page.locator('.transaction')).toHaveCount(1);
-    await page.getByRole('button', { name: 'All', exact: true }).click();
-    await expect(page.locator('.transaction')).toHaveCount(4);
+    await page.locator('#savings').scrollIntoViewIfNeeded();
+    await expect(page.locator('.savings-calculator')).toBeVisible();
+    // SSR controls look ready before client:idle installs React handlers.
+    await expect(page.locator('#savings astro-island')).not.toHaveAttribute('ssr');
+    await page.locator('#savings-goal').selectOption('1');
+    await expect(page.locator('.projected strong')).toHaveText('€5,040.00');
+    await page.locator('#months').selectOption('12');
+    await expect(page.locator('.projected strong')).toHaveText('€6,240.00');
     await assertNoOverflow(page);
   });
 });

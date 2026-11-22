@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-test("all fintech demonstrations respond to real input without errors", async ({
+test("retained fintech demonstrations respond to real input without errors", async ({
   page,
 }) => {
   const errors: string[] = [];
@@ -7,47 +7,30 @@ test("all fintech demonstrations respond to real input without errors", async ({
   await page.goto("");
   await expect(page.locator("h1")).toContainText("Banking & Beyond");
   await expect(page.locator('.hero a')).toHaveCount(1);
-  await expect(page.locator('.hero a')).toHaveText('Download the app');
-  await expect(page.locator('.hero a')).toHaveAttribute('href', 'https://revolut.com/app');
+  await expect(page.locator('.hero a img')).toHaveAttribute('alt', 'Download on the App Store');
+  await expect(page.locator('.hero a')).toHaveAccessibleName('Download Revolut on the App Store (opens in a new tab)');
+  await expect(page.locator('.hero a')).toHaveAttribute('href', 'https://apps.apple.com/app/id932493382');
   await expect(page.locator('.hero a')).toHaveAttribute('target', '_blank');
   await page.getByRole("button", { name: "Personal", exact: true }).click();
   await expect(
-    page.getByRole("link", { name: "Everyday banking", exact: true }),
+    page.locator(".nav-links").getByRole("link", { name: "Savings goals", exact: true }),
   ).toBeVisible();
   await page
-    .getByRole("link", { name: "Everyday banking", exact: true })
+    .locator(".nav-links").getByRole("link", { name: "Savings goals", exact: true })
     .click();
-  await page.locator("#banking").scrollIntoViewIfNeeded();
-  await page.getByRole("button", { name: "Income", exact: true }).click();
-  await expect(page.locator(".transaction")).toHaveCount(1);
-  await expect(page.locator(".transaction")).toContainText("Studio North");
-  await page.getByRole("button", { name: "All", exact: true }).click();
-  await expect(page.locator(".transaction")).toHaveCount(4);
-  await page.locator("#payments").scrollIntoViewIfNeeded();
-  await page.locator("#amount").fill("200");
-  await expect(page.locator("output")).toHaveText("218.00");
-  await page.locator("#to").selectOption("GBP");
-  await expect(page.locator("output")).toHaveText("172.00");
-  await page.getByRole("button", { name: "Swap currencies" }).click();
-  await expect(page.locator("#from")).toHaveValue("GBP");
-  await page.getByRole("button", { name: "Preview exchange" }).click();
-  await expect(
-    page.getByText("Simulation only. No money has been moved."),
-  ).toBeVisible();
-  await page.locator("#cards").scrollIntoViewIfNeeded();
-  await page.getByRole("button", { name: "Graphite", exact: true }).click();
-  await expect(page.locator(".payment-card")).toHaveClass(/graphite/);
-  await page.getByRole("button", { name: "Explore virtual card" }).click();
-  await expect(page.locator(".payment-card")).toHaveClass(/virtual/);
   await page.locator("#savings").scrollIntoViewIfNeeded();
+  await expect(page.locator("#savings astro-island")).not.toHaveAttribute("ssr");
+  await page.locator("#savings-goal").selectOption("0");
   await page.locator("#contribution").press("Home");
   for (let step = 0; step < 19; step++)
     await page.locator("#contribution").press("ArrowRight");
   await expect(page.locator(".projected strong")).toHaveText("€4,000.00");
-  await page
-    .getByRole("button", { name: /New studio Space to create/ })
-    .click();
+  await page.locator("#savings-goal").selectOption("1");
   await expect(page.locator(".projected strong")).toHaveText("€6,840.00");
+  await page.locator("#savings-goal").selectOption("2");
+  await expect(page.locator(".projected strong")).toHaveText("€4,800.00");
+  await page.locator("#months").selectOption("12");
+  await expect(page.locator(".projected strong")).toHaveText("€6,000.00");
   await page.locator("#security").scrollIntoViewIfNeeded();
   await page.getByRole("button", { name: "Freeze card", exact: true }).click();
   await expect(page.getByText("Card frozen", { exact: true })).toBeVisible();
@@ -93,9 +76,6 @@ for (const width of [375, 768, 1024, 1440])
     await page.goto("");
     await page.waitForTimeout(700);
     for (const id of [
-      "banking",
-      "payments",
-      "cards",
       "savings",
       "security",
       "invest",

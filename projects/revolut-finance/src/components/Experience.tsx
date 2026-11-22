@@ -721,28 +721,7 @@ export function Savings() {
   const projected = Math.min(g.target, g.saved + monthly * months);
   return (
     <div>
-      <div className="goal-grid">
-        {goals.map((goal, i) => (
-          <button
-            className={"goal-card " + (i === selected ? "selected" : "")}
-            key={goal.name}
-            onClick={() => setSelected(i)}
-            aria-pressed={i === selected}
-          >
-            <span className="goal-icon">{goal.icon}</span>
-            <small>{goal.desc}</small>
-            <h3>{goal.name}</h3>
-            <div className="row-between">
-              <b>{money(goal.saved)}</b>
-              <span>of {money(goal.target)}</span>
-            </div>
-            <div className="progress">
-              <i style={{ width: (goal.saved / goal.target) * 100 + "%" }} />
-            </div>
-          </button>
-        ))}
-      </div>
-      <div className="savings-calculator">
+      <div id="savings-calculator" className="savings-calculator">
         <div>
           <span className="label">BUILD YOUR MOMENTUM</span>
           <h3>
@@ -756,6 +735,12 @@ export function Savings() {
           </p>
         </div>
         <div className="calculator-controls">
+          <div className="row-between savings-goal-control">
+            <label htmlFor="savings-goal">Savings goal</label>
+            <select id="savings-goal" value={selected} onChange={event => setSelected(Number(event.target.value))}>
+              {goals.map((goal, index) => <option key={goal.desc} value={index}>{goal.desc}</option>)}
+            </select>
+          </div>
           <div className="row-between">
             <label htmlFor="contribution">Monthly contribution</label>
             <b>{money(monthly)}</b>
