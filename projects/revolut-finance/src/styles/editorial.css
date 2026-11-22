@@ -40,15 +40,12 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible { 
 .hero-description { margin-top:auto; max-width:560px; width:100%; padding-bottom:0; }
 .hero-description > p { color:white; font-size:18px; line-height:1.45; margin:0 0 22px; max-width:none; white-space:nowrap; }
 .hero-acquisition { --acquisition-visual-height:54px; --acquisition-caption-size:12px; display:grid; grid-template-columns:max-content max-content; grid-template-rows:var(--acquisition-visual-height) auto; align-items:start; column-gap:26px; row-gap:14px; }
-.app-store-link { grid-column:1; grid-row:1; display:block; min-height:44px; border-radius:8px; }
-.app-store-link img { display:block; width:auto; height:var(--acquisition-visual-height); }
-.app-store-link:focus-visible { outline:3px solid white; outline-offset:6px; }
-.customer-proof { grid-column:2; grid-row:2; color:white; min-width:0; }
-.customer-portraits { grid-column:2; grid-row:1; height:var(--acquisition-visual-height); }
-.customer-portraits img { display:block; width:auto; height:100%; }
-.customer-proof p { margin:0; color:inherit; font-size:var(--acquisition-caption-size); line-height:1.4; white-space:nowrap; }
-.customer-proof strong { font-weight:600; }
+.app-store-link,.play-store-link { grid-row:1; display:block; min-height:44px; border-radius:8px; }
+.app-store-link { grid-column:1; }.play-store-link { grid-column:2; }
+.app-store-link img,.play-store-link img { display:block; width:auto; height:var(--acquisition-visual-height); }
+.app-store-link:focus-visible,.play-store-link:focus-visible { outline:3px solid white; outline-offset:6px; }
 .external-note { grid-column:1; grid-row:2; display:block; color:#f5f6f3; font-size:var(--acquisition-caption-size); line-height:1.4; margin:0; white-space:nowrap; }
+.play-store-note { grid-column:2; }
 .hero-caption { position:absolute; bottom:46px; right:var(--gutter); font-size:9px; letter-spacing:.16em; color:white; }
 .concept-strip { padding:26px var(--gutter); background:white; color:#747777; font-size:10px; border:0; border-bottom:1px solid #e8e9e5; gap:24px; }
 .concept-strip p { max-width:none; }

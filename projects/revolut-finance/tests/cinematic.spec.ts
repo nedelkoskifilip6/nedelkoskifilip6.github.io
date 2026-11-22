@@ -34,24 +34,26 @@ async function assertNoOverflow(page: Page) {
     .toBeLessThanOrEqual(page.viewportSize()!.width);
 }
 
-async function assertVisibleLinkIsUsable(page: Page) {
-  const download = page.locator('.hero a');
-  const visuallyAvailable = await download.evaluate(link => {
-    const hero = link.closest<HTMLElement>('.hero');
-    const style = getComputedStyle(link);
-    const description = link.closest('.hero-description');
-    return !hero?.inert && style.visibility !== 'hidden' && style.display !== 'none'
-      && (!description || getComputedStyle(description).visibility !== 'hidden');
-  });
-  if (!visuallyAvailable) return;
-  const box = await download.boundingBox();
-  if (!box || box.y < 0 || box.y + box.height > page.viewportSize()!.height) return;
-  const reachable = await download.evaluate(link => {
-    const rect = link.getBoundingClientRect();
-    const hit = document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2);
-    return hit === link || !!hit && link.contains(hit);
-  });
-  expect(reachable, 'a visible hero CTA must not be covered by a transition layer').toBe(true);
+async function assertVisibleLinksAreUsable(page: Page) {
+  for (const selector of ['.app-store-link', '.play-store-link']) {
+    const download = page.locator(selector);
+    const visuallyAvailable = await download.evaluate(link => {
+      const hero = link.closest<HTMLElement>('.hero');
+      const style = getComputedStyle(link);
+      const description = link.closest('.hero-description');
+      return !hero?.inert && style.visibility !== 'hidden' && style.display !== 'none'
+        && (!description || getComputedStyle(description).visibility !== 'hidden');
+    });
+    if (!visuallyAvailable) continue;
+    const box = await download.boundingBox();
+    if (!box || box.y < 0 || box.y + box.height > page.viewportSize()!.height) continue;
+    const reachable = await download.evaluate(link => {
+      const rect = link.getBoundingClientRect();
+      const hit = document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2);
+      return hit === link || !!hit && link.contains(hit);
+    });
+    expect(reachable, `the visible ${selector} badge must not be covered by a transition layer`).toBe(true);
+  }
 }
 
 test.describe('cinematic hero transition', () => {
@@ -64,9 +66,11 @@ test.describe('cinematic hero transition', () => {
       page.on('pageerror', error => errors.push(error.message));
       page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
       await page.goto(destination);
-      await expect(page.locator('.hero a')).toHaveCount(1);
-      await expect(page.locator('.hero a img')).toHaveAttribute('alt', 'Download on the App Store');
-      await expect(page.locator('.hero a')).toHaveAttribute('href', 'https://apps.apple.com/app/id932493382');
+      await expect(page.locator('.hero a')).toHaveCount(2);
+      await expect(page.locator('.app-store-link img')).toHaveAttribute('alt', 'Download on the App Store');
+      await expect(page.locator('.app-store-link')).toHaveAttribute('href', 'https://apps.apple.com/app/id932493382');
+      await expect(page.locator('.play-store-link img')).toHaveAttribute('alt', 'Get it on Google Play');
+      await expect(page.locator('.play-store-link')).toHaveAttribute('href', 'https://play.google.com/store/apps/details?id=com.revolut.revolut');
       await expect.poll(() => page.locator('.hero-photo').evaluate(image =>
         (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0,
       )).toBe(true);
@@ -78,14 +82,14 @@ test.describe('cinematic hero transition', () => {
       expect(photograph!.width).toBeCloseTo(width, 0);
       expect(photograph!.height).toBeCloseTo(900, 0);
       const initial = await visualState(page);
-      await assertVisibleLinkIsUsable(page);
+      await assertVisibleLinksAreUsable(page);
       const positions: number[] = [];
       for (let step = 0; step < 5; step++) {
         await page.mouse.wheel(0, 180);
         await settleScene(page);
         positions.push(await page.evaluate(() => window.scrollY));
         await assertNoOverflow(page);
-        await assertVisibleLinkIsUsable(page);
+        await assertVisibleLinksAreUsable(page);
       }
       expect(positions.at(-1)).toBeGreaterThan(400);
       expect(await visualState(page), 'the hero scene responds to scroll input').not.toEqual(initial);
@@ -99,29 +103,31 @@ test.describe('cinematic hero transition', () => {
       await settleScene(page);
       expect(await visualState(page)).toEqual(initial);
       await expect(page.locator('#hero-title')).toBeVisible();
-      await assertVisibleLinkIsUsable(page);
+      await assertVisibleLinksAreUsable(page);
       await assertNoOverflow(page);
       expect(errors).toEqual([]);
     });
   }
 
-  test('passes focus into savings when the curtain covers the hero CTA', async ({ page }) => {
+  test('passes focus into savings when the curtain covers either store badge', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(destination);
     await settleScene(page);
-    await page.locator('.hero a').focus();
-    await expect(page.locator('.hero a')).toBeFocused();
-    await page.mouse.wheel(0, 1_800);
-    await settleScene(page);
-    await expect.poll(() => page.locator('.hero').evaluate(element => (element as HTMLElement).inert)).toBe(true);
-    await expect(page.locator('#savings')).toBeFocused();
-    const afterCurtain = await page.evaluate(() => window.scrollY);
-    expect(afterCurtain, 'focus handoff must not change the visitor scroll position').toBeCloseTo(1_800, 0);
-    await page.mouse.wheel(0, -10_000);
-    await settleScene(page);
-    await expect(page.locator('.hero')).not.toHaveAttribute('inert');
-    await expect(page.locator('#savings')).toBeFocused();
-    await assertVisibleLinkIsUsable(page);
+    for (const selector of ['.app-store-link', '.play-store-link']) {
+      await page.locator(selector).focus();
+      await expect(page.locator(selector)).toBeFocused();
+      await page.mouse.wheel(0, 1_800);
+      await settleScene(page);
+      await expect.poll(() => page.locator('.hero').evaluate(element => (element as HTMLElement).inert)).toBe(true);
+      await expect(page.locator('#savings')).toBeFocused();
+      const afterCurtain = await page.evaluate(() => window.scrollY);
+      expect(afterCurtain, 'focus handoff must not change the visitor scroll position').toBeCloseTo(1_800, 0);
+      await page.mouse.wheel(0, -10_000);
+      await settleScene(page);
+      await expect(page.locator('.hero')).not.toHaveAttribute('inert');
+      await expect(page.locator('#savings')).toBeFocused();
+      await assertVisibleLinksAreUsable(page);
+    }
   });
 
   test('rebuilds correctly when viewport crosses the mobile breakpoint', async ({ page }) => {
@@ -134,12 +140,12 @@ test.describe('cinematic hero transition', () => {
       await page.setViewportSize({ width, height: 900 });
       await settleScene(page);
       await assertNoOverflow(page);
-      expect(await page.locator('.hero a').count()).toBe(1);
+      expect(await page.locator('.hero a').count()).toBe(2);
     }
     await page.mouse.wheel(0, -10_000);
     await settleScene(page);
     await expect(page.locator('#hero-title')).toBeVisible();
-    await assertVisibleLinkIsUsable(page);
+    await assertVisibleLinksAreUsable(page);
   });
 
   test('restores static content when reduced motion changes during the scene', async ({ page }) => {
@@ -172,12 +178,12 @@ test.describe('cinematic hero transition', () => {
       .every(child => getComputedStyle(child).opacity === '1'))).toBe(true);
     await page.mouse.wheel(0, -10_000);
     await settleScene(page);
-    await assertVisibleLinkIsUsable(page);
+    await assertVisibleLinksAreUsable(page);
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await expect(page.locator('.cinematic-journey')).toHaveAttribute('data-cinematic');
     await settleScene(page);
     await expect(page.locator('#hero-title')).toBeVisible();
-    await assertVisibleLinkIsUsable(page);
+    await assertVisibleLinksAreUsable(page);
     await assertNoOverflow(page);
   });
 
@@ -192,14 +198,16 @@ test.describe('cinematic hero transition', () => {
       expect(photograph!.y).toBeCloseTo(0, 0);
       expect(photograph!.width).toBeCloseTo(width, 0);
       expect(photograph!.height).toBeCloseTo(height, 0);
-      const button = await page.locator('.hero a').boundingBox();
-      expect(button).not.toBeNull();
-      expect(button!.y).toBeGreaterThanOrEqual(0);
-      expect(button!.y + button!.height).toBeLessThanOrEqual(height);
+      for (const selector of ['.app-store-link', '.play-store-link']) {
+        const button = await page.locator(selector).boundingBox();
+        expect(button).not.toBeNull();
+        expect(button!.y).toBeGreaterThanOrEqual(0);
+        expect(button!.y + button!.height).toBeLessThanOrEqual(height);
+      }
       const headline = await page.locator('#hero-title').boundingBox();
       const description = await page.locator('.hero-description').boundingBox();
       expect(headline!.y + headline!.height, 'headline and CTA copy must not overlap').toBeLessThanOrEqual(description!.y + 1);
-      await assertVisibleLinkIsUsable(page);
+      await assertVisibleLinksAreUsable(page);
       await assertNoOverflow(page);
     });
   }
@@ -211,7 +219,7 @@ test.describe('reduced-motion cinematic fallback', () => {
   test('keeps the hero static and savings usable with reduced motion', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 900 });
     await page.goto(destination);
-    await expect(page.locator('.hero a')).toHaveCount(1);
+    await expect(page.locator('.hero a')).toHaveCount(2);
     await expect(page.locator('#hero-title')).toBeVisible();
     const initial = await visualState(page);
     await expect(page.locator('.cinematic-journey')).not.toHaveAttribute('data-cinematic');
