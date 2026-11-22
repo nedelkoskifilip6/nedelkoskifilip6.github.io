@@ -66,3 +66,9 @@ Smartphone, physical cards and virtual card previews are original HTML/CSS/React
 The previous AI-generated images with the Orbit wordmark remain only in the asset archive (`public/images/fintech-cards-*.webp`). They are not referenced or displayed by this redesign.
 
 The next generation presentation reuses these existing licensed files. The coastal escape crop shows mountains, beach and water; its alternative text does not claim a visible rainbow. No additional colour grading or generated faces are applied to the campaign photography; the separate supplied portrait montage restoration is described above.
+
+## Supplied recognition references
+
+The seven WebP images in `public/images/recognition/` are optimized derivatives of the seven reference JPEGs supplied by the project owner for this portfolio presentation: app-download rank, Trustpilot rating, Euromoney 2025, Forbes banks list, international payments 2025, customer satisfaction 2025, and consumer guardian 2025. Their complete original canvases, native dimensions, logos and wording are preserved; there is no crop, upscaling, AI redrawing or recoloring. These are supplied reference images about Revolut, not awards for this portfolio, live ratings, or independently verified current rankings. Third-party marks remain with their respective owners; no affiliation, endorsement or general commercial reuse licence is claimed.
+
+`RecognitionMarquee.astro` presents the seven originals once to assistive technology and uses a hidden, inert duplicate for a seamless visual loop. Motion pauses on request, hover/focus, when offscreen or when the document is hidden. Reduced-motion visitors receive a static, horizontally scrollable list.

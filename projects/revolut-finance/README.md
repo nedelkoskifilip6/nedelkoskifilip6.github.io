@@ -17,6 +17,10 @@ A responsive interactive website by Filip Nedelkoski. This is an independent, un
 
 Direct section links and mobile navigation, a contribution calculator with three selectable savings goals, card freeze/unfreeze, working privacy and notification switches, portfolio range filters and chart tooltips, monthly/yearly fictional plan pricing, and accessible demo dialogs. Escape closes dialogs; keyboard focus is contained while open. Reduced-motion settings disable entrance/parallax animations and transitions. Navigation follows the four remaining chapters in page order: 01 Savings, 02 Security, 03 Investments and 04 Plans. The banking, payments and card-showcase chapters have been removed.
 
+## Recognition ribbon
+
+Section 01 includes the seven supplied recognition references above “Build your momentum”. The server-rendered Astro component uses a 90-second linear CSS loop and a small TypeScript pause control, with no new React island or dependency. Repeated artwork is hidden from assistive technology; keyboard focus and hover pause movement, offscreen/hidden-page animation is suspended, and reduced-motion settings show a static scrollable list. Images are native-size, optimized WebP derivatives of the supplied references. See ASSETS.md for their context.
+
 ## Run locally
 
 Node 22 or later recommended.

@@ -1,0 +1,98 @@
+---
+const assetBase = import.meta.env.BASE_URL.replace(/\/$/, '');
+const references = [
+  { image: 'finance-app-rank.webp', width: 485, height: 465, alt: 'Supplied Revolut reference: number 3 most downloaded finance app' },
+  { image: 'trustpilot-reference.webp', width: 483, height: 426, alt: 'Supplied Revolut reference: 4.7 out of 5 on Trustpilot' },
+  { image: 'euromoney-2025.webp', width: 568, height: 434, alt: 'Supplied Revolut reference: Euromoney World’s Best Digital Bank, 2025' },
+  { image: 'forbes-banks.webp', width: 510, height: 411, alt: 'Supplied Revolut reference: Forbes World’s Best Banks list' },
+  { image: 'international-payments-2025.webp', width: 602, height: 452, alt: 'Supplied Revolut reference: Best International Payments Provider, 2025' },
+  { image: 'customer-satisfaction-2025.webp', width: 553, height: 421, alt: 'Supplied Revolut reference: Customer Satisfaction, Gold, 2025' },
+  { image: 'consumer-guardian-2025.webp', width: 562, height: 405, alt: 'Supplied Revolut reference: Consumer Guardian Badge, 2025' },
+];
+---
+
+<aside id="recognition" class="recognition-marquee" aria-label="Revolut recognition references" data-recognition-marquee data-paused="false" data-in-view="false" data-document-visible="true">
+  <div class="recognition-heading">
+    <span class="label">RECOGNITION, WORLDWIDE</span>
+    <button class="recognition-toggle" type="button" aria-label="Pause recognition animation" aria-pressed="false" data-recognition-toggle>
+      <span data-recognition-toggle-label>Pause</span>
+    </button>
+  </div>
+  <div class="recognition-viewport" tabindex="0" aria-label="Recognition reference images" aria-live="off">
+    <div class="recognition-track">
+      <ul class="recognition-group">
+        {references.map(reference => (
+          <li class="recognition-item">
+            <img src={`${assetBase}/images/recognition/${reference.image}`} width={reference.width} height={reference.height} alt={reference.alt} loading="lazy" decoding="async"/>
+          </li>
+        ))}
+      </ul>
+      <ul class="recognition-group recognition-copy" aria-hidden="true" inert>
+        {references.map(reference => (
+          <li class="recognition-item">
+            <img src={`${assetBase}/images/recognition/${reference.image}`} width={reference.width} height={reference.height} alt="" loading="lazy" decoding="async"/>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <p class="recognition-note">Revolut reference imagery · Independent portfolio concept</p>
+</aside>
+
+<style>
+  .recognition-marquee { --recognition-item-width:clamp(240px,22vw,300px); --recognition-gap:44px; max-width:1800px; margin-inline:auto; margin-bottom:72px; padding-bottom:28px; border-bottom:1px solid #e8e9e5; min-width:0; }
+  .recognition-heading { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:16px; }
+  .recognition-heading .label { font-size:10px; letter-spacing:.15em; color:#747777; }
+  .recognition-toggle { flex-shrink:0; min-height:44px; padding:10px 0 10px 16px; border:0; background:none; color:#555b58; font-size:12px; cursor:pointer; }
+  .recognition-toggle:hover { color:#101114; }
+  .recognition-viewport { width:100%; overflow:hidden; mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent); -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent); }
+  .recognition-viewport:focus-visible { outline:2px solid #7b9b87; outline-offset:5px; }
+  .recognition-track { display:flex; width:max-content; animation:recognition-drift 90s linear infinite; animation-play-state:paused; }
+  .recognition-group { display:flex; flex-shrink:0; gap:var(--recognition-gap); list-style:none; margin:0; padding:0 var(--recognition-gap) 0 0; }
+  .recognition-item { display:flex; align-items:center; justify-content:center; flex:0 0 var(--recognition-item-width); width:var(--recognition-item-width); height:246px; }
+  .recognition-item img { display:block; width:100%; height:100%; object-fit:contain; }
+  .recognition-note { margin:18px 0 0; color:#777d79; font-size:11px; line-height:1.5; }
+  .recognition-marquee[data-in-view="true"][data-document-visible="true"][data-paused="false"] .recognition-track { animation-play-state:running; }
+  .recognition-marquee:focus-within .recognition-track { animation-play-state:paused!important; }
+  @media(hover:hover) and (pointer:fine) { .recognition-marquee:hover .recognition-track { animation-play-state:paused!important; } }
+  @media(max-width:600px) {
+    .recognition-marquee { --recognition-item-width:220px; --recognition-gap:28px; margin-bottom:48px; padding-bottom:22px; }
+    .recognition-heading { gap:12px; margin-bottom:8px; }
+    .recognition-heading .label { font-size:8px; letter-spacing:.12em; }
+    .recognition-item { height:212px; }
+    .recognition-note { font-size:10px; max-width:280px; }
+  }
+  @keyframes recognition-drift { to { transform:translateX(-50%); } }
+  @media(prefers-reduced-motion:reduce) {
+    .recognition-viewport { overflow-x:auto; mask-image:none; -webkit-mask-image:none; padding-bottom:8px; }
+    .recognition-track { animation:none!important; transform:none!important; }
+    .recognition-copy,.recognition-toggle { display:none; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-recognition-marquee]').forEach(root => {
+    const toggle = root.querySelector<HTMLButtonElement>('[data-recognition-toggle]');
+    const label = root.querySelector<HTMLElement>('[data-recognition-toggle-label]');
+    if (!toggle || !label) return;
+
+    toggle.addEventListener('click', () => {
+      const paused = root.dataset.paused !== 'true';
+      root.dataset.paused = String(paused);
+      toggle.setAttribute('aria-pressed', String(paused));
+      toggle.setAttribute('aria-label', `${paused ? 'Resume' : 'Pause'} recognition animation`);
+      label.textContent = paused ? 'Resume' : 'Pause';
+    });
+
+    const updateVisibility = () => { root.dataset.documentVisible = String(!document.hidden); };
+    updateVisibility();
+    document.addEventListener('visibilitychange', updateVisibility);
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => { root.dataset.inView = String(entry.isIntersecting); });
+      }, { threshold:0.01 });
+      observer.observe(root);
+    } else root.dataset.inView = 'true';
+  });
+</script>
