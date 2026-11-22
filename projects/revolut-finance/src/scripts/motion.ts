@@ -9,6 +9,7 @@ export function initializeMotion() {
   const banking = document.querySelector<HTMLElement>('#banking');
   const nav = document.querySelector<HTMLElement>('.nav');
   const description = document.querySelector<HTMLElement>('.hero-description');
+  const acquisition = document.querySelector<HTMLElement>('.hero-acquisition');
   const download = document.querySelector<HTMLAnchorElement>('.hero a');
   const curtain = document.querySelector<HTMLElement>('.concept-strip');
   if (!journey || !hero || !banking || !nav || !description || !download || !curtain) return;
@@ -46,6 +47,16 @@ export function initializeMotion() {
     journey.dataset.cinematic = '';
     const previousTabIndex = banking.getAttribute('tabindex');
     banking.setAttribute('tabindex', '-1');
+    const previousAcquisitionInert = acquisition?.getAttribute('inert');
+    let acquisitionFaded = false;
+    const syncAcquisition = (faded: boolean) => {
+      if (!contextActive || !acquisition || faded === acquisitionFaded) return;
+      acquisitionFaded = faded;
+      if (faded && acquisition.contains(document.activeElement)) {
+        banking.focus({ preventScroll: true });
+      }
+      acquisition.inert = faded || previousAcquisitionInert != null;
+    };
 
     // The entrance owns the line spans and text parent. The scrub owns the
     // headline container, keeping transforms independent in either direction.
@@ -59,9 +70,9 @@ export function initializeMotion() {
     let wasCovered = false;
     let coverAt = Number.POSITIVE_INFINITY;
     const measureCover = () => {
-      // During this scene the hero is sticky at zero and the CTA stays still.
-      // Cache document/viewport geometry at refresh, rather than reading two
-      // layout boxes on every rendered scrub frame.
+      // During this scene the hero is sticky at zero. Cache document/viewport
+      // geometry at refresh, rather than reading two layout boxes on every
+      // rendered scrub frame.
       const curtainTop = curtain.getBoundingClientRect().top + window.scrollY;
       const downloadArea = download.closest<HTMLElement>('.hero-acquisition') ?? download;
       const downloadBottom = downloadArea.getBoundingClientRect().bottom - hero.getBoundingClientRect().top;
@@ -107,7 +118,12 @@ export function initializeMotion() {
     // white chapter creates the image mask without ever introducing gutters.
     scene.to('#hero-title', { y: mobile ? -32 : -84, opacity: 0, duration: mobile ? .27 : .35 }, .035);
     scene.to('.hero-text > .eyebrow', { y: -14, opacity: 0, duration: .24 }, .035);
-    scene.to('.hero-description > p', { y: -16, opacity: 0, duration: .23 }, .18);
+    scene.to('.hero-description > p, .hero-acquisition', {
+      y: -16, opacity: 0, duration: .23,
+      // Follow the tween's rendered progress, not the scroll target: scrub
+      // smoothing can keep the group visible after the scroll passes its end.
+      onUpdate(this: gsap.core.Tween) { syncAcquisition(this.progress() >= 1); },
+    }, .18);
     scene.to('.hero-caption', { opacity: 0, duration: .23 }, .2);
 
     // A real white section rises over the native sticky photograph. Rounded
@@ -204,6 +220,10 @@ export function initializeMotion() {
       delete journey.dataset.cinematic;
       hero.inert = false;
       description.style.removeProperty('visibility');
+      if (acquisition) {
+        if (previousAcquisitionInert == null) acquisition.removeAttribute('inert');
+        else acquisition.setAttribute('inert', previousAcquisitionInert);
+      }
       if (previousTabIndex === null) banking.removeAttribute('tabindex');
       else banking.setAttribute('tabindex', previousTabIndex);
     };
