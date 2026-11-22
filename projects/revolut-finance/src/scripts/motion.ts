@@ -59,14 +59,14 @@ export function initializeMotion() {
       acquisition.inert = faded || previousAcquisitionInert != null;
     };
 
-    // The entrance owns the line spans and text parent. The scrub owns the
-    // headline container, keeping transforms independent in either direction.
+    // Entrance animation owns the line spans and description children. Scroll
+    // animation owns their containers, with independent transforms/opacity.
     const entrance = gsap.timeline({ defaults: { ease: 'power3.out' } });
     entrance.from('.hero-text', { opacity: 0, duration: .6 }, 0);
     entrance.from('.hero-title-line > span', {
       yPercent: 108, duration: 1.15, stagger: .12,
     }, .08);
-    entrance.from('.hero-description', { opacity: 0, duration: .85 }, .3);
+    entrance.from('.hero-description > p, .hero-acquisition', { opacity: 0, duration: .85 }, .3);
 
     let wasCovered = false;
     let coverAt = Number.POSITIVE_INFINITY;
@@ -89,7 +89,6 @@ export function initializeMotion() {
         nextChapter.focus({ preventScroll: true });
       }
       hero.inert = covered;
-      description.style.visibility = covered ? 'hidden' : 'visible';
     };
     measureCover();
     syncCover();
@@ -117,15 +116,14 @@ export function initializeMotion() {
     }, 0);
     // The photograph begins full-bleed on every device. The moving, rounded
     // white chapter creates the image mask without ever introducing gutters.
-    scene.to('#hero-title', { y: mobile ? -32 : -84, opacity: 0, duration: mobile ? .27 : .35 }, .035);
-    scene.to('.hero-text > .eyebrow', { y: -14, opacity: 0, duration: .24 }, .035);
-    scene.to('.hero-description > p, .hero-acquisition', {
-      y: -16, opacity: 0, duration: .23,
-      // Follow the tween's rendered progress, not the scroll target: scrub
-      // smoothing can keep the group visible after the scroll passes its end.
+    // The headline, supporting copy and both download badges leave together.
+    // The entrance owns the description's children; this shared tween owns
+    // their parent so early scrolling and reversal never fight its opacity.
+    scene.to('#hero-title, .hero-description, .hero-caption', {
+      y: mobile ? -32 : -84, opacity: 0, duration: mobile ? .27 : .35,
       onUpdate(this: gsap.core.Tween) { syncAcquisition(this.progress() >= 1); },
-    }, .18);
-    scene.to('.hero-caption', { opacity: 0, duration: .23 }, .2);
+    }, .035);
+    scene.to('.hero-text > .eyebrow', { y: -14, opacity: 0, duration: .24 }, .035);
 
     // A real white section rises over the native sticky photograph. Rounded
     // masking resolves to a straight edge as the savings chapter takes over.
@@ -209,7 +207,6 @@ export function initializeMotion() {
       removeMagneticListeners.forEach(remove => remove());
       delete journey.dataset.cinematic;
       hero.inert = false;
-      description.style.removeProperty('visibility');
       if (acquisition) {
         if (previousAcquisitionInert == null) acquisition.removeAttribute('inert');
         else acquisition.setAttribute('inert', previousAcquisitionInert);

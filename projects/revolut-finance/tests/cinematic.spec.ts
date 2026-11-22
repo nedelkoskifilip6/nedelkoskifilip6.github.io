@@ -17,7 +17,7 @@ async function settleScene(page: Page) {
     let last = '', stableFrames = 0;
     while (stableFrames < 12) {
       await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
-      const elements = document.querySelectorAll('.hero-photo, .hero-photograph, #hero-title, .hero-title-line > span, .hero-text, .hero-description');
+      const elements = document.querySelectorAll('.hero-photo, .hero-photograph, #hero-title, .hero-title-line > span, .hero-text, .hero-description, .hero-description > p, .hero-acquisition, .hero-caption');
       const signature = Array.from(elements).map(element => {
         const style = getComputedStyle(element);
         return `${style.transform}|${style.opacity}|${style.clipPath}`;
@@ -34,15 +34,46 @@ async function assertNoOverflow(page: Page) {
     .toBeLessThanOrEqual(page.viewportSize()!.width);
 }
 
+async function assertHeroTextMovesTogether(page: Page, expectedOpacity?: number) {
+  const state = await page.evaluate(() => {
+    const read = (element: Element) => {
+      const style = getComputedStyle(element);
+      return {
+        opacity: Number(style.opacity),
+        y: style.transform === 'none' ? 0 : new DOMMatrixReadOnly(style.transform).m42,
+        visibility: style.visibility,
+      };
+    };
+    const caption = document.querySelector('.hero-caption')!;
+    return {
+      title: read(document.getElementById('hero-title')!),
+      description: read(document.querySelector('.hero-description')!),
+      caption: getComputedStyle(caption).display === 'none' ? null : read(caption),
+    };
+  });
+  for (const [name, layer] of [['description', state.description], ['caption', state.caption]] as const) {
+    if (!layer) continue;
+    expect(layer.opacity, `${name} fades with the headline`).toBeCloseTo(state.title.opacity, 4);
+    expect(layer.y, `${name} moves upward with the headline`).toBeCloseTo(state.title.y, 2);
+    expect(layer.visibility, `${name} must not disappear independently of the shared fade`).toBe('visible');
+  }
+  if (expectedOpacity !== undefined) expect(state.title.opacity).toBeCloseTo(expectedOpacity, 4);
+  return state;
+}
+
 async function assertVisibleLinksAreUsable(page: Page) {
   for (const selector of ['.app-store-link', '.play-store-link']) {
     const download = page.locator(selector);
     const visuallyAvailable = await download.evaluate(link => {
-      const hero = link.closest<HTMLElement>('.hero');
-      const style = getComputedStyle(link);
-      const description = link.closest('.hero-description');
-      return !hero?.inert && style.visibility !== 'hidden' && style.display !== 'none'
-        && (!description || getComputedStyle(description).visibility !== 'hidden');
+      if (link.closest('[inert]')) return false;
+      let opacity = 1;
+      for (let element: Element | null = link; element; element = element.parentElement) {
+        const style = getComputedStyle(element);
+        if (style.visibility === 'hidden' || style.display === 'none') return false;
+        opacity *= Number(style.opacity);
+        if (element.matches('.hero')) break;
+      }
+      return opacity > .001;
     });
     if (!visuallyAvailable) continue;
     const box = await download.boundingBox();
@@ -82,19 +113,29 @@ test.describe('cinematic hero transition', () => {
       expect(photograph!.width).toBeCloseTo(width, 0);
       expect(photograph!.height).toBeCloseTo(900, 0);
       const initial = await visualState(page);
+      const initialText = await assertHeroTextMovesTogether(page, 1);
+      expect(initialText.title.y).toBeCloseTo(0, 2);
+      await expect(page.locator('.hero-acquisition')).not.toHaveAttribute('inert');
       await assertVisibleLinksAreUsable(page);
       const positions: number[] = [];
+      let sampledPartialFade = false;
       for (let step = 0; step < 5; step++) {
         await page.mouse.wheel(0, 180);
         await settleScene(page);
         positions.push(await page.evaluate(() => window.scrollY));
+        const text = await assertHeroTextMovesTogether(page);
+        if (text.title.opacity > 0 && text.title.opacity < 1) sampledPartialFade = true;
         await assertNoOverflow(page);
         await assertVisibleLinksAreUsable(page);
       }
+      expect(sampledPartialFade, 'scroll samples must exercise the visible fade, not only its endpoints').toBe(true);
       expect(positions.at(-1)).toBeGreaterThan(400);
       expect(await visualState(page), 'the hero scene responds to scroll input').not.toEqual(initial);
       await page.mouse.wheel(0, 4_000);
       await settleScene(page);
+      const fadedText = await assertHeroTextMovesTogether(page, 0);
+      expect(fadedText.title.y).toBeLessThan(0);
+      await expect(page.locator('.hero-acquisition')).toHaveAttribute('inert');
       await assertNoOverflow(page);
       // Returning through the scene must restore its initial state rather than
       // leaving text hidden, a stale pin, or an accumulated transform.
@@ -102,6 +143,8 @@ test.describe('cinematic hero transition', () => {
       await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
       await settleScene(page);
       expect(await visualState(page)).toEqual(initial);
+      expect(await assertHeroTextMovesTogether(page, 1)).toEqual(initialText);
+      await expect(page.locator('.hero-acquisition')).not.toHaveAttribute('inert');
       await expect(page.locator('#hero-title')).toBeVisible();
       await assertVisibleLinksAreUsable(page);
       await assertNoOverflow(page);
@@ -139,11 +182,14 @@ test.describe('cinematic hero transition', () => {
     for (const width of [375, 768, 1024, 1440]) {
       await page.setViewportSize({ width, height: 900 });
       await settleScene(page);
+      await assertHeroTextMovesTogether(page);
       await assertNoOverflow(page);
       expect(await page.locator('.hero a').count()).toBe(2);
     }
     await page.mouse.wheel(0, -10_000);
     await settleScene(page);
+    await assertHeroTextMovesTogether(page, 1);
+    await expect(page.locator('.hero-acquisition')).not.toHaveAttribute('inert');
     await expect(page.locator('#hero-title')).toBeVisible();
     await assertVisibleLinksAreUsable(page);
   });
@@ -168,6 +214,9 @@ test.describe('cinematic hero transition', () => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await expect(page.locator('.cinematic-journey')).not.toHaveAttribute('data-cinematic');
     await expect(page.locator('.hero')).not.toHaveAttribute('inert');
+    const staticText = await assertHeroTextMovesTogether(page, 1);
+    expect(staticText.title.y).toBeCloseTo(0, 2);
+    await expect(page.locator('.hero-acquisition')).not.toHaveAttribute('inert');
     expect(await page.locator('#hero-title').evaluate(element => getComputedStyle(element).opacity)).toBe('1');
     expect(await page.locator('.hero-description').evaluate(element => getComputedStyle(element).visibility)).toBe('visible');
     // Idle hydration can complete after the preference changes. Its late
@@ -178,10 +227,12 @@ test.describe('cinematic hero transition', () => {
       .every(child => getComputedStyle(child).opacity === '1'))).toBe(true);
     await page.mouse.wheel(0, -10_000);
     await settleScene(page);
+    expect(await assertHeroTextMovesTogether(page, 1)).toEqual(staticText);
     await assertVisibleLinksAreUsable(page);
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await expect(page.locator('.cinematic-journey')).toHaveAttribute('data-cinematic');
     await settleScene(page);
+    await assertHeroTextMovesTogether(page, 1);
     await expect(page.locator('#hero-title')).toBeVisible();
     await assertVisibleLinksAreUsable(page);
     await assertNoOverflow(page);
@@ -192,6 +243,9 @@ test.describe('cinematic hero transition', () => {
       await page.setViewportSize({ width, height });
       await page.goto(destination);
       await expect(page.locator('.cinematic-journey')).not.toHaveAttribute('data-cinematic');
+      const initialText = await assertHeroTextMovesTogether(page, 1);
+      expect(initialText.title.y).toBeCloseTo(0, 2);
+      await expect(page.locator('.hero-acquisition')).not.toHaveAttribute('inert');
       const photograph = await page.locator('.hero-photograph').boundingBox();
       expect(photograph).not.toBeNull();
       expect(photograph!.x).toBeCloseTo(0, 0);
@@ -208,6 +262,14 @@ test.describe('cinematic hero transition', () => {
       const description = await page.locator('.hero-description').boundingBox();
       expect(headline!.y + headline!.height, 'headline and CTA copy must not overlap').toBeLessThanOrEqual(description!.y + 1);
       await assertVisibleLinksAreUsable(page);
+      await page.mouse.wheel(0, 180);
+      await settleScene(page);
+      expect(await assertHeroTextMovesTogether(page, 1)).toEqual(initialText);
+      await page.mouse.wheel(0, -10_000);
+      await settleScene(page);
+      expect(await assertHeroTextMovesTogether(page, 1)).toEqual(initialText);
+      await expect(page.locator('.hero-acquisition')).not.toHaveAttribute('inert');
+      await assertVisibleLinksAreUsable(page);
       await assertNoOverflow(page);
     });
   }
@@ -222,6 +284,9 @@ test.describe('reduced-motion cinematic fallback', () => {
     await expect(page.locator('.hero a')).toHaveCount(2);
     await expect(page.locator('#hero-title')).toBeVisible();
     const initial = await visualState(page);
+    const initialText = await assertHeroTextMovesTogether(page, 1);
+    expect(initialText.title.y).toBeCloseTo(0, 2);
+    await expect(page.locator('.hero-acquisition')).not.toHaveAttribute('inert');
     await expect(page.locator('.cinematic-journey')).not.toHaveAttribute('data-cinematic');
     const photograph = await page.locator('.hero-photograph').boundingBox();
     expect(photograph!.x).toBeCloseTo(0, 0);
@@ -230,6 +295,7 @@ test.describe('reduced-motion cinematic fallback', () => {
     await page.mouse.wheel(0, 450);
     await settleScene(page);
     expect(await visualState(page)).toEqual(initial);
+    expect(await assertHeroTextMovesTogether(page, 1)).toEqual(initialText);
     expect(await page.locator('#hero-title').evaluate(element => getComputedStyle(element).opacity)).toBe('1');
     await page.locator('#savings').scrollIntoViewIfNeeded();
     await expect(page.locator('.savings-calculator')).toBeVisible();
@@ -239,6 +305,11 @@ test.describe('reduced-motion cinematic fallback', () => {
     await expect(page.locator('.projected strong')).toHaveText('€5,040.00');
     await page.locator('#months').selectOption('12');
     await expect(page.locator('.projected strong')).toHaveText('€6,240.00');
+    await page.mouse.wheel(0, -10_000);
+    await settleScene(page);
+    expect(await assertHeroTextMovesTogether(page, 1)).toEqual(initialText);
+    await expect(page.locator('.hero-acquisition')).not.toHaveAttribute('inert');
+    await assertVisibleLinksAreUsable(page);
     await assertNoOverflow(page);
   });
 });
