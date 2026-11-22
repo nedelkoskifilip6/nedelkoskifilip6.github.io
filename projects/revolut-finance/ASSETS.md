@@ -41,7 +41,7 @@ The previous city/Positano/mountain photographs remain unused in the asset archi
 
 ## Social sharing preview
 
-`public/social/hero-restored-portraits-20261122.jpg` is a 1200×675 browser capture of the actual rendered Hero, including its navigation, wordmark, headline, supporting copy, single App Store CTA, illustrative portrait group and unofficial portfolio label. It combines the existing licensed campaign photograph with the site's own layout. Open Graph and Twitter image metadata reference this versioned JPEG rather than the background photograph alone. Recapture it when the Hero design changes; the rights and notices above continue to apply.
+`public/social/hero-copy-layout-20261122.jpg` is a 1200×675 browser capture of the actual rendered Hero, including its navigation, wordmark, headline, supporting copy, single App Store CTA, illustrative portrait group and unofficial portfolio label. It combines the existing licensed campaign photograph with the site's own layout. Open Graph and Twitter image metadata reference this versioned JPEG rather than the background photograph alone. Recapture it when the Hero design changes; the rights and notices above continue to apply.
 
 ## Hero App Store badge and community reference
 
