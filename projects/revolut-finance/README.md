@@ -15,7 +15,7 @@ A responsive interactive website by Filip Nedelkoski. This is an independent, un
 
 ## Interactive features
 
-Dropdown and mobile navigation, a contribution calculator with three selectable savings goals, card freeze/unfreeze, working privacy and notification switches, portfolio range filters and chart tooltips, monthly/yearly fictional plan pricing, and accessible demo dialogs. Escape closes dialogs; keyboard focus is contained while open. Reduced-motion settings disable entrance/parallax animations and transitions. The retained chapters are savings, security, investments and plans; the banking, payments and card-showcase chapters have been removed.
+Direct section links and mobile navigation, a contribution calculator with three selectable savings goals, card freeze/unfreeze, working privacy and notification switches, portfolio range filters and chart tooltips, monthly/yearly fictional plan pricing, and accessible demo dialogs. Escape closes dialogs; keyboard focus is contained while open. Reduced-motion settings disable entrance/parallax animations and transitions. Navigation follows the four remaining chapters in page order: 01 Savings, 02 Security, 03 Investments and 04 Plans. The banking, payments and card-showcase chapters have been removed.
 
 ## Run locally
 

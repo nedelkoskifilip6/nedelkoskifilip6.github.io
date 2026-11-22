@@ -18,12 +18,11 @@ test("retained fintech demonstrations respond to real input without errors", asy
     await expect(page.locator(selector)).toHaveAttribute('rel', /noopener/);
   }
   await expect(page.locator('.hero-acquisition').getByText('Official Revolut app · external link', { exact: true })).toHaveCount(2);
-  await page.getByRole("button", { name: "Personal", exact: true }).click();
   await expect(
-    page.locator(".nav-links").getByRole("link", { name: "Savings goals", exact: true }),
+    page.locator(".nav-links").getByRole("link", { name: "Savings", exact: true }),
   ).toBeVisible();
   await page
-    .locator(".nav-links").getByRole("link", { name: "Savings goals", exact: true })
+    .locator(".nav-links").getByRole("link", { name: "Savings", exact: true })
     .click();
   await page.locator("#savings").scrollIntoViewIfNeeded();
   await expect(page.locator("#savings astro-island")).not.toHaveAttribute("ssr");
@@ -103,9 +102,9 @@ for (const width of [375, 768, 1024, 1440])
     if (width === 375) {
       await page.getByRole("button", { name: "Open navigation" }).click();
       await expect(
-        page.getByRole("link", { name: "Plans", exact: true }),
+        page.locator(".nav-links").getByRole("link", { name: "Plans", exact: true }),
       ).toBeVisible();
-      await page.getByRole("link", { name: "Plans", exact: true }).click();
+      await page.locator(".nav-links").getByRole("link", { name: "Plans", exact: true }).click();
       await expect(
         page.getByRole("button", { name: "Open navigation" }),
       ).toHaveAttribute("aria-expanded", "false");
