@@ -4,7 +4,6 @@ import '../styles/editorial.css';
 import '../styles/cinematic.css';
 import {Navigation} from '../components/Navigation';
 import {DemoDialog} from '../components/DemoDialog';
-import RecognitionMarquee from '../components/RecognitionMarquee.astro';
 import {Savings,Security,Investments,Plans} from '../components/Experience';
 const assetBase = import.meta.env.BASE_URL.replace(/\/$/, '');
 const photo = (name: string, width: number) => `${assetBase}/images/editorial/${name}-${width}.webp`;
@@ -77,7 +76,6 @@ const socialImageAlt = 'Hero of an independent Revolut-inspired portfolio concep
 <div class="savings-story motion-heading"><span class="eyebrow">01 — LITTLE STEPS. BIG PLANS.</span><h2><span class="heading-line"><span>Make Every</span></span><span class="heading-line"><span>Goal Possible.</span></span></h2><p>That trip. That space. That fresh start.<br/>Make room for the life you imagine.</p><span class="photo-label">A NEW ADVENTURE STARTS WITH A SMALL STEP.</span></div>
 </div>
 <div class="savings-tools">
-<RecognitionMarquee/>
 <div class="reveal">
 <Savings client:idle={{ timeout: 1200 }}/>
 </div>
