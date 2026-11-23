@@ -19,7 +19,9 @@ Direct section links and mobile navigation, a contribution calculator with three
 
 ## Recognition ribbon
 
-Section 01 includes the seven supplied recognition references above “Build your momentum”. The server-rendered Astro component uses a 90-second linear CSS loop and a small TypeScript pause control, with no new React island or dependency. Repeated artwork is hidden from assistive technology; keyboard focus and hover pause movement, offscreen/hidden-page animation is suspended, and reduced-motion settings show a static scrollable list. Images are native-size, optimized WebP derivatives of the supplied references. See ASSETS.md for their context.
+Section 01 includes a compact ribbon of seven wordless reference symbols above “Build your momentum”. The original screenshot panels are replaced by clean decorative symbols with no embedded captions, ratings, years or lettering. Items are smaller and closer together, with reduced outer spacing and an icon-only pause/resume control that retains accessible labels.
+
+The server-rendered Astro component uses a 90-second linear CSS loop and a small TypeScript control, with no new React island or dependency. Repeated artwork is hidden from assistive technology; keyboard focus and hover pause movement, offscreen/hidden-page animation is suspended, and reduced-motion settings show a static scrollable list. See ASSETS.md for their context.
 
 ## Run locally
 
