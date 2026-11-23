@@ -39,6 +39,14 @@ Source downloads were 4000×2665 (hero and savings) and 3200×4001 (travel). Loc
 
 The previous city/Positano/mountain photographs remain unused in the asset archive. Their original credits are Vitaly Gariev (https://unsplash.com/photos/woman-with-coffee-and-phone-on-city-street-Xl8LYNjr3bc), Rafael Peier (https://unsplash.com/photos/positano-coastal-town-with-boats-beach-and-blue-sea-pC_iHok3vac) and lucas Favre (https://unsplash.com/photos/hiker-with-backpack-on-rocky-peak-7EtzgOxT9B4), under https://unsplash.com/license.
 
+## Supplied full-section photography
+
+The two photos supplied by the project owner for Section 02 and the final “Ready for a different perspective?” section were cleaned with the built-in image generation editor. The warm beach scene retains the people, waves, horizon and evening light as its edit reference; the turquoise bay scene retains its coastline, beach, sky and water. AI restoration reduces visible compression and softness and reconstructs illustrative fine detail; it is not a claim of recovered sensor detail or exact identity preservation. No additional people, text or logos are requested.
+
+Versioned WebP files in `public/images/editorial/` provide native-sized and smaller derivatives: `security-beach-ai-v1-{960,1536}.webp`, `security-beach-ai-v1-mobile-512.webp`, `perspective-bay-ai-v1-{960,1450}.webp`, and `perspective-bay-ai-v1-mobile-{640,760}.webp`. The generated masters are 1536×1024 and 1450×1085; mobile crops use their available native pixels without technical upscaling. Cropping and WebP encoding use Sharp. Both sections use edge-to-edge cover images, lazy loading and reserved dimensions, with separate CSS layers for text contrast. The photos themselves have no CSS colour filter.
+
+These are owner-supplied references, not official Revolut campaign assets. No general stock-photo licence, endorsement or affiliation is claimed for the supplied photos or the people pictured. The editable masters, final prompts and built-in-tool metadata are retained in the workspace under `work/section-photography/`.
+
 ## Social sharing preview
 
 `public/social/hero-store-badges-20261122.jpg` is a 1200×675 browser capture of the actual rendered Hero, including its navigation, wordmark, headline, supporting copy, App Store and Google Play download badges and unofficial portfolio label. It combines the existing licensed campaign photograph with the site's own layout. Open Graph and Twitter image metadata reference this versioned JPEG rather than the background photograph alone. Recapture it when the Hero design changes; the rights and notices above continue to apply.
