@@ -140,7 +140,7 @@ export function Navigation() {
             window.dispatchEvent(new CustomEvent("orbit-demo", { detail: "Welcome to your demo account" }));
           }}
         >Demo account</button>
-        <a className="button small" href="#savings" onClick={closeNavigation}>Explore demo</a>
+        <a className="explore-demo" href="#savings" onClick={closeNavigation}>Explore demo</a>
         <button
           ref={menuButton}
           className="menu"

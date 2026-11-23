@@ -21,8 +21,15 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible { 
 .brand-concept { font-size:9px; font-weight:400; color:#777; letter-spacing:.04em; }
 .nav-links { font-size:13px; gap:30px; }
 .nav-actions { gap:24px; }
-.nav-actions .button { background:var(--ink); padding:12px 22px; min-height:44px; font-size:12px; }
-.nav[data-on-hero=true] .nav-actions .button { background:white; color:var(--ink); }
+.nav-actions .explore-demo { display:inline-flex; align-items:center; min-height:44px; padding:0; background:none; border:0; border-radius:0; box-shadow:none; color:inherit; font-size:13px; font-weight:400; white-space:nowrap; transition:opacity .2s; }
+.nav-actions .explore-demo:hover { opacity:.6; }
+.nav[data-on-hero=true] .nav-actions .explore-demo { color:white; }
+@media(min-width:801px) {
+ .nav { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); column-gap:24px; }
+ .nav>.brand { justify-self:start; }
+ .nav>.nav-links { justify-self:center; }
+ .nav>.nav-actions { justify-self:end; }
+}
 .nav-item>button,.login { min-height:44px; font-size:13px; color:inherit; }
 .nav-links button[aria-expanded=true],.nav-links button[data-active=true],.nav-links a[aria-current=location] { text-decoration:underline; text-underline-offset:7px; }
 .dropdown { top:48px; color:var(--ink); border:1px solid #ecece8; border-radius:16px; box-shadow:0 20px 50px #0001; }
@@ -195,7 +202,7 @@ select { appearance:none; -webkit-appearance:none; cursor:pointer; }
 footer { padding:75px var(--gutter) 30px; background:#fff; }.footer-top { gap:60px; }.footer-top p { font-size:13px; color:#737b6c; }.footer-top>div>b { font-size:14px; }.footer-top>div>a:not(.brand) { color:#737b6c; font-size:13px; }.footer-top>div>a:hover { color:var(--ink); }.legal { border-color:#e0e5da; padding:35px 0; }.legal p { color:#7a8472; font-size:11px; line-height:1.7; max-width:none; }.legal p b { color:#55634c; }.footer-bottom { border-color:#e0e5da; color:#7a8472; font-size:10px; }
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }input[type=number] { appearance:textfield; -moz-appearance:textfield; }
 @media(max-width:1100px) {
- .nav-links { gap:22px; }.nav-actions { gap:16px; }.nav-actions .button { display:none; }.section { padding-top:100px; padding-bottom:100px; }
+ .nav-links { gap:22px; }.nav-actions { gap:16px; }.nav-actions .explore-demo { display:none; }.section { padding-top:100px; padding-bottom:100px; }
  .hero h1 { font-size:clamp(95px,12vw,150px); }.hero { padding-top:145px; }.section-heading { gap:35px; }
  .section-heading>p { max-width:300px; }.banking-presentation { grid-template-columns:1fr 1fr; min-height:640px; margin-bottom:80px; }.banking-story h3 { font-size:48px; }.device-stage .phone-wrap { scale:.93; }
  .travel-composition { gap:5vw; }.travel-photograph { min-height:690px; }.travel-tools h3 { font-size:40px; }.exchange-panel { padding:24px; }
