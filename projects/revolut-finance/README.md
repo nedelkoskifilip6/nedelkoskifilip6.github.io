@@ -64,7 +64,7 @@ The Hero contains two official download badges: **Download on the App Store** an
 
 Motion includes clipped typography entrances, layered investment interface reveals and subtle pointer-only button interactions. Touch devices omit pointer-only movement. Reduced-motion and short viewports use the static presentation. Covered Hero controls leave the focus sequence; keyboard focus transfers to savings only if it was inside the covered Hero.
 
-Same-page menu, footer and logo links use `src/scripts/anchorNavigation.ts` for a distance-aware 3.2–4.8 second scroll. Mobile menus and dialogs release their scroll locks first; manual input cancels the transition. Reduced-motion navigation and the skip link move immediately. Hash history remains native, and destination focus changes only after completed navigation.
+Same-page menu, footer and logo links use `src/scripts/anchorNavigation.ts` for a distance-aware 0.9–1.5 second scroll. Menu links start without an underline; selecting a menu link underlines that item, and the header logo clears the selection. Ordinary scrolling does not select menu items. Mobile menus and dialogs release their scroll locks first; manual input cancels the transition. Reduced-motion navigation and the skip link move immediately. Hash history remains native, and destination focus changes only after completed navigation.
 
 All savings, chart, pricing and security interactions remain local demonstrations. Portfolio value animations expose the final value to assistive technology. Existing licensed photography is reused with responsive WebP sources, dedicated mobile crops, reserved dimensions, a prioritized Hero and lazy-loaded lower images. No Three.js runtime is needed.
 

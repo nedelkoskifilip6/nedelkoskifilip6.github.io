@@ -88,7 +88,7 @@ export function initializeAnchorNavigation() {
       focusTarget(target);
       return;
     }
-    const duration = 3.2 + Math.min(1.6, Math.sqrt(distance / Math.max(1, window.innerHeight)) * .5);
+    const duration = .9 + Math.min(.6, Math.sqrt(distance / Math.max(1, window.innerHeight)) * .18);
     tween = gsap.to(window, {
       duration,
       ease: 'power2.inOut',

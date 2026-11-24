@@ -24,17 +24,13 @@ function BrandLogo({
 
 export function Navigation() {
   const [menu, setMenu] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [selectedSection, setSelectedSection] = useState("");
   const [onHero, setOnHero] = useState(true);
   const header = useRef<HTMLElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
   const navigationId = useId().replace(/:/g, "");
   usePageScrollLock(menu);
   useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => { if (entry.isIntersecting) setActiveSection(entry.target.id); });
-    }, { rootMargin: "-20% 0px -65% 0px" });
-    document.querySelectorAll("main section[id]").forEach(section => observer.observe(section));
     const hero = document.querySelector<HTMLElement>(".hero");
     const journey = hero?.closest<HTMLElement>(".cinematic-journey");
     const curtain = journey?.querySelector<HTMLElement>(".concept-strip");
@@ -61,7 +57,6 @@ export function Navigation() {
     motionPreference.addEventListener("change", schedule);
     schedule();
     return () => {
-      observer.disconnect();
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", onResize);
@@ -113,7 +108,7 @@ export function Navigation() {
   const closeNavigation = () => { setMenu(false); };
   return (
     <header ref={header} className="nav" data-on-hero={onHero && !menu} data-menu-open={menu}>
-      <a className="brand" href="#" aria-label="Portfolio concept home" onClick={closeNavigation}>
+      <a className="brand" href="#" aria-label="Portfolio concept home" onClick={() => { setSelectedSection(""); closeNavigation(); }}>
         <BrandLogo white={onHero && !menu} />
       </a>
       <nav
@@ -127,7 +122,7 @@ export function Navigation() {
           ["Investments", "invest"],
           ["Plans", "plans"],
         ].map(([t, id]) => (
-          <a key={id} href={"#" + id} aria-current={activeSection === id ? "location" : undefined} onClick={closeNavigation}>
+          <a key={id} href={"#" + id} aria-current={selectedSection === id ? "location" : undefined} onClick={() => { setSelectedSection(id); closeNavigation(); }}>
             {t}
           </a>
         ))}

@@ -5,6 +5,8 @@ test("retained fintech demonstrations respond to real input without errors", asy
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("");
+  await expect(page.locator("astro-island:has(header.nav)")).not.toHaveAttribute("ssr");
+  await expect(page.locator(".nav-links a[aria-current]")).toHaveCount(0);
   await expect(page.locator("h1")).toContainText("Banking & Beyond");
   await expect(page.locator('.hero a')).toHaveCount(2);
   await expect(page.locator('.app-store-link img')).toHaveAttribute('alt', 'Download on the App Store');
@@ -24,6 +26,7 @@ test("retained fintech demonstrations respond to real input without errors", asy
   await page
     .locator(".nav-links").getByRole("link", { name: "Savings", exact: true })
     .click();
+  await expect(page.locator(".nav-links").getByRole("link", { name: "Savings", exact: true })).toHaveAttribute("aria-current", "location");
   await page.locator("#savings").scrollIntoViewIfNeeded();
   await expect(page.locator("#savings astro-island")).not.toHaveAttribute("ssr");
   await page.locator("#savings-goal").selectOption("0");
@@ -61,6 +64,8 @@ test("retained fintech demonstrations respond to real input without errors", asy
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(page.getByRole("button", { name: "Demo account", exact: true, includeHidden: true })).toHaveCount(0);
+  // Scrolling through later chapters preserves the menu item the visitor clicked.
+  await expect(page.locator(".nav-links").getByRole("link", { name: "Savings", exact: true })).toHaveAttribute("aria-current", "location");
   await expect(page.locator('a[href="#"]')).not.toHaveCount(0);
   const broken = await page
     .locator('a[href^="#"]')
