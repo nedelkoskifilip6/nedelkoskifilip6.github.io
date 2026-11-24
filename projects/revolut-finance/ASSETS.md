@@ -49,7 +49,9 @@ These are owner-supplied references, not official Revolut campaign assets. No ge
 
 ## Social sharing preview
 
-`public/social/hero-store-badges-20261122.jpg` is a 1200×675 browser capture of the actual rendered Hero, including its navigation, wordmark, headline, supporting copy, App Store and Google Play download badges and unofficial portfolio label. It combines the existing licensed campaign photograph with the site's own layout. Open Graph and Twitter image metadata reference this versioned JPEG rather than the background photograph alone. Recapture it when the Hero design changes; the rights and notices above continue to apply.
+`public/social/hero-share-20261124.jpg` is the exact Hero screenshot supplied by the project owner on 24 November 2026, optimized from its 2814×1578 PNG source to a proportional 1600×897 JPEG (quality 95, mozjpeg, 4:4:4 chroma). The entire screenshot remains in frame: glass navigation, wordmark, headline, supporting copy, black App Store and Google Play download badges, captions and unofficial portfolio label. No cropping, AI regeneration, retouching or layout reconstruction is applied. The screenshot combines the existing licensed campaign photo with the site's own design; the rights and notices above continue to apply.
+
+Open Graph and Twitter cards use the new versioned absolute JPEG URL, with matching dimensions and descriptive alternative text. Earlier preview images remain unused in the archive so old cached links do not lose their image. The original supplied PNG and conversion metadata are retained in `work/social-share-20261124/` in the workspace.
 
 ## Hero app download badges
 

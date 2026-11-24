@@ -50,7 +50,7 @@ Semantic landmark sections, accessible labels, focus indicators, responsive layo
 
 ## Link sharing preview
 
-Open Graph and Twitter cards use the versioned image configured by `socialImage` in `src/pages/index.astro`: a 1200×675 capture of the actual Hero with its wordmark, headline, App Store badge and Google Play badge. Metadata is rendered in the static HTML, so crawlers do not need to execute animations or JavaScript. When changing the Hero, recapture its settled first frame, save a new versioned image and update `socialImage` and its dimensions. Messaging platforms may retain previews of previously shared URLs; existing messages are not controlled by this website.
+Open Graph and Twitter cards use the versioned image configured by `socialImage` in `src/pages/index.astro`: the owner-supplied Hero screenshot, proportionally optimized to 1600×897 without cropping or regeneration. It includes the glass navigation, wordmark, headline, black App Store and Google Play badges and their captions. Matching image dimensions and alt text are rendered in static HTML, so crawlers do not need to execute animations or JavaScript. When changing the Hero, save a new versioned screenshot and update `socialImage` and its dimensions. Messaging platforms may retain previews of previously shared URLs; existing messages are not controlled by this website.
 
 ## Design inspiration
 
