@@ -133,13 +133,6 @@ export function Navigation() {
         ))}
       </nav>
       <div className="nav-actions">
-        <button
-          className="login"
-          onClick={() => {
-            closeNavigation();
-            window.dispatchEvent(new CustomEvent("orbit-demo", { detail: "Welcome to your demo account" }));
-          }}
-        >Demo account</button>
         <a className="explore-demo" href="#savings" onClick={closeNavigation}>Explore demo</a>
         <button
           ref={menuButton}

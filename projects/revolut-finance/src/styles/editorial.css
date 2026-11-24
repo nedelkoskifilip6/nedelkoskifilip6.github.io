@@ -26,9 +26,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible { 
 .nav[data-on-hero=true] .nav-actions .explore-demo { color:white; }
 @media(min-width:801px) {
  .nav { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); column-gap:24px; }
- .nav>.brand { justify-self:start; }
- .nav>.nav-links { justify-self:center; }
- .nav>.nav-actions { justify-self:end; }
+ .nav>.brand { grid-column:1; grid-row:1; justify-self:start; }
+ .nav>.nav-links { grid-column:2; grid-row:1; justify-self:center; }
+ .nav>.nav-actions { grid-column:3; grid-row:1; justify-self:end; }
 }
 .nav-item>button,.login { min-height:44px; font-size:13px; color:inherit; }
 .nav-links button[aria-expanded=true],.nav-links button[data-active=true],.nav-links a[aria-current=location] { text-decoration:underline; text-underline-offset:7px; }

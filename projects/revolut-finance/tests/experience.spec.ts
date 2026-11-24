@@ -60,9 +60,7 @@ test("retained fintech demonstrations respond to real input without errors", asy
   await expect(page.getByRole("dialog")).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toHaveCount(0);
-  await page.getByRole("button", { name: "Demo account", exact: true }).click();
-  await expect(page.getByRole("dialog")).toBeVisible();
-  await page.getByRole("button", { name: "Close demo" }).click();
+  await expect(page.getByRole("button", { name: "Demo account", exact: true, includeHidden: true })).toHaveCount(0);
   await expect(page.locator('a[href="#"]')).not.toHaveCount(0);
   const broken = await page
     .locator('a[href^="#"]')
