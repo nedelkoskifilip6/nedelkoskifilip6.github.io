@@ -8,8 +8,14 @@ const destination = process.env.PLAYWRIGHT_BASE_URL ?? '';
 const visualState = async (page: Page) => page.locator('.hero-photo').evaluate(image => {
   const photograph = image.closest('.hero-photograph')!;
   const headline = document.getElementById('hero-title')!;
-  return [getComputedStyle(image).transform, getComputedStyle(photograph).clipPath,
-    getComputedStyle(headline).transform, getComputedStyle(headline).opacity];
+  // CSS `none` and GSAP's identity matrix render identically. Compare their
+  // actual matrices so returning to the top verifies the visible state.
+  const transform = (element: Element) => {
+    const value = getComputedStyle(element).transform;
+    return Array.from(new DOMMatrixReadOnly(value === 'none' ? undefined : value).toFloat64Array());
+  };
+  return [transform(image), getComputedStyle(photograph).clipPath,
+    transform(headline), getComputedStyle(headline).opacity];
 });
 
 async function settleScene(page: Page) {

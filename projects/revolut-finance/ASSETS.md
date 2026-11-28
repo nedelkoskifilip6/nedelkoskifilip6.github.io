@@ -37,6 +37,8 @@ CDN identifiers: `5231686`, `4784991`, `5007728` from `images.pexels.com/photos/
 
 Source downloads were 4000×2665 (hero and savings) and 3200×4001 (travel). Locally optimized WebP derivatives in `public/images/editorial/` preserve the natural colors and texture without additional upscaling or artificial sharpening. Landscape sources have 960, 1600 and 3200px versions; the portrait travel image uses 800 and 1600px; dedicated 640 and 960px mobile crops retain the surfer and coastal composition. The source pages' listed dimensions should not be treated as a claim of native sensor resolution.
 
+`src/assets/hero-preview-desktop.webp` (480×320) and `hero-preview-mobile.webp` (480×674) are lightweight quality-68 WebP reductions of the existing Hero and its mobile crop, without retouching or colour changes. Vite embeds them as data URLs in the server-rendered page for immediate photographic coverage while the full-resolution files download. The original full-resolution assets and their licensing remain unchanged.
+
 The previous city/Positano/mountain photographs remain unused in the asset archive. Their original credits are Vitaly Gariev (https://unsplash.com/photos/woman-with-coffee-and-phone-on-city-street-Xl8LYNjr3bc), Rafael Peier (https://unsplash.com/photos/positano-coastal-town-with-boats-beach-and-blue-sea-pC_iHok3vac) and lucas Favre (https://unsplash.com/photos/hiker-with-backpack-on-rocky-peak-7EtzgOxT9B4), under https://unsplash.com/license.
 
 ## Supplied full-section photography

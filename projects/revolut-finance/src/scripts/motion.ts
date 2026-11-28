@@ -59,14 +59,8 @@ export function initializeMotion() {
       acquisition.inert = faded || previousAcquisitionInert != null;
     };
 
-    // Entrance animation owns the line spans and description children. Scroll
-    // animation owns their containers, with independent transforms/opacity.
-    const entrance = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    entrance.from('.hero-text', { opacity: 0, duration: .6 }, 0);
-    entrance.from('.hero-title-line > span', {
-      yPercent: 108, duration: 1.15, stagger: .12,
-    }, .08);
-    entrance.from('.hero-description > p, .hero-acquisition', { opacity: 0, duration: .85 }, .3);
+    // The hero is fully composed by server-rendered HTML and CSS. Do not reset
+    // visible text when this deferred module arrives; only scrolling moves it.
 
     let wasCovered = false;
     let coverAt = Number.POSITIVE_INFINITY;
@@ -117,8 +111,7 @@ export function initializeMotion() {
     // The photograph begins full-bleed on every device. The moving, rounded
     // white chapter creates the image mask without ever introducing gutters.
     // The headline, supporting copy and both download badges leave together.
-    // The entrance owns the description's children; this shared tween owns
-    // their parent so early scrolling and reversal never fight its opacity.
+    // One shared tween keeps the headline, copy and badges synchronized.
     scene.to('#hero-title, .hero-description, .hero-caption', {
       y: mobile ? -32 : -84, opacity: 0, duration: mobile ? .27 : .35,
       onUpdate(this: gsap.core.Tween) { syncAcquisition(this.progress() >= 1); },
