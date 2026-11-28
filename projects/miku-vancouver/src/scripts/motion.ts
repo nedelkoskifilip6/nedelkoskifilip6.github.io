@@ -49,12 +49,7 @@ export function initMotion() {
     }
 
     if (hero && heroImage) {
-      // Entrance owns the inner line. The scroll timeline owns the outer block.
-      gsap.from('.title-line > span', { yPercent: 115, duration: 1.3, stagger: .12, ease: 'power4.out', delay: .1 });
-      if (window.matchMedia('(max-width: 600px)').matches) {
-        gsap.fromTo('.hero-content h1', { '--hero-title-shadow': 0 }, { '--hero-title-shadow': 1, duration: 1.3, ease: 'power4.out', delay: .1 });
-      }
-      gsap.from('.hero-eyebrow, .hero-description, .hero-bottom > *', { opacity: 0, y: 14, duration: .9, stagger: .1, ease: 'power2.out', delay: .45 });
+      // The initial Hero is already complete in HTML/CSS. Only scrolling moves it.
       const pin = document.querySelector<HTMLElement>('.opening-pin')!;
       let openingTrigger: ScrollTrigger | undefined;
       let finalTopInset = wide ? 14 : 53;

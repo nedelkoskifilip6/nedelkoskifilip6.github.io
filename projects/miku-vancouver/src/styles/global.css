@@ -12,8 +12,8 @@
 @theme { --color-ink: #111111; --color-ivory: #F5F1E8; --color-stone: #D8D1C5; --color-wine: #772C32; --color-gold: #B7A17A; --font-serif: 'Cormorant Garamond', Georgia, serif; --font-sans: 'DM Sans', Arial, sans-serif; }
 :root { --ink: #111111; --ivory: #f5f1e8; --stone: #d8d1c5; --gold: #b7a17a; --wine: #772c32; --gutter: clamp(24px, 5vw, 88px); --serif: 'Cormorant Garamond', Georgia, serif; --sans: 'DM Sans', Arial, sans-serif; }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 100px; }
-body { margin: 0; background: var(--ivory); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; overflow-x: clip; }
+body { margin: 0; background: var(--ivory); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: clip; }
 body.dialog-open { overflow: hidden; }
 ::selection { color: var(--ivory); background: var(--wine); }
 h1,h2,h3,p { margin: 0; }
@@ -85,7 +85,7 @@ dialog::backdrop { background: rgb(0 0 0 / .65); backdrop-filter: blur(5px); }
 /* One continuously composed opening scene; no separate image card. */
 .opening-scene { background: var(--ink); position: relative; }
 .opening-pin { position: relative; height: 100svh; min-height: 620px; overflow: clip; color: var(--ivory); }
-.hero-image { position: absolute; inset: 0; z-index: 2; clip-path: inset(0%); }
+.hero-image { position: absolute; inset: 0; z-index: 2; clip-path: inset(0%); background: var(--ink); }
 .hero-image picture,.hero-image img { width: 100%; height: 100%; }
 .hero-image img { object-position: 57% 52%; filter: brightness(1.05); }
 .hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 0 0 / .62) 0%,rgb(0 0 0 / .26) 42%,rgb(0 0 0 / .06) 70%), linear-gradient(0deg, rgb(0 0 0 / .6), transparent 30%); }

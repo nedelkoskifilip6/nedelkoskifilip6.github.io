@@ -14,7 +14,7 @@ Target URL: **https://nedelkoskifilip6.github.io/miku-vancouver/**
 - Locally bundled fonts and optimized responsive WebP photography.
 - An interactive menu, accessible dish detail overlays, editorial gallery, and honest external reservation handoff.
 
-The Hero entrance and scroll timeline own separate elements so their transforms do not conflict. Responsive timelines adapt the pinned mask and storytelling to the viewport, with a static presentation for reduced-motion preferences. ScrollTrigger measurements refresh after fonts and imagery settle. Below-the-fold content is progressively enhanced; keyboard controls, semantic landmarks, focus management, and safe-area spacing remain part of the experience.
+The Hero is fully composed in server-rendered HTML/CSS; it has no delayed entrance animation. Home-only inline copies of the existing critical fonts prevent fallback-font resizing, and small inline previews of the same photographs prevent an empty background before the full-resolution image decodes. The image and text only start moving when the visitor scrolls. Responsive timelines adapt the pinned mask and storytelling to the viewport, with a static presentation for reduced-motion preferences. ScrollTrigger measurements refresh after fonts and imagery settle. Below-the-fold content is progressively enhanced; keyboard controls, semantic landmarks, focus management, and safe-area spacing remain part of the experience.
 
 Three.js is intentionally unnecessary for these photographic compositions. This keeps the first screen and mobile interaction lightweight.
 
@@ -93,7 +93,7 @@ Tesla and Revolut files are outside the Miku publication scope.
 
 ## Asset reproduction
 
-The production-ready responsive WebP files are included in `public/images/`. `PHOTO-CREDITS.md` and `src/data/photos.json` record every licensed source. To regenerate crops from separately downloaded original JPEG masters, use `node scripts/optimize-assets.mjs /absolute/path/to/originals`. Original masters are intentionally outside the source repository.
+The production-ready responsive WebP files are included in `public/images/`. `PHOTO-CREDITS.md` and `src/data/photos.json` record every licensed source. To regenerate crops from separately downloaded original JPEG masters, use `node scripts/optimize-assets.mjs /absolute/path/to/originals`. Original masters are intentionally outside the source repository. After replacing either Hero photograph, regenerate its full-frame startup preview with `node scripts/build-startup-previews.mjs`.
 
 See `docs/ANIMATION.md` for the scene architecture and `QA-REPORT.md` for the recorded validation results.
 

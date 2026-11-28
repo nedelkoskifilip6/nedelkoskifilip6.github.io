@@ -5,7 +5,7 @@ The opening is a single viewport composition, pinned by one GSAP ScrollTrigger t
 Desktop and landscape tablets end with an editorial split composition. Portrait tablets and phones use a lower photograph mask whose top is measured from the story copy. Geometry is recalculated only on refresh. Short viewports, reduced-motion preferences and reported low-memory devices use a static scene.
 
 
-Entrance transforms belong to headline inner spans and utility children; the scroll timeline owns their outer blocks. This prevents a fast first scroll from being overwritten by a still-running entrance. Covered Hero controls become inert. Story text is exposed to assistive technology as the composition changes.
+The Hero headline, supporting text, navigation and disclosure are visible in their final positions from the initial render. There is no Hero entrance tween to hide or reposition them after JavaScript arrives. The scroll timeline still owns the outer blocks. Home-only inline fonts use the exact existing files, and responsive inline photograph previews fill the image element until its unchanged full-resolution source decodes. Static-scene preferences are applied in the head before the initial layout. Covered Hero controls become inert. Story text is exposed to assistive technology as the composition changes.
 
 Kaiseki uses actual flowing semantic course articles next to a sticky image stage. ScrollTrigger selects the corresponding photographic layer on both forward and backward entry. The text is never replaced, so course names remain readable and discoverable without motion.
 
@@ -17,4 +17,4 @@ Home navigation follows the rendered photograph mask, including scrub lag and re
 
 
 
-On phones, the Hero title owns a soft, feathered shadow backdrop. Its opacity enters on the same delay and duration as the headline; the existing outer Hero-content timeline fades and moves both together on scroll and reverse scroll. A closest-side radial gradient, static blur and alpha mask fade every backdrop edge fully to transparent. Glyph-level shadows are omitted so the line-reveal clipping cannot produce a hard shadow edge. No extra image downloads or layout changes are required. Reduced-motion/static layouts show it immediately.
+On phones, the Hero title owns a soft, feathered shadow backdrop. It is visible immediately with the headline; the existing outer Hero-content timeline fades and moves both together on scroll and reverse scroll. A closest-side radial gradient, static blur and alpha mask fade every backdrop edge fully to transparent. Glyph-level shadows are omitted so the line-reveal clipping cannot produce a hard shadow edge. No extra image downloads or layout changes are required. Reduced-motion/static layouts show it immediately.

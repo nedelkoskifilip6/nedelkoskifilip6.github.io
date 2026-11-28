@@ -1,0 +1,34 @@
+---
+import headingFont from '@fontsource-variable/cormorant-garamond/files/cormorant-garamond-latin-wght-italic.woff2?inline';
+import descriptionFont from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-400-normal.woff2?inline';
+import sansRegular from '@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2?inline';
+import sansMedium from '@fontsource/dm-sans/files/dm-sans-latin-500-normal.woff2?inline';
+import widePreview from '../assets/hero-startup-wide.webp?inline';
+import mobilePreview from '../assets/hero-startup-mobile.webp?inline';
+
+// These exact existing font files are embedded only on the home page. The first
+// visible Hero therefore uses its final metrics without a fallback-font swap.
+const startupStyles = `
+@font-face{font-family:'Miku Startup Serif';font-style:italic;font-weight:600 700;font-display:block;src:url("${headingFont}") format('woff2')}
+@font-face{font-family:'Miku Startup Serif';font-style:normal;font-weight:400;font-display:block;src:url("${descriptionFont}") format('woff2')}
+@font-face{font-family:'Miku Startup Sans';font-style:normal;font-weight:400;font-display:block;src:url("${sansRegular}") format('woff2')}
+@font-face{font-family:'Miku Startup Sans';font-style:normal;font-weight:500;font-display:block;src:url("${sansMedium}") format('woff2')}
+.site-header:not(.header-solid),.hero-content,.hero-bottom{--sans:'Miku Startup Sans','DM Sans',Arial,sans-serif;font-family:var(--sans)}
+.hero-content{--serif:'Miku Startup Serif','Cormorant Garamond',Georgia,serif}
+.hero-image img{background-image:url("${widePreview}");background-size:cover;background-position:57% 52%;background-repeat:no-repeat;color:transparent}
+@media(max-width:700px){.hero-image img{background-image:url("${mobilePreview}")}}
+@media(max-width:600px){.hero-image img{background-position:61% 50%}}
+`;
+---
+<style is:inline set:html={startupStyles}></style>
+<script is:inline>
+  // Decode the embedded faces while the parser is still in the head, rather
+  // than waiting for the first text layout to discover them.
+  for (const font of document.fonts) {
+    if (font.family.includes('Miku Startup')) font.load();
+  }
+  // Match the later motion setup before the first layout, including reduced motion.
+  document.documentElement.classList.toggle('motion-lite',
+    matchMedia('(prefers-reduced-motion: reduce), (max-height: 479px)').matches ||
+    (navigator.deviceMemory ?? 8) < 4);
+</script>
